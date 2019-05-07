@@ -48,7 +48,17 @@
     {
       "key": "770da9bb44957224bcc5",
       "color": "#1278BD",
-      "name": "others"
+      "name": "Others"
+    },
+    {
+      "key": "e9aa534349ebaa3961bd",
+      "color": "#E8D252",
+      "name": "Bootstrap"
+    },
+    {
+      "key": "846fb24c5f8aad917395",
+      "color": "#E8D252",
+      "name": "Memo"
     }
   ],
   "version": "1.0"

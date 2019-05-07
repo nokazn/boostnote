@@ -1,0 +1,138 @@
+createdAt: "2019-05-07T12:06:13.206Z"
+updatedAt: "2019-05-07T12:07:18.437Z"
+type: "MARKDOWN_NOTE"
+folder: "846fb24c5f8aad917395"
+title: "Roadmap"
+tags: [
+  "やること"
+  "TODO"
+  "Roadmap"
+]
+content: '''
+  # Roadmap
+  ### フロントエンド
+  - HTML
+    - SEO
+    - アクセシビリティ
+  
+  - CSS
+    - レイアウト
+      - Floats
+      - Display
+      - Box
+      - CSS Grid
+      - Flex Box
+    - Media Queries
+    - SASS (SCSS)
+    - CSS フレームワーク
+      - Bootstrap
+      - Bulma
+      - Materialize CSS
+  
+  - JavaScript
+    - ES6+ の書き方
+    - DOM 操作
+    - Ajax
+    - API
+  
+  - パッケージマネージャ
+    - npm
+    - yarn
+  
+  - Node.js
+  
+  - ビルドツール
+    - モジュールバンドラー
+      - webpack
+    - タスクランナー
+      - npm scripts
+      - gulp?
+    - コードフォーマッター
+      - prettier
+      - ESLint?
+  
+  - Jquery(ちょっとだけ)
+  
+  - Vue.js
+    - Vuex
+    - Vue Router
+    - SSR
+      - Nuxt.js ?
+  
+  - CSS in JS ?
+    - Styled Components(React)
+    - CSS Modules
+    https://takeda-san.hatenablog.com/entry/2018/11/10/154032
+  
+  - テスト
+    - Jest
+    - Enzyme(React)
+    - Cypress
+  
+  - PWA
+    - Storage
+    - Web Sockets
+    - Service Workers
+  
+  - TypeScript
+  
+  
+  ### バックエンド
+  - Ruby
+    - 本
+  
+  - セキュリティ
+    - OWASP ガイドライン
+  
+  - テスト
+    - RSpec
+  
+  - データベース
+    - RDBMS
+      - MySQL
+    - NoSQL
+      - MongoDB
+    - Firebase
+      - Realtime Database
+  
+  - Restful APIs
+  - GraphQL
+  
+  - Authentication
+    - OAuth
+    - Basic Authentication
+    - Token Authentication
+    - JWT
+    - OpenID
+  
+  - メッセージブロッカー
+    - RabbitMQ
+  
+  - サーチエンジン
+    - ElasticSearch
+    - Solr
+  
+  - Web サーバー
+    - Nginx
+    - Apache
+  
+  - Docker
+    - Kubernetes
+  
+  - Web Sockets
+  
+  - マイクロサービス
+  
+  ### その他
+  - Git / Github
+  - データ構造とアルゴリズム
+  - SSH
+  - HTTP/HTTPS
+  - APIs
+  - デザインパターン
+  - 文字エンコーディング
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false
