@@ -1,0 +1,51 @@
+createdAt: "2019-05-06T12:18:07.874Z"
+updatedAt: "2019-05-06T12:32:29.807Z"
+type: "MARKDOWN_NOTE"
+folder: "d642b49f05a0df4edcfc"
+title: "Windows"
+tags: []
+content: '''
+  # Windows
+  
+  ### VScodeのパスを通す
+  コントロールパネル
+  => (システムとセキュリティ)
+  => システム
+  => 左メニューの システムの詳細設定
+  => 環境変数
+  => ユーザー環境変数/システム環境変数のPATHを編集
+  => 追加したいパスを記述
+  例)`C:\\Users\\balea\\AppData\\Local\\Programs\\Microsoft VS Code\\`
+      コンソールで`code`と打つと`code.exe`が実行されて、VSCodeが開く。
+  - ユーザー環境変数 - ユーザーのみに適応
+  - システム環境変数 - すべてのユーザーに適応
+  
+  ### Windowsのパスの通し方
+  環境変数`PATH`にパスをいくつか登録すると、コマンドを実行する際、それらのパスの中から上から順に合致するプログラムを検索し、実行する。
+  
+  ### スタートメニューに追加とタスクバーに追加
+  `C:\\Users\\balea\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu`の中にスタートメニューに表示されるプログラムのショートカットを置くと反映される。
+  ショートカットを直接タスクバーに追加、またはスタートメニューの一覧から追加（これらの手順で追加された方をBとする）すると、タスクバーのアイコンが複数できてしまう。
+  
+  B群のアイコンをクリックしても別のアイコンが生成される。
+  => プログラムを起動して、有効になってる（？）ときのアイコンを直接タスクバーにピン留めするとうまくいく。
+  
+  
+  ### PowerShellでバックスペースキーを押し続けると鳴る音を消す
+  ```bash
+  $ Set-PSReadlineOption -BellStyle None
+  ```
+  これだけだと PowerShell を次回起動した際にまた音が鳴ってしまうので、起動時にデフォルトで音が鳴らないようにする。
+  ```bash
+  $ notopad $PROFILE / $ code $PLOFILE
+  ```
+  とすると、`C:\\Users\\balea\\OneDrive\\ドキュメント\\WindowsPowerShell\\Microsoft.PowerShell_profile.ps1`が開く。
+  
+  ここに上記の Set-PSReadlineOption -BellStyle None を追加する。
+    
+    
+    
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

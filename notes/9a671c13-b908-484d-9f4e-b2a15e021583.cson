@@ -1,0 +1,199 @@
+createdAt: "2019-05-04T04:41:11.612Z"
+updatedAt: "2019-05-05T12:48:58.463Z"
+type: "MARKDOWN_NOTE"
+folder: "589f561157ecd7d53b56"
+title: "Ruby tips"
+tags: [
+  "Ruby"
+]
+content: '''
+  # Ruby tips
+  ### %記法
+  ```ruby
+  puts %q!He said, "Don't speak"!  # single quote
+  puts %Q!He said, "Don't speak"!  # dobule quote
+  ```
+  !の部分は任意で、括弧の場合はペアで使う。
+  ```ruby
+  puts %q<He said, "Don't speak">
+  puts %q(He said, "Don't speak")
+  puts %q[He said, "Don't speak"]
+  ```
+  
+  ### ヒアドキュメント(行指向文字列リテラル)
+  ```ruby
+  puts "Line1,
+  Line2"
+  # =>
+  # Line1,
+  # Line2
+  ```  
+  
+  ```ruby
+  a = <<TEXT
+  これはヒアドキュメントです。
+    インデントが有効です。
+  TEXT
+  puts a
+  # =>
+  # これはヒアドキュメントです。
+  # 複数行にわたる長い文字列を作成するのに便利です。
+  ```
+  ```ruby
+  b = <<-TEXT
+  -をつけると最後の識別子をインデントすることができます。
+        TEXT
+  puts b
+  # =>
+  #   -をつけると最後の識別子をインデントすることができます。
+  ```
+  ```ruby
+  c = <<~TEXT
+      ~をつけると内部文字列のインデントが無視されます。
+    TEXT
+  puts c
+  # =>
+  # ~をつけると内部文字列のインデントが無視されます。
+  ```
+  ### フォーマットを指定して文字列作成
+  ```ruby
+  p sprintf("%.0f", 10) # => "10"
+  p sprintf('%0.2f', 0.5) # => "0.50"
+  p '%0.10f' %1.23 # => "1.2300000000"
+  p 0b11111111 # => 255
+  p 0377 # => 255
+  p 0o377 # => 255
+  p 0xff # => 255
+  ```
+  ### falseとnil以外はすべて真
+  式全体の真偽が確定すると、その時点で式の評価を終了して最後に評価した式の値を返す。
+  
+  #### ||= (nilガード、ダブルパイプイコール)
+  左辺が未定義 (nil) か false だった場合は右辺を代入する演算子で、変数の初期化によく使われる。
+  ```ruby
+  a ||= true
+  
+  # a ||= true と等価
+  a || (a = true)
+  a || a = true
+  
+  # a += b 的に考えるとこうしがち、a, bがともに変数の場合はこれでも正しい
+  a = a || b
+  ```
+  a がハッシュや配列、ゲッター・セッターを利用して参照するオブジェクトの場合は `a = a || b` だと2回目以降も値が代入されてしまう。（値は結局同じだがその都度出力されてしまう）
+  
+  論理演算子 (&&, ||) は論理判断だけを行い、論理演算子の評価が左側だけで決定した場合には右側は評価しない
+  
+  [論理演算子の自己代入](https://riocampos-tech.hatenablog.com/entry/20130611/p2)
+  
+  ### ブロック引数と Proc と yield
+  Ruby ではすべてのメソッドにブロックを引数としてわたすことができる
+  #### ブロック
+  - { p "foo" } のように `{` と `}` に囲まれたやつで、それ単体では存在できず、メソッドの引数になるコードのまとまりのこと。do ~ end もほぼ同義。
+  - ブロックはオブジェクトではないので、メソッドに直接渡すこともできないし、変数に代入することもできない。
+  - ブロックの中に || を使ってブロック内の処理に使う値を受け取ることができる。
+  - 以下のように処理の塊を丸ごと引数として渡すことができるが、ブロック引数は仮の引数の最後に定義されていなければならない。
+  ```ruby:block_test.rb
+  # &b という仮の引数で受け取るブロック引数を表す
+  def hogehoge( x, &b)
+  # ブロック引数 b が渡された場合に b を呼び出してる
+  # ここで初めてブロックがオブジェクト化される。
+    b.call if block_given?
+    p x + 2
+  end
+  
+  p hogehoge(2)
+  p hogehoge(4) { p "foo" }
+  hogehoge 5 do
+  p "bar"
+  end
+  # =>
+  # 4
+  # "foo"
+  # 6
+  # "foo"
+  # 7
+  ```
+  b.call は引数を受け取ることもできる。
+  ```diff:block_test.rb
+  - b.call if block_given?
+  + b.call(x) if block_given?
+  
+  - hogehoge 5 do
+  -   p "bar"
+  - end
+  + hogehoge 5 do |x|
+  +   p "bar #{x}"
+  + end
+  ```
+  とすると、`bar 5`が出力される。
+      
+  メソッドを後々の開発で柔軟に拡張でき、メソッドに対するメソッドのMix-inみたいなものといえる。状態を保持した関数(クロージャー)としての機能を得ることができる。
+  
+  ### Proc
+  処理の塊を手続き型のオブジェクトにしたもの。処理の塊であるブロックを Proc クラスのコンストラクタ (initialize メソッド) に渡すことで Proc インスタンスを作ることができ、変数に代入したり、メソッドの引数として渡せるようになる。lambda もほぼ同義と考えてよい。
+  ```ruby
+  proc = Proc.new do
+    p "foo"
+  end
+  proc.call
+  
+  proc = Proc.new do |x|
+   p x
+  end
+  proc.call("foo")
+  
+  # =>
+  # "foo"
+  # いずれも実行結果は同じ
+  ```
+  
+  ### yeild
+  そもそもブロック引数は一つしか受け取れないので、わざわざ`b.call` なんていちいちインスタンスを呼び出す必要もない。
+  ```ruby
+  yield  # 引数無し
+  yield(x)  # 引数あり
+  ```
+  のように`b.call`を書かなくて済み、`yeild`があれば`&b`も省略可能。ただ、このメソッドはブロックが必須であるということを明示的にし、ブロックの渡し忘れをなくすためには`&b`は書いた方がいい
+  
+  ### クロージャー
+  - クロージャーの外側で定義されたローカル変数はクロージャー内でも参照できる。
+  - クロージャーの内側で定義されたローカル変数はクロージャー外からは参照できない。
+  
+  Rubyのブロックはすべてクロージャーであり、ブロック内で定義された変数はブロックローカルとなる。
+  
+  [Ruby の yield って結局なんなの?](http://d.hatena.ne.jp/yoshidaa/20090511/1241967137)
+  [Ruby block/proc/lambdaの使いどころ](https://qiita.com/kidach1/items/15cfee9ec66804c3afd2)
+  [Rubyのブロックはメソッドに対するメソッドのMix-inだ！](http://melborne.github.io/2008/08/09/Ruby-Mix-in/)
+  [Rubyの動かないコード　（初級編）　ブロックとクロージャの性質](https://language-and-engineering.hatenablog.jp/entry/20101118/p1)
+  
+  ### each と map/collect と sellect
+  - each - 要素の数だけ繰り返しブロックを実行し。レシーバー自身を返す。
+  - map - 要素の数だけ繰り返しブロックを実行し、返り値を集めた配列を新規作成してその配列を返す。(返り値がない場合は nil を入れる)
+  - select - 条件にあう要素を探し、ブロックの返り値が真になったときの要素を集めた配列を
+    新規作成してその配列を返す。
+  
+  Ruby の`for`は`each`で実装されており、`for`ブロック内の変数に外からアクセス可能なためなるべく利用しない。 
+  [Ruby: `each`よりも`map`などのコレクションを積極的に使おう（社内勉強会）](https://techracho.bpsinc.jp/hachi8833/2018_07_20/59639)
+  
+  #### gem を読み込む
+  ```ruby
+  # require 'sinatra/base'
+  # require 'rubygems'
+  require "bundler/setup"
+  ```
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

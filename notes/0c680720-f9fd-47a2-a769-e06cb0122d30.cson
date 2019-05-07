@@ -1,0 +1,72 @@
+createdAt: "2019-05-06T13:13:02.577Z"
+updatedAt: "2019-05-06T13:18:24.337Z"
+type: "MARKDOWN_NOTE"
+folder: "660920097553891f8089"
+title: "Docker"
+tags: []
+content: '''
+  # Docker
+  
+  [Get Docker CE for CentOS](https://docs.docker.com/install/linux/docker-ce/centos/)
+  
+  ### 古い Docker がある場合はアンインストール
+  ```bash
+  $ sudo yum remove docker \\
+                    docker-client \\
+                    docker-client-latest \\
+                    docker-common \\
+                    docker-latest \\
+                    docker-latest-logrotate \\
+                    docker-logrotate \\
+                    docker-engine
+  ```
+  
+  ### Docker のリポジトリを設定する
+  
+  #### yum-utils
+  ```bash
+  $ sudo yum info yum-utils
+  ```
+  で yum パッケージの詳細を確認できる。yum-utils とは yum-config-manager を提供する。`/etc/yum.repos.d`配下で yum リポジトリの定義ファイルの enabled の値によってリポジトリの有効 / 無効を切り替える。
+  
+  #### device-mapper-persistent-data, lvm2
+  devicemapper のストレージドライバーに必要
+  ```bash
+  $ sudo yum install -y yum-utils \\
+                        device-mapper-persistent-data \\
+                        lvm2
+  $ sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+  ```
+  
+  ### 最新版の Docker CE をインストール
+  ```bash
+  $ sudo yum install -y docker-ce \\
+                        docker-ce-cli \\
+                        containerd.io
+  ```
+  
+  ### 特定のバージョンの Docker CE をインストール
+  ```bash
+  $ sudo yum list docker-ce --showduplicates | sort -r
+  $ sudo yum install -y docker-ce-<SPECIFIC_VERSION> \\
+                        docker-ce-cli-<SPECIFIC_VERSION> \\
+                        containerd.io
+  ```
+  
+  ### Docker の起動と自動起動の設定
+  ```bash
+  $ sudo systemctl start docker
+  $ sudo systemctl enable docker
+  $ sudo systemctl is-enabled docker
+  enabled
+  ```
+  
+  
+  
+  
+  
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

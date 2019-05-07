@@ -1,0 +1,173 @@
+createdAt: "2019-05-06T15:43:35.677Z"
+updatedAt: "2019-05-07T11:39:20.370Z"
+type: "MARKDOWN_NOTE"
+folder: "eed4b603f7be458eb434"
+title: "MyCentOS"
+tags: []
+content: '''
+  # MyCentOS
+  
+  ### Virtualbox インストール
+  [Oracle VM VirtualBox](https://www.virtualbox.org/)
+  
+  ### Vagrant インストール
+  [vagrant](https://www.vagrantup.com/)
+  
+  ### OpenSSH
+  Windows 10 Fall Creator Updateより使用可能になったデフォルトの OpenSSH を使用する。
+  設定 => アプリ => アプリと機能 => オプション機能の管理 で OpenSSH があるか確認する。
+  
+  ```bash
+  $ mkdir MyVagrant/MyCentOS
+  $ cd MyVagrant/MyCentOS
+  # ひな形となるboxをインストール
+  $ vagrant box add bento/centOS-7.2
+  # boxを基に仮想マシンを作成
+  $ vagrant init bento/centOS-7.2
+  ```
+  ```ruby:Vagrantfile
+  # ssh vagrant@192.168.56.10 でログイン可能
+  config.vm.network "private_network", ip: "192.168.56.10"
+  ```
+  ```bash
+  $ vagrant up
+  $ vagrant ssh
+  $ sudo yum update
+  ```
+  
+  ### Virtulabox guest additionsをインストール
+  ```bash
+  $ sudo yum install gcc make kernel-devel kernel-headers perl
+  $ vagrant halt
+  ```
+  #### マウント用のディスクを追加
+  VM VirtualBox マネージャーにて、
+  仮想マシン => 設定 => ストレージ => IDE Controller
+  の下に空の光学ドライブを追加する。
+  
+  再度`vagrant up`して CentOS を立ち上げて、VM VirtualBox マネージャーで起動中の仮想マシンをダブルクリック
+  上メニューの、
+  デバイス => Guest Additions CDイメージの挿入
+  を選択する。
+  
+  これで Guest Additions が VirtualBox のCDドライブに挿入されたことになる。
+  マウント先のディレクトリを作成し、CDドライブをマウントする。
+  ```bash
+  $ sudo mkdir /mnt/cdrom
+  $ sudo mount -r /dev/cdrom /mnt/cdrom
+  $ cd /mnt/cdrom
+  $ ls -l | grep *Linux*
+  -r-xr-xr-x. 1 root root  7321037  8月 14 11:51 VBoxLinuxAdditions.run
+  ```
+  
+  ### VBoxLinuxAdditions.run をインストールする
+  ```bash
+  $ sudo sh ./VBoxLinuxAdditions.run
+  # sh - シェルを起動する
+  ```
+  ```bash
+  $ vagrant plugin install vagrant-vbguest
+  $ vagrant vbguest
+  ```
+  
+  ### 各ネットワークインターフェースの有効化
+  `ifconfig`で eth0s8 があるかどうか確認し、なければ以下のようにネットワークマネージャ等を再起動する。
+  ```bash
+  $ systemctl restart NetworkManager
+  $ systemctl restart network
+  ```
+  それでも eth0s3(NAT) / eth0s8(ホストオンリーアダプター) の NIC が認識されないなら、
+  ```bash
+  $ vi /etc/sysconfig/network-scripts/ifcfg-enp0s3
+  $ vi /etc/sysconfig/network-scripts/ifcfg-enp0s8
+  ```
+  ```ini:ifcfg-enp0s3
+  TYPE=EthernetBOOTPROTO=dhcp
+  DEFROUTE=yes
+  PEERDNS=yes
+  PEERROUTES=yes
+  IPV4_FAILURE_FATAL=noIPV6INIT=yes
+  IPV6_AUTOCONF=yes
+  IPV6_DEFROUTE=yes
+  IPV6_PEERDNS=yes
+  IPV6_PEERROUTES=yes
+  IPV6_FAILURE_FATAL=no
+  NAME=enp0s3
+  UUID=00b46b0f-b035-44f1-9bbe-54c040772a7c
+  DEVICE=enp0s3ONBOOT=yes
+  ```
+  ```ini:ifcfg-enp0s8
+  NM_CONTROLLED=yes
+  BOOTPROTO=none
+  ONBOOT=yes
+  IPADDR=192.168.56.10NETMASK=255.255.255.0
+  DEVICE=enp0s8
+  PEERDNS=no
+  #VAGRANT-END
+  ```
+  と書いて、
+  ```bash
+  $ systemctl restart NetworkManager
+  $ systemctl restart network
+  ```
+  ### ファイアウォールをオフ
+  ```bash
+  $ sudo systemctl stop firewalld
+  $ sudo systemctl disable firewalld
+  $ sudo systemctl is-enebled firewalld
+  disabled
+  ```
+  
+  ### SSHの設定
+  Vagrant は SSH (Secure Shell) を使用する。
+  ```bash
+  $ ssh -l vagrant 192.168.56.10
+  ```
+  が通るかここで確認しておく。
+  
+  ### sahara
+  ```bash
+  $ vagrant plugin install sahara
+  $ vagrant sandbox on
+  # (ゲストOS内のファイルに何らかの変更を加える)
+  $ vagrant sandbox rollback
+  $ vagrant sandbox commit
+  # 重いので、vagrant suspend してから実行する
+  $ vagrant sandbox off
+  ```
+  
+  ### httpd(Apache)
+  ```bash
+  $ sudo yum install httpd
+  # httpdをログイン時に起動
+  $ sudo systemctl enable httpd
+  ```
+  CentOS7+ では`chkconfig`は使わない。
+  ```bash
+  $ sudo chkconfig httpd on
+  # CentOS6 以前
+  ```
+  
+  ### ホストOSとのファイル共有
+  ホストOSの`Vagrantfile`のある場所とゲストOSの`/vagrant`は共有されている。
+  `/vagrant`を通して`/var/www/html`にシンボリックリンクを通すと、ホストOS側で編集したファイルが`/var/www/html`にも共有される。
+  ```bash
+  $ sudo rm -rf /var/www/html
+  $ sudo ln -fs /vagrant /var/www/html
+  # ln(link) -s(symbolic) [シンボリックリンク作成したいファイルのパス] [シンボリックリンクを置くフォルダのパス]
+  ```
+  
+  ### CentOS の日本語化
+  ```bash
+  $ sudo localedef -i ja_JP -f UTF-8 -A /usr/share/locale/locale.alias ja_JP.UTF-8
+  $ sudo yum install ibus-kkc vlgothic-*
+  $ sudo localectl set-locale LANG=ja_JP.UTF-8
+  $ source /etc/locale.conf
+  $ echo $LANG
+  ja_JP.UTF-8
+  ```
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

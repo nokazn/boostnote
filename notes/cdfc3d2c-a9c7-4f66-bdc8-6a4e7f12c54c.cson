@@ -1,0 +1,23 @@
+createdAt: "2019-05-05T12:37:51.253Z"
+updatedAt: "2019-05-05T12:57:43.663Z"
+type: "MARKDOWN_NOTE"
+folder: "589f561157ecd7d53b56"
+title: "TVbot"
+tags: [
+  "Line"
+  "Line_Messaging_API"
+  "Ruby"
+  "Heroku"
+  "スクレイピング"
+]
+content: '''
+  # TVbot
+  ### 参考
+  [HerokuでLINE BOT(python)を動かしてみた](https://qiita.com/akabei/items/38f974716f194afea4a5)
+  [LINE Messaging API + Python + Heroku でLINE Botを作る](https://cppx.hatenablog.com/entry/2017/10/31/165128)
+  [IKEAの在庫情報をRubyで取り出す - Qiita](https://qiita.com/sasasoni/items/b8223453542c90689b84)
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

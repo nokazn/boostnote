@@ -1,0 +1,55 @@
+createdAt: "2019-05-06T13:18:55.793Z"
+updatedAt: "2019-05-06T13:41:10.523Z"
+type: "MARKDOWN_NOTE"
+folder: "660920097553891f8089"
+title: "Docker tips"
+tags: []
+content: '''
+  # Docker tips
+  
+  [いまさらDockerに入門したので分かりやすくまとめます](https://qiita.com/gold-kou/items/44860fbda1a34a001fc1)
+  [Dockerでプログラマが最低限知るべきことが、最速でわかるチュートリアル
+  ](https://qiita.com/woz/items/43462398765f8036f3a8)
+  
+  ### 利点
+  - ホストOSとカーネル部分のリソースを共有するのでリソースの管理がVMより効率的
+  - 実行環境を他のプロセスから隔離し、その中でアプリケーションを動作させる
+  - 基本的に状態を持たないのでポータビリティが非常に高く、特定の環境に依存することがない
+  
+  ### Docker の内部
+  #### namespace
+  Linux カーネルの namespace の機能を使ってコンテナ毎に以下を区画化し、管理している。
+  - PID - プロセスに関して
+  - Network - IPアドレス、ポート番号、ルーティング、フィルタリングなど
+  - UID/GID - ユーザーID、グループID
+  - MOUNT
+  - UTS - ホスト名、ドメイン名
+  - IPC - メッセージキューなどのプロセス間通信
+  
+  #### cgroup
+  Linux カーネルの cgroup 機能を使って物理マシンリソースの割り当てを実現している。
+  
+  #### chroot
+  現在のプロセスとその子プロセス群に対してルートディレクトリを変更する。ルートディレクトリを別のディレクトリに変更されたプロセスは、その範囲外のファイルにはアクセスできない。
+  
+  ### 階層
+  Stacks < Services < Containers
+  
+  ### sudo とセキュリティ
+  Docker グループに自身のユーザーを加えると`sudo`不要。ただし、Docker を踏み台にして root 権限を実行されてしまう可能性がある。
+  
+  ### image と container
+  - image - OS のインストールディスクを仮想化したもの
+  - container - OS が起動しているサーバーを仮想化したもの
+  
+  ```bash
+  $ sudo docker run hello-world
+  Hello from Docker!
+  ```
+  `docker run`とすると、 run した回数分の container が作成される。image は既にローカルにあれば再利用され、なければ`pull`される。
+    
+   
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

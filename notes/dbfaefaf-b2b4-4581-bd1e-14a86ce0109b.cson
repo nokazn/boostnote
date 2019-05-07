@@ -1,0 +1,112 @@
+createdAt: "2019-05-04T04:16:13.101Z"
+updatedAt: "2019-05-05T11:19:54.048Z"
+type: "MARKDOWN_NOTE"
+folder: "589f561157ecd7d53b56"
+title: "F1databot"
+tags: [
+  "F1databot"
+  "Ruby"
+  "Twitter_API"
+]
+content: '''
+  # F1databot
+  ### アクセストークン等取得
+  ```:Gemfile
+  gem "twitter"
+  gem "sinatra"
+  gem "dotenv"
+  ```
+  
+  ```ruby:main.rb
+  require "bundle/setup"
+  require "twitter"
+  require "dotenv"
+  Dotenv.load
+  
+  # ブロックの中で
+  # client = Twitter::REST::Client.new do |config|
+  #   config.consumer_key = ENV["TWITTER_CONSUMER_KEY"]
+  #   config.consumer_secret = ENV["TWITTER_CONSUMER_SECRET"]
+  #   config.access_token = ENV["TWITTER_ACCESS_TOKEN"]
+  #   config.access_token_secret = ENV["TWITTER_ACCESS_TOKEN_SECRET"]
+  # end
+  
+  # ハッシュに入れる
+  config = {
+    consumer_key = ENV["TWITTER_CONSUMER_KEY"]
+    consumer_secret = ENV["TWITTER_CONSUMER_SECRET"]
+    access_token = ENV["TWITTER_ACCESS_TOKEN"]
+    access_token_secret = ENV["TWITTER_ACCESS_TOKEN_SECRET"]
+  }
+  
+  client = Twitter::REST::Client.new(config)
+  
+  list_timeline("f1databot", "list1", option = {since_id: latest_list_tweet_id})
+  mentions_timeline(option = {since_id: latest_mention_id})
+  
+  # @f1databot hoge => listtimelineに現れない
+  # hoge @f1databot => listtimelineに現れる
+  ```
+  [Ruby の require について](https://qiita.com/murata0705/items/995c65a0878a7ec628fa)
+  [token がリポジトリ内に残らないようにする](http://c5meru.hatenablog.jp/entry/2017/08/02/173431)
+  [Twitter の User Streams API が終了してもメインTLは読み込める](http://melco.hatenablog.jp/entry/2018/05/17/184739)
+  
+  
+  ### MeCab のインストール
+    https://qiita.com/mhiro216/items/391ae79848129ac1cb2d\\
+  
+  groonga のリポジトリを追加，これでyumでインストールできる
+  ```bash
+  $ rpm -ivh http://packages.groonga.org/centos/groonga- release-1.1.0-1.noarch.rpm
+  $ yum install mecab mecab-ipadic
+  $ yum install mecab-devel
+  ```
+  ```:Gemfile
+  gem "mecab"
+  gem "natto"
+  ```
+  
+  ```bash
+  $ bundle install
+  $ echo 'export MECAB_PATH=/vagrant/mecab-0.996/src/.libs/libmecab.so' >> ~/.bash_profile
+  ```
+  yumでやると入らないmecab-configがこれで入る？
+  - mecabrc : 設定ファイル
+  
+  
+  ```ruby:test.rb
+  require "net/http"
+  require "json"
+  
+  for i in 1950..2018
+    url = URI.parse("http://ergast.com/api/f1/#{i}.json")
+  
+    req = Net::HTTP::Get.new(url.path)
+    res = Net::HTTP.start(url.host, url.port) {|http|
+      http.request(req)
+    }
+  
+    data = JSON.load(res.body)
+  
+    pp data
+    data["MRData"]["RaceTable"]["Races"].each do |r|
+      File.open("sample.rb","a") do |f|
+      f.puts(r["raceName"])
+      end
+    end
+    sleep 5
+    puts "#{data["MRData"]["RaceTable"]["season"].to_s}年" + "/i=#{i}"
+  end
+  # => sample.rbに1950~2018年の各グランプリ名
+  ```
+  ```bash
+  $ sort sample.rb -u -o sample2.rb
+  # => sample.rbの内容をアルファベット順にソートして同じものは一つにまとめ，sample2.rbに出力
+  ```
+  
+'''
+linesHighlighted: [
+  96
+]
+isStarred: false
+isTrashed: false

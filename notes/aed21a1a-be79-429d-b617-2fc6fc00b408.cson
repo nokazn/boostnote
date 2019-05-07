@@ -1,0 +1,251 @@
+createdAt: "2019-05-06T14:15:12.132Z"
+updatedAt: "2019-05-06T14:31:05.069Z"
+type: "MARKDOWN_NOTE"
+folder: "6e177d4f524b42f84558"
+title: "Bootstrap"
+tags: []
+content: '''
+  # Bootstrap
+  
+  ### グリッドシステム
+  全体を12に分割して考える。
+  例) col-md-3 - 画面サイズがmidiumで3カラム分
+  
+  - xs - ~767px
+  - sm - 768~991px
+  - md - 992~1199px
+  - lg - 1200px~
+  
+  ### テーブル
+  .tableで表をきれいにしてくれる。
+  - .table-striped - 行ごとに背景色が変わる
+  - .table-bordered - 各セルに枠がつく
+  - .table-hover - マウスを乗せると行がハイライトされる
+  - .table-condensed - 余白を詰めてコンパクトに
+  
+  ### フォーム
+  ```html
+  <input type="text" class="form-control">
+  ```
+  ```html
+  <form class="form-horizontal">
+    <div class="form-group">
+      <label class="col-xs-2 control-label">姓</label>
+      <div class="col-xs-10">
+        <input type="text" class="form-control">
+      </div>
+    </div>
+    <div class="form-group"></div>
+    <div class="form-group"></div>
+  </form>
+  ```
+  `form-horizontal`は`container`みたいなもの。
+  `form-group`は`row`みたいなもの。
+  ```html
+  <form>
+    郵便番号
+    <div class="input-group">
+      <span>〒</span>
+      <input type="text" class="form-control" placeholder="000-0000"></input>
+    </div>
+  </form>
+  ```
+  〒がinputboxの左端にうまい具合にひっついてくれる。
+  
+  ### ボタン
+  ```html
+  <a href="#" class="btn btn-default">aボタン</a>
+  <input type="submit" class="btn btn-default" value="inputボタン">
+  <button class="btn btn-default" type="submit">buttonボタン</button>
+  ```
+  - .btn .btn-default
+  - .btn .btn-primary
+  - .btn .btn-success
+  - .btn .btn-info
+  - .btn .btn-warning
+  - .btn .btn-danger
+  - .btn .btn-link
+  
+  ### アイコン(Glyphicon)
+  ```
+  <button type="button" class="btn btn-default>
+    <span class="glyphicon glyphicon-download-alt"></span>
+  </button>
+  ```
+  
+  ### ドロップダウンリスト
+  ```html
+  <div class="dropdown">
+    <button type="button" class="btn btn-default" data-toggle="dropdown">操作<span class="caret"></span></button>
+    <ul class="dropdown-list">
+      <li><a href="#">返信</a></li>
+      <li><a href="#">転送</li>
+      <li role="separator" class="divider"></li>
+      <li><a href="#">削除</a></li>
+    </ul>
+  </div>
+  ```
+  - 全体を`.dropdown`なdivで囲む。
+  - ボタン部分は`data-toggle="dropdown"`にする。
+  - 下向き矢印のアイコンは`.caret`な`span`にする。
+  - リスト全体を囲う`ul`を`.dropdown-menu`にする。
+  
+  ### タブ
+  ```html
+  <ul class="nav nav-tabs"></ul>
+    <li class="active"><a href="#">収入</a></li>
+    <li><a href="#">支出</a></li>
+    <li><a href="#">合計</li>
+  </ul>
+  ```
+  - リスト全体を囲う`ul`を`.nav .nav-tabs`にする
+  
+  ### ナビバー
+  ```html
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+          <span class="sr-only">メニュー</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">P&amp;K</a>
+      </div>
+      <div id="navbar" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">子犬</a></li>
+          <li><a href="#">子猫</a></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">会社情報<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">ビジョン</a></li>
+              <li><a href="#">会社概要</a></li>
+              <li><a href="#">地図</a></li>
+              <li><a href="#">沿革</a></li>
+            </ul>
+          </li>
+          <li><a href="#">お問い合わせ</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  ```
+  - `.container` - 固定レイアウト用。画面サイズに合わせて段階的にリサイズされる。
+  - `container-fluid` - 流動レイアウト用。画面サイズに合わせて滑らかにリサイズされる、自由が利く。
+  - `.sr-only` - スクリーンリーダーを除くすべてのデバイスで非表示。
+  - data-target - 表示するメニューの任意の ID やクラスを指定している。navbarが複数ある場合はIDで区別しないと別のメニューも開いちゃう。
+  
+  ```html
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarContents">
+          <!-- ハンバーガーバー -->
+        </button>
+        <a class="navbar-brand" href="#">title</a>
+      <div class="collapse navbar-collapse" id="navbarContents">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#"></a>1</li>
+          <li><a href="#">2</a></li>
+          <li><a href="#">3</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  ```
+  
+  ### ラベル
+  ```html
+  <span class="label label-default">NEW!</span>
+  ```
+  `.label-default`
+  `.label-primary`
+  `.label-success`
+  `.label-info`
+  `.label-warning`
+  `.label-danger`
+  
+  ### バッジ
+  ```html
+  <button class="btn btn-primary" type="button">受信トレイ <span class="bedge">7</span></button>
+  ```
+  
+  ### アラート
+  ```html
+  <div class="alert alert-success" role="alert"></div>
+  ```
+  `.alert-success`
+  `.alert-info`
+  `.alert-warning`
+  `.alert-danger`
+  
+  ### パネル
+  ```html
+  <div class="panel panel-info">
+    <div class="pannel-heading">
+      <h3 class="pannel-title">新着情報</h3>
+    </div>
+    <div class="panel-heading">
+      <ul class="">
+        <li><a href="#">友達リクエストが2件あります</a></li>
+        <li><a href="#">メッセージが3件届いています</a></li>
+        <li><a href="#">今日開催のイベントがあります</a></li>
+      </ul>
+    </div>
+  </div>
+  ```
+  
+  ### メディアオブジェクト
+  ```html
+  <div class="media">
+    <img class="mr-3" src="..." alt="Generic placeholder image">
+    <div class="media-body">
+      <h5 class="mt-0">Media heading</h5>
+      Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+    </div>
+  </div>
+  ```
+  
+  ### パネル
+  ```html
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">header</h3>
+    </div>
+    <div class="panel-body">
+      <img src="#">
+    </div>
+    <table class="table">
+    </table>
+    <ul class="list-group">
+      <li class="list-group-item">リスト項目Ａ</li>
+      <li class="list-group-item">リスト項目Ｂ</li>
+      <li class="list-group-item">リスト項目Ｃ</li>
+    </ul>
+    <div class="panel-footer">
+    </div>
+  </div>
+  ```
+  `.panel-default`
+  `.panel-primary`
+  `.panel-success`
+  `.panel-info`
+  `.panel-warnig`
+  `.panel-danger`
+  
+  ### タブ
+  ```html
+  <ul class="nav nav-tabs nav-justified">
+    <li><a href="#">a</a></li>
+    <li><a href="#">b</a></li>
+    <li><a href="#">c</a></li>
+  </ul>
+  ```
+  
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

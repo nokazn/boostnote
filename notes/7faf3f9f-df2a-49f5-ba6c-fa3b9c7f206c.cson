@@ -1,0 +1,149 @@
+createdAt: "2019-05-06T14:02:13.690Z"
+updatedAt: "2019-05-06T14:13:55.676Z"
+type: "MARKDOWN_NOTE"
+folder: "b6dd430e5297036eb2a1"
+title: "Rails + Vue.js"
+tags: []
+content: '''
+  # Rails + Vue.js
+  <https://qiita.com/naoki85/items/51a8b0f2cbf949d08b11
+  https://qiita.com/jnchito/items/30ab14ebf29b945559f6
+  
+  ### rbenv
+  ```bash
+  $ sudo yum install git gcc gcc-c++ openssl-devel readline-devel
+  $ git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
+  $ git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+  ```
+  
+  ### Ruby
+  ```bash
+  $ rbenv install -l | grep -v -  | tail -1
+  2.5.1
+  $ rbenv install 2.5.1
+  $ rbenv global 2.5.1
+  $ rbenv rehash
+  ```
+  
+  ### Node.js
+  Rails を動かすのに JavaScript エンジンが必要
+  ```bash
+  $ sudo yum install nodejs
+  ```
+  
+  ### npm
+  ```bash
+  $ sudo yum install npm -enablerepo=epel
+  $ sudo npm update -g -npm
+  ```
+  
+  ### n
+  ```bash
+  $ sudo npm install -g n
+  $ sudo n latest
+  ```
+  
+  ### yarn
+  ```bash
+  $ sudo npn install -g yarn
+  $ export PATH="$HOME/.yarn/bin:$PATH"
+  ```
+  
+  ### Rails
+  ```bash
+  $ gem install bundler
+  $ bundle config --global path vendor/bundle
+  $ bundle init
+  ```
+  ```diff:/Gemfile
+  + gem "rails"
+  ```
+  ```bash
+  $ bundle install
+  $ bundle exec rails new . --database=mysql --skip-spring --skip-test --webpack=vue
+  ```
+  
+  ### mysqlのパスワード
+  ```diff:/Gemfile
+  + gem "dotenv"
+  + gem "dotenv-rails"
+  ```
+  ```diff:/.env
+  + MYSQL_PASSWORD=[パスワード]
+  ```
+  ```diff:/config/database.yml
+  + password: <%= ENV["MYSQL_PASSWORD"] %>
+  ```
+  ```diff:/.gitignore
+  + /.env
+  ```
+  
+  ### webpacker
+  ```diff:/Gemfile
+  + gem "webpacker", github "rails/webpacker"
+  ```
+  ```bash
+  $ bundle exec rails webpacker:install
+  $ bundle exec rails webpacker:install:vue
+  
+  ```
+  `app/javascript/app.vue`
+  `app/javascript/packs/hello_vue.js`
+  `app/javascript/packs/application.js`
+  などが生成される。
+  
+  ```
+  $ bundle exec rails g controller Home index
+  ```
+  `app/controllers/home_controller.rb`
+  `app/views/home`
+  `app/views/home/index.html.erb`
+  `app/helpers/home_helper.rb`
+  `app/assets/javascripts/home.js`
+  などが生成される。controller の中身と view は空でOK。
+  ```diff:app/views/layouts/application.html.erb
+  <body>
+    <%= yield %>
+  + <%= javascript_pack_tag 'hello_vue' %>
+  </body>
+  ```
+  ```bash
+  $ bin/webpack  # js ファイルをコンパイル
+  $ bundle exec rails s
+  ```
+  Hello Vue! が表示される。
+  
+  毎回手動で js ファイルをコンパイルするのは面倒なので、変更を自動で検知して自動でコンパイルする
+  ```diff:/Gemfile
+  + gem 'foreman'
+  ```
+  ```bash
+  $ touch Procfile
+  $ touch bin/server
+  $ chmod 777 bin/server  # 実行可能にする
+  ```
+  ```diff:bin/server
+  + bundle install
+  - bundle exec foreman start -f Procfile.dev
+  + bundle exec foreman start
+  ```
+  ```diff:Procfile
+  + web: bundle exec rails server -b 192.168.56.10 -p 3000
+  + watcher: ./bin/webpack-watcher
+  + webpacker: ./bin/webpack-dev-server
+  ```
+  ```diff:config/environments/development.rb
+  + config.x.webpacker[:dev_server_host] = "http://localhost:8080"
+  ```
+  ```bash
+  $ bin/server
+  ```
+  とすると、変更されたファイルを自動でコンパイルしてくれる。
+  
+  はずだったけど、`Procfile`が見つからないと言われて、うまいことシェルで実行してくれないので`bundle exec foreman start -f Procfile.dev`だけでそのまま実行する。
+  
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

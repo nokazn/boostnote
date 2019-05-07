@@ -1,0 +1,15 @@
+createdAt: "2019-05-06T14:31:40.869Z"
+updatedAt: "2019-05-06T14:32:41.923Z"
+type: "MARKDOWN_NOTE"
+folder: "6e177d4f524b42f84558"
+title: "CSS tips"
+tags: []
+content: '''
+  # CSS tips
+  ### flexbox
+  CSSでのレイアウト設定を簡単にするレイアウトモジュール
+  [CSSのFlexboxを徹底解説！](https://webdesignday.jp/inspiration/pickup/4175/)
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

@@ -1,0 +1,55 @@
+{
+  "folders": [
+    {
+      "key": "589f561157ecd7d53b56",
+      "color": "#E10051",
+      "name": "Ruby"
+    },
+    {
+      "key": "d41de58f2f8776076b18",
+      "color": "#E10051",
+      "name": "Rails"
+    },
+    {
+      "key": "b79b757a3f246f39516b",
+      "color": "#3FD941",
+      "name": "JavaScript"
+    },
+    {
+      "key": "6e177d4f524b42f84558",
+      "color": "#E8D252",
+      "name": "Frontend"
+    },
+    {
+      "key": "cfb8bb7394508a89ba1d",
+      "color": "#E8D252",
+      "name": "Linux"
+    },
+    {
+      "key": "660920097553891f8089",
+      "color": "#30D5C8",
+      "name": "Docker"
+    },
+    {
+      "key": "d642b49f05a0df4edcfc",
+      "color": "#30D5C8",
+      "name": "Windows"
+    },
+    {
+      "key": "eed4b603f7be458eb434",
+      "color": "#50e3c2",
+      "name": "VM"
+    },
+    {
+      "key": "b6dd430e5297036eb2a1",
+      "color": "#50e3c2",
+      "name": "環境"
+    },
+    {
+      "key": "770da9bb44957224bcc5",
+      "color": "#1278BD",
+      "name": "others"
+    }
+  ],
+  "version": "1.0"
+}

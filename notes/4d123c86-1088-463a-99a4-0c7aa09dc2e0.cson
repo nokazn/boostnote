@@ -1,0 +1,73 @@
+createdAt: "2019-05-05T12:40:11.424Z"
+updatedAt: "2019-05-05T12:57:46.909Z"
+type: "MARKDOWN_NOTE"
+folder: "589f561157ecd7d53b56"
+title: "Sinatra"
+tags: []
+content: '''
+  # Sinatra
+  ### booklist(Ruby + Mysql +Sinatra)
+  #### SQLインジェクション対策
+  Input で直接受け取ったデータを
+  ```sql
+  INSERT INTO books (title, content) VALUES(params["title"], params["content"])
+  ```
+  で受け取ると、ユーザーが悪意あるSQL文を送った時に操作が実行されてしまい、データが漏洩してしまうことも考えられるので、以下のようにする。
+  ```ruby
+  statement = client.prepare("INSERT INTO books (title, content) VALUES(?, ?)")
+  statement.execute(title, content)
+  ```
+  また、レコードを表示するときにユーザーからの情報をそのまま表示するのは危険。
+  #### クロスサイトスクリプティング対策
+  book_titleにJavaScriptのプログラムが入力されるとそれが実行されてしまう恐れがある。(XSS、スクリプティング)
+  `ERB::Util.html_escape()`メソッドを用いてスクリプトをただの文字列として認識させる。
+  ```html
+  <li><%= ERB::Util.html_escape(record["title"]) %></li>
+  <li><%= ERB::Util.html_escape(record["content"]) %></li>
+  ```
+  
+  #### ディレクトリツリー
+  
+  ```
+  sinatra_app
+    ├ views
+    |   └ booklist.erb
+    └ app.rb
+  ```
+  とする。`view`ではなく`views`。
+  
+  require "sinatra" したファイルを実行するとWebアプリが立ち上がる。
+  ```bash
+  $ bundle exec ruby app.rb -o 192.168.56.10
+  => http://192.168.56.10:4567
+  ```
+  
+  #### YAML 
+  ```ruby
+  require "YAML" # YAMLはRubyの標準ライブラリ
+  ```
+  #### database.ymlの内容を読み込んでる
+  ```ruby
+  client = Mysql2::Client.new(YAML.load_file("database.yml"))
+  ```
+  ```yaml
+  database.yml
+    host: localhost
+    adapter: mysql2
+    username: root
+    database: booklist
+    password: *****
+    encoding: utf8
+  ```
+  [簡単にSinatraまとめ](https://qiita.com/shiopon01/items/4490ecc1deaef72823dd)
+  
+  ### レンダリング
+  すべてのファイルの共通レイアウトを`layout.erb`に書くと、デフォルトテンプレートが`layout.erb`で書いたものに共通化され、本文部分は`<%= yeild %>`にして別ファイルで書ける
+  `layout.erb`の中からもビューを呼び出すことができるので、headerやfooterを別ファイルに書くことができる。
+  
+  
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false
