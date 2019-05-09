@@ -1,0 +1,27 @@
+createdAt: "2019-05-09T12:07:43.815Z"
+updatedAt: "2019-05-09T12:07:47.278Z"
+type: "MARKDOWN_NOTE"
+folder: "4ed3f698e3ae34acf919"
+title: "ユーザー登録"
+tags: []
+content: '''
+  ## ユーザー登録
+  ```ruby
+  def create
+    if @user.save
+      flash[:success] = "成功"
+      redirect_to user_url(@user)
+    else
+      flash.now[:danger] = "失敗"
+      render :new
+    end
+  end
+  ```
+  
+  `redirect_to`するときは`prefix_url([絶対パス])`
+  `link_to`するときは`prefix_path([相対パス])`
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

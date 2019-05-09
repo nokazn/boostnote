@@ -1,0 +1,29 @@
+createdAt: "2019-05-09T12:14:25.019Z"
+updatedAt: "2019-05-09T12:14:33.884Z"
+type: "MARKDOWN_NOTE"
+folder: "4ed3f698e3ae34acf919"
+title: "routing"
+tags: [
+  "routes"
+  "ルーティング"
+]
+content: '''
+  ## routing
+  ```ruby
+  post '/tasks', to: 'tasks#create'
+  get '/tasks/:id', to: 'tasks#show', as: 'task'  # task_pate(:id)
+  put '/task/:id', to: 'tasks#update'  # task_pate(:id)
+  delete '/tasks/:id', to: 'tasks#destroy'  # task_pate(:id)
+  get 'tasks', to: 'tasks#index'
+  get '/tasks/new', to: 'tasks#new', as: 'new_task'
+  get '/tasks/:id/edit', to: 'tasks#edit', as: 'edit_task'
+  ```
+  
+  ```ruby
+  resources :tasks
+  ```
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

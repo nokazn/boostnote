@@ -1,64 +1,99 @@
 {
   "folders": [
     {
-      "key": "589f561157ecd7d53b56",
-      "color": "#E10051",
-      "name": "Ruby"
-    },
-    {
       "key": "d41de58f2f8776076b18",
       "color": "#E10051",
       "name": "Rails"
     },
     {
+      "key": "4ed3f698e3ae34acf919",
+      "color": "#d0021b",
+      "name": "Rails tips"
+    },
+    {
+      "key": "589f561157ecd7d53b56",
+      "color": "#E10051",
+      "name": "Ruby"
+    },
+    {
+      "key": "d94765d2e6ae5e7fa34d",
+      "color": "#d0021b",
+      "name": "Ruby tips"
+    },
+    {
       "key": "b79b757a3f246f39516b",
-      "color": "#3FD941",
+      "color": "#f8e71c",
       "name": "JavaScript"
     },
     {
-      "key": "6e177d4f524b42f84558",
-      "color": "#E8D252",
-      "name": "Frontend"
+      "key": "c50fd792c06c102068ae",
+      "color": "#f8e71c",
+      "name": "JavaScript tips"
     },
     {
-      "key": "cfb8bb7394508a89ba1d",
-      "color": "#E8D252",
-      "name": "Linux"
-    },
-    {
-      "key": "660920097553891f8089",
-      "color": "#30D5C8",
-      "name": "Docker"
-    },
-    {
-      "key": "d642b49f05a0df4edcfc",
-      "color": "#30D5C8",
-      "name": "Windows"
-    },
-    {
-      "key": "eed4b603f7be458eb434",
+      "key": "8eecd56ec7357d6ca8d6",
       "color": "#50e3c2",
-      "name": "VM"
+      "name": "Vue.js"
     },
     {
-      "key": "b6dd430e5297036eb2a1",
-      "color": "#50e3c2",
-      "name": "環境"
+      "key": "d8b18fc544434022f6d8",
+      "color": "#b8e986",
+      "name": "HTML tips"
     },
     {
-      "key": "770da9bb44957224bcc5",
-      "color": "#1278BD",
-      "name": "Others"
+      "key": "4039f1ba9fa0956ce334",
+      "color": "#b8e986",
+      "name": "CSS tips"
     },
     {
       "key": "e9aa534349ebaa3961bd",
-      "color": "#E8D252",
+      "color": "#b8e986",
       "name": "Bootstrap"
     },
     {
+      "key": "cfb8bb7394508a89ba1d",
+      "color": "#4a90e2",
+      "name": "Linux tips"
+    },
+    {
+      "key": "b6b5a46a79484e873ebb",
+      "color": "#4a90e2",
+      "name": "Unix コマンド"
+    },
+    {
+      "key": "660920097553891f8089",
+      "color": "#4a90e2",
+      "name": "Docker"
+    },
+    {
+      "key": "eed4b603f7be458eb434",
+      "color": "#4a90e2",
+      "name": "VM"
+    },
+    {
+      "key": "d642b49f05a0df4edcfc",
+      "color": "#4a90e2",
+      "name": "Windows"
+    },
+    {
+      "key": "b6dd430e5297036eb2a1",
+      "color": "#4a90e2",
+      "name": "環境"
+    },
+    {
+      "key": "72d8e856c36c64a9b2b9",
+      "color": "#9b9b9b",
+      "name": "ブログ"
+    },
+    {
       "key": "846fb24c5f8aad917395",
-      "color": "#E8D252",
-      "name": "Memo"
+      "color": "#9b9b9b",
+      "name": "メモ"
+    },
+    {
+      "key": "770da9bb44957224bcc5",
+      "color": "#9b9b9b",
+      "name": "その他"
     }
   ],
   "version": "1.0"

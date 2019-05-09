@@ -1,0 +1,24 @@
+createdAt: "2019-05-09T12:14:43.186Z"
+updatedAt: "2019-05-09T12:14:44.617Z"
+type: "MARKDOWN_NOTE"
+folder: "4ed3f698e3ae34acf919"
+title: "rails g実行時にテストファイルを生成しない"
+tags: []
+content: '''
+  ## `rails g`実行時にテストファイルを生成しない
+  #### 新規作成するとき
+  ```bash
+  $ bundle exec rails new myApp -T
+  ```
+  
+  ##### すでに作成したアプリケーションについて
+  ```diff:config/application.rb
+  + config.generators do |g|
+  +   g.test_framework false
+  + end
+  ```
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

@@ -1,0 +1,21 @@
+createdAt: "2019-05-09T12:41:23.517Z"
+updatedAt: "2019-05-09T12:41:55.322Z"
+type: "MARKDOWN_NOTE"
+folder: "cfb8bb7394508a89ba1d"
+title: "binとは"
+tags: []
+content: '''
+  ## `bin`とは
+  `bin` とは、Binary codeのことで、実行可能プログラム置き場ということ。バイナリということはコンパイル型の言語により作られたプログラムが置かれる。
+  普段使ってるコマンドは`bin`ディレクトリ下のファイルを実行しているに過ぎない。
+  #### `/bin`
+  FHS (Filesystem Hierarchy Standard) によって定められたシングルユーザを含めたどのユーザでも使えるコマンド。
+  #### `/usr/bin`
+  ユーザーが一般的に使用するコマンドで、緊急時のシステム保守に必須ではないコマンドを配置。
+  #### `~/bin`
+  ログインしているユーザに依存したコマンドが格納される。一般に`/usr/local/bin`以下には、自分でコンパイル，ダウンロードしたものを置いておくために使われる。
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

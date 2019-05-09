@@ -1,11 +1,11 @@
 createdAt: "2019-05-06T15:43:35.677Z"
-updatedAt: "2019-05-07T11:39:20.370Z"
+updatedAt: "2019-05-09T12:48:19.884Z"
 type: "MARKDOWN_NOTE"
 folder: "eed4b603f7be458eb434"
 title: "MyCentOS"
 tags: []
 content: '''
-  # MyCentOS
+  ## MyCentOS
   
   ### Virtualbox インストール
   [Oracle VM VirtualBox](https://www.virtualbox.org/)

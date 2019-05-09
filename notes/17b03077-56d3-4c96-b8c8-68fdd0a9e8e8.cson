@@ -1,0 +1,17 @@
+createdAt: "2019-05-09T12:43:06.762Z"
+updatedAt: "2019-05-09T12:43:36.160Z"
+type: "MARKDOWN_NOTE"
+folder: "b6b5a46a79484e873ebb"
+title: "ps"
+tags: []
+content: '''
+  ### `ps`
+  Linux 上で動作しているプロセスを表示
+  ```bash
+  $ ps aux
+  $ ps auxf
+  ```
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

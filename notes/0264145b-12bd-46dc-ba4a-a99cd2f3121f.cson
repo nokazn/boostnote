@@ -1,11 +1,11 @@
 createdAt: "2019-05-07T12:08:07.614Z"
-updatedAt: "2019-05-07T12:08:21.039Z"
+updatedAt: "2019-05-09T12:48:43.842Z"
 type: "MARKDOWN_NOTE"
 folder: "846fb24c5f8aad917395"
 title: "Rate Your Music"
 tags: []
 content: '''
-  # Rate Your Music
+  ## Rate Your Music
   4. Database
   4.1. Where does all the information in the database come from?
   4.2. How can I contribute, correct or update information?

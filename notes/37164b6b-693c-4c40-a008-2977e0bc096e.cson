@@ -1,0 +1,21 @@
+createdAt: "2019-05-09T12:14:51.601Z"
+updatedAt: "2019-05-09T12:16:13.485Z"
+type: "MARKDOWN_NOTE"
+folder: "4ed3f698e3ae34acf919"
+title: "db:migrateとrails:setup"
+tags: [
+  "データベース"
+]
+content: '''
+  ## `db:migrate`と`rails:setup`
+  - `migrate` - データベースのスキーマ（構造）を変更したいとき。
+  - `setup` -データベース周りの初期設定をしたいとき。具体的には以下の処理。`seed`をやり直したいときとかはこっちでやる。(`db:create`は既にデータベースがあるので不要)
+    - rails db:create
+    - rails db:schema:load
+    - rails db:seed
+  
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

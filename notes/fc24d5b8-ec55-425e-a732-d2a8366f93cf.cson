@@ -1,0 +1,22 @@
+createdAt: "2019-05-09T11:56:17.103Z"
+updatedAt: "2019-05-09T11:56:21.899Z"
+type: "MARKDOWN_NOTE"
+folder: "4ed3f698e3ae34acf919"
+title: "ローカルで Rails サーバーを立ち上げる"
+tags: []
+content: '''
+  ## ローカルで Rails サーバーを立ち上げる
+  ```bash
+  $ bundle exec rails s
+  # bundle exec rails server
+  ```
+  
+  クラウドIDEでサーバーを立ち上げるときは、
+  ```bash
+  $ bundle exec rails s -b $IP -p $PORT
+  ```
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

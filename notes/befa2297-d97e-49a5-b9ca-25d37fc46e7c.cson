@@ -1,0 +1,79 @@
+createdAt: "2019-05-09T13:24:58.782Z"
+updatedAt: "2019-05-09T13:26:29.213Z"
+type: "MARKDOWN_NOTE"
+folder: "72d8e856c36c64a9b2b9"
+title: "bundle installするときの話"
+tags: []
+content: '''
+  ## bundle installするときの話
+  
+  ### はじめに
+  bundlerとは，Ruby の外部ライブラリーのパッケージ形式である gem をいい感じに管理をしてくれるライブラリである。  
+  これがシステム自体に gem をインストールさせないようにしようという話。
+  
+  ### 普通に bundle install された gem
+  `gem environment`コマンドを打つと RubyGems に関する情報が色々出てくる。  
+  引数として`gemdir`を渡すと gem のインストール先のパスが表示される。
+  ```sh
+  $ gem environment gemdir
+  => /home/vagrant/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0
+  ```  
+  
+  rbenv では管理されている Ruby のバージョン毎にフォルダが割り当てられており，その時に選択していた Ruby のバージョンのフォルダに格納されるみたい。  
+  
+  なので，同じバージョンの Ruby で開発したプロジェクトでは gem が混ざってしまわないよう慣習的にプロジェクトファイル下の`vendor/bundle`の場所を指定することが多いらしい。
+  
+  ### グローバルな gem を`vendor/bundle`下にインストールし直す
+  グローバルの gem を一括で削除したいが，デフォルトのものと bundler は残しておきたいのでそれらは除外。
+  ```sh
+  $ gem list | grep -v "default:\\|bundler" | xargs gem uninstall -aIx
+  ```
+  アンインストールのオプションはそれぞれ，
+  
+  * -a : すべてのファイル
+  * -I : 依存関係を無視
+  * -x : 実行ファイルも削除
+  
+  ということです。  
+  その後，プロジェクトフォルダの下にインストール。
+  ```sh
+  $ bundle install --path vendor/bundle
+  ```   
+  これでgemが混ざらなくて済む。  
+  以降はプロジェクト内ではオプションをつけなくても`vendor/bundle`にインストールされる。  
+  プロジェクトフォルダにて`bundle list`もしくは`bundle exec gem list`とすれば bundler でインストールした gem の一覧を確認できる。  
+  `bundle exec`をつけると，そのRailsプロジェクトにあるGemfileで指定した環境で gem が実行される。  
+  
+  ついでに，他の新規プロジェクトを立ち上げた際にオプションを指定せずに済むようにしておく。  
+  ```sh
+  $ bundle config --global path vendor/bundle
+  ```
+  すると，`/home/vagrant/.bundle/config`に以下のデフォルト値が追加される。
+  ```sh
+  BUNDLE_PATH: "vendor/bundle"
+  ```
+  これで次回以降`bundle install`としてもプロジェクトフォルダ下に gem がインストールされる。
+  
+  bundler は適切なバージョンの gem を上手いこと読み込んでくれるのでプロジェクト毎に分ける必要はないんだろうけど，何か感覚的に気持ち悪い気がする。
+  
+  #### 参考
+  
+  [https://maku77.github.io/ruby/gem/gem-environment-gemdir.html:title]  
+  [https://guides.rubygems.org/command-reference/#gem-uninstall:title]  
+  [https://qiita.com/hisonl/items/162f70e612e8e96dba50:title]
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

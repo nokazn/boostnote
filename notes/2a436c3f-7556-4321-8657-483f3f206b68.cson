@@ -1,0 +1,48 @@
+createdAt: "2019-05-09T13:24:11.170Z"
+updatedAt: "2019-05-09T13:27:00.758Z"
+type: "MARKDOWN_NOTE"
+folder: "72d8e856c36c64a9b2b9"
+title: "VagrantでCentOSを立ち上げ，httpアクセスをしたがブロックされた"
+tags: [
+  "Vagrant"
+  "CentOS"
+]
+content: '''
+  ## VagrantでCentOSを立ち上げ，httpアクセスをしたがブロックされた
+  
+  自分へのメモ用に。
+  
+  Windows10環境下でVirtualBox + VagrantにてcentOS-7.2を動かし，Webサーバーを立ち上げる。  
+  Vagrantfileに以下の記述を追加。
+  
+  ```sshconfig
+  config.vm.network "private_network", ip:"192.168.33.10"
+  ```
+  
+  ホストOSのブラウザから`http://192.168.33.10`にアクセスしてみると，「このサイトにアクセスできません」とのこと。
+  
+  ```sh
+  $ curl http://127.0.0.1/
+  ```
+  とすると，ゲストOS側からアクセスはできるので，ファイアウォールでアクセスがブロックされているらしい。
+  
+  ### 設定
+  
+  ```sh
+  $ sudo systemctl firewalld stop
+  ```
+  としてファイアウォールを無効にすると無事ブラウザからアクセスできた。  
+  CentOSｰ7以降では「iptables」から「firewalld」へとファイアウォールが変更されているらしい。
+  
+  ```sh
+  $ sudo systemctl disable firewalld
+  $ systemctl is-enabled firewalld
+  => disabled
+  ```
+  次回サーバー起動時にファイアウォールが起動しないように設定しておく。  
+  ホストOS-ゲストOS間の閉じたネットワークなので，セキュリティ的には問題ない。（はず）  
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

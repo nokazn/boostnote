@@ -1,0 +1,41 @@
+createdAt: "2019-05-09T12:37:57.345Z"
+updatedAt: "2019-05-09T12:38:03.315Z"
+type: "MARKDOWN_NOTE"
+folder: "d41de58f2f8776076b18"
+title: "submit"
+tags: []
+content: '''
+  ## `submit`
+  `<input type="submit">`より`<button type="submit">`を使う
+  ```html
+  <form>
+    <input type='submit' name='action' value='送信'>
+    <input type='submit' name='action' value='下書き保存'>
+  </form>
+  <script>
+    If ($_POST["action"] == "送信") {
+      // 送信処理
+    } else if {$_POST["action"] == "下書き保存"
+      // 保存処理
+    }
+  </script>
+  ```
+  のようにコードに日本語が混じる。以下のようにするのがよい。
+  ```html
+  <form>
+    <button type="submit" name="action" value="send">送信</button>
+    <button type="submit" name="action" value="save">下書き保存</button>
+  </form>
+  <script>
+    If ($_POST["action"] == "send") {
+      //送信処理
+    } else if ($_POST["action"] == "save") {
+      // 保存処理
+    }
+  </script>
+  ```
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

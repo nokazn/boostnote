@@ -1,0 +1,26 @@
+createdAt: "2019-05-09T12:14:05.883Z"
+updatedAt: "2019-05-09T12:14:07.680Z"
+type: "MARKDOWN_NOTE"
+folder: "4ed3f698e3ae34acf919"
+title: "link_toにクラス"
+tags: []
+content: '''
+  ## `link_to`にクラス
+  ```html
+  <ul class="nav nav-tabs nav-justified">
+    <li>
+      <%= link_to user_path(@user), class: "nav-link #{'active' if current_page?(user_path(@user))}" do %>Microposts <span class="badge"><%= @count_microposts %></span><% end %>
+    </li>
+    <li>
+      <%= link_to followings_user_path(@user), class: "nav-link #{'active' if current_page?(followings_user_path(@user))}" do %>Followings <span class="badge"><%= @count_followings %></span><% end %>
+    </li>
+    <li>
+      <%= link_to followers_user_path(@user), class: "nav-link  #{'active' if current_page?(followers_user_path(@user))}" do %>Followers <span class="badge"><%= @count_followers %></span><% end %>
+    </li>
+  </ul>
+  ```
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

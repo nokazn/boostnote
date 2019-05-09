@@ -1,11 +1,11 @@
 createdAt: "2019-05-06T13:18:55.793Z"
-updatedAt: "2019-05-06T13:41:10.523Z"
+updatedAt: "2019-05-09T12:46:41.168Z"
 type: "MARKDOWN_NOTE"
 folder: "660920097553891f8089"
-title: "Docker tips"
+title: "Docker"
 tags: []
 content: '''
-  # Docker tips
+  ## Docker
   
   [いまさらDockerに入門したので分かりやすくまとめます](https://qiita.com/gold-kou/items/44860fbda1a34a001fc1)
   [Dockerでプログラマが最低限知るべきことが、最速でわかるチュートリアル
@@ -38,16 +38,7 @@ content: '''
   ### sudo とセキュリティ
   Docker グループに自身のユーザーを加えると`sudo`不要。ただし、Docker を踏み台にして root 権限を実行されてしまう可能性がある。
   
-  ### image と container
-  - image - OS のインストールディスクを仮想化したもの
-  - container - OS が起動しているサーバーを仮想化したもの
   
-  ```bash
-  $ sudo docker run hello-world
-  Hello from Docker!
-  ```
-  `docker run`とすると、 run した回数分の container が作成される。image は既にローカルにあれば再利用され、なければ`pull`される。
-    
    
 '''
 linesHighlighted: []

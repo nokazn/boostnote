@@ -1,0 +1,21 @@
+createdAt: "2019-05-09T12:10:31.058Z"
+updatedAt: "2019-05-09T12:11:36.069Z"
+type: "MARKDOWN_NOTE"
+folder: "4ed3f698e3ae34acf919"
+title: "view でも controller のメソッドを使う"
+tags: []
+content: '''
+  ## view でも controller のメソッドを使う
+  ```diff:app/controllers/application_controllers.rb
+  class ApplicationController < ActionController::Base
+  +   protect_from_forgery with: :exception
+  +   helper_method :current_user, :logged_in?, :sign_out!
+  end
+  ```
+  
+  とすると、コントロールで定義したメソッドをビューからも使うことができる。`helper_method`に引数としてビュー側でも使いたいメソッドを定義する。
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

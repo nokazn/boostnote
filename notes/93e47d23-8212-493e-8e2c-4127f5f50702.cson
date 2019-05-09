@@ -1,0 +1,19 @@
+createdAt: "2019-05-09T12:03:32.032Z"
+updatedAt: "2019-05-09T12:06:13.903Z"
+type: "MARKDOWN_NOTE"
+folder: "4ed3f698e3ae34acf919"
+title: "Strong Parameter"
+tags: []
+content: '''
+  ## Strong Parameter
+  ```ruby
+  def user_params
+    params.require(:user).permit(:name, email, :password, :password_confirmation)
+  end
+  ```
+  リクエストを投げたときの返り値が`require`で指定した引数をキーとする値のみ取得できる。この場合は`:user` のみを受け取るように指定している。
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

@@ -1,0 +1,20 @@
+createdAt: "2019-05-09T12:09:19.890Z"
+updatedAt: "2019-05-09T12:10:20.250Z"
+type: "MARKDOWN_NOTE"
+folder: "4ed3f698e3ae34acf919"
+title: "CSRF (クロスサイトリクエストフォージェリ)"
+tags: []
+content: '''
+  ## CSRF (クロスサイトリクエストフォージェリ)
+  ログインしたままの状態で他のサードパーティ製の URL をクリックした場合などに本人が意図しない形で情報やリクエストが送信されてしまう。意図しないSNSへの投稿、個人情報や利用しているサービスが特定されてしまう。
+  #### 対策
+  ```ruby:application_controller.rb
+  protect_from_forgery with: :exception
+  ```
+  がデフォルトで指定されている。Rails が生成するすべてのフォームや Ajax リクエストで自動的にセキュリティトークンを含める。
+  
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

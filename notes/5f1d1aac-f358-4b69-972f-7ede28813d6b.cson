@@ -1,0 +1,25 @@
+createdAt: "2019-05-09T12:50:27.367Z"
+updatedAt: "2019-05-09T12:51:43.065Z"
+type: "MARKDOWN_NOTE"
+folder: "4ed3f698e3ae34acf919"
+title: "行末の,忘れない"
+tags: [
+  "ミス"
+]
+content: '''
+  ## 行末の`,`忘れない
+  ```ruby:app/models/application_record.rb
+  class User < ApplicationRecord
+    before_save { self.email.downcase! }
+    validates :name, presence: true, length: { maximum: 50 }
+    validates :email, presence: true, length: { maximum: 255 },
+                       format: { with: /\\A[\\w+\\-.]+@[a-z\\d\\-.]+\\.[a-z]+\\z/i},
+                       uniqueness: { case_sensitive: false }
+    has_secure_password
+  end
+  ```
+  Ruby に限らないが、改行するときとかコンマ`,`忘れがち。
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

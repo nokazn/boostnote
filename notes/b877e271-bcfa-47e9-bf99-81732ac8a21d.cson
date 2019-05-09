@@ -1,0 +1,28 @@
+createdAt: "2019-05-09T12:36:10.428Z"
+updatedAt: "2019-05-09T12:36:28.332Z"
+type: "MARKDOWN_NOTE"
+folder: "d8b18fc544434022f6d8"
+title: "liをdisplay: inline-blockにしたとき"
+tags: []
+content: '''
+  ## `li`を`display: inline-block`にしたとき
+  
+  `li`は block 要素なので複数のliを箇条書きにすると改行で半角スペースが挿入されてしまい、横幅を超えてカラム落ちしてしまう。`li`を1行で書いてもいいが、視認性悪い。
+  ```css
+  #global_navi ul {
+    font-size: 0;  /* 半角スペース削除 */
+  }
+  #global_navi ul li{
+    font-size: 14px;  /* フォントサイズ復活*/
+    display: inline-block;
+    width: 163px;  /* もともと164だった*/
+    margin-right: 1px;  /* ボタンが同士がくっついちゃうので間隔開ける*/
+  }
+  ```
+  
+  とすれば、OK。
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

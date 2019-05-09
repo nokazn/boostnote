@@ -1,0 +1,28 @@
+createdAt: "2019-05-09T11:57:50.989Z"
+updatedAt: "2019-05-09T11:58:00.601Z"
+type: "MARKDOWN_NOTE"
+folder: "4ed3f698e3ae34acf919"
+title: "Rails を動かすには JavaScript 実行環境が必要"
+tags: [
+  "Node.js"
+]
+content: '''
+  ## Rails を動かすには JavaScript 実行環境が必要
+  ```bash
+  # Node.js がインストールされていない状態で Rails サーバーを起動
+  $ bundle exec rails s
+  Could not find a JavaScript runtime. See https://github.com/rails/execjs for a list of available runtimes. (ExecJS::RuntimeUnavailable)
+  ```
+  
+  Node.js をインストールする。
+  ```bash
+  $ curl --silent --location https://rpm.nodesource.com/setup_8.x | sudo bash -
+  $ sudo yum -y install nodejs
+  ```
+  
+  http://localhost:3000/ にアクセスできる。
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

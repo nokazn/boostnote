@@ -1,0 +1,44 @@
+createdAt: "2019-05-08T11:39:39.203Z"
+updatedAt: "2019-05-09T12:26:05.363Z"
+type: "MARKDOWN_NOTE"
+folder: "d41de58f2f8776076b18"
+title: "todolist-vue"
+tags: [
+  "Vue.js"
+]
+content: '''
+  ## todolist-vue
+  ### gem
+  ```ini:Gemfile
+  + gem 'materialize-sass'
+  + gem 'materialize_icons'
+  ```
+  
+  ### パスをうまくやらないといけないっぽい?
+  ```bash
+  $ find . -name materialize
+  ```
+  
+  ```diff:app/assets/stylesheets/application.scss
+  + @import '/home/vagrant/todolist/vendor/bundle/gems/materialize-sass-1.0.0/assets/stylesheets/materialize';
+  ```
+  
+  ```diff:app/assets/javascripts/application.js
+  + // = require materialize
+  ```
+  `watcher: ./bin/webpack-watcher`するか`dev-server`を再起動しないとうまく反映されなかった。
+  
+  ### `app/javascript/packs`下にある js ファイルを読み込む
+  ```diff:app/views/home/index.html.erb
+  + <%= javascript_pack_tag 'todo' %>
+  ```
+  
+  ```diff:app/javascript/packs/todo.js
+  + import Vue from 'vue/dist/vue.esm.js'
+  + import Navbar from './components/navbar.vue'
+  + import App from './components/app.vue'
+  ```
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

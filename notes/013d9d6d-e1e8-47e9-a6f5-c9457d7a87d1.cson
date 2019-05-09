@@ -1,0 +1,21 @@
+createdAt: "2019-05-09T12:12:34.136Z"
+updatedAt: "2019-05-09T12:12:43.996Z"
+type: "MARKDOWN_NOTE"
+folder: "4ed3f698e3ae34acf919"
+title: "pry"
+tags: [
+  "pry"
+  "pry-rails"
+]
+content: '''
+  ## pry
+  ```ini:Gemfile
+  gem 'pry-rails'
+  ```
+  
+  として、`bundle exec rails c`とするとコンソール内で`pry`が使える。
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

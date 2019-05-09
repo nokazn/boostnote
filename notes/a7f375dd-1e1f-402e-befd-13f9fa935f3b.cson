@@ -1,0 +1,34 @@
+createdAt: "2019-05-09T11:45:16.491Z"
+updatedAt: "2019-05-09T12:26:00.998Z"
+type: "MARKDOWN_NOTE"
+folder: "d41de58f2f8776076b18"
+title: "Monolist の want / have"
+tags: []
+content: '''
+  ## Monolist の want / have
+  ```ruby:app/views/toppages/index.html.erb
+  @items = Item.order('updated_at DESC')
+  ```
+  
+  `want`/`have`した時点で`items`テーブルにアイテムが保存されてしまい、`want`/`have` を解除しても`items`テーブルからは削除されないため、`toppage`でこの`@items`を一覧表示させると、`want`/`have`解除したアイテムも永遠に表示され続けてしまう。
+  
+  
+  ↓
+  
+  
+  ```diff:app/views/toppages/index.html.erb
+  - @items = Item.order('updated_at DESC')
+  + @items = current_user.items.order('updated_at DESC').uniq
+  ```
+  
+  ```ruby:app.model/user.rb
+  has_many :items
+  ```
+  としているので、`Ownership`モデル経由でユーザーの`want`/`have`しているアイテムを取得している。
+  
+'''
+linesHighlighted: [
+  2
+]
+isStarred: false
+isTrashed: false

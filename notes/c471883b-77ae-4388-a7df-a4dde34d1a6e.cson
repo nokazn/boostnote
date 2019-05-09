@@ -1,13 +1,14 @@
 createdAt: "2019-05-06T14:54:51.691Z"
-updatedAt: "2019-05-07T11:39:30.933Z"
+updatedAt: "2019-05-09T12:30:13.613Z"
 type: "MARKDOWN_NOTE"
 folder: "b79b757a3f246f39516b"
-title: "JavaScript 1"
+title: "JavaScript"
 tags: [
   "JavaScript"
+  "テキスト"
 ]
 content: '''
-  ### JavaScript 1
+  ### JavaScript
   
   #### スクリプトを読み込む位置
   基本は`</body>`の直前に`<script></script>`

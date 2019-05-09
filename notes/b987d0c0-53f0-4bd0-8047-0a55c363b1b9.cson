@@ -1,0 +1,26 @@
+createdAt: "2019-05-09T12:16:28.217Z"
+updatedAt: "2019-05-09T12:16:38.897Z"
+type: "MARKDOWN_NOTE"
+folder: "4ed3f698e3ae34acf919"
+title: "`ruby"
+tags: [
+  "ミス"
+  "ルーティング"
+  "routes"
+]
+content: '''
+  ```ruby
+  Rails.application.routes.draw do
+    route to: "toppages#index"
+  end
+  ```
+  ↓ 
+  ```ruby
+  Rails.application.routes.draw do
+    root to: "toppages#index"
+  end
+  ```
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

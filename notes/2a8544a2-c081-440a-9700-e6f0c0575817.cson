@@ -1,11 +1,11 @@
 createdAt: "2019-05-06T15:19:05.065Z"
-updatedAt: "2019-05-06T15:43:25.086Z"
+updatedAt: "2019-05-09T12:48:23.299Z"
 type: "MARKDOWN_NOTE"
 folder: "eed4b603f7be458eb434"
 title: "Vagrant"
 tags: []
 content: '''
-  # Vagrant
+  ## Vagrant
   
   ### httpd(Apache)
   ```bash

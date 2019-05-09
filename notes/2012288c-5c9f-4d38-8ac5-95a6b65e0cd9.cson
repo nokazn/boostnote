@@ -1,11 +1,11 @@
 createdAt: "2019-05-06T13:49:06.148Z"
-updatedAt: "2019-05-06T14:01:50.968Z"
+updatedAt: "2019-05-09T12:48:14.736Z"
 type: "MARKDOWN_NOTE"
 folder: "b6dd430e5297036eb2a1"
-title: "Rails"
+title: "MySQLのrpmパッケージをインストール"
 tags: []
 content: '''
-  # Rails
+  ## Rails
   
   ### rvenvのインストール
   ```bash

@@ -1,0 +1,20 @@
+createdAt: "2019-05-08T14:53:20.543Z"
+updatedAt: "2019-05-09T12:43:48.082Z"
+type: "MARKDOWN_NOTE"
+folder: "b6b5a46a79484e873ebb"
+title: "find"
+tags: []
+content: '''
+  ## `find`
+  ```bash
+  $ find [オプション] [検索パス] [検索式]
+  ```
+  ##### オプション
+  - `-name [ファイル名]`
+  - `-type f`- ファイルを検索
+  - `-type d`- ディレクトリを検索
+  - `-type l`- シンボリックリンクを検索
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

@@ -1,0 +1,38 @@
+createdAt: "2019-05-09T12:12:51.895Z"
+updatedAt: "2019-05-09T12:12:53.278Z"
+type: "MARKDOWN_NOTE"
+folder: "4ed3f698e3ae34acf919"
+title: "色々やり直す"
+tags: []
+content: '''
+  ## 色々やり直す
+  #### controller
+  ```bash
+  $ rails generate controller FooBars hoge
+  $ rails destroy controller FooBars
+  ```
+  
+  #### model
+  ```bash
+  $ rails generate model Foo ho
+  $ rails destroy model Foo
+  ```
+  
+  #### migrate
+  ```bash
+  $ rails db:migrate
+  $ rails db:rollback
+  $ rails db:migrate VERSION=0  # 最初の状態に戻す
+  $ rails db:migrate:status  # マイグレーションの履歴？
+  ```
+  
+  #### has_many :relatioships
+  ```diff
+  - has_many :reverse_of_relationships
+  + has_many :reverses_of_relationship
+  ```
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

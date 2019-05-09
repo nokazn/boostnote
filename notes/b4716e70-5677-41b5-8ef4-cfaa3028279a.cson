@@ -1,0 +1,25 @@
+createdAt: "2019-05-09T12:08:49.990Z"
+updatedAt: "2019-05-09T12:08:52.082Z"
+type: "MARKDOWN_NOTE"
+folder: "4ed3f698e3ae34acf919"
+title: "ログイン"
+tags: []
+content: '''
+  ## ログイン
+  ```ruby
+  def login(email, password)
+    @user = User.find_by(email: email)
+    # email カラムの値が email な @user が存在(true)し、かつパスワード認証が true の場合
+    if @user && @user.authenticate(password)
+    # ブラウザには Cookie として、サーバーには Session として保持される
+      session[:user_id] = @user.id
+      return true
+    else
+      return false
+    end
+  end
+  ```
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

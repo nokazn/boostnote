@@ -1,0 +1,41 @@
+createdAt: "2019-05-09T12:04:53.188Z"
+updatedAt: "2019-05-09T12:06:06.335Z"
+type: "MARKDOWN_NOTE"
+folder: "4ed3f698e3ae34acf919"
+title: "フォーム"
+tags: []
+content: '''
+  ## フォーム
+  ```ruby
+  <%= form_for(@user) fo |f| %>
+  ```
+  
+  `params[:sessions][:email]`に入力された値が格納される。
+  ```ruby
+  <%= form_for(:session, url: login_path) do |f| %>
+  ```
+  
+  `params[:sessions][:email]`, `params[:sessions][:password]`に入力された値が格納される。
+  #### form_for
+  ```ruby
+  <%= form_for([モデルオブジェクト], [オプション]) do |f| %>
+  <% end %>
+  ```
+  
+  #### オプション
+  - `:url` - フォームの送信先
+  - `:namespace` - 名前空間の設定
+  - `:html` - タグの属性
+  
+  `<% form_for %>`ではなく`<%=form_for %>`なことに注意する。
+  モデルオブジェクトなので単数形である。
+  
+  ##### cf. ルーティングはコントロール名を指定するので複数形
+  ```ruby
+  resources :users, only: [:index, :show, create]
+  ```
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

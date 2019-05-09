@@ -1,0 +1,31 @@
+createdAt: "2019-05-09T13:25:20.541Z"
+updatedAt: "2019-05-09T13:26:47.546Z"
+type: "MARKDOWN_NOTE"
+folder: "72d8e856c36c64a9b2b9"
+title: "Access denied for user 'root'@'localhost' (using password: NO) と怒られた"
+tags: [
+  "MySQL"
+  "Rails"
+]
+content: '''
+  ##  Access denied for user 'root'@'localhost' (using password: NO) と怒られた
+  
+  Railsプロジェクトを立ち上げて「Yay! You’re on Rails!」を表示させようと思ったら，「Access denied for user 'root'@'localhost' (using password: NO)」と怒られてしまった。  
+  #### 対処
+  Railsサーバーを立ち上げる際に読み込まれる`config/database.yml`にパスワードが設定されていなかったのでこのファイルを開いてパスワードを入力する。  
+  
+  ```yaml
+  default: &default
+    adapter: mysql2
+    encoding: utf8
+    pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+    username: root
+    password: [設定したMySQLのパスワード]
+    socket: /var/lib/mysql/mysql.sock
+  ```
+  これでMySQLにアクセスでき，正常にRailsサーバーが立ち上がる。
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

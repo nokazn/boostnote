@@ -1,0 +1,15 @@
+createdAt: "2019-05-09T12:01:37.077Z"
+updatedAt: "2019-05-09T12:01:38.742Z"
+type: "MARKDOWN_NOTE"
+folder: "4ed3f698e3ae34acf919"
+title: "Railsでの''と\"\"の使い分け"
+tags: []
+content: '''
+  ### Railsでの`''`と`""`の使い分け
+  - `''` - コントローラやアクションの指定、`""`内の文字列
+  - `""` - 上記以外の文字列
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

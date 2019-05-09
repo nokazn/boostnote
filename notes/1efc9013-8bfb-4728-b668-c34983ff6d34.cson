@@ -1,11 +1,11 @@
 createdAt: "2019-05-06T12:37:38.604Z"
-updatedAt: "2019-05-06T12:44:46.374Z"
+updatedAt: "2019-05-09T12:48:03.331Z"
 type: "MARKDOWN_NOTE"
 folder: "d642b49f05a0df4edcfc"
 title: "Visual Studio Code"
 tags: []
 content: '''
-  # Visual Studio Code
+  ## Visual Studio Code
   
   ### 言語設定
   日本語の拡張機能をインストールして VSCode 再起動

@@ -1,0 +1,23 @@
+createdAt: "2019-05-09T12:59:54.196Z"
+updatedAt: "2019-05-09T13:01:29.801Z"
+type: "MARKDOWN_NOTE"
+folder: "4ed3f698e3ae34acf919"
+title: "メソッドと引数の(の間に."
+tags: [
+  "ミス"
+]
+content: '''
+  ## メソッドと引数の`(`の間に`.`
+  
+  ```ruby
+  ＠user = User.new.(user_params)
+  ```
+  ↓
+  ```ruby
+  ＠user = User.new(user_params)
+  ```
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

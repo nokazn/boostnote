@@ -1,0 +1,32 @@
+createdAt: "2019-05-09T12:27:52.231Z"
+updatedAt: "2019-05-09T12:28:11.562Z"
+type: "MARKDOWN_NOTE"
+folder: "d94765d2e6ae5e7fa34d"
+title: "falseとnil以外はすべて真"
+tags: []
+content: '''
+  ## `false`と`nil`以外はすべて真
+  式全体の真偽が確定すると、その時点で式の評価を終了して最後に評価した式の値を返す。
+  
+  #### ||= (nilガード、ダブルパイプイコール)
+  左辺が未定義 (nil) か false だった場合は右辺を代入する演算子で、変数の初期化によく使われる。
+  ```ruby
+  a ||= true
+  
+  # a ||= true と等価
+  a || (a = true)
+  a || a = true
+  
+  # a += b 的に考えるとこうしがち、a, bがともに変数の場合はこれでも正しい
+  a = a || b
+  ```
+  a がハッシュや配列、ゲッター・セッターを利用して参照するオブジェクトの場合は `a = a || b` だと2回目以降も値が代入されてしまう。（値は結局同じだがその都度出力されてしまう）
+  
+  論理演算子 (&&, ||) は論理判断だけを行い、論理演算子の評価が左側だけで決定した場合には右側は評価しない
+  
+  [論理演算子の自己代入](https://riocampos-tech.hatenablog.com/entry/20130611/p2)
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

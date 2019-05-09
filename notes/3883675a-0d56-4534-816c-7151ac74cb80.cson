@@ -1,0 +1,34 @@
+createdAt: "2019-05-09T12:32:48.419Z"
+updatedAt: "2019-05-09T12:33:09.733Z"
+type: "MARKDOWN_NOTE"
+folder: "d8b18fc544434022f6d8"
+title: "回り込み"
+tags: []
+content: '''
+  ## 回り込み
+  - footerの前に空`div`挿入して、`.clear`とする。
+  ```css
+  .clear {
+    clear: both;
+  }
+  ```
+  - 2カラムの部分を`.wrapper`, `.clearfix`とする
+  ```css
+  .clearfix::after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+  ```
+  - `clearfix`クラスの要素の終了タグの直後をセレクタとして選択し、空文字で、両側の float を解除する block 要素を追加。
+  空divと考え方は同じ。本来は横スクロールバーの出現を制御するもの。
+  ```css
+  #wrapper {
+    overflown: hidden;
+  }
+  ```
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

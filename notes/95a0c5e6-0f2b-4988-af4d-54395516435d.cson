@@ -1,0 +1,32 @@
+createdAt: "2019-05-09T12:33:44.601Z"
+updatedAt: "2019-05-09T12:34:26.672Z"
+type: "MARKDOWN_NOTE"
+folder: "d8b18fc544434022f6d8"
+title: "inline, inline-block, block"
+tags: []
+content: '''
+  ## `inline`, `inline-block`, `block`
+  - #### inline
+  ```html
+  <a>, <abbr>, <acronym>, <b>, <basefont>, <bdo>, <big>, <br>, <cite>, <code>, <dfn>, 
+  <em>, <font>, <i>, <img>, <input>, <kbd>, <label>, <q>, <s>, <samp>, <select>, 
+  <small>, <span>, <strike>, <strong>, <sub>, <sup>, <textarea>, <tt>, <u>, <var>
+  ```
+  
+  - #### inline-block
+  ブロックレベル要素のような高さと幅を持ちながら、横に並べることができる。
+  
+  - #### block
+  ```html
+  <address>, <blockquote>, <center>, <div>, <dl>, <fieldset>, <form>, <h1>-<h6>, 
+  <hr>, <noframes>, <noscript>, <ol>, <p>, <pre>, <table>, <ul>
+  ```
+  
+  ```html
+  <p><strong>段落</strong></p> <!-- o -->
+  <strong><p>段落</p></strong> <!-- x -->
+  ```
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

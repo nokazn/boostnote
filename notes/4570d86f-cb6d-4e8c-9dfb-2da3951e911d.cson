@@ -1,0 +1,27 @@
+createdAt: "2019-05-09T13:11:51.636Z"
+updatedAt: "2019-05-09T13:13:39.038Z"
+type: "MARKDOWN_NOTE"
+folder: "4ed3f698e3ae34acf919"
+title: "MySQL に接続できない"
+tags: [
+  "エラー"
+]
+content: '''
+  ## MySQL に接続できない
+  `
+  Mysql2::Error
+  Can't connect to local MySQL server through socket '/tmp/mysql.sock' (13)
+  `と言われた。
+  
+  プロジェクト新規立ち上げ時に、サーバーが立ち上がっているにもかかわらずデータベースを作成すると以上のメッセージが表示される。
+  
+  `config/database.yml`の socket 部分の記述を変更する。
+  ```diff
+  - socket: /tmp/mysql.sock
+  + socket: /var/lib/mysql/mysql.sock
+  ```
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

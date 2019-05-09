@@ -1,11 +1,11 @@
 createdAt: "2019-05-06T12:18:07.874Z"
-updatedAt: "2019-05-06T12:32:29.807Z"
+updatedAt: "2019-05-09T12:48:06.344Z"
 type: "MARKDOWN_NOTE"
 folder: "d642b49f05a0df4edcfc"
 title: "Windows"
 tags: []
 content: '''
-  # Windows
+  ## Windows
   
   ### VScodeのパスを通す
   コントロールパネル

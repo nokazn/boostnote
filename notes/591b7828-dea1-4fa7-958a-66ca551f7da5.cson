@@ -1,0 +1,52 @@
+createdAt: "2019-05-08T11:35:17.201Z"
+updatedAt: "2019-05-08T11:36:07.054Z"
+type: "SNIPPET_NOTE"
+folder: "d41de58f2f8776076b18"
+title: "MySql の database.yml"
+tags: [
+  "MySQL"
+  "database.yml"
+  "YAML"
+]
+description: "MySql の database.yml"
+snippets: [
+  {
+    linesHighlighted: []
+    name: "database.yml"
+    mode: "YAML"
+    content: '''
+      # SQLite version 3.x
+      #   gem install sqlite3
+      #
+      #   Ensure the SQLite 3 gem is defined in your Gemfile
+      #   gem 'sqlite3'
+      #
+      default: &default
+        adapter: mysql2
+        encoding: utf8
+        pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+        username: root
+        password: <%= ENV["MYSQL_PASSWORD"] %>
+        socket: /var/lib/mysql/mysql.sock
+        timeout: 5000
+      
+      development:
+        <<: *default
+        database: todolist_development
+      
+      # Warning: The database defined as "test" will be erased and
+      # re-generated from your development database when you run "rake".
+      # Do not set this db to the same as development or production.
+      test:
+        <<: *default
+        database: todolist_test
+      
+      production:
+        <<: *default
+        database: todolist_production
+      
+    '''
+  }
+]
+isStarred: false
+isTrashed: false

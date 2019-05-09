@@ -1,0 +1,31 @@
+createdAt: "2019-05-09T12:12:22.424Z"
+updatedAt: "2019-05-09T12:12:26.834Z"
+type: "MARKDOWN_NOTE"
+folder: "4ed3f698e3ae34acf919"
+title: "only_toなんてない"
+tags: [
+  "ミス"
+]
+content: '''
+  ## `only_to`なんてない
+  `app/controllers/microposts_controllers.rb`で`:correct_user` が create 時にも実行されていた。
+  メッセージを投稿しても`root_url`にリダイレクトされてしまって投稿されなかった。
+  ```ruby
+  class MicropostsController < ApplicationController
+    before_action :require_user_logged_in
+    before_action :correct_user, only: [:destroy]
+  #  before_action :correct_user, only_to: [:destroy]
+  
+  private
+  def correct_user
+    @micropost = current_user.microposts.find_by(id: params[:id])
+    unless @micropost
+      redirect_to root_url
+    end
+  end
+  ```
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

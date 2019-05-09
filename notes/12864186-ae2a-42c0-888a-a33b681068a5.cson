@@ -1,0 +1,18 @@
+createdAt: "2019-05-08T11:37:14.208Z"
+updatedAt: "2019-05-09T12:29:52.890Z"
+type: "MARKDOWN_NOTE"
+folder: "d41de58f2f8776076b18"
+title: "疑問点"
+tags: [
+  "questions"
+  "疑問"
+]
+content: '''
+  ## 疑問点
+  ### コントローラーで定義したメソッドとかをシンボルで呼び出してるのは？
+  `form_for(@user)`としたのに`params.require(@user).permit~`ではなく`params.require(:user).permit ~`???
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

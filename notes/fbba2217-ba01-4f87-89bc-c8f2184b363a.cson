@@ -1,0 +1,31 @@
+createdAt: "2019-05-09T12:10:39.922Z"
+updatedAt: "2019-05-09T12:11:17.889Z"
+type: "MARKDOWN_NOTE"
+folder: "4ed3f698e3ae34acf919"
+title: "helper"
+tags: [
+  "helper"
+]
+content: '''
+  ## helper
+  
+  ### `Sessions_helper`のメソッドを使う
+  ```diff:app/controllers/application_controllers.rb
+  + include SessionsHel`per
+  ```
+  
+  helpers
+  ↓  - `ApplicationController`に`include SessionsHelper`
+  controllers
+  ↓  - `ApplicationController`に`helper_method :method`
+  views
+  
+  helpers - views
+  
+  ### controller でも helper のメソッドを使う
+  helper で定義したメソッドはコントローラーからは使えないが、ビューでは使える。
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

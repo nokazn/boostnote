@@ -1,0 +1,22 @@
+createdAt: "2019-05-09T11:50:36.119Z"
+updatedAt: "2019-05-09T11:54:11.336Z"
+type: "MARKDOWN_NOTE"
+folder: "4ed3f698e3ae34acf919"
+title: "名詞じゃなくて動詞"
+tags: []
+content: '''
+  ## 名詞じゃなくて動詞
+  
+  ```ruby:app/models/application_record.rb
+  class User < ApplicationRecord
+    validates :name, presence: true, length: { maximum: 50 }
+  end
+  ```
+  
+  ```bash
+  $ rails db:migrate
+  ```
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

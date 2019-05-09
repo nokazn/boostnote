@@ -1,11 +1,11 @@
 createdAt: "2019-05-05T13:03:13.734Z"
-updatedAt: "2019-05-06T12:12:13.723Z"
+updatedAt: "2019-05-09T12:48:31.764Z"
 type: "MARKDOWN_NOTE"
 folder: "770da9bb44957224bcc5"
 title: "Git"
 tags: []
 content: '''
-  # Git
+  ## Git
   
   ### リポジトリとインデックスとワークツリー
   - リポジトリ - Git でコミットしたファイル群の置き場

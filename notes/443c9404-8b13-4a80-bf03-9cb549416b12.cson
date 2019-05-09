@@ -1,0 +1,73 @@
+createdAt: "2019-05-09T12:17:58.978Z"
+updatedAt: "2019-05-09T12:30:21.075Z"
+type: "MARKDOWN_NOTE"
+folder: "589f561157ecd7d53b56"
+title: "Ruby"
+tags: [
+  "テキスト"
+]
+content: '''
+  # Ruby
+  ### %記法
+  ```ruby
+  puts %q!He said, "Don't speak"!  # single quote
+  puts %Q!He said, "Don't speak"!  # dobule quote
+  ```
+  !の部分は任意で、括弧の場合はペアで使う。
+  ```ruby
+  puts %q<He said, "Don't speak">
+  puts %q(He said, "Don't speak")
+  puts %q[He said, "Don't speak"]
+  ```
+  
+  ### ヒアドキュメント(行指向文字列リテラル)
+  ```ruby
+  puts "Line1,
+  Line2"
+  # =>
+  # Line1,
+  # Line2
+  ```  
+  
+  ```ruby
+  a = <<TEXT
+  これはヒアドキュメントです。
+    インデントが有効です。
+  TEXT
+  puts a
+  # =>
+  # これはヒアドキュメントです。
+  # 複数行にわたる長い文字列を作成するのに便利です。
+  ```
+  ```ruby
+  b = <<-TEXT
+  -をつけると最後の識別子をインデントすることができます。
+        TEXT
+  puts b
+  # =>
+  #   -をつけると最後の識別子をインデントすることができます。
+  ```
+  ```ruby
+  c = <<~TEXT
+      ~をつけると内部文字列のインデントが無視されます。
+    TEXT
+  puts c
+  # =>
+  # ~をつけると内部文字列のインデントが無視されます。
+  ```
+  ### フォーマットを指定して文字列作成
+  ```ruby
+  p sprintf("%.0f", 10) # => "10"
+  p sprintf('%0.2f', 0.5) # => "0.50"
+  p '%0.10f' %1.23 # => "1.2300000000"
+  p 0b11111111 # => 255
+  p 0377 # => 255
+  p 0o377 # => 255
+  p 0xff # => 255
+  ```
+  
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

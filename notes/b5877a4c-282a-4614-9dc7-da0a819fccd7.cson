@@ -1,0 +1,45 @@
+createdAt: "2019-05-09T12:40:04.760Z"
+updatedAt: "2019-05-09T12:40:54.648Z"
+type: "MARKDOWN_NOTE"
+folder: "cfb8bb7394508a89ba1d"
+title: "パッケージ管理"
+tags: [
+  "パッケージ管理"
+  "パッケージマネージャ"
+  "rpm"
+  "dnf"
+  "yum"
+  "apt"
+  "apt-get"
+]
+content: '''
+  ## パッケージ管理
+  #### RedHat系(RedHat, EnterPrise Linux, CentOS, Fedora)
+  - rpm - 個々のパッケージ、パッケージ個々をカスタマイズしたり単発なパッケージをインストールする時、個々のファイル一覧を取得したいときなど
+  - yum (ヤム) - rpmパッケージがあるリポジトリからrpmの依存関係を管理
+  - dnf - yum の後継版。python2 系で書かれていた yum を C で再設計したもので、Fedora22 から正式にデフォルトのパッケージマネージャーとして採用されている。メモリ消費量低減やメタデータ同期の効率化が図られている。
+  ##### dnf のインストール 
+  ```bash
+  $ yum install dnf
+  ```
+  これがダメなら、以下を実行
+  ```
+  $ wget http://springdale.math.ias.edu/data/puias/unsupported/7/x86_64/dnf-conf-0.6.4-2.sdl7.noarch.rpm
+  $ wget http://springdale.math.ias.edu/data/puias/unsupported/7/x86_64/dnf-0.6.4-2.sdl7.noarch.rpm
+  $ wget http://springdale.math.ias.edu/data/puias/unsupported/7/x86_64/python-dnf-0.6.4-2.sdl7.noarch.rpm
+  $ yum install python-dnf-0.6.4-2.sdl7.noarch.rpm dnf-0.6.4-2.sdl7.noarch.rpm dnf-conf-0.6.4-2.sdl7.noarch.rpm
+  $ rm -f python-dnf-0.6.4-2.sdl7.noarch.rpm
+  $ rm -f dnf-0.6.4-2.sdl7.noarch.rpm
+  $ rm -f dnf-conf-0.6.4-2.sdl7.noarch.rpm
+  ```
+  
+  #### Debian系(Debain, Ubuntu)
+  - apt (アプト)
+  
+  ##### cf. 
+  - gem（ジェム，ゲム） - Rubyのパッケージ管理
+  - npm - Node.js のパッケージ管理
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false
