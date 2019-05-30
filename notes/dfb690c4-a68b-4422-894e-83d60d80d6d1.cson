@@ -1,5 +1,5 @@
 createdAt: "2019-05-09T12:12:22.424Z"
-updatedAt: "2019-05-09T12:12:26.834Z"
+updatedAt: "2019-05-24T03:29:04.274Z"
 type: "MARKDOWN_NOTE"
 folder: "4ed3f698e3ae34acf919"
 title: "only_toなんてない"
@@ -7,9 +7,11 @@ tags: [
   "ミス"
 ]
 content: '''
-  ## `only_to`なんてない
+  # `only_to`なんてない
+  
   `app/controllers/microposts_controllers.rb`で`:correct_user` が create 時にも実行されていた。
   メッセージを投稿しても`root_url`にリダイレクトされてしまって投稿されなかった。
+  
   ```ruby
   class MicropostsController < ApplicationController
     before_action :require_user_logged_in

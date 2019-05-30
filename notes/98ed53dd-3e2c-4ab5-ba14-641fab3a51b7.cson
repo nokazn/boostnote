@@ -1,5 +1,5 @@
 createdAt: "2019-05-09T13:06:09.308Z"
-updatedAt: "2019-05-09T13:13:51.405Z"
+updatedAt: "2019-05-24T03:21:34.364Z"
 type: "MARKDOWN_NOTE"
 folder: "4ed3f698e3ae34acf919"
 title: "No route matches [GET] と言われた"
@@ -7,7 +7,7 @@ tags: [
   "ミス"
 ]
 content: '''
-  ## `No route matches [GET]` と言われた
+  # `No route matches [GET]` と言われた
   
   ```ruby
   class LikesController < ApplicationController
@@ -28,6 +28,7 @@ content: '''
     end
   end
   ```
+  
   ↓
   
   ```ruby
@@ -49,6 +50,7 @@ content: '''
     end
   end
   ```
+  
   ```diff
   - redirect_to micropost
   + redirect_back(fallback_location: root_path)

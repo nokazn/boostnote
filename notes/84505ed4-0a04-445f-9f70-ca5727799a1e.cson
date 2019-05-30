@@ -1,14 +1,16 @@
 createdAt: "2019-05-09T12:44:07.874Z"
-updatedAt: "2019-05-09T12:44:23.801Z"
+updatedAt: "2019-05-30T15:21:32.916Z"
 type: "MARKDOWN_NOTE"
 folder: "b6b5a46a79484e873ebb"
 title: "kill"
 tags: []
 content: '''
-  ### `kill`
+  # `kill`
+  
   ```bash
   kill 9 [processID]
   ```
+  
   プロセスを停止するコマンド。
 '''
 linesHighlighted: []

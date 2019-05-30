@@ -1,5 +1,5 @@
 createdAt: "2019-05-09T11:55:46.772Z"
-updatedAt: "2019-05-09T11:55:53.680Z"
+updatedAt: "2019-05-24T03:22:12.268Z"
 type: "MARKDOWN_NOTE"
 folder: "4ed3f698e3ae34acf919"
 title: "global gems list"
@@ -7,7 +7,8 @@ tags: [
   "gem"
 ]
 content: '''
-  ## global gems list
+  # global gems list
+  
   *** LOCAL GEMS ***
   bigdecimal (default: 1.3.4)
   bundler (1.17.1)

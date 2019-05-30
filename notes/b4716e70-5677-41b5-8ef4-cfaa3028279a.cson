@@ -1,11 +1,12 @@
 createdAt: "2019-05-09T12:08:49.990Z"
-updatedAt: "2019-05-09T12:08:52.082Z"
+updatedAt: "2019-05-24T03:27:04.041Z"
 type: "MARKDOWN_NOTE"
 folder: "4ed3f698e3ae34acf919"
 title: "ログイン"
 tags: []
 content: '''
-  ## ログイン
+  # ログイン
+  
   ```ruby
   def login(email, password)
     @user = User.find_by(email: email)

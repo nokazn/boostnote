@@ -1,11 +1,12 @@
 createdAt: "2019-05-09T12:07:10.237Z"
-updatedAt: "2019-05-09T12:07:52.096Z"
+updatedAt: "2019-05-24T03:26:57.908Z"
 type: "MARKDOWN_NOTE"
 folder: "4ed3f698e3ae34acf919"
 title: "オプションはハッシュで書く"
 tags: []
 content: '''
-  ## オプションはハッシュで書く
+  # オプションはハッシュで書く
+  
   ```ruby
   form_for(:sessions, :url => [signin_path])
   form_for(:sessions, url: [signin_path])

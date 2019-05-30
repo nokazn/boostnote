@@ -1,11 +1,81 @@
 createdAt: "2019-05-09T11:11:56.301Z"
-updatedAt: "2019-05-09T12:47:04.664Z"
+updatedAt: "2019-05-30T15:23:47.716Z"
 type: "MARKDOWN_NOTE"
 folder: "660920097553891f8089"
-title: "Docker コマンド"
+title: "1. アプリケーションの実行と停止"
 tags: []
 content: '''
-  ## Docker コマンド
+  # 1. アプリケーションの実行と停止
+  
+  ## コマンド実行時のみコンテナ起動
+  
+  ```bash
+  $ docker run ubuntu:14.04 /bin/echo 'Hello World!'
+  Hello World
+  ```
+  
+  - `docker run` - コンテナを実行。
+  - `ubuntu:14:.04` - 実行するコンテナのイメージを指定。イメージがローカルになければ Docker Hubからイメージを指定する。
+  - `/bin/echo 'Hello World!'` - コンテナ内で実行するコマンド。
+  
+  ## インタラクティブなコンテナを実行
+  
+  ```bash
+  $ docker run -ti ubuntu:14.04 /bin/bash
+  root@3d5d88ca7245:
+  ```
+  
+  - `-t` - 新しいコンテナ内に疑似ターミナル (pseudo-tty) を割り当てる。
+  - `-i`- コンテナの標準入力 (STDIN)を取得し、双方向に接続できるようにする。
+  - `/bin/bash` - コンテナ内で bash を起動する。
+  
+  `ctrl + d`または`exit`で抜けることができる。
+  
+  ## バックグラウンドでコンテナを実行
+  
+  ```bash
+  $ docker ps
+  $ docker run -d ubuntu:14.04 /bin/sh -c 'while true; do echo hello world; sleep 1; done'
+  39dbeba729e58018d09f57bda02b237419b231d38a76cd6a5d7276cd80d86baa
+  ```
+  
+  バックグラウンドで起動しているコンテナのIDが出力される。
+  
+  ```bash
+  $ docker ps
+  CONTAINER ID        IMAGE               COMMAND                  CREATED              STATUS              PORTS               NAMES
+  39dbeba729e5        ubuntu:14.04        "/bin/sh -c 'while t…"   About a minute ago   Up About a minute                       pedantic_colden
+  ```
+  
+  先ほど出力されていたIDの短縮版が表示されている。コンテナ名`pedantic_colden`を指定してログを覗く。
+  
+  ```bash
+  $ docker logs
+  hello world
+  hello world
+  hello world
+  hello world
+  hello world
+  hello world
+  hello world
+  hello world
+  ```
+  
+  コンテナを停止する。
+  
+  ```bash
+  $ docker stop pedantic_colden
+  pedantic_colden
+  ```
+  
+  ## コマンド
+  
+  ```bash
+  $ docker run
+  $ docker ps
+  $ docker logs
+  $ docker stop
+  ```
   
 '''
 linesHighlighted: []

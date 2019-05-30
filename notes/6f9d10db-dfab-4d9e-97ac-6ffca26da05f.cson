@@ -1,5 +1,5 @@
 createdAt: "2019-05-09T12:13:12.052Z"
-updatedAt: "2019-05-09T12:13:45.473Z"
+updatedAt: "2019-05-24T03:29:57.005Z"
 type: "MARKDOWN_NOTE"
 folder: "4ed3f698e3ae34acf919"
 title: "アソシエーションで別名をつける"
@@ -7,15 +7,18 @@ tags: [
   "モデル"
 ]
 content: '''
-  ## アソシエーションで別名をつける
+  # アソシエーションで別名をつける
+  
   [【Rails】多対多のアソシエーションに別名をつけたいあなたに](https://kimuraysp.hatenablog.com/entry/2017/09/05/235816)
   
-  #### 多対多(の多対一側)で別名
+  ## 多対多(の多対一側)で別名
+  
   ```ruby
   has_many :favorite_blogs, through: favorites, source: :favorite_blogs
   ```
   
-  #### 一対多で別名
+  ## 一対多で別名
+  
   ```ruby
   has_many :write_blog, class_name: 'Blog', foreign_key: :user_id
   ```

@@ -1,5 +1,5 @@
 createdAt: "2019-05-09T12:11:57.473Z"
-updatedAt: "2019-05-09T12:12:14.322Z"
+updatedAt: "2019-05-24T03:28:51.287Z"
 type: "MARKDOWN_NOTE"
 folder: "4ed3f698e3ae34acf919"
 title: "delete メソッド"
@@ -7,11 +7,15 @@ tags: [
   "ミス"
 ]
 content: '''
-  ## delete メソッド
+  # delete メソッド
+  
   delete メソッドを送信してログアウトするとき、 get メソッドを送信してしまってルーティングエラーになる。
-  - ##### `method: :delete`を指定してない
-  - ##### `app/views/layouts/application.html.erb`でデフォルトの JavaScript タグが削除されてた。
-    以下を追加したら正常に動作した。
+  
+  - `method: :delete`を指定してない
+  - `app/views/layouts/application.html.erb`でデフォルト
+  
+  の JavaScript タグが削除されてた。以下を追加したら正常に動作した。
+  
   ```diff:app/views/layouts/application.html.erb
   + <%= javascript_include_tag 'application' %>
   ```

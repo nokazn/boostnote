@@ -1,5 +1,5 @@
 createdAt: "2019-05-07T12:06:13.206Z"
-updatedAt: "2019-05-09T12:49:16.484Z"
+updatedAt: "2019-05-30T15:38:12.067Z"
 type: "MARKDOWN_NOTE"
 folder: "846fb24c5f8aad917395"
 title: "Roadmap"
@@ -9,10 +9,12 @@ tags: [
   "Roadmap"
 ]
 content: '''
-  ## Roadmap
+  # Roadmap
+  
   [GitHub - kamranahmedse/developer-roadmap: Roadmap to becoming a web developer in 2019](https://github.com/kamranahmedse/developer-roadmap)
   
-  ### フロントエンド
+  ## フロントエンド
+  
   - HTML
     - SEO
     - アクセシビリティ
@@ -64,7 +66,7 @@ content: '''
   - CSS in JS ?
     - Styled Components(React)
     - CSS Modules
-    https://takeda-san.hatenablog.com/entry/2018/11/10/154032
+    - [Vue.js+TypeScriptでもscopedなcssを書きたい](https://takeda-san.hatenablog.com/entry/2018/11/10/154032)
   
   - テスト
     - Jest
@@ -78,8 +80,8 @@ content: '''
   
   - TypeScript
   
+  ## バックエンド
   
-  ### バックエンド
   - Ruby
     - 本
   
@@ -125,7 +127,8 @@ content: '''
   
   - マイクロサービス
   
-  ### その他
+  ## その他
+  
   - Git / Github
   - データ構造とアルゴリズム
   - SSH

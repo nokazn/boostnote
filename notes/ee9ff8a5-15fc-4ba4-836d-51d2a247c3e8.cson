@@ -1,15 +1,19 @@
 createdAt: "2019-05-09T12:09:03.911Z"
-updatedAt: "2019-05-09T12:09:05.710Z"
+updatedAt: "2019-05-24T03:27:15.327Z"
 type: "MARKDOWN_NOTE"
 folder: "4ed3f698e3ae34acf919"
 title: "find_by(id: [id名])とfind([id名])"
 tags: []
 content: '''
-  ## `find_by(id: [id名])`と`find([id名])`
-  #### find()
+  # `find_by(id: [id名])`と`find([id名])`
+  
+  ## find()
+  
   `id`が存在しなかったときに例外として自動的に赤いエラーページを表示させる。
   `show`ページの URL などはこの動きの方が都合が良い。
-  #### find_by()
+  
+  ## find_by()
+  
   見つからなかった場合に`nil`を返すのみでエラーにはならない。
   ログインページなどではこの動きの方が都合が良い。
   

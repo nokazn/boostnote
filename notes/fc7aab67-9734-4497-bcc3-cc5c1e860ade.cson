@@ -1,5 +1,5 @@
 createdAt: "2019-05-09T12:42:05.403Z"
-updatedAt: "2019-05-09T12:45:05.819Z"
+updatedAt: "2019-05-30T15:16:36.234Z"
 type: "MARKDOWN_NOTE"
 folder: "cfb8bb7394508a89ba1d"
 title: "zsh"
@@ -7,32 +7,39 @@ tags: [
   "zsh"
 ]
 content: '''
-  ## zsh
+  # zsh
   
-  #### インストール
+  ## インストール
+  
   ``` bash
   $ yum install zsh
   ```
   
-  #### 使用できるシェルに zsh を追加
+  ## 使用できるシェルに zsh を追加
+  
   ```diff:/etc/shells
   + /usr/bin/zsh
   ```
   
-  #### シェルを変更
+  ## シェルを変更
+  
   ```bash
   $ which zsh
   /usr/bin/zsh
   $ chsh -s /usr/bin/zsh
   ```
   
-  #### カスタマイズ
+  ## カスタマイズ
+  
   ```bash
   $ vi ~/.zshrc
   ```
+  
   `rmate`で開くとキャリッジリターンが`^M`となって文字化けするので`vi`で編集する。
   
 '''
-linesHighlighted: []
+linesHighlighted: [
+  24
+]
 isStarred: false
 isTrashed: false

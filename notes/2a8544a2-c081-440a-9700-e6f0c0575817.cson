@@ -1,25 +1,30 @@
 createdAt: "2019-05-06T15:19:05.065Z"
-updatedAt: "2019-05-09T12:48:23.299Z"
+updatedAt: "2019-05-30T15:28:17.916Z"
 type: "MARKDOWN_NOTE"
 folder: "eed4b603f7be458eb434"
 title: "Vagrant"
 tags: []
 content: '''
-  ## Vagrant
+  # Vagrant
   
-  ### httpd(Apache)
+  ## httpd(Apache)
+  
   ```bash
   $ sudo yum install httpd
   $ sudo systemctl start httpd
   $ systemctl status httpd
   => Active: active (running) since 月 2018-10-15 10:45:50 UTC; 3s ago
   ```
-  ### httpdをログイン時に起動
+  
+  ## httpdをログイン時に起動
+  
   ```bash
   $ sudo chkconfig httpd on
   ```
+  
   ホストOSの `Vagrantfile`のある場所とゲストOSの`/vagran`tは共有されている。
   `/vagrant`を経由で`/var/www/html`にシンボリックリンクを通すと、ホストOS側で編集したファイルが`/var/www/html`にも共有される。
+  
   ```bash
   $ sudo rm -rf /var/www/html
   $ sudo ln -fs /vagrant /var/www/html
@@ -30,22 +35,29 @@ content: '''
   # ドキュメントルート確認できる
   ```
   
-  ### provision
+  ## provision
+  
   ```diff:Vagrantfile
   + config.vm.provision :shell, path: "provision.sh"
   ```
+  
   `provision.sh`の内容が`vagrant up`時に実行される
+  
   ```bash
   $ vagrant provision
   ```
+  
   で`provision`の部分だけ実行可能。
   
-  ### boxをパッケージ化
+  ## boxをパッケージ化
+  
   ```bash
   $ vagtant package
   $ vagrant box add [boxの名前] package.box
   ```
-  ### sahara
+  
+  ## sahara
+  
   ```bash
   $ vagrant plugin install sahara
   $ vagrant sandbox on
@@ -56,7 +68,9 @@ content: '''
   # 重いので、vagrant suspendしてから実行する
   $ vagrant sandbox off
   ```
-  ### 削除系
+  
+  ## 削除系
+  
   ```bash
   $ vagrant box remove
   # テンプレート自体を削除
@@ -64,8 +78,10 @@ content: '''
   # テンプレートに各種設定を施した個々の仮想マシンを削 (Vagrantfile自体は残る)
   ```
   
-  ### rmate + Remote VSCode でリモートサーバーをVScodeで編集
-  #### ローカル(ホスト)側
+  ## rmate + Remote VSCode でリモートサーバーをVScodeで編集
+  
+  ### ローカル(ホスト)側
+  
   Remote VSCode を拡張機能のところ(`ctrl + shift + x`)からインストールして以下の記述を追加する。
   
   ```json:setting.json
@@ -76,15 +92,20 @@ content: '''
      + "remote.onstartup": true
     }
   ```
+  
   F1キーを押して、`Remote: Start server`と検索してEnterでサーバーを起動。
-  #### サーバー(ゲスト)側
+  
+  ### サーバー(ゲスト)側
+  
   ```bash
   $ ssh -R 52698:127.0.0.1:52698 vagrant@192.168.56.10
   $ sudo wget -O /usr/local/bin/rmate
   ```
+  
   https://raw.github.com/aurora/rmate/master/rmate
   
   #### 権限を変更(All usersにeXecuteする権限を追加
+  
   ```bash
   $ ls -l /usr/local/bin/rmate
   -rw-r--r--. 1 root root 9962 10月 16 11:32 rmate
@@ -97,6 +118,7 @@ content: '''
   ```
   
   #### ポート番号とか毎回入力するのが面倒なので、ローカル側(ホストOS)設定を書く
+  
   ```diff:~/.ssh/config
   + Host hoge
   +   HostName 192.168.56.10
@@ -107,9 +129,11 @@ content: '''
   +   ForwardAgent yes
   +   RemoteForward 52698 127.0.0.1:52698
   ```
+  
   `$ ssh hoge`でログイン可能になる。
   
   #### vagrant ssh
+  
   ```bash
   $ vagrant ssh-config
   Host default
@@ -123,23 +147,28 @@ content: '''
     IdentitiesOnly yes
     LogLevel FATAL
   ```
+  
   これをそのまま`~/.ssh/config`に書くと、`$ ssh default`でログインできるようになる。
   
   #### ruby httpd に addtype してシンボリックリンク？
+  
   https://qiita.com/tiwu_official/items/f135e6b6fbbe3ec6aa54
   
-  ### 公開鍵認証の設定
+  #### 公開鍵認証の設定
+  
   ```bash
   $ vagrant ssh
   ```
+  
   ポート番号を確認（現設定では2001）
+  
   ```bash
-  $ scp -P [port番号] -i ~/.ssh/[秘密鍵ファイル] ~/.ssh/[]公開鍵ファイル] 
+  $ scp -P [port番号] -i ~/.ssh/[秘密鍵ファイル] ~/.ssh/[]公開鍵ファイル]
   []仮想マシン:仮想マシンのディレクトリ/転送先でのファイル名
   ```
+  
   - 秘密鍵 (private_key) - ローカル側 (ホスト側)
   - 公開鍵 (authorized_keys) - サーバー側 (ゲスト側)
-  
   
 '''
 linesHighlighted: []

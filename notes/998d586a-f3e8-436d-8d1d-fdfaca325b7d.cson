@@ -1,35 +1,42 @@
 createdAt: "2019-05-05T13:03:13.734Z"
-updatedAt: "2019-05-09T12:48:31.764Z"
+updatedAt: "2019-05-30T15:36:47.594Z"
 type: "MARKDOWN_NOTE"
 folder: "770da9bb44957224bcc5"
 title: "Git"
 tags: []
 content: '''
-  ## Git
+  # Git
   
-  ### リポジトリとインデックスとワークツリー
+  ## リポジトリとインデックスとワークツリー
+  
   - リポジトリ - Git でコミットしたファイル群の置き場
     - コミット ファイルの変更箇所ごとにバーションを作成して保存する。
   - インデックス - コミットする前のファイル群の置き場
     - ステージ - ファイルの変更箇所を選択する。コミットするところを選んで仮置きする
   - ワークツリー - 実際にGitで管理するファイル群
   
-  ### gitの設定
+  ## gitの設定
+  
   ```bash
   $ git config --list / git config -l
   $ git config --global user.name "my name"
   $ git config --global user.email "my email"
   ```
+  
   `~/.gitconfig`が作成され、その中に設定が書かれる。`git config`の設定は以下の3段階。
+  
   - システム全体 (system)
   - ユーザー全体 (global)
   - 対象リポジトリのみ (local)
   
   system → global → localの順で上書きされる。
   
-  ### gitの一連の流れ
-  #### コミットまで
+  ## gitの一連の流れ
+  
+  ### コミットまで
+  
   ローカルレポジトリにcdして、
+  
   ```bash
   $ git init
   Initialize empty Git repository in ~/test/.git
@@ -42,29 +49,40 @@ content: '''
     new file: 2.rb
   $ git commit -m "コミットメッセージ"
   ```
+  
   インデックスとローカルリポジトリの領域が確保されたあと、`2.rb`をステージして、コミットしている。
-  #### リモートリポジトリの作成
+  
+  ### リモートリポジトリの作成
+  
   ここでは`git`という名前のリポジトリを作成した後、ローカルリポジトリにリモートリポジトリを登録する。ローカルリポジトリ内では`origin`という名前で認識される。
+  
   ```bash
   $ git remote add origin https://github.com/nokazn/git.git
   $ git remote -v
   origin  https://github.com/nokazn/git.git (fetch)
   origin  https://github.com/nokazn/git.git (push)
   ```
-  `origin`という名前をつけたのは、`git clone`コマンドでリモートリポジトリをローカルリポジトリへコピーしてくると、自動的にリモートリポジトリの名前が`origin`になるため。`origin`は GitHub のリモートリポジトリの URL や、リモートリポジトリのコピーを持っているに過ぎない。
   
-  #### ローカルリポジトリをリモートリポジトリに反映
+  `origin`という名前をつけたのは、`git clone`コマンドでリモートリポジトリをローカルリポジトリへコピーしてくると、自動的にリモートリポジトリの名前が`origin`になるため。
+  `origin`は GitHub のリモートリポジトリの URL や、リモートリポジトリのコピーを持っているに過ぎない。
+  
+  ### ローカルリポジトリをリモートリポジトリに反映
+  
   ```bash
   $ git push origin master
   $ git push origin master:master
   ```
+  
   `git push <リモートリポジトリ> <ローカルブランチ>:<リモートブランチ>`の意
-  #### リモートリポジトリからローカルリポジトリへコピー
+  
+  ### リモートリポジトリからローカルリポジトリへコピー
+  
   ```bash
   $ git clone
   $ git pull
   $ git fetch
   ```
+  
   - `git clone` - リモートリポジトリ自体をコピー
     - 内部的には`git remote add origin [repo]`+`git pull origin master`
   - `git pull` - リモートリポジトリの更新をローカルリポジトリにコピー
@@ -72,48 +90,64 @@ content: '''
   - `git fetch` - リモートリポジトリの更新分を取得するのみでローカルリポジトリに取り込むまでは実行しない
   
   ### .gitignore
+  
   `.git`と同じ階層下に設置した`.gitignore`にファイル名を書く
+  
   - 外部に公開するとセキュリティ的に問題のあるファイル(パスワードなど)
   - 二次的に生成されるファイル(キャッシュファイルやビルドファイルなど)
   - その他外部で管理する必要のないもの
   
   ### 元に戻す系
+  
   #### ステージしてない(`git add`してない)ワークツリーの変更を元に戻す
+  
   ```bash
   $ git checkout ([ブランチ名]) --[ファイル名]
   ```
+  
   `git checkout`はブランチの状態を戻すのにも使われる。
+  
   #### ステージしたファイルをワークツリーに戻す
+  
   ```bash
   $ git reset HEAD [ファイル名]
   ```
+  
   #### ステージした新規追加ファイルをワークツリーに戻す
+  
   ```bash
   $ git rm --cached [ファイル名]
   $ git rm --cached -r [フォルダ名]
   ```
+  
   `--hard`オプションをつけると，変更を完全に削除する。
+  
   #### 直前コミットをやり直す
+  
   ```bash
   $ git commit --amend -m "[書き直したメッセージ]"
   $ git commit --amend
   ```
+  
   #### 過去のコミットに戻る
+  
   ```bash
   $ git reset
   $ git reset HEAD^^ [ファイル名] # 2つ前の変更に戻る
   $ git reset HEAD^5 [ファイル名] # 5つ前の変更に戻る
   $ git reset [リビジョン番号]
   ```
+  
   #### 過去のコミットを打ち消す
+  
   ```bash
   $ git revert [リビジョン番号]
   ```
   
   ### ブランチとマージ
-  [Git-のブランチ機能-ブランチとは](https://git-scm.com/book/ja/v1/Git-%E3%81%AE%E3%83%96%E3%83%A9%E3%83%B3%E3%83%81%E6%A9%9F%E8%83%BD-%E3%83%96%E3%83%A9%E3%83%B3%E3%83%81%E3%81%A8%E3%81%AF)  
-  [Git のブランチ機能 - ブランチとマージの基本](https://git-scm.com/book/ja/v1/Git-%E3%81%AE%E3%83%96%E3%83%A9%E3%83%B3%E3%83%81%E6%A9%9F%E8%83%BD-%E3%83%96%E3%83%A9%E3%83%B3%E3%83%81%E3%81%A8%E3%83%9E%E3%83%BC%E3%82%B8%E3%81%AE%E5%9F%BA%E6%9C%AC)
   
+  [Git-のブランチ機能-ブランチとは](https://git-scm.com/book/ja/v1/Git-%E3%81%AE%E3%83%96%E3%83%A9%E3%83%B3%E3%83%81%E6%A9%9F%E8%83%BD-%E3%83%96%E3%83%A9%E3%83%B3%E3%83%81%E3%81%A8%E3%81%AF)
+  [Git のブランチ機能 - ブランチとマージの基本](https://git-scm.com/book/ja/v1/Git-%E3%81%AE%E3%83%96%E3%83%A9%E3%83%B3%E3%83%81%E6%A9%9F%E8%83%BD-%E3%83%96%E3%83%A9%E3%83%B3%E3%83%81%E3%81%A8%E3%83%9E%E3%83%BC%E3%82%B8%E3%81%AE%E5%9F%BA%E6%9C%AC)
   
 '''
 linesHighlighted: []

@@ -1,12 +1,14 @@
 createdAt: "2019-05-09T12:03:09.302Z"
-updatedAt: "2019-05-09T12:25:35.269Z"
+updatedAt: "2019-05-24T03:33:00.337Z"
 type: "MARKDOWN_NOTE"
 folder: "4ed3f698e3ae34acf919"
 title: "Controller による View ファイルのレンダリングの省略"
 tags: []
 content: '''
-  ## Controller による View ファイルのレンダリングの省略
-  Controller のデフォルト機能として、アクションの最後に`render: [自身のアクション名]`を呼び出している。つまり、Controller のアクションに対応する View を呼び出している。自分でレンダリングを指定した場合はそちらが優先される。
+  # Controller による View ファイルのレンダリングの省略
+  
+  Controller のデフォルト機能として、アクションの最後に`render: [自身のアクション名]`を呼び出している。
+  つまり、Controller のアクションに対応する View を呼び出している。自分でレンダリングを指定した場合はそちらが優先される。
   
 '''
 linesHighlighted: []

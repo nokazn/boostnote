@@ -1,13 +1,14 @@
 createdAt: "2019-05-06T13:49:06.148Z"
-updatedAt: "2019-05-09T12:48:14.736Z"
+updatedAt: "2019-05-30T15:51:16.313Z"
 type: "MARKDOWN_NOTE"
 folder: "b6dd430e5297036eb2a1"
-title: "MySQLのrpmパッケージをインストール"
+title: "Rails"
 tags: []
 content: '''
-  ## Rails
+  # Rails
   
-  ### rvenvのインストール
+  ## rvenvのインストール
+  
   ```bash
   $ sudo yum update
   $ sudo yum install git
@@ -15,7 +16,8 @@ content: '''
   $ git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
   ```
   
-  ### path を通す
+  ## path を通す
+  
   ```bash
   $ echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
   $ echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
@@ -24,18 +26,24 @@ content: '''
   rbenv 1.1.1-28-gb943955
   ```
   
-  ### Rubyをインストール
-  #### ruby-buildプラグインをclone
+  ## Rubyをインストール
+  
+  ### ruby-buildプラグインをclone
+  
   ```bash
   $ git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
   ```
-  #### Rubyの最新の安定版のバージョンを確認
+  
+  ### Rubyの最新の安定版のバージョンを確認
+  
   ```bash
   $ rbenv install -l | grep -v - | tail -1
   2.5.1
   $ rbenv install 2.5.1
   ```
-  #### 利用するRubyのバージョンを指定
+  
+  ### 利用するRubyのバージョンを指定
+  
   ```bash
   $ rbenv global 2.5.1
   $ rbenv rehash
@@ -43,122 +51,161 @@ content: '''
   ruby 2.5.1p57 (2018-03-29 revision 63029) [x86_64-linux]
   ```
   
-  #### Bundlerのインストール
+  ### Bundlerのインストール
+  
   ```bash
   $ gem install bundler
   $ bundle config --global path vendor/bundle
   ```
+  
   とすると、以下のようにデフォルト値が追加される。
+  
   ```:~/.bundle/config
   BUNDLE_PATH: "vendor/bundle"
   ```
+  
   ただし、この場合のgemを実行するには`bundle exec`をつけないといけない。
   
-  ### MySQL のインストール
-  #### CentOS の標準データベースの mariadb を削除
-  ```bash
+  ## MySQL のインストール
   
-  ```
+  ### CentOS の標準データベースの mariadb を削除
+  
+  ```bash
   $ sudo yum remove mariadb-libs
   => 削除しました:
-    mariadb-libs.x86_64 1:5.5.56-2.el7
+  mariadb-libs.x86_64 1:5.5.56-2.el7
   依存性の削除をしました:
-    postfix.x86_64 2:2.10.1-6.el7
+  postfix.x86_64 2:2.10.1-6.el7
+  ```
   
-    # MySQLのrpmパッケージをインストール
-      $ sudo yum localinstall https://dev.mysql.com/get/mysql80-community-release-el7-1.noarch.rpm
+  ### MySQLのrpmパッケージをインストール
   
-    # MySQLをインストール
-      $ sudo yum install mysql-community-server
-      $ mysqld --version
-      => /usr/sbin/mysqld  Ver 8.0.12 for Linux on x86_64 (MySQL Community Server - GPL)
+  ```bash
+  $ sudo yum localinstall https://dev.mysql.com/get/mysql80-community-release-el7-1.noarch.rpm
+  ```
   
-    # 起動と自動起動の設定
-      $ sudo systemctl start mysqld.service  # .serviceはなくてもいけた
-      $ sudo systemctl enable  mysqld.service
-      $ sudo systemctl is-enabled  mysqld
-      => enabled
+  ### MySQLをインストール
   
-    # デフォルトのrootユーザーのパスワードを取得
-      $ cat /var/log/mysqld.log | grep password
+  ```bash
+  $ sudo yum install mysql-community-server
+  $ mysqld --version
+  => /usr/sbin/mysqld  Ver 8.0.12 for Linux on x86_64 (MySQL Community Server - GPL)
+  ```
   
-    # パスワード変更
-      $ mysql_secure_installation
-      => 取得したrootユーザーのパスワード
-      => 新規パスワード
-      => rootユーザーでも同一のパスワードを使用する
-      => 匿名ユーザーの削除
-      => リモートホストからのrootログインを禁止
-      => テストデータベースを削除
-      => ユーザー権限が保存されているテーブルをリロード
+  ### 起動と自動起動の設定
   
-    # 文字コードをUTF-8に変更
-      /etc/my.cnf
-       + character_set_server=utf8
-       + skip-character-set-client-handshake
+  ```bash
   
-      $ mysql -u root -p でログインできる
+  $ sudo systemctl start mysqld.service  # .serviceはなくてもいけた
+  $ sudo systemctl enable  mysqld.service
+  $ sudo systemctl is-enabled  mysqld
+  => enabled
+  ```
   
-    # RailsでMySQLを使用するためのgemを使うために必要なパッケージをインストール
-      $ sudo yum install mysql-devel
+  ### デフォルトのrootユーザーのパスワードを取得
   
-  # Railsを動かすためにJavaScriptエンジンが必要なため、Node.jsをインストール
-  ##https://no dejs.org/en/download/package-mana###ger/#ent erprise-li nux-and -fedora
+  ```bash
+  $ cat /var/log/mysqld.log | grep password
+  ```
+  
+  ### パスワード変更
+  
+  ```bash
+  $ mysql_secure_installation
+  ```
+  
+  => 取得したrootユーザーのパスワード
+  => 新規パスワード
+  => rootユーザーでも同一のパスワードを使用する
+  => 匿名ユーザーの削除
+  => リモートホストからのrootログインを禁止
+  => テストデータベースを削除
+  => ユーザー権限が保存されているテーブルをリロード
+  
+  ### 文字コードをUTF-8に変更
+  
+  ```diff:/etc/my.cnf
+  + character_set_server=utf8
+  + skip-character-set-client-handshake
+  ```
+  
+  `$ mysql -u root -p`でログインできる
+  
+  ### RailsでMySQLを使用するためのgemを使うために必要なパッケージをインストール
+  
+  ```bash
+  $ sudo yum install mysql-devel
+  ```
+  
+  ### Railsを動かすためにJavaScriptエンジンが必要なため、Node.jsをインストール
+  
   ```bash
   $ curl --silent --location https://rpm.nodesource.com/setup_8.x | sudo bash -
   $ sudo yum -y install nodejs
   ```
   
-  #### Railsプロジェクトを作成
+  ### Railsプロジェクトを作成
+  
   ```bash
   $ mkdir project
   $ cd project/
   $ bundle init
   Writing new Gemfile to /vagrant/project/Gemfile
   ```
+  
   Gemfileが上書きされる。
+  
   ```diff:/Gemfile
   - # gem "rails
   + gem "rails
   ```
+  
   ```bash
   $ bundle install
   ```
   
-  #### 新しいアプリケーションを作成
+  ### 新しいアプリケーションを作成
+  
   ```bash
   $ bundle exec rails new . --database=mysql --skip-spring --skip-test
   ```
   
-  #### MySQL へのログイン
+  ### MySQL へのログイン
+  
   ```diff:/Gemfile
   + gem "dotenv-rails"
   + gem "dotenv"
   ```
+  
   ```bash
   $ bundle install
   ```
+  
   ```diff:/.env
   + MYSQL_PASSWORD="[パスワード]"
   ```
+  
   ```diff:/config/database.yml
   + password: <%= ENV["MYSQL_PASSWORD"] %>
   ```
+  
   ```diff:/.gitignore
   + /.env
   ```
   
-  #### データベース作成
+  ### データベース作成
+  
   ```bash
   $ bundle exec rails db:create
   ```
   
-  #### Railsサーバー立ち上げ
+  ### Railsサーバー立ち上げ
+  
   ```bash
   $ bundle exec rails s
   ```
-  http://192.168.56.10:3000/ にアクセスすると "Yay! You're on Rails!" が表示される。
   
+  http://192.168.56.10:3000/ にアクセスすると "Yay! You're on Rails!" が表示される。
   
 '''
 linesHighlighted: []

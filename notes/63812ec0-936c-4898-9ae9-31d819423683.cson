@@ -1,0 +1,19 @@
+createdAt: "2019-05-30T14:48:31.886Z"
+updatedAt: "2019-05-30T14:50:17.513Z"
+type: "MARKDOWN_NOTE"
+folder: "c50fd792c06c102068ae"
+title: "nullまたはundefinedをチェック (存在チェック)"
+tags: []
+content: '''
+  # `null`または`undefined`をチェック (存在チェック)
+  
+  ```js
+  const a = "1"
+  if (a != null) {
+    console.log("a は存在するよ");
+  }
+  ```
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

@@ -1,11 +1,12 @@
 createdAt: "2019-05-09T12:10:31.058Z"
-updatedAt: "2019-05-09T12:11:36.069Z"
+updatedAt: "2019-05-24T03:27:47.177Z"
 type: "MARKDOWN_NOTE"
 folder: "4ed3f698e3ae34acf919"
 title: "view でも controller のメソッドを使う"
 tags: []
 content: '''
-  ## view でも controller のメソッドを使う
+  # view でも controller のメソッドを使う
+  
   ```diff:app/controllers/application_controllers.rb
   class ApplicationController < ActionController::Base
   +   protect_from_forgery with: :exception

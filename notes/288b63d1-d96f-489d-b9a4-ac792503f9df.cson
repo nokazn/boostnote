@@ -1,11 +1,12 @@
 createdAt: "2019-05-09T12:13:52.171Z"
-updatedAt: "2019-05-09T12:13:53.649Z"
+updatedAt: "2019-05-24T03:30:16.660Z"
 type: "MARKDOWN_NOTE"
 folder: "4ed3f698e3ae34acf919"
 title: "URLの深堀"
 tags: []
 content: '''
-  ## URLの深堀
+  # URLの深堀
+  
   ```ruby
   resources :users, only: [:index, :show, :new, :create] do
     member do
@@ -19,6 +20,7 @@ content: '''
   ```
   
   とすると、URLを深堀できる。
+  
   - member: :id を挟む
   - collection: :id は挟まない
   

@@ -1,12 +1,14 @@
 createdAt: "2019-05-09T12:37:57.345Z"
-updatedAt: "2019-05-09T12:38:03.315Z"
+updatedAt: "2019-05-24T03:02:03.659Z"
 type: "MARKDOWN_NOTE"
 folder: "d41de58f2f8776076b18"
 title: "submit"
 tags: []
 content: '''
-  ## `submit`
+  # `submit`
+  
   `<input type="submit">`より`<button type="submit">`を使う
+  
   ```html
   <form>
     <input type='submit' name='action' value='送信'>
@@ -20,7 +22,9 @@ content: '''
     }
   </script>
   ```
+  
   のようにコードに日本語が混じる。以下のようにするのがよい。
+  
   ```html
   <form>
     <button type="submit" name="action" value="send">送信</button>

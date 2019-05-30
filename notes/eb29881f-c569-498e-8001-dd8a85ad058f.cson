@@ -1,19 +1,20 @@
 createdAt: "2019-05-09T12:41:06.407Z"
-updatedAt: "2019-05-09T12:41:11.413Z"
+updatedAt: "2019-05-30T15:19:02.667Z"
 type: "MARKDOWN_NOTE"
 folder: "cfb8bb7394508a89ba1d"
 title: "CentOS-7+"
 tags: []
 content: '''
-  ## CentOS-7+
-  - chkconfig [サービス名] on/off → systemctl enable/disable
-  システム起動時に自動起動するサービスの設定や不必要なサービスを停止するなどの設定を行う。例えば、サーバ起動時にApache(httpd)も同時に起動させたいとき、chkconfigで設定を行うことで実現できる。
+  # CentOS-7+
   
-  - systemctlはすべてのユニットを扱える
-  - serviceはserviceタイプのユニットしか扱えない
-  → 7+ ではsystemctlだけで対処可能？
-    - service → systemctl
-    - iptables → firewalld
+  - chkconfig [サービス名] on/off → systemctl enable/disable
+    - システム起動時に自動起動するサービスの設定や不必要なサービスを停止するなどの設定を行う。
+    - 例えば、サーバ起動時に Apache (httpd) も同時に起動させたいとき、`chkconfig`で設定を行うことで実現できる。
+  - `systemctl`はすべてのユニットを扱える
+  - `service`はserviceタイプのユニットしか扱えない
+    - → 7+ では`systemctl`だけで対処可能？
+    - `service` → `systemctl`
+    - `iptables` → `firewalld`
   
 '''
 linesHighlighted: []

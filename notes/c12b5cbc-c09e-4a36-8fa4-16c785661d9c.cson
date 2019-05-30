@@ -1,5 +1,5 @@
 createdAt: "2019-05-09T12:52:13.841Z"
-updatedAt: "2019-05-09T12:53:03.046Z"
+updatedAt: "2019-05-24T03:33:20.973Z"
 type: "MARKDOWN_NOTE"
 folder: "4ed3f698e3ae34acf919"
 title: "ファイル名の単数 / 複数"
@@ -7,10 +7,11 @@ tags: [
   "ミス"
 ]
 content: '''
-  ## ファイル名の単数 / 複数
+  # ファイル名の単数 / 複数
   
   x `_user.html.erb`
   o `_users.html.erb`
+  
 '''
 linesHighlighted: []
 isStarred: false

@@ -1,5 +1,5 @@
 createdAt: "2019-05-06T14:15:12.132Z"
-updatedAt: "2019-05-07T12:04:52.577Z"
+updatedAt: "2019-05-30T15:15:41.323Z"
 type: "MARKDOWN_NOTE"
 folder: "e9aa534349ebaa3961bd"
 title: "Bootstrap"
@@ -7,7 +7,8 @@ tags: []
 content: '''
   # Bootstrap
   
-  ### グリッドシステム
+  ## グリッドシステム
+  
   全体を12に分割して考える。
   例) col-md-3 - 画面サイズがmidiumで3カラム分
   
@@ -16,17 +17,21 @@ content: '''
   - md - 992~1199px
   - lg - 1200px~
   
-  ### テーブル
+  ## テーブル
+  
   .tableで表をきれいにしてくれる。
+  
   - .table-striped - 行ごとに背景色が変わる
   - .table-bordered - 各セルに枠がつく
   - .table-hover - マウスを乗せると行がハイライトされる
   - .table-condensed - 余白を詰めてコンパクトに
   
-  ### フォーム
+  ## フォーム
+  
   ```html
   <input type="text" class="form-control">
   ```
+  
   ```html
   <form class="form-horizontal">
     <div class="form-group">
@@ -39,8 +44,10 @@ content: '''
     <div class="form-group"></div>
   </form>
   ```
-  `form-horizontal`は`container`みたいなもの。
-  `form-group`は`row`みたいなもの。
+  
+  - `form-horizontal`は`container`みたいなもの。
+  - `form-group`は`row`みたいなもの。
+  
   ```html
   <form>
     郵便番号
@@ -50,14 +57,17 @@ content: '''
     </div>
   </form>
   ```
-  〒がinputboxの左端にうまい具合にひっついてくれる。
   
-  ### ボタン
+  - 〒がinputboxの左端にうまい具合にひっついてくれる。
+  
+  ## ボタン
+  
   ```html
   <a href="#" class="btn btn-default">aボタン</a>
   <input type="submit" class="btn btn-default" value="inputボタン">
   <button class="btn btn-default" type="submit">buttonボタン</button>
   ```
+  
   - .btn .btn-default
   - .btn .btn-primary
   - .btn .btn-success
@@ -66,14 +76,16 @@ content: '''
   - .btn .btn-danger
   - .btn .btn-link
   
-  ### アイコン(Glyphicon)
+  ## アイコン(Glyphicon)
+  
   ```
   <button type="button" class="btn btn-default>
     <span class="glyphicon glyphicon-download-alt"></span>
   </button>
   ```
   
-  ### ドロップダウンリスト
+  ## ドロップダウンリスト
+  
   ```html
   <div class="dropdown">
     <button type="button" class="btn btn-default" data-toggle="dropdown">操作<span class="caret"></span></button>
@@ -85,22 +97,26 @@ content: '''
     </ul>
   </div>
   ```
+  
   - 全体を`.dropdown`なdivで囲む。
   - ボタン部分は`data-toggle="dropdown"`にする。
   - 下向き矢印のアイコンは`.caret`な`span`にする。
   - リスト全体を囲う`ul`を`.dropdown-menu`にする。
   
-  ### タブ
+  ## タブ
+  
   ```html
-  <ul class="nav nav-tabs"></ul>
+  <ul class="nav nav-tabs nav-justified"></ul>
     <li class="active"><a href="#">収入</a></li>
     <li><a href="#">支出</a></li>
     <li><a href="#">合計</li>
   </ul>
   ```
+  
   - リスト全体を囲う`ul`を`.nav .nav-tabs`にする
   
-  ### ナビバー
+  ## ナビバー
+  
   ```html
   <nav class="navbar navbar-default">
     <div class="container-fluid">
@@ -132,6 +148,7 @@ content: '''
     </div>
   </nav>
   ```
+  
   - `.container` - 固定レイアウト用。画面サイズに合わせて段階的にリサイズされる。
   - `container-fluid` - 流動レイアウト用。画面サイズに合わせて滑らかにリサイズされる、自由が利く。
   - `.sr-only` - スクリーンリーダーを除くすべてのデバイスで非表示。
@@ -156,10 +173,12 @@ content: '''
   </nav>
   ```
   
-  ### ラベル
+  ## ラベル
+  
   ```html
   <span class="label label-default">NEW!</span>
   ```
+  
   `.label-default`
   `.label-primary`
   `.label-success`
@@ -167,21 +186,25 @@ content: '''
   `.label-warning`
   `.label-danger`
   
-  ### バッジ
+  ## バッジ
+  
   ```html
   <button class="btn btn-primary" type="button">受信トレイ <span class="bedge">7</span></button>
   ```
   
-  ### アラート
+  ## アラート
+  
   ```html
   <div class="alert alert-success" role="alert"></div>
   ```
+  
   `.alert-success`
   `.alert-info`
   `.alert-warning`
   `.alert-danger`
   
-  ### パネル
+  ## パネル
+  
   ```html
   <div class="panel panel-info">
     <div class="pannel-heading">
@@ -197,7 +220,8 @@ content: '''
   </div>
   ```
   
-  ### メディアオブジェクト
+  ## メディアオブジェクト
+  
   ```html
   <div class="media">
     <img class="mr-3" src="..." alt="Generic placeholder image">
@@ -208,7 +232,8 @@ content: '''
   </div>
   ```
   
-  ### パネル
+  ## パネル2
+  
   ```html
   <div class="panel panel-default">
     <div class="panel-heading">
@@ -227,23 +252,15 @@ content: '''
     <div class="panel-footer">
     </div>
   </div>
+  
   ```
+  
   `.panel-default`
   `.panel-primary`
   `.panel-success`
   `.panel-info`
   `.panel-warnig`
   `.panel-danger`
-  
-  ### タブ
-  ```html
-  <ul class="nav nav-tabs nav-justified">
-    <li><a href="#">a</a></li>
-    <li><a href="#">b</a></li>
-    <li><a href="#">c</a></li>
-  </ul>
-  ```
-  
   
 '''
 linesHighlighted: []

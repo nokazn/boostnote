@@ -1,0 +1,53 @@
+createdAt: "2019-05-22T10:46:02.170Z"
+updatedAt: "2019-05-30T15:33:51.553Z"
+type: "MARKDOWN_NOTE"
+folder: "99c1744cc6189c73e4c0"
+title: "GAS プロジェクトと Stackdriver の連携"
+tags: [
+  "Stackdriver"
+  "GCP"
+  "GAS"
+  "Apps_Script"
+]
+content: '''
+  # GAS プロジェクトと Stackdriver の連携
+  
+  [Google Cloud Platform Projects  \\|  Apps Script  |  Google Developers](https://developers.google.com/apps-script/guides/cloud-platform-projects)
+  
+  > Warning: Starting on or after April 8, 2019, the Google Cloud Platform Console won't be able to access the default GCP projects created for new Apps Script projects. Older, existing scripts may have default GCP projects that are still accessible, however. If you have a new script and require access to its GCP project from the Google Cloud Platform Console, you must use a standard GCP project.
+  
+  今までは、新規 Apps Script を作成すると、それに紐づいた GCP プロジェクトが作成されていたが、2019/4/8 以降はそれがなくなる。
+  
+  ## default GCP project
+  
+  - 新規`Apps Script`を作成すると、ユーザーは直接コンソールからアクセスできない`default GCP project`が背後で作成されている。
+  - `App Script`は GCP とのすべての必要な対話を自動的に処理してくれるので、 `default GCP project`を調整する必要はない。
+  - Stackdriver logs のかわりに、Apps Script dashboard でログが確認できる。
+  
+  ## standard GCP proejct
+  
+  - `default GCP project`では扱えない以下のようなケースのために、`standard GCP proejct`が用意されている。
+    - When you wish to publish your script project as an add-on or domain-wide web app in the G Suite Marketplace.
+    - When you need to verify your script project's OAuth client.
+    - When you have an application that needs to execute functions in your script project using the Apps Script API's scripts.run method.
+    - __When you wish to view your script project's Stackdriver logs in the Google Cloud Platform Console. The console provides more tools for filtering and viewing logs, and can be more helpful than the simplified view provided by the Apps Script dashboard.__
+    - When you wish to view your script project's error reports using Stackdriver Error Reporting.
+    - When you want to create a File-open dialog.
+    - When you otherwise need manual control over the project's Google Cloud Platform settings.
+  
+  ## `standard GCP project`と`Apps Script`を紐づける
+  
+   1. GCP のプロジェクト選択の画面から、新規プロジェクトを作成。
+   2. `左上のハンバーガーメニュー > APIとサービス > 認証情報`を選択し、 OAuth 同意画面の設定。
+   3. Apps Script のエディターの`リソース > Cloud Platform プロジェクト`を選択。
+   4. プロジェクトIDを入力して紐づける。
+  
+  > Warning: If your script was using its default GCP project and you switch your script to use a standard GCP project, the script's default GCP project is deleted, which has the following irrevocable effects:
+  >
+  > You lose any data tied to advanced services that you enabled for that script (because advanced services rely on the GCP project).
+  > All users who have previously authorized the script must re-authorize. In most cases, all users who have previously authorized apps associated with the new GCP project must also re-authorize.
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

@@ -1,0 +1,75 @@
+createdAt: "2019-05-17T10:55:54.352Z"
+updatedAt: "2019-05-30T15:22:53.476Z"
+type: "MARKDOWN_NOTE"
+folder: "660920097553891f8089"
+title: "2. シンプルなアプリケーションの実行"
+tags: []
+content: '''
+  # 2. シンプルなアプリケーションの実行
+  
+  ## version と help
+  
+  ```bash
+  $ docker version
+  Client:
+   Version:           18.09.5
+   API version:       1.39
+   Go version:        go1.10.8
+   Git commit:        e8ff056
+   Built:             Thu Apr 11 04:43:34 2019
+   OS/Arch:           linux/amd64
+   Experimental:      false
+  
+  Server: Docker Engine - Community
+   Engine:
+    Version:          18.09.5
+    API version:      1.39 (minimum version 1.12)
+    Go version:       go1.10.8
+    Git commit:       e8ff056
+    Built:            Thu Apr 11 04:13:40 2019
+    OS/Arch:          linux/amd64
+    Experimental:     false
+  ```
+  
+  ```bash
+  $ docker --help
+  Usage:  docker [OPTIONS] COMMAND
+  
+  A self-sufficient runtime for containers
+  
+  Options:
+        --config string      Location of client config files (default "/root/.docker")
+    -D, --debug              Enable debug mode
+    -H, --host list          Daemon socket(s) to connect to
+    -l, --log-level string   Set the logging level
+                             ("debug"|"info"|"warn"|"error"|"fatal") (default "info")
+        --tls                Use TLS; implied by --tlsverify
+        --tlscacert string   Trust certs signed only by this CA (default
+                             "/root/.docker/ca.pem")
+        --tlscert string     Path to TLS certificate file (default "/root/.docker/cert.pem")
+        --tlskey string      Path to TLS key file (default "/root/.docker/key.pem")
+        --tlsverify          Use TLS and verify the remote
+    -v, --version            Print version information and quit
+    ...
+  ```
+  
+  ## python アプリケーションを実行 
+  
+  ```bash
+  $ docker run -dP training/webapp python app.py
+  8408c36ee3db3872bde75fadbe2d4fd1d5f5e65d1d210062683b2ebe9256c6a8
+  $ docker ps -l
+  CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                     NAMES
+  8408c36ee3db        training/webapp     "python app.py"     11 minutes ago      Up 11 minutes       0.0.0.0:32768->5000/tcp__   sad_margulis
+  $ docker-machine ip my-docker-vm
+  ```
+  
+  ブラウザで、`localhost:32768`にアクセスすると`Hello world!`が表示される。
+  今回は VirtualBox が立ち上がっているIPアドレスを指定して、`192.168.56.11:32768`にアクセスする。
+  
+  - `-P` - `-port 5000`と同義で、コンテナ内部のネットワークで必要なポート 5000 (Python Flask の標準ポート) を、ホスト側にマッピングする。
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

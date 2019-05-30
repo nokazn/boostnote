@@ -1,17 +1,19 @@
 createdAt: "2019-05-09T11:58:18.081Z"
-updatedAt: "2019-05-09T11:58:22.387Z"
+updatedAt: "2019-05-24T03:24:31.141Z"
 type: "MARKDOWN_NOTE"
 folder: "4ed3f698e3ae34acf919"
 title: "MySLQのパスワード"
 tags: []
 content: '''
-  ## MySLQのパスワード
+  # MySLQのパスワード
+  
   Railsプロジェクト立ち上げ後に
   ```bash
   Access denied for user 'root'@'localhost' (using password: NO)
   ```
   
   と怒られた。
+  
   ```ini:config/database.yml
   default: &default
     adapter: mysql2

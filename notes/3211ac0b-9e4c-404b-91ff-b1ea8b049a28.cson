@@ -1,14 +1,16 @@
 createdAt: "2019-05-09T12:13:58.448Z"
-updatedAt: "2019-05-09T12:14:00.065Z"
+updatedAt: "2019-05-24T03:30:23.927Z"
 type: "MARKDOWN_NOTE"
 folder: "4ed3f698e3ae34acf919"
 title: "current_page?(option)"
 tags: []
 content: '''
-  ## `current_page?(option)`
+  # `current_page?(option)`
+  
   リクエストが指定したオプションで生成されたものかの確認する。
   
   例) 現在のページが`/pages/index`のとき
+  
   ```ruby
   current_page?(:action => 'new') => false
   current_page?(:controller => 'pages', :action => 'index') => true

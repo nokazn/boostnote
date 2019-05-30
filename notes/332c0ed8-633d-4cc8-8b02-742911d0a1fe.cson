@@ -1,19 +1,21 @@
 createdAt: "2019-05-06T15:43:35.677Z"
-updatedAt: "2019-05-09T12:48:19.884Z"
+updatedAt: "2019-05-30T15:30:10.837Z"
 type: "MARKDOWN_NOTE"
 folder: "eed4b603f7be458eb434"
 title: "MyCentOS"
 tags: []
 content: '''
-  ## MyCentOS
+  # MyCentOS
   
-  ### Virtualbox インストール
+  ## Virtualbox インストール
   [Oracle VM VirtualBox](https://www.virtualbox.org/)
   
   ### Vagrant インストール
+  
   [vagrant](https://www.vagrantup.com/)
   
   ### OpenSSH
+  
   Windows 10 Fall Creator Updateより使用可能になったデフォルトの OpenSSH を使用する。
   設定 => アプリ => アプリと機能 => オプション機能の管理 で OpenSSH があるか確認する。
   
@@ -25,10 +27,12 @@ content: '''
   # boxを基に仮想マシンを作成
   $ vagrant init bento/centOS-7.2
   ```
+  
   ```ruby:Vagrantfile
   # ssh vagrant@192.168.56.10 でログイン可能
   config.vm.network "private_network", ip: "192.168.56.10"
   ```
+  
   ```bash
   $ vagrant up
   $ vagrant ssh
@@ -36,11 +40,14 @@ content: '''
   ```
   
   ### Virtulabox guest additionsをインストール
+  
   ```bash
   $ sudo yum install gcc make kernel-devel kernel-headers perl
   $ vagrant halt
   ```
+  
   #### マウント用のディスクを追加
+  
   VM VirtualBox マネージャーにて、
   仮想マシン => 設定 => ストレージ => IDE Controller
   の下に空の光学ドライブを追加する。
@@ -52,6 +59,7 @@ content: '''
   
   これで Guest Additions が VirtualBox のCDドライブに挿入されたことになる。
   マウント先のディレクトリを作成し、CDドライブをマウントする。
+  
   ```bash
   $ sudo mkdir /mnt/cdrom
   $ sudo mount -r /dev/cdrom /mnt/cdrom
@@ -61,26 +69,33 @@ content: '''
   ```
   
   ### VBoxLinuxAdditions.run をインストールする
+  
   ```bash
   $ sudo sh ./VBoxLinuxAdditions.run
   # sh - シェルを起動する
   ```
+  
   ```bash
   $ vagrant plugin install vagrant-vbguest
   $ vagrant vbguest
   ```
   
   ### 各ネットワークインターフェースの有効化
+  
   `ifconfig`で eth0s8 があるかどうか確認し、なければ以下のようにネットワークマネージャ等を再起動する。
+  
   ```bash
   $ systemctl restart NetworkManager
   $ systemctl restart network
   ```
+  
   それでも eth0s3(NAT) / eth0s8(ホストオンリーアダプター) の NIC が認識されないなら、
+  
   ```bash
   $ vi /etc/sysconfig/network-scripts/ifcfg-enp0s3
   $ vi /etc/sysconfig/network-scripts/ifcfg-enp0s8
   ```
+  
   ```ini:ifcfg-enp0s3
   TYPE=EthernetBOOTPROTO=dhcp
   DEFROUTE=yes
@@ -96,6 +111,7 @@ content: '''
   UUID=00b46b0f-b035-44f1-9bbe-54c040772a7c
   DEVICE=enp0s3ONBOOT=yes
   ```
+  
   ```ini:ifcfg-enp0s8
   NM_CONTROLLED=yes
   BOOTPROTO=none
@@ -105,12 +121,16 @@ content: '''
   PEERDNS=no
   #VAGRANT-END
   ```
+  
   と書いて、
+  
   ```bash
   $ systemctl restart NetworkManager
   $ systemctl restart network
   ```
+  
   ### ファイアウォールをオフ
+  
   ```bash
   $ sudo systemctl stop firewalld
   $ sudo systemctl disable firewalld
@@ -119,13 +139,17 @@ content: '''
   ```
   
   ### SSHの設定
+  
   Vagrant は SSH (Secure Shell) を使用する。
+  
   ```bash
   $ ssh -l vagrant 192.168.56.10
   ```
+  
   が通るかここで確認しておく。
   
   ### sahara
+  
   ```bash
   $ vagrant plugin install sahara
   $ vagrant sandbox on
@@ -137,20 +161,25 @@ content: '''
   ```
   
   ### httpd(Apache)
+  
   ```bash
   $ sudo yum install httpd
   # httpdをログイン時に起動
   $ sudo systemctl enable httpd
   ```
+  
   CentOS7+ では`chkconfig`は使わない。
+  
   ```bash
   $ sudo chkconfig httpd on
   # CentOS6 以前
   ```
   
   ### ホストOSとのファイル共有
+  
   ホストOSの`Vagrantfile`のある場所とゲストOSの`/vagrant`は共有されている。
   `/vagrant`を通して`/var/www/html`にシンボリックリンクを通すと、ホストOS側で編集したファイルが`/var/www/html`にも共有される。
+  
   ```bash
   $ sudo rm -rf /var/www/html
   $ sudo ln -fs /vagrant /var/www/html
@@ -158,6 +187,7 @@ content: '''
   ```
   
   ### CentOS の日本語化
+  
   ```bash
   $ sudo localedef -i ja_JP -f UTF-8 -A /usr/share/locale/locale.alias ja_JP.UTF-8
   $ sudo yum install ibus-kkc vlgothic-*

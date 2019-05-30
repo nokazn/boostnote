@@ -1,21 +1,24 @@
 createdAt: "2019-05-09T11:54:36.895Z"
-updatedAt: "2019-05-09T11:54:42.199Z"
+updatedAt: "2019-05-24T03:21:59.102Z"
 type: "MARKDOWN_NOTE"
 folder: "4ed3f698e3ae34acf919"
 title: "gem はグローバルではなく、フォルダごとにインストールすべし"
 tags: []
 content: '''
-  ## gem はグローバルではなく、フォルダごとにインストールすべし
+  # gem はグローバルではなく、フォルダごとにインストールすべし
+  
   ```bash
   $ bundle install --path vendor/bundle
   ```
   
   毎回オプションを指定するのは面倒なので、
+  
   ```bash
   $ bundle config --global path vendor/bundle
   ```
   
   とすると、`~/.bundle/config`に以下のデフォルト値が追加される。
+  
   ```ini:config
   BUNDLE_PATH: "vendor/bundle"
   ```

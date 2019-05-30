@@ -1,20 +1,24 @@
 createdAt: "2019-05-06T12:37:38.604Z"
-updatedAt: "2019-05-09T12:48:03.331Z"
+updatedAt: "2019-05-30T15:32:50.335Z"
 type: "MARKDOWN_NOTE"
 folder: "d642b49f05a0df4edcfc"
 title: "Visual Studio Code"
 tags: []
 content: '''
-  ## Visual Studio Code
+  # Visual Studio Code
   
-  ### 言語設定
+  ## 言語設定
+  
   日本語の拡張機能をインストールして VSCode 再起動
+  
   (`ctrl + shift + p`で language と検索)
   
-  ### rmateして開いたファイル
+  ## rmateして開いたファイル
+  
   `C:\\Users\\balea\\AppData\\Local\\Temp`下にキャッシュとして溜まる。
   
-  ### keyboard shortcut 
+  ## keyboard shortcut
+  
   `ctrl + k ctrl + s` でキーバインドを設定できる。
   
   ```json:keybindings.json
@@ -31,30 +35,35 @@ content: '''
     }
   ]
   ```
+  
   エディター <=> ターミナルのフォーカスを`ctrl + ;`で行き来できるようにした。
   
-  ### 1行ごとに空白行があるのを消したいとき
+  ## 1行ごとに空白行があるのを消したいとき
+  
   `ctrl + shift + p`
   => Sort Lines Ascending
   
-  ### タブが上書きされるのを防ぐ
+  ## タブが上書きされるのを防ぐ
+  
   ```diff:setting.json
   + "workbench.editor.enablePreview": false,
   ```
+  
   [VSCodeでファイルを開いた時にタブが上書きされる問題を回避する](https://qiita.com/kgoto/items/265e3eb8a82778e33cfe)
   
-  ### remote-ssh したときにデフォルトシェルを zsh にする
+  ## `remote-ssh`したときにデフォルトシェルを`zsh`にする
+  
   拡張機能から Remote Development をインストール
+  
   ```bash
   $ which zsh
   /usr/bin/zsh
   ```
+  
   ```diff:setting.json
   + "terminal.integrated.shell.linux": "/usr/bin/zsh",
   ```
-     
-     
-     
+  
 '''
 linesHighlighted: []
 isStarred: false

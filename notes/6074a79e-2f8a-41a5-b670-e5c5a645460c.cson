@@ -1,5 +1,5 @@
 createdAt: "2019-05-09T11:54:58.347Z"
-updatedAt: "2019-05-09T11:56:01.763Z"
+updatedAt: "2019-05-24T03:22:44.836Z"
 type: "MARKDOWN_NOTE"
 folder: "4ed3f698e3ae34acf919"
 title: "gem がぐちゃぐちゃになったとき"
@@ -7,13 +7,15 @@ tags: [
   "gem"
 ]
 content: '''
-  ## gem がぐちゃぐちゃになったとき
+  # gem がぐちゃぐちゃになったとき
+  
   ```bash
   $ gem environment gemdir
   /home/vagrant/.rbenv/versions/2.5.1/lib/ruby/gems/2.5.0
   ```
   
   グローバルに間違えてインストールした gem を削除する。
+  
   ```bash
   $ gem list | grep -v default: | grep -v "bundler\\|mysql2" | xargs gem uninstall -aIx || $ gem uninstall -I -a -x --user-install --force
   ```

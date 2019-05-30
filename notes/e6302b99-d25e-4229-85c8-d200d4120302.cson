@@ -1,12 +1,14 @@
 createdAt: "2019-05-05T13:01:28.557Z"
-updatedAt: "2019-05-09T12:48:35.027Z"
+updatedAt: "2019-05-30T15:34:03.651Z"
 type: "MARKDOWN_NOTE"
 folder: "770da9bb44957224bcc5"
 title: "C"
 tags: []
 content: '''
-  ## C
-  ### コンパイルと実行
+  # C
+  
+  ## コンパイルと実行
+  
   ```bash
   $ gcc [実行するファイル名] -o [コンパイルした後の名前] ./[コンパイルした後の名前]
   Hello C Wolrd!

@@ -1,15 +1,19 @@
 createdAt: "2019-05-09T12:36:37.247Z"
-updatedAt: "2019-05-09T12:37:34.024Z"
+updatedAt: "2019-05-24T03:17:11.471Z"
 type: "MARKDOWN_NOTE"
 folder: "d41de58f2f8776076b18"
 title: "上付き文字 (Superscript)"
 tags: []
 content: '''
-  ## 上付き文字 (Superscript)
+  # 上付き文字 (Superscript)
+  
   ```html
   <sup>2</sup>
   ```
+  
   例) x<sup>2</sup> + y<sup></sup>2 = 1
+  
+  
 '''
 linesHighlighted: []
 isStarred: false

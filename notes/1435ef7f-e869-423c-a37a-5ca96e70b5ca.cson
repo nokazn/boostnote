@@ -1,11 +1,12 @@
 createdAt: "2019-05-09T12:14:12.602Z"
-updatedAt: "2019-05-09T12:14:14.015Z"
+updatedAt: "2019-05-24T03:31:02.295Z"
 type: "MARKDOWN_NOTE"
 folder: "4ed3f698e3ae34acf919"
 title: ".gitignore するべきファイル"
 tags: []
 content: '''
-  ## .gitignore するべきファイル
+  # .gitignore するべきファイル
+  
   [gitignoreを書く時に便利なテンプレート集](https://github.com/github/gitignore/blob/master/Rails.gitignore)
   [gitignore/Rails.gitignore at master · github/gitignore](https://co.bsnws.net/article/300
   )

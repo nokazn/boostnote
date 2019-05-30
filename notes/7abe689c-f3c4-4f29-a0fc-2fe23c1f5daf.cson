@@ -1,11 +1,12 @@
 createdAt: "2019-05-09T12:37:45.307Z"
-updatedAt: "2019-05-09T12:37:46.952Z"
+updatedAt: "2019-05-24T03:07:11.066Z"
 type: "MARKDOWN_NOTE"
 folder: "d41de58f2f8776076b18"
 title: "display: inline-block;から変更できない要素"
 tags: []
 content: '''
-  ## `display: inline-block;`から変更できない要素
+  # `display: inline-block;`から変更できない要素
+  
   ```html
   <button>
   <input> <!-- (type=image と type=hidden を除く) -->
@@ -15,6 +16,7 @@ content: '''
   <textarea>
   <keygen>
   ```
+  
   [display: block で width 100% にならない要素](https://qiita.com/ysds/items/ea86e9b4a675f662497d)
   
 '''

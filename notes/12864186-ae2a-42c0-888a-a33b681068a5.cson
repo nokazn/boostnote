@@ -1,5 +1,5 @@
 createdAt: "2019-05-08T11:37:14.208Z"
-updatedAt: "2019-05-09T12:29:52.890Z"
+updatedAt: "2019-05-24T03:19:33.362Z"
 type: "MARKDOWN_NOTE"
 folder: "d41de58f2f8776076b18"
 title: "疑問点"
@@ -8,9 +8,11 @@ tags: [
   "疑問"
 ]
 content: '''
-  ## 疑問点
-  ### コントローラーで定義したメソッドとかをシンボルで呼び出してるのは？
-  `form_for(@user)`としたのに`params.require(@user).permit~`ではなく`params.require(:user).permit ~`???
+  # 疑問点
+  
+  ## コントローラーで定義したメソッドとかをシンボルで呼び出してるのは？
+  
+  `form_for(@user)`としたのに`params.require(@user).permit~`ではなく`params.require(:user).permit ~`?
   
 '''
 linesHighlighted: []

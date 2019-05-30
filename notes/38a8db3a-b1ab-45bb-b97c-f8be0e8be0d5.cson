@@ -1,5 +1,5 @@
 createdAt: "2019-05-09T12:53:21.406Z"
-updatedAt: "2019-05-09T12:57:47.691Z"
+updatedAt: "2019-05-24T03:33:35.347Z"
 type: "MARKDOWN_NOTE"
 folder: "4ed3f698e3ae34acf919"
 title: "ERB の="
@@ -7,14 +7,16 @@ tags: [
   "ミス"
 ]
 content: '''
-  ## ERB の`=`
+  # ERB の`=`
   
   ```ruby
   <%= flash.each do |message_type, message| %>
     <div class="alert alert-<%= message_type %>"><%= message %></div>
   <% end %>
   ```
+  
   ↓
+  
   ```ruby
   <% flash.each do |message_type, message| %>
     <div class="alert alert-<%= message_type %>"><%= message %></div>
@@ -25,7 +27,7 @@ content: '''
   
   ![b0e26c923060fec5e89855d394788979.png](:storage\\38a8db3a-b1ab-45bb-b97c-f8be0e8be0d5\\ab7a9098.png)
   
-  ##### cf. `form_for`は Rails3+ では`<%= %>`のように`=`が必要。
+  ## cf. `form_for`は Rails3+ では`<%= %>`のように`=`が必要。
   
 '''
 linesHighlighted: []

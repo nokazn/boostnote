@@ -1,20 +1,24 @@
 createdAt: "2019-05-09T12:16:28.217Z"
-updatedAt: "2019-05-09T12:16:38.897Z"
+updatedAt: "2019-05-24T03:32:12.764Z"
 type: "MARKDOWN_NOTE"
 folder: "4ed3f698e3ae34acf919"
-title: "`ruby"
+title: "root と route"
 tags: [
   "ミス"
   "ルーティング"
   "routes"
 ]
 content: '''
+  # root と route
+  
   ```ruby
   Rails.application.routes.draw do
     route to: "toppages#index"
   end
   ```
-  ↓ 
+  
+  ↓
+  
   ```ruby
   Rails.application.routes.draw do
     root to: "toppages#index"

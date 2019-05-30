@@ -1,0 +1,52 @@
+createdAt: "2019-05-09T13:47:27.158Z"
+updatedAt: "2019-05-30T14:56:39.653Z"
+type: "MARKDOWN_NOTE"
+folder: "c50fd792c06c102068ae"
+title: "for (var i in list)内のi"
+tags: []
+content: '''
+  # `for (var i in list)`内の`i`
+  
+  オブジェクトにおける列挙可能 (`enumerable: true`) な「直属のプロパティ名」、「プロトタイプ上のプロパティ名」を繰り返し取得する。
+  
+  ```js
+  for (var i in list) {
+    console.log(typeof(i));  // => string
+    list[Number(i) + 1].map(ele => ele + 1);
+  }
+  ```
+  
+  `Number(i)`として`number`に変換する必要がある。
+  
+  #### 追記
+  プロトタイプのプロパティを取得する挙動が問題になることが多いため、プロトタイプ上のプロパティを参照したいとき以外は避けるのが無難。
+  
+  ```js
+  Object.prototype.c = 3;
+  const obj = { a: 1, b: 2 };
+  for (let key in obj) {
+    console.log(key);
+  }
+  // => a => b => c
+  
+  // for-in hasOwnProperty
+  for (let key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      console.log(`${key}: ${obj[key]}`)
+    }
+  }
+  
+  // Object.keys()
+  for (const key of Object.keys(obj)) {
+    console.log(`${key}: ${obj[key]}`);
+  }
+  
+  // Object.entries() (ES2017+)
+  for (const [key, value] of Object.entries(obj)) {
+    console.log(`${key}: ${value}`);
+  }
+  ```
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

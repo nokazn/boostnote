@@ -1,0 +1,32 @@
+createdAt: "2019-05-30T14:40:24.723Z"
+updatedAt: "2019-05-30T14:47:58.242Z"
+type: "MARKDOWN_NOTE"
+folder: "c50fd792c06c102068ae"
+title: "繰り返し"
+tags: [
+  "繰り返し"
+  "for"
+  "for-of"
+  "forEach"
+  "while"
+]
+content: '''
+  # 繰り返し
+  
+  - イテレーター - `for-of`
+  - 配列 - `for`, `for-of`, `Array.prototype.forEach`
+    - `forEach`
+      - 配列の中で存在する要素だけを取り出す
+      - 関数コストは高いため、処理速度は遅い
+  - パフォーマンス重視 - `while`
+  - その他ビルトイン関数があれば適宜用いる
+  - 連想配列 - `new Map`, `Object.create(null)`
+    - `new Map`
+      - プロトタイプ上のプロパティと干渉しない
+      - `Map.prototype.forEach`にて key / value を定義順に列挙できる
+      - key には`NaN`を含むすべての型を指定できる
+      - `Map.prototype.entries`, `Map.prototype.keys`, `Map.prototype.values`でイテレータを出力できる
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

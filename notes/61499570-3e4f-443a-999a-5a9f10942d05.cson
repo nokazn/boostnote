@@ -1,5 +1,5 @@
 createdAt: "2019-05-09T12:14:25.019Z"
-updatedAt: "2019-05-09T12:14:33.884Z"
+updatedAt: "2019-05-24T03:31:08.619Z"
 type: "MARKDOWN_NOTE"
 folder: "4ed3f698e3ae34acf919"
 title: "routing"
@@ -8,7 +8,8 @@ tags: [
   "ルーティング"
 ]
 content: '''
-  ## routing
+  # routing
+  
   ```ruby
   post '/tasks', to: 'tasks#create'
   get '/tasks/:id', to: 'tasks#show', as: 'task'  # task_pate(:id)

@@ -1,11 +1,12 @@
 createdAt: "2019-05-09T12:07:43.815Z"
-updatedAt: "2019-05-09T12:07:47.278Z"
+updatedAt: "2019-05-24T03:26:52.881Z"
 type: "MARKDOWN_NOTE"
 folder: "4ed3f698e3ae34acf919"
 title: "ユーザー登録"
 tags: []
 content: '''
-  ## ユーザー登録
+  # ユーザー登録
+  
   ```ruby
   def create
     if @user.save

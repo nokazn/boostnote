@@ -1,13 +1,15 @@
 createdAt: "2019-05-09T12:36:10.428Z"
-updatedAt: "2019-05-09T12:36:28.332Z"
+updatedAt: "2019-05-30T15:06:38.727Z"
 type: "MARKDOWN_NOTE"
 folder: "d8b18fc544434022f6d8"
 title: "liをdisplay: inline-blockにしたとき"
 tags: []
 content: '''
-  ## `li`を`display: inline-block`にしたとき
+  # `li`を`display: inline-block`にしたとき
   
-  `li`は block 要素なので複数のliを箇条書きにすると改行で半角スペースが挿入されてしまい、横幅を超えてカラム落ちしてしまう。`li`を1行で書いてもいいが、視認性悪い。
+  `li`は block 要素なので複数のliを箇条書きにすると改行で半角スペースが挿入されてしまい、横幅を超えてカラム落ちしてしまう。
+  `li`を1行で書いてもいいが、視認性悪い。
+  
   ```css
   #global_navi ul {
     font-size: 0;  /* 半角スペース削除 */

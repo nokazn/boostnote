@@ -1,11 +1,12 @@
 createdAt: "2019-05-06T14:31:40.869Z"
-updatedAt: "2019-05-09T12:39:19.508Z"
+updatedAt: "2019-05-30T15:11:16.661Z"
 type: "MARKDOWN_NOTE"
 folder: "4039f1ba9fa0956ce334"
 title: "flexbox"
 tags: []
 content: '''
-  ## flexbox
+  # flexbox
+  
   CSSでのレイアウト設定を簡単にするレイアウトモジュール
   [CSSのFlexboxを徹底解説！](https://webdesignday.jp/inspiration/pickup/4175/)
 '''

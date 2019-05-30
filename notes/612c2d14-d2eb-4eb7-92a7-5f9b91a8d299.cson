@@ -1,11 +1,12 @@
 createdAt: "2019-05-09T12:45:42.392Z"
-updatedAt: "2019-05-09T12:46:17.183Z"
+updatedAt: "2019-05-30T15:24:48.491Z"
 type: "MARKDOWN_NOTE"
 folder: "660920097553891f8089"
 title: "image と container"
 tags: []
 content: '''
-  ## image と container
+  # image と container
+  
   - image - OS のインストールディスクを仮想化したもの
   - container - OS が起動しているサーバーを仮想化したもの
   
@@ -13,6 +14,7 @@ content: '''
   $ sudo docker run hello-world
   Hello from Docker!
   ```
+  
   `docker run`とすると、 run した回数分の container が作成される。image は既にローカルにあれば再利用され、なければ`pull`される。
   
 '''

@@ -1,0 +1,27 @@
+createdAt: "2019-05-09T13:43:12.563Z"
+updatedAt: "2019-05-24T03:18:30.422Z"
+type: "MARKDOWN_NOTE"
+folder: "8eecd56ec7357d6ca8d6"
+title: "コンポーネント内で入力値をリアクティブにする"
+tags: [
+  "コンポーネント"
+]
+content: '''
+  # コンポーネント内で入力値をリアクティブにする
+  
+  ```js
+  cumputed: {
+    updatedText: {
+      get() {
+        return this.value;
+      },  // get()
+      set(val) {
+        this.$emit("input", val);
+      }  // set(val)
+    }  // updatedText
+  }
+  ```
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

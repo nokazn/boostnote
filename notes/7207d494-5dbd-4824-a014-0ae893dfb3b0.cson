@@ -1,5 +1,5 @@
 createdAt: "2019-05-08T11:39:39.203Z"
-updatedAt: "2019-05-09T12:26:05.363Z"
+updatedAt: "2019-05-24T03:21:18.885Z"
 type: "MARKDOWN_NOTE"
 folder: "d41de58f2f8776076b18"
 title: "todolist-vue"
@@ -7,14 +7,17 @@ tags: [
   "Vue.js"
 ]
 content: '''
-  ## todolist-vue
-  ### gem
+  # todolist-vue
+  
+  ## gem
+  
   ```ini:Gemfile
   + gem 'materialize-sass'
   + gem 'materialize_icons'
   ```
   
-  ### パスをうまくやらないといけないっぽい?
+  ## パスをうまくやらないといけないっぽい
+  
   ```bash
   $ find . -name materialize
   ```
@@ -26,9 +29,11 @@ content: '''
   ```diff:app/assets/javascripts/application.js
   + // = require materialize
   ```
+  
   `watcher: ./bin/webpack-watcher`するか`dev-server`を再起動しないとうまく反映されなかった。
   
-  ### `app/javascript/packs`下にある js ファイルを読み込む
+  ## `app/javascript/packs`下にある js ファイルを読み込む
+  
   ```diff:app/views/home/index.html.erb
   + <%= javascript_pack_tag 'todo' %>
   ```
@@ -38,6 +43,7 @@ content: '''
   + import Navbar from './components/navbar.vue'
   + import App from './components/app.vue'
   ```
+  
 '''
 linesHighlighted: []
 isStarred: false

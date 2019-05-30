@@ -1,5 +1,5 @@
 createdAt: "2019-05-09T13:01:47.539Z"
-updatedAt: "2019-05-09T13:04:33.037Z"
+updatedAt: "2019-05-24T03:33:56.313Z"
 type: "MARKDOWN_NOTE"
 folder: "4ed3f698e3ae34acf919"
 title: "お気に入りボタン"
@@ -8,7 +8,8 @@ tags: [
   "Monolist"
 ]
 content: '''
-  ## お気に入りボタン
+  # お気に入りボタン
+  
   ```ruby
   <% else %>
     <%= form_for(current_user.like.build) do |f| %>
@@ -17,6 +18,7 @@ content: '''
     <% end %>
   <% end %>
   ```
+  
   ↓
   
   ```ruby
@@ -27,8 +29,10 @@ content: '''
     <% end %>
   <% end %>
   ```
+  
   - `form_for([対象となるモデル])`なので、お気に入りに追加という意味のメソッド`like`がくるのはおかしい。
   - 対象となる投稿のIDを取得するために`micropost.id`を書いている。
+  
 '''
 linesHighlighted: []
 isStarred: false

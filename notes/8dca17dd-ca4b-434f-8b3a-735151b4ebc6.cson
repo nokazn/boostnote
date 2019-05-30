@@ -1,28 +1,33 @@
 createdAt: "2019-05-05T12:58:14.051Z"
-updatedAt: "2019-05-09T12:48:26.487Z"
+updatedAt: "2019-05-30T15:34:32.814Z"
 type: "MARKDOWN_NOTE"
 folder: "770da9bb44957224bcc5"
 title: "Heroku"
 tags: []
 content: '''
-  ## Heroku
+  # Heroku
   
-  ### heroku cli を ./heroku.tar.gz にダウンロード
+  ## heroku cli を ./heroku.tar.gz にダウンロード
+  
   ```bash
   $ wget https://cli-assets.heroku.com/heroku-cli-linux-x64.tar.gz -O heroku.tar.gz
   ```
+  
   ### 解凍
+  
   ```bash
   $ tar -xvzf heroku.tar.gz -C /usr/local/lib/
   $ mkdir /usr/local/bin/heroku
   $ sudo ln -s /usr/local/lib/heroku/bin/heroku /usr/local/bin/heroku
   ```
+  
   - x - 解凍する
   - v - 処理したファイルを詳しく出力する
   - z - compress形式で圧縮されたアーカイブを展開する
   - f - アーカイブファイル名を指定する
   
-  ### アプリ作成
+  ## アプリ作成
+  
   ```bash
   $ heroku login --interactive # コマンドライン上でログイン
   $ cd ~/app
@@ -32,12 +37,14 @@ content: '''
   heroku  https://git.heroku.com/[app name].git (push)
   ```
   
-  ### リモートリポジトリへデプロイ
+  ## リモートリポジトリへデプロイ
+  
   ```bash
   $ git push heroku master
   ```
   
   ### 環境変数を設定
+  
   ```bash
   $ heroku config:set TOKEN=[acccess token]
   ```

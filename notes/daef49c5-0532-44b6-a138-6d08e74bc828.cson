@@ -1,5 +1,5 @@
 createdAt: "2019-05-09T13:05:07.294Z"
-updatedAt: "2019-05-09T13:05:44.402Z"
+updatedAt: "2019-05-24T03:34:05.068Z"
 type: "MARKDOWN_NOTE"
 folder: "4ed3f698e3ae34acf919"
 title: "resourcesのdoを忘れない"
@@ -7,7 +7,8 @@ tags: [
   "ミス"
 ]
 content: '''
-  ## `resources`の`do`を忘れない
+  # `resources`の`do`を忘れない
+  
   ```ruby
   resources :microposts, only: [:create, :destroy] do
     member do
@@ -15,6 +16,7 @@ content: '''
     end
   end
   ```
+  
 '''
 linesHighlighted: []
 isStarred: false
