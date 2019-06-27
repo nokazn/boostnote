@@ -1,0 +1,52 @@
+createdAt: "2019-06-27T11:11:04.955Z"
+updatedAt: "2019-06-27T11:34:23.053Z"
+type: "MARKDOWN_NOTE"
+folder: "d642b49f05a0df4edcfc"
+title: "VSCode Remote"
+tags: []
+content: '''
+  # VSCode Remote
+  
+  - ローカルマシンでは通常通り、VScode本体とUI関連の機能等を動かしている
+  - リモートサーバー上のファイルにアクセスして編集できる
+  - **リモートサーバー上で言語の拡張機能等を実行する**
+    - ローカルに言語実行環境をインストールしなくても、リモートサーバー上の言語で開発できる。
+  - リモートとしては「SSH」のほかに「Container」「WSL」が選べる
+  
+  ## `.ssh/config`の設定とSSH接続
+  
+  `ctrl + shift + P`で`Remote-SSH: Open configuration File`として ssh 接続する際の設定ファイルを開いて編集する。
+  
+  ```ini:.ssh/config
+  Host default
+    HostName 127.0.0.1
+    User vagrant
+    Port 2222
+    UserKnownHostsFile /dev/null
+    StrictHostKeyChecking no
+    PasswordAuthentication no
+    IdentityFile C:/Users/balea/MyDev/MyRails/.vagrant/machines/default/virtualbox/private_key
+    IdentitiesOnly yes
+    LogLevel FATAL
+  
+  Host myrails
+    HostName 192.168.56.10
+    User vagrant
+    IdentityFile C:/Users/balea/MyDev/MyRails/.vagrant/machines/default/virtualbox/private_key
+    IdentitiesOnly yes
+    PasswordAuthentication no
+    ForwardAgent yes
+  ```
+  
+  再び VSCode のコマンドパレットから`Remote-SSH: Connect to Host`とするか、左のアクティビティバーの Remote-SSH から設定したホスト情報を選択し、SSH接続する。
+  
+  ## リモートサーバー上で拡張機能を利用する
+  
+  言語の拡張機能等を`install on SSH`すると、リモート上でのみ拡張機能が動作する。`Ctrl + Space`で補完がかかる。
+  
+  インストールされたリモート上の拡張機能は、`~/.vscode-remote/extensions/`にある。
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false
