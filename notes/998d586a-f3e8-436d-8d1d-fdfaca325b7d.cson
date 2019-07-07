@@ -1,5 +1,5 @@
 createdAt: "2019-05-05T13:03:13.734Z"
-updatedAt: "2019-05-30T15:36:47.594Z"
+updatedAt: "2019-07-01T12:32:04.406Z"
 type: "MARKDOWN_NOTE"
 folder: "770da9bb44957224bcc5"
 title: "Git"
@@ -139,6 +139,8 @@ content: '''
   ```
   
   #### 過去のコミットを打ち消す
+  
+  過去のコミットはそのままで、新たに打ち消したコミットが作成される。
   
   ```bash
   $ git revert [リビジョン番号]

@@ -1,0 +1,149 @@
+createdAt: "2019-06-29T11:05:24.622Z"
+updatedAt: "2019-06-29T11:44:53.810Z"
+type: "MARKDOWN_NOTE"
+folder: "b79b757a3f246f39516b"
+title: "1-4. 演算子"
+tags: []
+content: '''
+  # 1-4. 演算子
+  
+  ## 演算子
+  
+  オペランド(変数、リテラルなど)に対してあらかじめ決められた処理を行う記号
+  
+  ### 算術演算子
+  
+  `+`, `-`, `*`, `/`, `%`, `++`, `--`
+  `++`, `--`は前置と後置が可能
+  
+  #### 加算演算子 `+`
+  
+  ```js
+  console.log(10 + 1);
+  // => 11
+  console.log("10" + 1);
+  console.log(10 + "1");
+  // => 101
+  ```
+  
+  #### 丸め誤差
+  
+  ```js
+  console.log(0.2 * 3);
+  // => 0.6000000000000001
+  console.log(9999999999999999);
+  // => 10000000000000000
+  ```
+  
+  #### 有効数字2桁で計算
+  
+  ```js
+  console.log(((0.2351 * 100) / 3) * 100);
+  // => 0.7836666666666667
+  console.log(0.2351 / 3);
+  // => 0.08436666666666666
+  ```
+  
+  ### 代入演算子
+  
+  - `=`
+  - `+=`, `-=`, `*=`, `/=`, `%=`
+  - 論理積演算 `&=` - ビットごとの論理積の結果を代入
+  - 論理和演算 `|=` - ビットごとの論理和の結果を代入
+  - 排他的論理和演算 `^=` - ビットごとの排他的論理和の結果を代入
+  - 左シフト `<<=`
+  - 右シフト `>>=`, `>>>=`
+  
+  
+  #### 分割代入
+  
+  ##### 配列の分割代入
+  
+  ```js
+  let list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  let [x1, x2, x3, x4, x5, ...other] = list;
+  console.log(x1);  // => 1
+  console.log(x2);  // => 2
+  console.log(x3);  // => 3
+  console.log(x4);  // => 4
+  console.log(x5);  // => 5
+  console.log(other);  // => [6, 7, 8, 9, 10]
+  ```
+  
+  ```js
+  let x = 1;
+  let y = 2;
+  [x, y] = [y, x];  // 変数を入れ替え
+  console.log(x, y);  // => 2, 1
+  ```
+  
+  ##### オブジェクトの分割代入
+  
+  - `nationality`プロパティを`country`という変数に代入
+  - `other`にはオブジェクトそのものが代入
+  - `other: {height}`とすると、`ohter`プロパティ内の`height`プロパティの値が`height`という変数に代入される。
+  
+   ```js
+   let obj = {name: "John", age: "23", sex: "male", nationality: "France", other: {weight: 70, height: 180}};
+   let {name, nationality: country, other, other: {height}, memo = "なし"} = obj;
+   console.log(name);  // "John"
+   console.log(country);  // => "France"
+   console.log(other);  // => {weight: 70, height: 180}
+   console.log(height);  // => 70
+   console.log(memo);  // => "なし"
+   ```
+  
+  宣言と代入を分けて表す場合は、オブジェクトの分割代入部分を`()`で囲む必要がある。これは、`{}`がブロックとみなされてしまうためである。
+  
+  ```js
+  let name, coutry, other, height, memo;
+  ({name, nationality: country, other, other: {height}, memo = "なし"} = obj);
+  ```
+  
+  ### 比較演算子
+  
+  - `==` - 等価演算子
+  - `!=` - 不等価演算子
+  - `<` - (左辺) < (右辺) のとき `true`
+  - `<=` - (左辺) <= (右辺) のとき `true`
+  - `>` - (左辺) > (右辺) のとき `true`
+  - `>=` - (左辺) >= (右辺) のとき `true`
+  - `===` - 同値演算子
+  - `!==` - 不一致演算子
+  - `?:` - 三項演算子
+  
+  #### 等価演算子/不等価演算子
+  
+  #### 同値演算子/不一致演算子
+  
+  #### 等価と同値
+  
+  #### 三項演算子
+  
+  ### 論理演算子
+  
+  - `&&`
+  - `||`
+  - `!`
+  
+  ### ショートカット演算（短絡演算）
+  
+  ### ビット演算子
+  
+  ### その他の演算子
+  
+  #### delete 演算子
+  
+  #### instanceof 演算子
+  
+  #### typeof 演算子
+  
+  ### 演算子の優先順位
+  
+  ### 演算子の結合測
+  
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

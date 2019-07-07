@@ -1,0 +1,41 @@
+createdAt: "2019-07-01T10:08:24.178Z"
+updatedAt: "2019-07-01T10:19:21.350Z"
+type: "MARKDOWN_NOTE"
+folder: "8eecd56ec7357d6ca8d6"
+title: "AWS Cloud9 で Vue CLI 環境を作る"
+tags: []
+content: '''
+  # AWS Cloud9 で Vue CLI 環境を作る
+  
+  vue-cli を npm 経由でインストールし、VueApp という名前のプロジェクトを作成後、`package.json`に記載されたパッケージをインストールする。
+  
+  ```bash
+  npm install vue-cli
+  vue init webpack VueApp
+  npm install
+  ```
+  
+  webpack-dev-server の設定を変更する。
+  
+  ```diff:build/webpack.dev.conf.js
+  devServer: {
+    clientLogLevel: 'warning',
+    historyApiFallback: true,
+    hot: true,
+    compress: true,
+  - host: process.env.HOST || config.dev.host,
+  - port: process.env.PORT || config.dev.port,
+  + host: '127.0.0.1',
+  + port: '8080',
+  + disableHostCheck: true,
+  ```
+  
+  ```bash
+  npm run dev
+  ```
+  
+  として、Preview → Preview Running Application とすると「**Welcom to Your Vue.js App**」と表示される。
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

@@ -1,5 +1,5 @@
 createdAt: "2019-05-09T12:45:42.392Z"
-updatedAt: "2019-05-30T15:24:48.491Z"
+updatedAt: "2019-07-06T12:56:25.871Z"
 type: "MARKDOWN_NOTE"
 folder: "660920097553891f8089"
 title: "image と container"
@@ -20,4 +20,4 @@ content: '''
 '''
 linesHighlighted: []
 isStarred: false
-isTrashed: false
+isTrashed: true

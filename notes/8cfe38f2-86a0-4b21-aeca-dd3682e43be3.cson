@@ -1,0 +1,107 @@
+createdAt: "2019-06-30T11:23:23.724Z"
+updatedAt: "2019-06-30T12:23:40.946Z"
+type: "MARKDOWN_NOTE"
+folder: "b79b757a3f246f39516b"
+title: "2-2. 基本データを扱うためのオブジェクト"
+tags: []
+content: '''
+  # 2-2. 基本データを扱うためのオブジェクト
+  
+  ## Stringオブジェクト
+  
+  ### 検索
+  
+  - `indexOf(substr [,start])` - 前方(start+1)文字目から検索
+  - `lastIndexOf(substr [,start])` - 後方(start+1)文字目から検索
+  - `startsWith(search [,pos])`
+  - `endsWith(search [,pos])`
+  - `includes(search [,pos])`
+  
+  ### 部分文字列
+  
+  - `charAt(n)` - (n+1)文字目を抽出
+  - `slice(start [,end])` - (start+1)~end文字目を抽出
+  - `substring(start [,end])` - (start+1)~end文字目を抽出
+  - `substr(start [,cnt])` - (start+1)文字目からcnt文字文を抽出
+  - `split(str [,limit])` - strで分割し結果を配列で取得
+  
+  ### 正規表現
+  
+  - `match(reg)`
+  - `replace(reg, rep)`
+  - `search(reg)` - 一致する最初の文字位置を取得
+  
+  ### 大文字 / 小文字
+  
+  - `toLowerCase()`
+  - `toUpperCase()`
+  
+  ### コード変換
+  
+  - `charCodeAt(n)`
+  - `formCharCode(c1, c2, ...)`
+  - `codePointAt(n)`
+  - `fromCodePoint(num, ...)`
+  
+  ### その他
+  
+  - `concat(str)`
+  - `repeat(num)` - 文字列をnum回繰り返す
+  - `trim()` - 前後の空白を除去
+  - `length`
+  
+  ### `slice()`と`substring()`
+  
+  1. start > end のとき
+  
+  - `slice` - `""`を返す
+  - `substring` - start < end となるように入れ替える
+  
+    ```js
+    console.log("aiueo".slice(3, 1));  // => ""
+    console.log("aiueo".substring(3, 1));  // => "iu"
+    ```
+  
+  2. start / end < 0 のとき
+  
+  - `slice` - 後方からの文字数とみなす
+  - `substring` - 0とみなす
+  
+  ```js
+  console.log("aiueo".slice(3, -1));  // => "e"
+  console.log("aiueo".substring(3, -1));  // => aiu
+  ```
+  
+  ### サロゲートペア文字
+  
+  #### Unicodeと文字列
+  
+  `"\\uXXXX"`形式の4桁の16進数で表す。
+  
+  ```js
+  console.log("\\u3042");  // => "あ"
+  console.log('\\u3042');  // => "あ"
+  /\\u3042/.test('あ'); // => true
+  
+  "あ".charCodeAt(0);  // => 12354（10進数のNumber）
+  "あ".charCodeAt(0).toString(16);  // => 12354（16進数のString）
+  
+  String.fromCharCode(12354); // => "あ"
+  String.fromCharCode(0x3042); // => "あ"
+  ```
+  
+  Unicode番号が16進数で`10000`以上の文字を、UTF-8(およびUTF-16)では表現できないため、Unicode番号`D800`〜`DBFF`と`DC00`〜`DFFF`の組み合わせで表現した仕組み。
+  
+  ```js
+  let hokke = "𩸽";
+  hokke.charCodeAt(0).toString(16);  // => "d867"
+  hokke.charCodeAt(1).toString(16);  // => "de3d"
+  console.log(hokke.length); // => 2
+  console.log("\\uD867\\uDE3D");  // => "𩸽"
+  
+  console.log("\\uD83D\\uDE02"); // => "😂"
+  ```
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

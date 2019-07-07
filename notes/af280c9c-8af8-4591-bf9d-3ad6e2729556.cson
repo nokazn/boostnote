@@ -1,0 +1,132 @@
+createdAt: "2019-06-29T11:04:10.058Z"
+updatedAt: "2019-06-29T11:39:16.883Z"
+type: "MARKDOWN_NOTE"
+folder: "b79b757a3f246f39516b"
+title: "1-3. データ型"
+tags: []
+content: '''
+  # 1-3. データ型
+  
+  ## 基本型
+  
+  値そのものが直接格納。
+  
+  - Number
+  - String - `""`, `''`, `"abc"`, `'1'`
+  - Boolean - `true`, `false`
+  - Symbol
+  - Null
+  - undefined
+    - undefined は予約語ではない
+  
+  ## 参照型
+  
+  値を参照しているメモリ上のアドレス(参照値)を格納。参照による代入を行うと同じ値を参照する。
+  
+  - 配列 - `[]`, `[1, 2, 3]`
+  - オブジェクト - `{ key: value }`
+  - 関数 - `function() {}`, `() => {}`
+  
+  ## リテラル
+  
+  データ型に格納できる値そのもの、または値の表現方法
+  
+  ### 数値リテラル
+  
+  - 数値リテラル(number)
+    - 整数リテラル
+      - 10進数リテラル
+      - 16進数リテラル(hexadecimal) - 0xFFffFF
+      - 8進数リテラル(octal) - 0o677
+      - 2進数リテラル(binary) - 0b01001
+    - 浮動小数点リテラル - 1.5, 3.14e5, 1.08e-8
+  
+  ### 文字列リテラル
+  
+  - 文字列リテラル - "`abc`", `"abc"`
+  - エスケープシーケンス
+    - `\\b` - バックスペース
+    - `\\f` - 改ページ
+    - `\\n` - 改行(LF)
+    - `\\r` - キャリッジリターン(CR)
+    - `\\t` - タブ
+    - `\\\\`
+    - `\\'`
+    - `\\"`
+    - `\\xXX` - Latin-1 文字(XX は16進数で以下同様)
+    - `\\uXXXX` - Unicode 文字
+    - `\\u{XXXXX}` - 0xffff(4桁の16進数) を超える Unicode 文字
+  
+  ```js
+  console.log('He's Hero!');  // NG
+  console.log("He's Hero!");  // OK
+  console.lgo('He\\'s Hero!');  // OK
+  ```
+  
+  ##### テンプレート文字列
+  
+  改行や変数をそのまま書けるので、エスケープシーケンスを用いる必要がなくなる。
+  
+  ```js
+  const name = "nokazn";
+  console.log(`Hello ${name}!`);
+  // => Hello nokazn!
+  ```
+  
+  ### 配列リテラル
+  
+  ```js
+  const list = [1, 2, 3];
+  console.log(list[1]);
+  // => 2
+  ```
+  
+  ### オブジェクトリテラル (ハッシュ、連想配列)
+  
+  ```js
+  const obj = {
+    x: 1,
+    method: function() {
+      console.log("this is a method");
+    }
+  }
+  ```
+  
+  - オブジェクト内の個々のデータはプロパティといい、関数が格納されたプロパティを特にメソッドという。
+  - ドット演算子、ブランケット構文でアクセスできる。
+    - ブランケット構文ではプロパティ名は文字列として認識され、変数を用いてアクセスすることも可能。
+  
+    ```js
+    const obj = {name: "Taro"};
+    const hoge = "name";
+    console.log(obj[hoge]);  // => "Taro"
+    ```
+  
+  ### 関数リテラル
+  
+  引数を与えると返り値を返す仕組みを持ったデータ型。
+  
+  ### undefined
+  
+  - 宣言済みだが値がない。未宣言のときは`"a is not defined"`と言われる
+  - 未定義のプロパティ
+  - 関数で値が return されなかった
+  
+  ### null
+  
+  空の値。
+  
+  #### false とみなせる値
+  
+  - 0
+  - -0
+  - null
+  - false
+  - NaN
+  - undefined
+  - 空文字列 ("")
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

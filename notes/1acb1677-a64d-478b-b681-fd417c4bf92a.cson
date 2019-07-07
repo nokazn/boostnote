@@ -1,0 +1,96 @@
+createdAt: "2019-06-29T11:02:26.014Z"
+updatedAt: "2019-06-29T11:28:44.516Z"
+type: "MARKDOWN_NOTE"
+folder: "b79b757a3f246f39516b"
+title: "1-2. 変数/定数"
+tags: []
+content: '''
+  # 1-2. 変数/定数
+  
+  ## 変数
+  
+  ```js
+  let x, y
+  ```
+  
+  のように書ける。
+  
+  ### 命名規則
+  
+  - 一文字目は 英字, "_", $
+  - 二文字目以降は 一文字目のやつ + 数字
+  - 大文字 小文字
+  - 以下の予約語に該当しない
+    - break
+    - case
+    - catch
+    - class
+    - const
+    - continue
+    - debugger
+    - default
+    - delete
+    - do
+    - else
+    - export
+    - extends
+    - finally
+    - for
+    - function
+    - if
+    - import
+    - implements
+    - in
+    - instanceof
+    - interface
+    - new
+    - package
+    - private
+    - protected
+    - public
+    - return
+    - super
+    - switch
+    - this
+    - throw
+    - try
+    - typeof
+    - var
+    - void
+    - while
+    - with
+    - yiled
+  
+  ### 記法
+  
+  - キャメルケース - lastName
+  - パスカルケース - LastName
+  - スネークケース - last_name
+  
+  以下のように使い分ける。
+  
+  - 変数 - hogeHoge
+  - クラス - HogeHoge
+  - 定数 - HOGE_HOGE
+  - 頻繁に呼び出すやつ - $hoge
+  
+  ### let
+  
+  - 重複NG(宣言は一度のみ)
+  - ブロックスコープ
+  
+  ### const
+  
+  - let + 再代入不可
+  - 基本は`const`で宣言し、再代入が必要なものは`let`
+  - 参照型の値については、参照先のアドレスそのものは変更できないが、配列やオブジェクトの内容を変更することはできる。
+  
+    ```js:
+    const data = [1, 2, 3];
+    data = [];  // NG
+    data[1] = 100  // OK
+    ```
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false
