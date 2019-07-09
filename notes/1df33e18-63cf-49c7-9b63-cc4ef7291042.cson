@@ -1,0 +1,143 @@
+createdAt: "2019-07-08T14:08:01.104Z"
+updatedAt: "2019-07-09T08:10:10.638Z"
+type: "MARKDOWN_NOTE"
+folder: "660920097553891f8089"
+title: "2. Containers"
+tags: []
+content: '''
+  # 2. Containers
+  
+  ## はじめに
+  
+  - スタック
+  - サービス
+  - コンテナ ← 今ココ
+  
+  ## Docker を使うと何がいいか
+  
+  例えば Python のアプリケーションを作成する際、Docker を使うと、Python の実行環境をイメージとして持ってきたり、ビルドすることができる。
+  このポータブルなイメージは`Dockerfile`によって定義される。
+  
+  ## Dockerfile
+  
+  `Dockerfile`はコンテナ内で必要なパッケージやアプリ、各種設定を含んだ環境を定義することができる。
+  ネットワークインターフェースやディスクドライブのようなリソースが他の環境から隔離された環境内に仮想化されているため、このようなリソースにアクセスするにはポートを外の世界にマッピングする必要がある。また、環境内にコピーしたいファイルを指定する必要がある。
+  しかし、一度`Dockerfile`を書いてしまえば、実行環境によらず全く同じ動作をする。
+  
+  ```ini:Dockerfile
+  # 元となるイメージとして公式の Python ランタイムを使用する
+  FROM python:2.7-slim
+  
+  # 作業ディレクトリを /app に設定する
+  WORKDIR /app
+  
+  # 現在のディレクトリ内のコンテンツを /app 内に作成したコンテナにコピーする
+  COPY . /app
+  
+  # requrements.txt で指定された必要なパッケージをすべてインストールする
+  RUN pip install --trusted-host pypi.python.org -r requirements.txt
+  
+  # 80番ポートを外の世界に開放する
+  EXPOSE 80
+  
+  # 環境変数を定義する
+  ENV NAME World
+  
+  # コンテナを起動したとき app.py を実行する
+  CMD ["python", "app.py"]
+  ```
+  
+  ## アプリ自身
+  
+  `Dockerfile`と同じ階層に`requrements.txt`と`app.py`を作成する。`Dockerfile`でイメージがビルドされると`Dockerfile
+  `内の`COPY`コマンドでこれらのファイルをイメージに組み込むことができる。
+  また、`Dockerfile`内の`EXPOSE`コマンドによって、`app.py`の出力結果にHTTPを通じてアクセスすることができる。
+  
+  ```text:requirements.txt
+  Flask
+  Redis
+  ```
+  
+  ```python:app.py
+  from flask import Flask
+  from redis import Redis, RedisError
+  import os
+  import socket
+  
+  # Connect to Redis
+  redis = Redis(host="redis", db=0, socket_connect_timeout=2,socket_timeout=2)
+  app = Flask(__name__)
+  
+  @app.route("/")
+  def hello():
+    try:
+      visits = redis.incr("counter")
+    except RedisError:
+      visits = <i>cannot connect to Redis, counter disabled</i>
+      
+    html = "<h3>Hello {name}!</h3>" \\
+    "<b>Hostname:</b> {hostname}<br/>" \\
+    "<b>Visits:</b> {visits}"
+    return html.format(name=os.getenv("NAME", "world"), hostname=socket.gethostname(), visits=visits)
+    
+  if __name__ == "__main__":
+    app.run(host='0.0.0.0', port=80)
+  ```
+  
+  ## アプリをビルドする
+  
+  ```bash
+  $ ls
+  Dockerfile    app.py    requirements.txt
+  $ docker build --tag=friendhello
+  $ docker image ls
+  REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+  friendlyhello       latest              cb03f761348e        4 minites ago          131MB
+  ```
+  
+  ## アプリを実行する
+  
+  AWS の EC2 インスタンス上で Docker を動かしている場合は、VPC のセキュリティグループを設定する必要がある。
+  該当インスタンスのセクリティグループのインバウンドのルールに、
+  
+  - タイプ - カスタムTCP
+  - プロトコル - TCP
+  - ポート範囲 - 4000
+  - ソース - マイIP
+  
+  としてインスタンスへの入力を許可するルールを設定する。
+  
+  ```bash
+  $ docker run -p 4000:80 friendlyhello
+   * Serving Flask app "app" (lazy loading)
+   * Environment: production
+     WARNING: This is a development server. Do not use it in a production deployment.
+     Use a production WSGI server instead.
+   * Debug mode: off
+   * Running on http://0.0.0.0:80/ (Press CTRL+C to quit)
+  ```
+  
+  - `-p` - 外部からアクセスされるポート番号:コンテナ側のポート番号にポートフォワードしている。
+  - `-d` - コンテナをバックグラウンドで起動
+    - 終了する場合は`docker stop [コンテナID]`
+  - `it` - コンソールに結果を出力。
+    - `-i` - STDOUT にアタッチして開きっぱなしにしてくれる。
+    - `-t` - 疑似ターミナル (pseudo-TTY) を割り当てる。
+  
+  
+  `http://0.0.0.0:80`にアクセスしろとメッセージが出るが、これはコンテナ内部からのメッセージで、コンテナ内部からはコンテナ内の80番ポートを4000番ポートにマッピングしていることはわからない。
+  ポート番号に`4000`を指定するとレスポンスが返ってくる。
+  
+  ```bash
+  # EC2インスタンスに割り当てられたグローバルIPアドレス
+  $ curl -s ifconfig.me
+  54.242.245.221
+  $ curl -s http://169.254.169.254/latest/meta-data/public-ipv4
+  54.242.245.221
+  ```
+  
+  上記の例では、`[マイIP:80]`から`54.242.245.221:4000`へのアクセスを許可している。
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false
