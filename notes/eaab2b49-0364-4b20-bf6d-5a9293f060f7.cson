@@ -1,0 +1,61 @@
+createdAt: "2019-07-09T15:09:00.571Z"
+updatedAt: "2019-07-09T15:43:02.249Z"
+type: "MARKDOWN_NOTE"
+folder: "b6b5a46a79484e873ebb"
+title: "cat"
+tags: []
+content: '''
+  # cat
+  
+  - ファイルの内容を確認するのによく使われる
+  - 本来はファイルを連結する (conCATenate) するためのコマンド
+  
+  ## オプション
+  
+  - `-n`, `--number` - 行番号をつける
+  - `-b`, `--number-nonblank` - 行番号をつける、空白行にはつけない
+  - `-s`, `--squeeze-blank` - 連続した空行を1行にする
+  - `-v`, `--show-nonprinting` - TAB、改行、改ページ以外の非表示文字を表示する
+  - `-t` - 非表示文字を表示、TABを`^I`、改ページを`^L`とする
+  - `-E`, `--show-end` - 行の最後を`$`にする
+  - `-e` - TAB を除くすべての非表示文字を表示する (`-vE`)
+  - `-A`, `--show-all` - すべての非表示文字を表示する (`-vtE`)
+  
+  ## 例
+  
+  ```bash
+  $ cat -n /etc/shells
+       1  /bin/sh
+       2  /bin/bash
+       3  /sbin/nologin
+       4  /usr/bin/sh
+       5  /usr/bin/bash
+       6  /usr/sbin/nologin
+       7  /usr/bin/zsh
+  ```
+  
+  ## 複数ファイルを連結
+  
+  ```bash
+  $ cat file1
+  this is file1
+  line2
+  
+  $ cat file2
+  this is file2
+  line2
+  line3
+  
+  $ cat file1 file2 > newfile
+  $ cat newfile
+  this is file1
+  line2
+  this is file2
+  line2
+  line3
+  ```
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

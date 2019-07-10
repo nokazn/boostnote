@@ -1,0 +1,32 @@
+createdAt: "2019-07-09T13:25:40.108Z"
+updatedAt: "2019-07-09T13:26:22.901Z"
+type: "MARKDOWN_NOTE"
+folder: "b6dd430e5297036eb2a1"
+title: "Hyper-V と VirtualBox が競合してる"
+tags: [
+  "エラー"
+]
+content: '''
+  # Hyper-V と VirtualBox が競合してる
+  
+  Vagrant で VirtualBox を起動しようすると以下のエラーが出た時の対処法。
+  
+  ```bash
+  $ vagrant up
+  ```
+  
+  コントロールパネル → システムとセキュリティ → システム → システムの詳細設定 → 環境変数
+  からユーザー環境変数の`Path`の項目に`C:\\Program Files\\Oracle\\VirtualBox`を追加する。
+  
+  以下のようにしてセッションのロックを解除し、VirtualBox を中断させてから、VMソフトウェアと競合している Hyper-V を無効化する。
+  
+  ```bash
+  $ vboxmanage startvm <vm-uuid> --type emergencystop
+  $ Disable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V-All
+  ```
+  
+  再起動して設定を有効化すると VirtualBox が使えるようになってる。
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false
