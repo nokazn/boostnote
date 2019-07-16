@@ -66,11 +66,6 @@
       "name": "Docker"
     },
     {
-      "key": "eed4b603f7be458eb434",
-      "color": "#4a90e2",
-      "name": "VM"
-    },
-    {
       "key": "d642b49f05a0df4edcfc",
       "color": "#4a90e2",
       "name": "Windows"
@@ -78,7 +73,7 @@
     {
       "key": "b6dd430e5297036eb2a1",
       "color": "#4a90e2",
-      "name": "環境"
+      "name": "環境構築チートシート"
     },
     {
       "key": "99c1744cc6189c73e4c0",
@@ -88,12 +83,17 @@
     {
       "key": "72d8e856c36c64a9b2b9",
       "color": "#9b9b9b",
-      "name": "ブログ"
+      "name": "Blog"
     },
     {
       "key": "846fb24c5f8aad917395",
       "color": "#9b9b9b",
-      "name": "メモ"
+      "name": "Memo"
+    },
+    {
+      "key": "f47cc82cbc7c9600eb93",
+      "color": "#9b9b9b",
+      "name": "用語"
     },
     {
       "key": "770da9bb44957224bcc5",

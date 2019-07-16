@@ -1,5 +1,5 @@
 createdAt: "2019-05-09T12:40:04.760Z"
-updatedAt: "2019-05-30T15:20:09.063Z"
+updatedAt: "2019-07-16T09:33:25.919Z"
 type: "MARKDOWN_NOTE"
 folder: "cfb8bb7394508a89ba1d"
 title: "パッケージ管理"
@@ -15,7 +15,7 @@ tags: [
 content: '''
   # パッケージ管理
   
-  ## RedHat系(RedHat, EnterPrise Linux, CentOS, Fedora)
+  ## RedHat系 (RedHat, EnterPrise Linux, CentOS, Fedora)
   
   - rpm - 個々のパッケージ、パッケージ個々をカスタマイズしたり単発なパッケージをインストールする時、個々のファイル一覧を取得したいときなど
   - yum (ヤム) - rpmパッケージがあるリポジトリからrpmの依存関係を管理

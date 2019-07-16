@@ -1,5 +1,5 @@
 createdAt: "2019-07-08T14:08:01.104Z"
-updatedAt: "2019-07-09T12:52:57.422Z"
+updatedAt: "2019-07-15T12:25:34.960Z"
 type: "MARKDOWN_NOTE"
 folder: "660920097553891f8089"
 title: "2. Containers"
@@ -89,11 +89,13 @@ content: '''
   ```bash
   $ ls
   Dockerfile    app.py    requirements.txt
-  $ docker build --tag=friendhello
+  $ docker build . --tag=friendhello
   $ docker image ls
   REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
   friendlyhello       latest              cb03f761348e        4 minites ago          131MB
   ```
+  
+  - `-t`, `-tag==`- タグの名前を指定
   
   ## アプリを実行する
   
@@ -115,6 +117,14 @@ content: '''
      Use a production WSGI server instead.
    * Debug mode: off
    * Running on http://0.0.0.0:80/ (Press CTRL+C to quit)
+  
+  $ docker run -dp 4000:80 friendlyhello  # バックグラウンドで起動
+  09fce53b442f41d7c70b2c934a8dfe4c42a8f4136dc9cd06f4b8206602dcdaf6
+  $ docker container ls
+  CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                  NAMES
+  09fce53b442f        friendlyhello       "python app.py"     29 seconds ago      Up 27 seconds       0.0.0.0:4000->80/tcp   pedantic_chebyshev
+  $ docker container stop 09fc  # docker stop 09fcでもよい
+  09fc
   ```
   
   - `-p` - 外部からアクセスされるポート番号:コンテナ側のポート番号にポートフォワードしている。
@@ -127,6 +137,15 @@ content: '''
   `http://0.0.0.0:80`にアクセスしろとメッセージが出るが、これはコンテナ内部からのメッセージで、コンテナ内部からはコンテナ内の80番ポートを4000番ポートにマッピングしていることはわからない。
   ポート番号に`4000`を指定するとレスポンスが返ってくる。
   
+  ### AWS のEC2インスタンス上で動かす場合
+  
+  EC2 のセキュリティグループから該当するEC2インスタンスのグループを選択し、インバウンドのタブから以下のルールを作成する。
+  
+  - タイプ - カスタムTCP
+  - プロトコル - TCP
+  - ポート範囲 - 4000
+  - ソース - マイIP (自分の Wifi とかのIPアドレス？)
+  
   ```bash
   # EC2インスタンスに割り当てられたグローバルIPアドレス
   $ curl -s ifconfig.me
@@ -136,7 +155,27 @@ content: '''
   ```
   
   上記の例では、`[マイIP:80]`から`54.242.245.221:4000`へのアクセスを許可している。
+  
+  ### 仮想環境上で動かす場合
+  
+  ```bash:ゲストマシン
+  $ ifconfig
+  enp0s8: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+          inet 192.168.56.11  netmask 255.255.255.0  broadcast 192.168.56.255
+          inet6 fe80::a00:27ff:fe03:312a  prefixlen 64  scopeid 0x20<link>
+          ether 08:00:27:03:31:2a  txqueuelen 1000  (Ethernet)
+          RX packets 15772  bytes 3949897 (3.7 MiB)
+          RX errors 0  dropped 0  overruns 0  frame 0
+          TX packets 17020  bytes 7344746 (7.0 MiB)
+          TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+  ```
+  
+  `[マイIP:80]`から`192.168.56.11:4000`へのアクセスを許可している。
+  
+  
 '''
-linesHighlighted: []
+linesHighlighted: [
+  162
+]
 isStarred: false
 isTrashed: false

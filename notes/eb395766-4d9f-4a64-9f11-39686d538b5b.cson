@@ -1,0 +1,20 @@
+createdAt: "2019-07-15T10:18:18.647Z"
+updatedAt: "2019-07-15T12:29:33.615Z"
+type: "MARKDOWN_NOTE"
+folder: "660920097553891f8089"
+title: "Docker でnoneなイメージを一掃する"
+tags: [
+  "トラブル"
+]
+content: '''
+  # Docker で`none`なイメージを一掃する
+  
+  新しいイメージが既存のタグを再利用したときに古い方のイメージが`<none>`なるリポジトリになるらしい。
+  
+  ```bash
+  $ sudo docker image prune
+  ```
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

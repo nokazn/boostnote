@@ -1,17 +1,29 @@
 createdAt: "2019-05-07T12:06:13.206Z"
-updatedAt: "2019-05-30T15:38:12.067Z"
+updatedAt: "2019-07-15T13:05:40.429Z"
 type: "MARKDOWN_NOTE"
 folder: "846fb24c5f8aad917395"
-title: "Roadmap"
+title: "ロードマップ"
 tags: [
   "やること"
   "TODO"
   "Roadmap"
 ]
 content: '''
-  # Roadmap
+  # ロードマップ
   
   [GitHub - kamranahmedse/developer-roadmap: Roadmap to becoming a web developer in 2019](https://github.com/kamranahmedse/developer-roadmap)
+  
+  ## アプリ
+  
+  - ToDoリスト
+    - Ruby on Rails
+    - Vue.js
+      - Vue CLI
+      - Vue Router
+    - Docker ?
+  - チャット
+  - 日報
+  - レビューサイト
   
   ## フロントエンド
   

@@ -1,48 +1,48 @@
 createdAt: "2019-07-06T11:20:52.061Z"
-updatedAt: "2019-07-08T14:07:06.927Z"
+updatedAt: "2019-07-15T12:28:50.045Z"
 type: "MARKDOWN_NOTE"
 folder: "660920097553891f8089"
 title: "1. Orientation and setup"
 tags: []
 content: '''
   # 1. Orientation and setup
-
+  
   ## Docker とは
-
+  
   Docker とはアプリーションをコンテナを用いて開発、デプロイ、実行するためのプラットフォームである。
-
+  
   - 軽量 - ホストマシンのカーネルを用いるため起動が速い。
   - 互換性 - アップデートをデプロイしたり、臨機応変にアップグレードできる。
-  - 移植性 - ローカル環境でビルドして、クラウド環境にイメージをデプロイし、Dockerエンジンが動けばどこでも実行可能。
+  - 移植性 - ローカル環境でビルドして、クラウド環境にイメージをデプロイでき、Dockerエンジンが動けばどこでも実行可能。
   - 拡張性 - レジストリでコンテナのイメージを配布できる。
   - インフラのコード化 - `Dockerfile`や`docker-compose.yml`によってアプリケーションを動かすための環境構築やセットアップ作業負担が軽減
-
+  
   ## イメージとコンテナ
-
+  
   - イメージ
     - アプリケーションを実行するために必要なすべてを含んだ実行可能なパッケージ。
     - OS のインストールディスクを仮想化したもの。
     - `Dockerfile`を書いて`docker build`で作成する。
   - コンテナ
-    - イメージから作成されるインスタンスで、状態を持ったイメージのこと。
+    - イメージから作成されるインスタンスのこと。
     - OS が起動しているサーバーを仮想化したもの。
     - `docker run`で作成する。
-
+  
   ## コンテナと仮想マシン
-
+  
   - コンテナ
     - ホストマシンのLinuxカーネルを他のコンテナと共有する。
     - オーバーヘッドが少なく、リソース効率が良い。
   - 仮想マシン
     - VM毎にゲストOSを実行し、ハイパーバイザーを通じてホストマシンのリソースに仮想的にアクセスする。
     - サービスごとに異なるOSで動かせる。
-
+  
   ## 環境構築
-
+  
   ```bash
   # yumのパッケージインデックスを更新
   $ sudo yum makecache fast
-
+  
   # 古い Docker がある場合はアンインストール
   $ sudo yum remove docker \\
                   docker-client \\
@@ -52,7 +52,7 @@ content: '''
                   docker-latest-logrotate \\
                   docker-logrotate \\
                   docker-engine
-
+  
   # Docker のリポジトリを設定する
   # yum-utils
   $ sudo yum info yum-utils
@@ -61,27 +61,27 @@ content: '''
                       device-mapper-persistent-data \\
                       lvm2
   $ sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-
+  
   # 最新版の Docker CE をインストール
   $ sudo yum install -y docker-ce \\
                       docker-ce-cli \\
                       containerd.io
-
+  
   # 特定のバージョンの Docker CE をインストール
   $ sudo yum list docker-ce --showduplicates | sort -r
   $ sudo yum install -y docker-ce-<SPECIFIC_VERSION> \\
                       docker-ce-cli-<SPECIFIC_VERSION> \\
                       containerd.io
-
+  
   # Docker の起動と自動起動の設定
   $ sudo systemctl start docker
   $ sudo systemctl enable docker
   $ sudo systemctl is-enabled docker
   enabled
   ```
-
+  
   # hello-worldコンテナを実行
-
+  
   ```bash
   $ sudo docker run hello-world
   Unable to find image 'hello-world:latest' locally
@@ -89,52 +89,52 @@ content: '''
   1b930d010525: Pull complete
   Digest: sha256:41a65640635299bab090f783209c1e3a3f11934cf7756b09cb2f1e02147c6ed8
   Status: Downloaded newer image for hello-world:latest
-
+  
   Hello from Docker!
   This message shows that your installation appears to be working correctly.
   ```
-
+  
   `docker run`とすると、 run した回数分の container が作成される。image は既にローカルにあれば再利用され、なければ`pull`される。
-
+  
   ```bash
   # Execute Docker image
   $ sudo docker run hello-world
-
+  
   # List Docker images
   $ sudo docker image ls
-
+  
   # List Docker containers (running, all, all in quiet mode)
   $ sudo docker container ls
   $ sudo docker container ls --all
   $ sudo docker container ls -aq
   ```
-
+  
   ## 概要
-
+  
   ### Docker Engine
-
+  
   Dockerイメージ作成やコンテナ起動などを行うDockerのコアコンポーネントで、Linuxカーネルの機能を使ってメインの処理を行い、Dockerデーモンとして動作する。
-
+  
   ### Docker Compose
-
+  
   複数のコンテナを`docker-compose.yml`で一元管理する。
-
+  
   ### Docker Registry
-
+  
   Dockerイメージを公開・共有するコンポーネント。
-
+  
   ### Docker Machine
-
+  
   非Linux環境用にDockerの実行環境をコマンドで自動生成するコンポーネント。
-
+  
   ### Docker Swarm
-
+  
   コンテナをクラスタ化して管理するコンポーネント。Kubernetesの普及により使われなくなりつつある。
-
+  
   ### Docker Kitematic
-
+  
   Docker を GUI で扱えるようにするコンポーネント。
-
+  
 '''
 linesHighlighted: [
   38
