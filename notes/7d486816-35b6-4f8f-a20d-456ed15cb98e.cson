@@ -1,0 +1,37 @@
+createdAt: "2019-07-17T01:49:30.039Z"
+updatedAt: "2019-07-17T12:32:05.402Z"
+type: "MARKDOWN_NOTE"
+folder: "b6b5a46a79484e873ebb"
+title: "head / tail"
+tags: []
+content: '''
+  # head / tail
+  
+  - `head` - テキストファイルの最初の10行を表示
+  - `tail` - テキストファイルの最後の10行を表示
+  
+  ## オプション
+  
+  - head
+    - `-c [数字]`, `--bytes [数字]` - 指定したバイト数分表示
+    - `-n [数字]`, `--lines [数字]` - 先頭から指定した行数分表示
+    - `-q`, `--quiet`, `--silent` - (複数ファイル指定時に) ファイルごとのヘッダ表示をしない
+    - `-v`, `--verbose` - 常にファイルごとのヘッダ出力を行う
+  - tail
+    - `-c [数字]`, `--bytes [数字]` - 末尾の指定したバイト数分表示
+    - `-n [数字]`, `--lines [数字]` - 末尾の指定した行数分表示
+    - `-q`, `--quiet`, `--silent` - (複数ファイル指定時に) ファイルごとのヘッダ表示をしない
+    - `-v`, `--verbose` - 常にファイルごとのヘッダ出力を行う
+    - `-f`, `--follow` - ファイルを監視して、内容が追加されるたびに末尾を表示する。ログ監視などに用いる。
+  
+  ## 例
+  
+  ```bash
+  $ dmesg | head
+  $ tail -nf 5 /var/log/messages
+  ```
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

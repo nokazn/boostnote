@@ -1,0 +1,40 @@
+createdAt: "2019-07-17T12:32:32.485Z"
+updatedAt: "2019-07-17T12:47:19.183Z"
+type: "MARKDOWN_NOTE"
+folder: "b6b5a46a79484e873ebb"
+title: "reboot / poweroff"
+tags: []
+content: '''
+  # reboot / poweroff
+  
+  - `reboot` - 再起動する
+  - `poweroff` - 電源をオフにする
+  
+  同様のコマンドに`shutdown`があるが、スーパーユーザーにのみ許可されている。
+  
+  ## オプション
+  
+  - `-f`, `--force` - 強制的に再起動、または電源を落とす
+  
+  ## シンボリックリンク
+  
+  `reboot`や`poewroff`は`/user/bin/systemctl`へのシンボリックリンク (ショートカットみたいなもの) になっている。
+  
+  `systemctl`はシステムサービスを管理するコマンドで、実行名によって動作が切り替わる。
+  
+  他にも以下のように`systemctl`へのシンボリックリンクとなっているコマンドがある。
+  
+  ```bash
+  $ ls -l /usr/sbin/ | grep systemctl
+  lrwxrwxrwx. 1 root root           16  4月 30 10:48 halt -> ../bin/systemctl
+  lrwxrwxrwx. 1 root root           16  4月 30 10:48 poweroff -> ../bin/systemctl
+  lrwxrwxrwx. 1 root root           16  4月 30 10:48 reboot -> ../bin/systemctl
+  lrwxrwxrwx. 1 root root           16  4月 30 10:48 runlevel -> ../bin/systemctl
+  lrwxrwxrwx. 1 root root           16  4月 30 10:48 shutdown -> ../bin/systemctl
+  lrwxrwxrwx. 1 root root           16  4月 30 10:48 telinit -> ../bin/systemctl
+  ```
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false
