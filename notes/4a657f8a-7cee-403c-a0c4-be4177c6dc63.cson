@@ -1,0 +1,27 @@
+createdAt: "2019-07-18T10:58:01.342Z"
+updatedAt: "2019-07-18T11:04:27.348Z"
+type: "MARKDOWN_NOTE"
+folder: "660920097553891f8089"
+title: "Docker 運用の流れのイメージ"
+tags: []
+content: '''
+  # Docker 運用の流れのイメージ
+  
+  [Docker初めての人向け説明メモ - Qiita](https://qiita.com/miyasakura_/items/87ccb6d4a52d4a00a999)
+  
+  ベースとなるイメージA @レジストリ (Dockerhub など)
+    ↓ pull
+  イメージA @ビルドマシン
+    ↓ build (Dockerfile)
+  開発を行うイメージB @ビルドマシン で開発を行う
+    ↓ push
+  開発を行ったイメージC @レジストリ
+    ↓ pull
+  イメージC ＠サーバー
+    ↓ run
+  コンテナC @サーバー
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

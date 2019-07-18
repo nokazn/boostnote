@@ -1,9 +1,11 @@
 createdAt: "2019-07-08T14:08:01.104Z"
-updatedAt: "2019-07-15T12:25:34.960Z"
+updatedAt: "2019-07-18T11:47:07.304Z"
 type: "MARKDOWN_NOTE"
 folder: "660920097553891f8089"
 title: "2. Containers"
-tags: []
+tags: [
+  "チュートリアル"
+]
 content: '''
   # 2. Containers
   
@@ -25,7 +27,7 @@ content: '''
   しかし、一度`Dockerfile`を書いてしまえば、実行環境によらず全く同じ動作をする。
   
   ```ini:Dockerfile
-  # 元となるイメージとして公式の Python ランタイムを使用する
+  # 元となるイメージとして公式の Python ランタイムの 2.7-slim というタグのついたもの(バージョン)を使用する
   FROM python:2.7-slim
   
   # 作業ディレクトリを /app に設定する
@@ -35,6 +37,7 @@ content: '''
   COPY . /app
   
   # requrements.txt で指定された必要なパッケージをすべてインストールする
+  # ミドルウェアをインストールし、イメージのレイヤーを重ねていく
   RUN pip install --trusted-host pypi.python.org -r requirements.txt
   
   # 80番ポートを外の世界に開放する
@@ -43,7 +46,7 @@ content: '''
   # 環境変数を定義する
   ENV NAME World
   
-  # コンテナを起動したとき app.py を実行する
+  # コンテナを起動した後に実行するコマンドで、ここでは app.py を実行している
   CMD ["python", "app.py"]
   ```
   
@@ -87,9 +90,15 @@ content: '''
   ## アプリをビルドする
   
   ```bash
+  # ビルドコンテクスト上に Dockerfile を置いておく
   $ ls
   Dockerfile    app.py    requirements.txt
-  $ docker build . --tag=friendhello
+  
+  # docker build -t [タグ名] [ビルドコンテクスト]
+  # Dockerデーモンに転送するファイルの範囲をビルドコンテクストで指定している
+  $ docker build --tag=friendlyhello .
+  $ docker build -t friendlyhello . 
+  
   $ docker image ls
   REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
   friendlyhello       latest              cb03f761348e        4 minites ago          131MB
@@ -98,16 +107,6 @@ content: '''
   - `-t`, `-tag==`- タグの名前を指定
   
   ## アプリを実行する
-  
-  AWS の EC2 インスタンス上で Docker を動かしている場合は、VPC のセキュリティグループを設定する必要がある。
-  該当インスタンスのセクリティグループのインバウンドのルールに、
-  
-  - タイプ - カスタムTCP
-  - プロトコル - TCP
-  - ポート範囲 - 4000
-  - ソース - マイIP
-  
-  としてインスタンスへの入力を許可するルールを設定する。
   
   ```bash
   $ docker run -p 4000:80 friendlyhello
@@ -120,10 +119,16 @@ content: '''
   
   $ docker run -dp 4000:80 friendlyhello  # バックグラウンドで起動
   09fce53b442f41d7c70b2c934a8dfe4c42a8f4136dc9cd06f4b8206602dcdaf6
+  
   $ docker container ls
   CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS                  NAMES
   09fce53b442f        friendlyhello       "python app.py"     29 seconds ago      Up 27 seconds       0.0.0.0:4000->80/tcp   pedantic_chebyshev
-  $ docker container stop 09fc  # docker stop 09fcでもよい
+  
+  # 指定したコンテナを丁寧に停止 docker stop 09fcでもよい
+  $ docker container stop 09fc
+  09fc
+  # 指定したコンテナを強制的にシャットダウン
+  $ docker container kill 09fc
   09fc
   ```
   
@@ -139,6 +144,7 @@ content: '''
   
   ### AWS のEC2インスタンス上で動かす場合
   
+  AWS の EC2 インスタンス上で Docker を動かしている場合は、VPC のセキュリティグループを設定する必要がある。
   EC2 のセキュリティグループから該当するEC2インスタンスのグループを選択し、インバウンドのタブから以下のルールを作成する。
   
   - タイプ - カスタムTCP
@@ -172,10 +178,56 @@ content: '''
   
   `[マイIP:80]`から`192.168.56.11:4000`へのアクセスを許可している。
   
+  ## イメージの共有
+  
+  - コンテナをプロダクションニアップロードするにはレジストリにプッシュする必要がある
+  - レジストリ > リポジトリ > イメージ
+  - `[ユーザー名]/[リポジトリ名]:[タグ名]`のようにしてローカルとレジストリのリポジトリを関連づけている
+    - タグはオプションだが、指定が推奨されている
+    - タグはイメージのバージョンのこと
+  
+  [Docker Hub](https://cloud.docker.com/)でユーザー登録をし、ローカルマシンからログインする。
+  
+  ```bash
+  $ docker login
+  ```
+  
+  イメージをタグ付けし、任意の場所へアップロードする。
+  タグが指定されない場合は、`:latest`が指定されたものとみなされる。
+  
+  ```bash
+  # docker tag [イメージ] [ユーザー名]/[リポジトリ名]:[タグ名]
+  $ docker tag friendlyhello nokazn/get-started:part1
+  
+  # docker images と docker image ls は同義
+  $ docker images
+  REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+  nokazn/get-started   part1               accd601955c9        2 days ago          148MB
+  $ docker image ls
+  REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+  nokazn/get-started   part1               accd601955c9        2 days ago          148MB
+  
+  # タグ付けしたイメージをリポジトリにプッシュ
+  # docker push [ユーザー名]/[リポジトリ名]:[タグ名]
+  $ docker push nokazn/get-started:part1
+  ```
+  
+  リモートリポジトリにあるイメージを取得して実行する。
+  ローカルにイメージが存在しない場合、リポジトリからイメージを取得する。
+  
+  ```bash
+  # イメージの実行
+  $ docker run -p 4000:80 [ユーザー名]/[リポジトリ名]:[タグ名]
+  
+  # イメージの削除
+  $ docker image rm [イメージID/イメージ名]
+  ```
+  
+  Docker 動く環境であれば、`requirement.txt`で指定したすべての依存関係と、実行するソースコードを含むイメージをダウンロードし、小さなパッケージですべてを移動することができる。
   
 '''
 linesHighlighted: [
-  162
+  163
 ]
 isStarred: false
 isTrashed: false

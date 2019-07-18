@@ -1,0 +1,59 @@
+createdAt: "2019-07-18T10:54:22.052Z"
+updatedAt: "2019-07-18T12:03:05.635Z"
+type: "MARKDOWN_NOTE"
+folder: "660920097553891f8089"
+title: "3. Service"
+tags: [
+  "チュートリアル"
+]
+content: '''
+  # 3. Service
+  
+  ## はじめに
+  
+  - スタック
+  - サービス ← 今ココ
+  - コンテナ
+  
+  ## サービス
+  
+  - 本番環境におけるコンテナ
+  - `docker-compose.yml`で複数のコンテナを管理して1つのサービスを動かす
+  
+  ## `docker-compose.yml`
+  
+  ```yml:docker-compose.yml
+  version: "3"
+  services:
+    web:
+      image: nokazn/get-started:part1
+      deploy:
+        replicas: 5
+        resources:
+          limits:
+            cpus: "0.1"
+            memory: 50M
+        restart_policy:
+          condition: on-failure
+      ports:
+        - "80:80"
+      networks:
+        - webnet
+  networks:
+    webnet:
+  ```
+  
+  - `deploy`キーを使用するために swarm mode 互換をもつバージョン3を指定
+  - レジストリからイメージを取得
+  - `web`という名前のサービスとしてインスタンスを5個実行
+    - 最大でCPUの10%を使用でき、かつメモリを50MBで制限
+  - コンテナ停止時は直ちに再起動
+  - ホストマシンのポート80を`web`のポート80に割り当てる
+  - `web`コンテナに対して`webnet`という名前の負荷分散ネットワークを経由してポート80を共有
+    - 内部では、コンテナ自身の一時的なポートとして、 web のポート80を公開
+  - 負荷分散されるオーバーレイ・ネットワークとして`webnet`ネットワークを定義
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false
