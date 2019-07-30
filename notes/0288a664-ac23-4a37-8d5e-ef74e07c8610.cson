@@ -1,9 +1,12 @@
 createdAt: "2019-06-27T11:11:04.955Z"
-updatedAt: "2019-06-29T10:15:40.257Z"
+updatedAt: "2019-07-22T09:55:40.461Z"
 type: "MARKDOWN_NOTE"
 folder: "d642b49f05a0df4edcfc"
 title: "VSCode Remote"
-tags: []
+tags: [
+  "プロキシ"
+  "wget"
+]
 content: '''
   # VSCode Remote
   
@@ -39,6 +42,18 @@ content: '''
   ```
   
   再び VSCode のコマンドパレットから`Remote-SSH: Connect to Host`とするか、左のアクティビティバーの Remote-SSH から設定したホスト情報を選択し、SSH接続する。
+  
+  なお、VPNやプロキシサーバー等を利用していると
+  
+  > Cannot download VS Code Remote Development
+  
+  と表示されて接続できない。プロｋシサーバーを利用する旨を`~/.wgetrc`に記す必要がある。
+  
+  ```:.wgetrc
+  use_proxy=on
+  http_proxy=http;//myproxy.proxy.net:3128
+  https_proxy=http;//myproxy.proxy.net:3128
+  ```
   
   ## リモートサーバー上で拡張機能を利用する
   

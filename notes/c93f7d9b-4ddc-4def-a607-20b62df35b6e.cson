@@ -1,0 +1,129 @@
+createdAt: "2019-07-30T10:10:24.142Z"
+updatedAt: "2019-07-30T10:12:19.176Z"
+type: "MARKDOWN_NOTE"
+folder: "99c1744cc6189c73e4c0"
+title: "GCE + Cloud9"
+tags: []
+content: '''
+  # GCE + Cloud9
+  
+  ## GCE インスタンスを無料枠内で立てる
+  
+  - 名前 - 仮想マシンインスタンスの名前
+  - リージョン - バージニア州北部を除く米国リージョン
+  - ゾーン - リジョーン内の領域
+  - マシンタイプ
+    - vCPU (仮想CPU) 数
+    - メモリ
+    - ディスク容量
+    - ブートディスク
+      - 標準永続ディスク
+      - 30GB
+    - OSイメージ - Linux のディストリビューション、Windows Server など
+  
+  ## (GCE側) Node.js をインストール
+  
+  - SSH接続してポート開けるファイアウォールを設定。
+  - 設定したファイアウォールに`allow[ポート番号]-server`というタグを設定し、インスタンス側にも同様のタグをつけて設定を紐づける。
+  
+  VM インスタンスのページからサーバーに指定したポート番号でSSH接続をする。
+  
+  ```GCE側:bash
+  $ sudo yum update
+  $ sudo yum install nodejs
+  ```
+  
+  GCE のインスタンスのあるリジョンと Cloud9 のリジョンを揃えて Cloud9 上にプロジェクトを作成する。
+  
+  - User - `$ who`
+  - Host - GCE のエフェメラルな**外部IP**
+    - `$ curl ifconfig.me`
+    - 以下は内部IPを出力する
+      ```bash
+      $ ip a
+      $ ip -4 a
+      $ hostname -I
+      $ ifconfig
+      ```
+  - Port
+    - ```bash
+      $ sudo cat /etc/ssh/sshd_config | grep Port
+      56387
+      ```
+  - Node.js binary path - `$ which node`
+  
+  
+  ```bash
+  $ touch vi ~/.ssh/authorized_keys
+  $ sudo vi ~/.ssh/authorized_keys
+  # => コピーした公開鍵を張り付ける
+  
+  # authorized_keys を管理者のみ読み書きできる権限に変更
+  $ chmod 600 ~/.ssh/authorized_keys
+  
+  # authorized_keys の所有者を変更
+  $ chown nn_ono272727.nn_ono272727 ~/.ssh/authorized_keys
+  
+  $ ls -l ~/.ssh/authorized_keys
+  -rw-------. 1 nn_ono272727 nn_ono272727 752 Jul 20 06:56 /home/nn_ono272727/.ssh/authorized_keys
+  ```
+  
+  ```bash
+  $ sudo passwd root
+  $ sudo passwd nn_ono272727
+  $ sudo yum groupinstall -y development
+  $ sudo yum install glibc-static
+  ```
+  
+  ### 自分をsudoユーザーに追加
+  
+  ```bash
+  $ sudo ls
+  [sudo] password for nn_ono272727:
+  nn_ono272727 is not in the sudoers file.
+  $
+  ```
+  
+  `/etc/sudoers`に自身を追加する必要がある。
+  
+  `/etc/sudoers`は root 権限を持っていても書き込み権限がないため、専用のコマンド`visudo`で書き込む必要がある。
+  
+  ```bash
+  # root ユーザーに切り替える
+  # su -l root と同義
+  $ su - root
+  Password:
+  $ visudo
+  ```
+  
+  ```diff
+  ## Next comes the main part: which users can run what software on
+  ## which machines (the sudoers file can be shared between multiple
+  ## systems).
+  ## Syntax:
+  ##
+  ##      user    MACHINE=COMMANDS
+  ##
+  ## The COMMANDS section may have other options added to it.
+  ##
+  ## Allow root to run any commands anywhere
+  root    ALL=(ALL)       ALL
+  + nn_ono272727    ALL=(ALL)       ALL
+  ```
+  
+  保存して`exit`で root を抜けると`sudo`できるようになっている。
+  
+  ```bash
+  $ sudo ls
+  ```
+  
+  ## 参考
+  
+  - [これから始めるGCP（GCE）　安全に無料枠を使い倒せ](https://qiita.com/Brutus/items/22dfd31a681b67837a74)
+  - [AWS Cloud9の導入方法〜SSH接続編〜](https://blog.simmon.design/aws-cloud9-tutorial-ssh/)
+  - [AWS Cloud9 + GCEインスタンスで無料の開発環境を手に入れる](https://qiita.com/j-un/items/f5d72d21f67d384d3c84)
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

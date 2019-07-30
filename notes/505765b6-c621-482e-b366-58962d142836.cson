@@ -1,5 +1,5 @@
 createdAt: "2019-07-18T10:54:22.052Z"
-updatedAt: "2019-07-18T12:03:05.635Z"
+updatedAt: "2019-07-22T11:40:57.183Z"
 type: "MARKDOWN_NOTE"
 folder: "660920097553891f8089"
 title: "3. Service"
@@ -19,6 +19,8 @@ content: '''
   
   - 本番環境におけるコンテナ
   - `docker-compose.yml`で複数のコンテナを管理して1つのサービスを動かす
+  
+  `docker-compose.yml`を
   
   ## `docker-compose.yml`
   
@@ -52,6 +54,110 @@ content: '''
   - `web`コンテナに対して`webnet`という名前の負荷分散ネットワークを経由してポート80を共有
     - 内部では、コンテナ自身の一時的なポートとして、 web のポート80を公開
   - 負荷分散されるオーバーレイ・ネットワークとして`webnet`ネットワークを定義
+  
+  ## 新しい負荷分散アプリケーションの実行
+  
+  以下のコマンドを実行しないと、
+  
+  > this node is not a swarm manager.
+  
+  と言われる。
+  
+  ホストマシンが複数のIPアドレスを持つ場合は、`--advertise-addr`でIPアドレスを指定する必要がある。
+  
+  ```bash
+  $ docker swarm init --advertise-addr 192.168.56.11
+  Swarm initialized: current node (mwt3z2efneuhjetpahx3yv6hx) is now a manager.
+  
+  To add a worker to this swarm, run the following command:
+  
+      docker swarm join --token SWMTKN-1-03m33viw97nz3xbbyuvoe3kh8wi6bkmdwclbnq6h6eaftxr6hu-0s1pqyfaktyxvqhbip04a0hh9 192.168.56.11:2377
+  
+  To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
+  ```
+  
+  アプリケーションをデプロイする。
+  
+  ```bash
+  $docker stack deploy -c docker-compose.yml getstartedlab
+  ```
+  
+  これで、サービススタックではホスト上にデプロイしたイメージを使った5つのコンテナインスタンスが稼働中になる。
+  
+  ```bash
+  # サービスの一覧を表示
+  $ docker service ls
+  ID                  NAME                MODE                REPLICAS            IMAGE                      PORTS
+  7pxzpoc9su1e        getstartedlab_web   replicated          5/5                 nokazn/get-started:part1   *:80->80/tcp
+  
+  # サービスのIDから Docker swarm によってコンテナから実行されているタスクの一覧を表示
+  $ docker service ps 7pxz
+  $ docker service ps getstartedlab_web
+  ID                  NAME                  IMAGE                      NODE                    DESIRED STATE       CURRENT STATE           ERROR               PORTS
+  j0ojmth56ffc        getstartedlab_web.1   nokazn/get-started:part1   localhost.localdomain   Running             Running 4 minutes ago
+  2qompge3303w        getstartedlab_web.2   nokazn/get-started:part1   localhost.localdomain   Running             Running 4 minutes ago
+  5qynsgcrp3k2        getstartedlab_web.3   nokazn/get-started:part1   localhost.localdomain   Running             Running 4 minutes ago
+  s1yjjnboset4        getstartedlab_web.4   nokazn/get-started:part1   localhost.localdomain   Running             Running 4 minutes ago
+  x243ddnlqnbq        getstartedlab_web.5   nokazn/get-started:part1   localhost.localdomain   Running             Running 4 minutes ago
+  
+  # タスクIDからコンテナIDを出力
+  $ docker inspect --format='{{.Status.ContainerStatus.ContainerID}}' j0oj
+  cbfd04e3a1ac9250d309a5b5434d3c2de8c34360d14f3de3a1d8a8f71c07f14a
+  
+  # コンテナIDからタスクIDを出力
+  $ docker inspect --format="{{index .Config.Labels \\"com.docker.swarm.task.id\\"}}" cbfd
+  
+  # 5つのコンテナIDの一覧を表示
+  $ docker container ls -q
+  ```
+  
+  `http://192.168.56.11`に何度もアクセスすると、コンテナIDがその都度切り替わっている。
+  
+  ## アプリのスケール
+  
+  ここでは5つのレプリカのうち1つがラウンドロビン方式で選ばれ、負荷分散が動作している。
+  
+  なお、Redis の依存関係の影響で、HTTP リクエストの応答が遅い。
+  
+  ```diff:docker-compose.yml
+  -     replicas: 5
+  +     replicas: 10
+  ```
+  
+  として、
+  
+  ```bash
+  $ docker stack deploy -c docker-compose.yml getstartedlab
+  $ docker container ls -q
+  faa8f0b46013
+  24775e2a6253
+  179155a8be6c
+  d73acdf056c4
+  3a43663023f1
+  cbfd04e3a1ac
+  5bae6465f9fe
+  9add5ce7f928
+  783ae8d330ef
+  5e0f840338f9
+  ```
+  
+  とすると、スタックやコンテナを停止することなく更新することができる。
+  
+  ## アプリと swarm の停止
+  
+  ```bash
+  $ docker stack rm getstartedlab
+  ```
+  
+  でアプリケーションを削除できるが、1つの swarm ノードは稼働したままであるため、swarm (クラスタ) を停止する必要がある。
+  
+  ```bash
+  $ docker node ls
+  ID                            HOSTNAME                STATUS              AVAILABILITY        MANAGER STATUS      ENGINE VERSION
+  mwt3z2efneuhjetpahx3yv6hx *   localhost.localdomain   Ready               Active              Leader              18.09.5
+  
+  $ sudo docker swarm leave --force
+  ```
   
 '''
 linesHighlighted: []

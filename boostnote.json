@@ -77,8 +77,13 @@
     },
     {
       "key": "99c1744cc6189c73e4c0",
-      "color": "#B013A4",
-      "name": "GAS"
+      "color": "#bd10e0",
+      "name": "GCP"
+    },
+    {
+      "key": "6e4eb91b21271c4787f1",
+      "color": "#bd10e0",
+      "name": "Git"
     },
     {
       "key": "72d8e856c36c64a9b2b9",

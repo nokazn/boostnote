@@ -1,0 +1,67 @@
+createdAt: "2019-07-30T11:14:28.697Z"
+updatedAt: "2019-07-30T12:03:57.182Z"
+type: "MARKDOWN_NOTE"
+folder: "6e4eb91b21271c4787f1"
+title: "Github に ssh 接続する"
+tags: []
+content: '''
+  # Github に ssh 接続する
+  
+  ## SSH Key を生成する
+  
+  OpenSSH 付属の`ssh-keygen`で SSH key を生成する。
+  
+  安全性を考慮して、鍵長は4096bitとする。ただ、闇雲に鍵長を長くしても処理が重くなったりするのでその辺はトレードオフ。
+  
+  <参考> [GitHubユーザーのSSH鍵6万個を調べてみた](https://hnw.hatenablog.com/entries/2014/07/05)
+  
+  ```bash
+  # コメントには GitHub に登録しているメールアドレスを記載する
+  $ ssh-keygen -t rsa -b 4096 -C "baleariclemon@gmail.com"
+  Enter file in which to save the key (/Users/you/.ssh/id_rsa): [Press enter]
+  Enter passphrase (empty for no passphrase): [Type a passphrase]
+  Enter same passphrase again: [Type passphrase again]
+  
+  # SSH Key の鍵長を確認
+  $ ssh-keygen -l -f ~/.ssh/id_rsa.pub
+  4096 SHA256:Zo7elJWugXLzl9vpF55gc6J+bRJ9/u7bjb5t/5yTZmA baleariclemon@gmail.com (RSA)
+  ```
+  
+  ## GitHub に SSH Key を登録
+  
+  [GitHubの SSH Key を管理するページ](https://github.com/settings/keys)で、新しく作成した SSH Keys を登録する。
+  
+  - Title - 鍵を識別できる名前をつける
+  - Key - `~/.ssh/id_rsa.pub`の内容を貼り付ける
+  
+  # GitHub へ SSH 接続する
+  
+  ```bash
+  $ [nn_ono272727@instance-1 dailyreport2-dev]$ ssh -T git@github.com
+  The authenticity of host 'github.com (192.30.255.112)' can't be established.
+  RSA key fingerprint is SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8.
+  RSA key fingerprint is MD5:16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.
+  Are you sure you want to continue connecting (yes/no)? yes
+  Warning: Permanently added 'github.com,192.30.255.112' (RSA) to the list of known hosts.
+  Enter passphrase for key '/home/nn_ono272727/.ssh/id_rsa': 
+  Hi nokazn! You've successfully authenticated, but GitHub does not provide shell access.
+  ```
+  
+  ## GitHub への push/pull を SSH で行う
+  
+  ```bash
+  # リモートリポジトリが設定されてない場合
+  $ git remote add origin git@github.com:nokazn/[リポジトリ名].git
+  
+  # リモートリポジトリが設定済の場合
+  $ git remote set-url origin git@github.com:nokazn/[リポジトリ名].git
+  
+  $ git remote -v
+  origin  git@github.com:nokazn/[リポジトリ名].git (fetch)
+  origin  git@github.com:nokazn/[リポジトリ名].git (push)
+  ```
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

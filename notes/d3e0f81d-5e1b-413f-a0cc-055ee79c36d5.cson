@@ -1,11 +1,11 @@
-createdAt: "2019-07-01T10:08:24.178Z"
-updatedAt: "2019-07-30T10:09:55.473Z"
+createdAt: "2019-07-30T10:21:42.808Z"
+updatedAt: "2019-07-30T10:21:48.262Z"
 type: "MARKDOWN_NOTE"
 folder: "8eecd56ec7357d6ca8d6"
-title: "AWS Cloud9 で Vue CLI 環境を作る"
+title: "@vue/cli"
 tags: []
 content: '''
-  # AWS Cloud9 で Vue CLI 環境を作る
+  # @vue/cli
   
   ## Node.js の安定板をインストール
   
@@ -55,36 +55,6 @@ content: '''
   $ echo $PATH
   ```
   
-  ## Vue プロジェクトの作成
-  
-  vue-cli を npm 経由でインストールし、VueApp という名前のプロジェクトを作成後、`package.json`に記載されたパッケージをインストールする。
-  
-  ```bash
-  $ vue init webpack [Project Name]
-  $ cd [Project Name]
-  $ npm install
-  ```
-  
-  webpack-dev-server の設定を変更する。
-  
-  ```diff:build/webpack.dev.conf.js
-  devServer: {
-    clientLogLevel: 'warning',
-    historyApiFallback: true,
-    hot: true,
-    compress: true,
-  - host: process.env.HOST || config.dev.host,
-  - port: process.env.PORT || config.dev.port,
-  + host: '127.0.0.1',
-  + port: '8080',
-  + disableHostCheck: true,
-  ```
-  
-  ```bash
-  npm run dev
-  ```
-  
-  として、Preview → Preview Running Application とすると「**Welcom to Your Vue.js App**」と表示される。
 '''
 linesHighlighted: []
 isStarred: false
