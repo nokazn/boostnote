@@ -1,0 +1,17 @@
+createdAt: "2019-07-31T12:03:52.011Z"
+updatedAt: "2019-07-31T12:04:55.594Z"
+type: "MARKDOWN_NOTE"
+folder: "b6dd430e5297036eb2a1"
+title: "dailyreport2"
+tags: []
+content: '''
+  # dailyreport2
+  
+  ```bash
+  $ npm install iview@3.3.3
+  $ npm install moment@2.23.0
+  ```
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

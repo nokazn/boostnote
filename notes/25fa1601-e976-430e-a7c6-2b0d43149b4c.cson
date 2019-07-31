@@ -1,0 +1,83 @@
+createdAt: "2019-07-31T11:53:37.036Z"
+updatedAt: "2019-07-31T11:54:10.283Z"
+type: "MARKDOWN_NOTE"
+folder: "99c1744cc6189c73e4c0"
+title: "GCE インスタンスにスワップ領域を作成する"
+tags: [
+  "スワップ"
+  "ソフトウェア"
+  "OS"
+]
+content: '''
+  # GCE インスタンスにスワップ領域を作成する
+  
+  GCE インスタンスを作成すると、標準ではスワップ領域が確保されておらず、f1-micro タイプのインスタンスなどではすぐにメモリ不足になる。
+  
+  ## スワップとは
+  
+  > 仮想メモリ使用時に不必要なメモリ領域のデータを一時的に書き込んでおくファイルシステム上の領域のこと
+  
+  [スワップ領域とは？ - びぎねっと - はじめる人のびぎねっと。](https://begi.net/read/base/09.html)
+  
+  メモリ上に乗りきらなかったデータを一時的に避難させておくことで、限られたメモリを有効に活用する仕組みで、一般的なOSでは勝手に管理してくれている。
+  
+  ## スワップファイルの状況を確認する
+  
+  ```bash
+  $ free -m
+                total        used        free      shared  buff/cache   available
+  Mem:            587         307          40           4         239         126
+  Swap:             0           0           0
+  ```
+  
+  スワップ領域が活用されていないことがわかる。
+  
+  ## スワップ領域を作成する
+  
+  ```bash
+  # /swapfile という1024MBのファイルをすべて null 文字で作成する
+  $ dd if=/dev/zero of=/swapfile bs=1M count=1024
+  
+  # 権限を設定
+  $ chmod 600 /swapfile
+  
+  # スワップ領域の作成
+  $ mkswap /swapfile
+  
+  # スワップ領域の有効か
+  $ swapon /swapfile
+  ```
+  
+  `dd` - 指定したサイズのファイルを作成
+    - `if` - インプットファイルを指定
+      - `/dev/zero` - すべて null 文字のファイル
+    - `of` - `if` で指定されたファイルを`/swapfile`を書き込む
+    - `bs` - 一度に書き込みするブロック数
+    - `count` - 書き込みの個数
+  
+  以下のようにスワップ領域が確保される。
+  
+  ```bash
+  $ free -m
+                total        used        free      shared  buff/cache   available
+  Mem:            587         307          40           4         239         126
+  Swap:          1023           0        1023
+  ```
+  
+  ## インスタンス起動時に自動でスワップファイルをマウントする
+  
+  `/etc/fstab`に以下の１行を追加する。    
+  
+  ```diff:/etc/fstab
+  + /swapfile none swap sw 0 0
+  ```
+  
+  ## 参考
+  
+  [GCEでスワップ領域が存在しないことに対する対応](http://www.kisse-logs.com/2018/11/29/gce-make-swap/)
+  [Google Compute EngineのUbuntu VMにスワップ領域を作成する
+  ](https://ex-ture.com/blog/2018/06/01/create-swap-on-ubuntu-gce/)
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false
