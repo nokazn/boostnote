@@ -1,5 +1,5 @@
 createdAt: "2019-07-30T10:10:24.142Z"
-updatedAt: "2019-07-30T10:12:19.176Z"
+updatedAt: "2019-08-04T11:10:45.099Z"
 type: "MARKDOWN_NOTE"
 folder: "99c1744cc6189c73e4c0"
 title: "GCE + Cloud9"
@@ -36,8 +36,9 @@ content: '''
   GCE のインスタンスのあるリジョンと Cloud9 のリジョンを揃えて Cloud9 上にプロジェクトを作成する。
   
   - User - `$ who`
-  - Host - GCE のエフェメラルな**外部IP**
-    - `$ curl ifconfig.me`
+  - Host - GCE の~~エフェメラルな~~静的な**外部IP**
+    - VPC ネットワーク > 外部 IP アドレス から IP アドレスのタイプを「静的」にして、固定しておく
+    - `$ curl ifconfig.me` としても確認できる
     - 以下は内部IPを出力する
       ```bash
       $ ip a

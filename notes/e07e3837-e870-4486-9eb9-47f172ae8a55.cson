@@ -1,13 +1,13 @@
 createdAt: "2019-07-06T11:20:52.061Z"
-updatedAt: "2019-07-18T11:05:24.944Z"
+updatedAt: "2019-08-02T22:10:53.302Z"
 type: "MARKDOWN_NOTE"
 folder: "660920097553891f8089"
-title: "1. Orientation and setup"
+title: "1. Orientation and Setup"
 tags: [
   "チュートリアル"
 ]
 content: '''
-  # 1. Orientation and setup
+  # 1. Orientation and Setup
   
   ## Docker とは
   
