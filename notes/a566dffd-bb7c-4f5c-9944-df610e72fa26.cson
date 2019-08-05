@@ -1,0 +1,61 @@
+createdAt: "2019-08-05T10:24:34.088Z"
+updatedAt: "2019-08-05T10:39:25.903Z"
+type: "MARKDOWN_NOTE"
+folder: "4039f1ba9fa0956ce334"
+title: "SELinux (Security-Enhanced-Linux)"
+tags: []
+content: '''
+  # SELinux (Security-Enhanced-Linux)
+  
+  ## SELinux とは
+  
+  プロセスにドメイン、ファイルやディレクトリなどのリソースにタイプというラベルを付与して、ドメインとタイプ間のパーミッションチェックを行うことによりシステムの安全性を高める仕組み。
+  
+  サービスごとに細かいアクセス制御を行うことができる。
+  
+  サーバーに侵入された後の事後防衛的な手段であり、サーバーへの侵入を防ぐものではない。
+  
+  ## 動作モード
+  
+  - `Enforcing` - パーミッションのチェックを行い、アクセス制御も行う。
+  - `Permissive` - パーミッションのチェックは行うが、アクセス制御は行わない。
+  - `Disabled` - 無効
+  
+  `Permissive`モードではパミッションエラーのログをプリントするがアクセスの拒否は行わないため、サーバーが組みあがった後に SELinux のルールを制定して運用するといった使い方もできる。
+  
+  ## 無効化 / 有効化
+  
+  ### 一時的に無効化 / 有効化
+  
+  ```bash
+  $ getenforce
+  Enforcing
+  
+  $ sudo setenforce 0
+  $ getenforce
+  Permissive
+  
+  $ sudo setenforce
+  $ getenforce
+  Enforcing
+  ```
+  
+  ### 恒久的に無効化
+  
+  ```diff:/etc/selinux/config
+  - SELINUX=enforcing
+  + SELINUX=disabled
+  ```
+  
+  再起動して設定を有効化させる。
+  
+  ```bash
+  reboot
+  ```
+  
+  
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

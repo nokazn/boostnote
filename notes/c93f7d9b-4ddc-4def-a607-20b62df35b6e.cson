@@ -1,9 +1,14 @@
 createdAt: "2019-07-30T10:10:24.142Z"
-updatedAt: "2019-08-04T11:10:45.099Z"
+updatedAt: "2019-08-05T11:58:59.497Z"
 type: "MARKDOWN_NOTE"
 folder: "99c1744cc6189c73e4c0"
 title: "GCE + Cloud9"
-tags: []
+tags: [
+  "公開鍵"
+  "SSH"
+  "Cloud9"
+  "IAM"
+]
 content: '''
   # GCE + Cloud9
   
@@ -21,7 +26,7 @@ content: '''
       - 30GB
     - OSイメージ - Linux のディストリビューション、Windows Server など
   
-  ## (GCE側) Node.js をインストール
+  ## Node.js をインストール (GCE側)
   
   - SSH接続してポート開けるファイアウォールを設定。
   - 設定したファイアウォールに`allow[ポート番号]-server`というタグを設定し、インスタンス側にも同様のタグをつけて設定を紐づける。
@@ -33,26 +38,59 @@ content: '''
   $ sudo yum install nodejs
   ```
   
+  ## Cloud9 から GCE インスタンスに接続する (Cloud9側)
+  
   GCE のインスタンスのあるリジョンと Cloud9 のリジョンを揃えて Cloud9 上にプロジェクトを作成する。
   
-  - User - `$ who`
-  - Host - GCE の~~エフェメラルな~~静的な**外部IP**
-    - VPC ネットワーク > 外部 IP アドレス から IP アドレスのタイプを「静的」にして、固定しておく
-    - `$ curl ifconfig.me` としても確認できる
-    - 以下は内部IPを出力する
-      ```bash
-      $ ip a
-      $ ip -4 a
-      $ hostname -I
-      $ ifconfig
-      ```
-  - Port
-    - ```bash
-      $ sudo cat /etc/ssh/sshd_config | grep Port
-      56387
-      ```
-  - Node.js binary path - `$ which node`
+  **ルートユーザーで開発環境を作成すると、GCE インスタンスに登録する公開鍵が root ユーザーのものになってしまうため、IAM で作成した任意のユーザーIDで接続するようにする。**
   
+  ### User
+  
+  ```bash
+  $ who
+  nn_ono272727
+  ```
+  
+  ### Host
+  
+  GCE の~~エフェメラルな~~静的な**外部IP**を設定する。
+  → VPC ネットワーク > IP アドレスのタイプを「静的」にしておく。
+  
+  以下でも確認できる。
+  
+  ```bash
+  $ curl ifconfig.me
+  104.196.247.162
+  ```
+  
+  以下は内部IPを出力する。
+  
+  ```bash
+  $ ip a
+  $ ip -4 a
+  $ hostname -I
+  $ ifconfig
+  ```
+  
+  ### Port
+  
+  `/etc/ssh/sshd_config`から開放しているポート番号を取得する。
+  
+  ```bash
+  $ sudo cat /etc/ssh/sshd_config | grep Port
+  Port 56387
+  ```
+  
+  ### Node.js binary path
+  
+  ```bash
+  $ which node
+  /usr/local/bin/node
+  ```
+  
+  ### Cloud9 で生成された公開鍵を GCE インスタンスに登録する
+  
+  ~~`~/.ssh/authorized_keys`に公開鍵を追加する~~
   
   ```bash
   $ touch vi ~/.ssh/authorized_keys
@@ -68,6 +106,14 @@ content: '''
   $ ls -l ~/.ssh/authorized_keys
   -rw-------. 1 nn_ono272727 nn_ono272727 752 Jul 20 06:56 /home/nn_ono272727/.ssh/authorized_keys
   ```
+  
+  → `~/.ssh/authorized_keys`に公開鍵を直接追加しても、インスタンス再起動時などに書き換えられてしまう。
+  
+  「Copy key to clipboard」としてコピーした SSH 認証鍵を VM インスタンスの管理画面から追加する。
+  
+  **このとき、`... [ユーザー名]+[アカウントID]@cloud9.amazon.com`を`... [ユーザー名]@cloud9.amazon.com`としないと認証エラーになるので注意する。**
+  
+  その後、インスタンスを再起動すると登録した SSH 認証鍵が`~/.ssh/authorized_keys`に追加されている。
   
   ```bash
   $ sudo passwd root
@@ -123,6 +169,7 @@ content: '''
   - [これから始めるGCP（GCE）　安全に無料枠を使い倒せ](https://qiita.com/Brutus/items/22dfd31a681b67837a74)
   - [AWS Cloud9の導入方法〜SSH接続編〜](https://blog.simmon.design/aws-cloud9-tutorial-ssh/)
   - [AWS Cloud9 + GCEインスタンスで無料の開発環境を手に入れる](https://qiita.com/j-un/items/f5d72d21f67d384d3c84)
+  - [GCE設定の注意点｜yanchan2020｜note](https://note.mu/yanchan2020/n/n381655875385)
   
 '''
 linesHighlighted: []

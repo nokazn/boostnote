@@ -1,0 +1,83 @@
+createdAt: "2019-08-05T09:36:53.659Z"
+updatedAt: "2019-08-05T09:57:43.725Z"
+type: "MARKDOWN_NOTE"
+folder: "4039f1ba9fa0956ce334"
+title: "position"
+tags: [
+  "プロパティ"
+]
+content: '''
+  # position
+  
+  ボックスの配置方法が相対位置か絶対位置かを指定する。
+  
+  - `static` (初期値) - 特に配置方法を指定せず、`top`、`bottom`、`left`、`right` は適用されない。
+  - `relative` - `static`とした場合の位置を基準として配置する。
+  - `absolute` - 親のボックスを`static`とした場合は親ボックスの、それ以外のプロパティを指定した場合はウィンドウ全体の左上の位置を基準として配置する。
+  - `fixed` - `absolute`に加えて、スクロールしても位置が変わらない。
+  
+  ```html
+  <html>
+  <head>
+    <style>
+      p.sample {
+        height: 50px;
+        background-color: #f0e68c	;
+        font-weight: bold;
+        position: relative;
+      }
+  
+      span.static {
+        color: #b22222;
+        position: static;
+        top: 10px;
+        left: 10px;
+      }
+  
+      span.relative {
+        color: #b22222;
+        position: relative;
+        top: 10px;
+        left: 10px;
+      }
+  
+      span.absolute {
+        color: #b22222;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+      }
+      span.fixed {
+        color: #b22222;
+        position: fixed;
+        top: 10px;
+        left: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <p class="sample">
+      position:static
+      <span class="static">staticの場合の表示</span>
+    </p>
+    <p class="sample">
+      position:relative
+      <span class="relative">relativeの場合の表示</span>
+    </p>
+    <p class="sample">
+      position:absolute
+      <span class="absolute">absoluteの場合の表示</span>
+    </p>
+    <p class="sample">
+      position:fixed
+      <span class="fixed">fixedの場合の表示</span>
+    </p>
+  </body>
+  </html>
+  
+  ```
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

@@ -1,0 +1,18 @@
+createdAt: "2019-08-05T09:56:09.806Z"
+updatedAt: "2019-08-05T09:59:40.056Z"
+type: "MARKDOWN_NOTE"
+folder: "4039f1ba9fa0956ce334"
+title: "top / bottom / left / right"
+tags: []
+content: '''
+  # top / bottom / left / right
+  
+  `position`プロパティが`static`以外のとき有効になり、以下の値がある。
+  
+  - `auto` (初期値) - 自動的に調整される。
+  - `[数値]` - px, em, ex など
+  - `[数値]%` - 親のボックスに対する割合で指定。
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: true
