@@ -1,0 +1,49 @@
+createdAt: "2019-08-09T13:17:14.875Z"
+updatedAt: "2019-08-09T13:47:27.293Z"
+type: "MARKDOWN_NOTE"
+folder: "cfb8bb7394508a89ba1d"
+title: "パスを通す"
+tags: []
+content: '''
+  # パスを通す
+  
+  ## 現在のパスを確認
+  
+  ```bash
+  $ echo $PATH
+  /sbin:/bin:/usr/sbin:/usr/bin
+  ```
+  
+  ## パスを追加
+  
+  ```bash
+  # export PATH=$PATH:[追加するパス]
+  $ export PATH=$PATH:/usr/local/bin
+  ```
+  
+  このままでは、ログインしなおしたり bash を再起動したときに追加したパスが消えてしまう。
+  
+  ## 起動時に自動的にパスを追加するよう設定
+  
+  `~/.bash_profile`か`~/.bashrc`にパスを環境変数に追加する文を追加する。
+  左に記載されてるパスの方が優先順位は高い。
+  
+  ```diff:~/.bash_profile
+  - PATH=$PATH:$HOME/bin
+  + PATH=$PATH:$HOME/bin:/usr/local/bin
+  
+  export PATH
+  ```
+  
+  前述のコマンドを打つ前にプロファイルを編集しておいて
+  
+  ```bash
+  $ source ~/.bash_profile
+  ```
+  
+  とすると、再ログインせず即座に追加した設定が適用される。
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

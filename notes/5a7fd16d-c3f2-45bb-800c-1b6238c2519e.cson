@@ -1,0 +1,43 @@
+createdAt: "2019-08-08T11:08:32.202Z"
+updatedAt: "2019-08-09T14:47:41.527Z"
+type: "MARKDOWN_NOTE"
+folder: "8eecd56ec7357d6ca8d6"
+title: "コンポーネントの中身を任意の要素にする"
+tags: [
+  "slot"
+  "v-slot"
+]
+content: '''
+  # コンポーネントの中身を任意の要素にする
+  
+  コンポーネントを定義するとき、`<slot></slot>`で定義した箇所を、コンポーネント使用時に任意の要素にすることができるようになる。
+  
+  `<slot></slot>`が複数ある時は`name`属性で識別する。
+  
+  ```js:component.vue
+  <template>
+    <table class="form-table">
+      <tr>
+        <th>
+          <slot name="column1"></slot>
+        </th>
+        <td>
+          <slot name="column2"></slot>
+        </td>
+      </tr>
+    </table>
+  </template>
+  ```
+  
+  ```html:index.html
+  <template v-slot:cloumn1>
+    <p>実労働時間<br/>作業時間</p>
+  </template>
+  <template v-slot:column2>
+    <p>{{ actualLaborTime}}<br/>{{ workTime }}</p>
+  </template>
+  ```
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

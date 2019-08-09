@@ -1,0 +1,78 @@
+createdAt: "2019-08-09T13:48:34.549Z"
+updatedAt: "2019-08-09T14:14:34.442Z"
+type: "MARKDOWN_NOTE"
+folder: "cfb8bb7394508a89ba1d"
+title: "bash ログイン時の設定ファイル"
+tags: []
+content: '''
+  # bash ログイン時の設定ファイル
+  
+  ## 設定ファイルを読み込む順番
+  
+  1. `etc/profile`
+  全ユーザーに適用される設定ファイルで、ユーザー単位では触ることはほとんどない。
+  
+  2. **`~/.bash_profile`**
+  Linux ログイン時に一度読み込まれる設定ファイルで、ユーザーごとに設定される。
+  
+  3. `~/.bash_login`
+  Linux ログイン時に`~/.bash_profile`が存在しない場合にのみ一度読み込まれる設定ファイルで、ユーザーごとに設定される。
+  
+  4. `~/.profile`
+  Linux ログイン時に`~/.bash_profile`、`~/.bash_login`が存在しない場合にのみ一度読み込まれる設定ファイルで、ユーザーごとに設定される。
+  
+  5. **`~/.bashrc`**
+  bash 起動時に毎回読み込まれる設定ファイルで、ユーザーごとに設定される。
+  
+  基本的には、2. **`~/.bash_profile`** と 5. **`~/.bashrc`** を編集する。
+  
+  ## 使い分け
+  
+  ### `~/.bash_profile`
+  
+  Linux ログイン時に一度だけ行いたい処理を記述する。
+  
+  - 環境変数 (パスなど) を設定する。
+  
+  ### `~/.bashrc`
+  
+  `~/.bash_profile`に記載されてる通り、`~/.bash_profiel`が読み込まれた後に`~/.bashrc`が読み込まれる。
+  
+  ```bash:~/.bash_profile
+  # Get the aliases and functions
+  if [ -f ~/.bashrc ]; then
+          . ~/.bashrc
+  fi
+  ```
+  
+  新規タブでターミナルを開いたときなど、bash 起動時に毎回実行したい処理を追加する。
+  
+  - 環境変数でない変数を設定する。
+  - エイリアスを定義する。
+  - シェル関数を定義する。
+  - コマンドラインの補完を設定する。
+  
+  ## `~/.bash_profile`や`~/.bashrc`の親ディレクトリ
+  
+  これらの設定ファイルは`/etc/skel`にあり、`useradd`でユーザーを作成するとここにある全ファイルがユーザーのホームディレクトリにコピーされる。
+  
+  ```bash
+  $ ls -la /etc/skel
+  drwxr-xr-x.  2 root root   62 Apr 11  2018 .
+  drwxr-xr-x. 79 root root 8192 Aug  8 05:36 ..
+  -rw-r--r--.  1 root root   18 Oct 30  2018 .bash_logout
+  -rw-r--r--.  1 root root  193 Oct 30  2018 .bash_profile
+  -rw-r--r--.  1 root root  231 Oct 30  2018 .bashrc
+  ```
+  
+  全ユーザーに配布したいファイルはここに置いておくと便利。
+  
+  ## 参考
+  
+  [.bash_profile ? .bashrc ? いろいろあるけどこいつらなにもの？ - Qiita](https://qiita.com/hirokishirai/items/5a529c8395c4b336bf31)
+  [.bash_profileと.bashrcについて - Qiita](https://qiita.com/shyamahira/items/260862743e4c9794b5d2)
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

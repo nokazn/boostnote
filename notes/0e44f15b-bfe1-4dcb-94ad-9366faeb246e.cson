@@ -1,0 +1,25 @@
+createdAt: "2019-08-08T21:18:13.096Z"
+updatedAt: "2019-08-08T21:20:29.709Z"
+type: "MARKDOWN_NOTE"
+folder: "660920097553891f8089"
+title: "iView の言語設定"
+tags: []
+content: '''
+  # iView の言語設定
+  
+  ```js
+  // OK
+  import locale from 'iview/dist/locale/ja-JP'
+  Vue.use(iView, {locale})
+  
+  // NG
+  import ja from 'iview/dist/locale/ja-JP'
+  Vue.use(iView, {ja})
+  ```
+  
+  としないとうまく読み込まない。
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

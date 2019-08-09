@@ -1,0 +1,37 @@
+createdAt: "2019-08-09T14:42:54.181Z"
+updatedAt: "2019-08-09T14:51:09.215Z"
+type: "MARKDOWN_NOTE"
+folder: "8eecd56ec7357d6ca8d6"
+title: "プラグインを導入する"
+tags: []
+content: '''
+  # プラグインを導入する
+  
+  Vue-moment を導入する場合を考える。
+  
+  ## 
+  
+  ```bash
+  $ npm install vue-moment
+  ```
+  
+  ```js:main.js
+  import VueMoment from 'vue-moment'
+  
+  Vue.use(VueMoment)
+  ```
+  
+  とすると、任意の Vue インスタンス内で`this.$moment`としてアクセスできるようになる。
+  
+  ```js:App.vue
+  created () {
+    console.log(this.$moment().format('YYYY/M/D'))
+  }
+  ```
+  
+  > 2019/8/9
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

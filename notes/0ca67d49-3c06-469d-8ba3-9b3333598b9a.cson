@@ -1,0 +1,75 @@
+createdAt: "2019-08-06T11:46:48.720Z"
+updatedAt: "2019-08-06T11:59:21.335Z"
+type: "MARKDOWN_NOTE"
+folder: "99c1744cc6189c73e4c0"
+title: "GCE インスタンスにローカルマシンから SSH 接続する"
+tags: [
+  "SSH"
+  "GCE"
+  "RSA"
+]
+content: '''
+  # GCE インスタンスにローカルマシンから SSH 接続する
+  
+  ## SSH キーの生成
+  
+  パスフレーズを設定しておくとセキュリティ的には強固だが、SSH接続するたびにパスフレーズの入力を求められてちょっと面倒。
+  
+  ```bash
+  $ ssh-keygen -t rsa -b 4096 -C "baleariclemon@gmail.com"
+  Generating public/private rsa key pair.
+  Enter file in which to save the key (C:\\Users\\balea/.ssh/id_rsa): 
+  Enter passphrase (empty for no passphrase): 
+  Enter same passphrase again: 
+  Your identification has been saved in C:\\Users\\balea/.ssh/id_rsa.
+  Your public key has been saved in C:\\Users\\balea/.ssh/id_rsa.pub.
+  SHA256:hfGBiAkHv16mSzqZkachM3pGUxdW4sLiDnOOyzkbhrI baleariclemon@gmail.com
+  The key's randomart image is:
+  +---[RSA 4096]----+
+  |  oo.o.oo..      |
+  |   +o.+..+ .     |
+  |  . +.... o      |
+  | . ..o.  .       |
+  |=B*..+           |
+  |=BoO+            |
+  |=+Xo .           |
+  |E*+..            |
+  +----[SHA256]-----+
+  ```
+  
+  ## GCE インスタンスに公開鍵を登録
+  
+  ```bash
+  $ cat ~/.ssh/id_rsa.pub
+  ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCc/jkmpUFmCIbd6pVqKPYx+TuwpillYFbR9UK2kwAGdcHUdn6aIF1jk5RtDz5EvdxCo4YqKBQu9HTMCsKYLVCI/gJlxOPqUAd3DrBKbmbrJrRjefL5pOBcoJDHVB9QDP+SqTadYUQxzdL4m3jg6sZzgIsi3sflyfw6kmM4yAfn4o6pPDKcpgmsP1PnuEYjbck8pOcA9f5AHl6TKdHl9qPxkFiouThV5FtMNzguKN4xjDqeVzncL+Yv1epRc8mrg5/vPgedBCYnMyJf2RwM66sFbzVP89p3ahyrO3vSxQMLk9pVtA6/Y2lm96geJh8lv8ZGPQR8xguJfRoJQpSBwwbyGw0/FP7aw4Dwe8WjIinotX0t5cwX7lO+yLpPFFBDd8cR0y2XVivpIAezQP6ZFE7UIv0wATbVFVeMmsjpb9cqFx8nfMDsF3ZdU/iiSGdJdfPyflgQuU1+PmPlasHnWCA4PIreNasB/DLjztIAAC8yIamm4/DiE4C5U8l8sCLNmBXVS8jsqmqhTGrCr1fil6xjvgkhrlTm5ZLBMjnKUb4qdrud4vSh82VmRuGWUJvbqs0o7s3TWWZ/sK/hMZtl27QvvxgAPZ09WVbO69Z3hoHHlYJtZgqvTi6Uragv7k6BtzuED3g8oxqo92xbJYlK70IlXrtvcjr8+YtSasG/UxL8nw== baleariclemon@gmail.com
+  ```
+  
+  公開鍵をコピーしてインスタンスの管理画面から登録する。
+  
+  公開鍵がインスタンス側の`~/.ssh/authorized_keys`に反映されるまでは少し時間がかかる。
+  
+  ## `~/.ssh/config`に接続情報を追加
+  
+  ```ini:~/.ssh/config
+  Host dailyreport2-dev
+    HostName 104.196.247.162
+    Port 56387
+    User nn_ono272727
+    IdentityFile C:\\Users\\balea\\.ssh\\id_rsa
+    IdentitiesOnly yes
+    PasswordAuthentication no
+  ```
+  
+  ## ローカルマシンから SSH 接続
+  
+  ```bash
+  $ ssh dailyreport2-dev
+  Last login: Tue Aug  6 11:37:41 2019 from kd106154027191.au-net.ne.jp
+  [nn_ono272727@instance-1 ~]$
+  ```
+  
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false
