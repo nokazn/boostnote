@@ -1,0 +1,40 @@
+createdAt: "2019-08-10T10:35:09.027Z"
+updatedAt: "2019-08-10T10:47:39.846Z"
+type: "MARKDOWN_NOTE"
+folder: "c50fd792c06c102068ae"
+title: "undefinedとvoid 0"
+tags: []
+content: '''
+  # `undefined`と`void 0`
+  
+  ## ECMA-357 Edition 2 以前
+  
+  `undefined`はグローバル変数のため、以下のように書き換えることができてしまう。
+  
+  ```js
+  console.log(undefined) // => "undefined"
+  var undefined = "Hello!"
+  console.log(undefined) //=> "Hello!"
+  ```
+  
+  対して、`void`演算子は任意の引数をとって常に`undefined`を返すため、安全性が保たれる。
+  
+  ## ECMA-262 (ES 5.1) 以降
+  
+  > モダンブラウザ (JavaScript 1.8.5 / Firefox 4 以降) での undefined は、ECMAScript 5 仕様により、設定不可、書込不可のプロパティとなります。そうでない場合でも、上書きは避けてください。 
+  
+  現在の仕様では`undefined`は書き換え不可のため、直接`undefined`を指定するか、値を代入せず宣言のみにする。
+  
+  ```js
+  var x = undefined;  // => undefined
+  var y;  // => undefined
+  ```
+  
+  ## 参考
+  
+  [undefined - JavaScript \\| MDN](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/undefined)
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

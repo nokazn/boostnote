@@ -1,0 +1,116 @@
+createdAt: "2019-08-11T13:13:28.073Z"
+updatedAt: "2019-08-11T13:36:09.858Z"
+type: "MARKDOWN_NOTE"
+folder: "c50fd792c06c102068ae"
+title: "色々な型判定"
+tags: []
+content: '''
+  # 色々な型判定
+  
+  ## `typeof`演算子
+  
+  | 型 | 返り値 |
+  | -- | ----- |
+  |未定義値 |	"undefined" |
+  |Null |	"object" (下記参照) |
+  |真偽値 |	"boolean" |
+  |数値 |	"number" |
+  |文字列 |	"string" |
+  |シンボル | (ECMAScript6 で新しく導入)	"symbol" |
+  |ホストオブジェクト | (provided by the JS environment)	実装に依存 |
+  |関数オブジェクト | (implements [[Call]] in ECMA-262 terms)	|" |function" |
+  |その他のオブジェクト |	"object" |
+  
+  `Null`や配列、`new Number()`や`new String()`も`"object"`と判定されるので厳密な型の判定には不向き。
+  
+  ### 判定できるもの
+  
+  - `undefined`
+  - `Boolean`
+  - `Symbol`
+  
+  ## `Object.prototype.toString.call(arg)`
+  
+  `[object [何らかの型]]`を返す。
+  
+  
+  | 値 |	返り値 |
+  | -- | ----- |
+  | undefined |	"undefined" |
+  | null | "null" |
+  | true / false | "boolean" |
+  | ['array']	| "array" |
+  | { key: 'value'} | "object" |
+  | NaN |	"number" |
+  | 1234 | "number" |
+  | new Number() | "number" |
+  | 'abcd' | "string" |
+  | new String() | "string" |
+  | function () {} |"function" |
+  | () | => {}	"function" |
+  | function* () {} |	"generatorfunction" |
+  | Symbol() |	"symbol" |
+  | new Map() |	"map" | |
+  | new Set()	| "set" | |
+  
+  `NaN`は少し注意する必要がある。 (下記参照)
+  
+  ## その他
+  
+  ### 配列 `isArray()`
+  
+  ```js
+  Array.isArray([])           // true
+  Array.isArray(new Array())  // true
+  Array.isArray({})           // false
+  Array.isArray('array')      // false
+  ```
+  
+  ### NaN 
+  
+  #### `isNan()`
+  
+  `NaN`かどうか調べる関数ではなく、数値への変換が可能かを調べる関数であるため、以下のような動作を示す。
+  
+  ```js
+  isNaN(NaN)              // true
+  isNaN(undefined)        // true ← !?
+  isNaN([])               // false
+  isNaN({})               // true ← !?
+  isNaN(null)             // false
+  isNaN(true)             // false
+  isNaN(false)            // false
+  isNaN(1234)             // false
+  isNaN('')               // false
+  isNaN('1234')           // false
+  isNaN('たべないよー！')  // true ← !?
+  ```
+  
+  #### `Number.isNaN()`
+  
+  `Number`オブジェクトの関数としてES6+で提供されている。
+  
+  ```js:ES6+
+  Number.isNaN(NaN)              // true
+  Number.isNaN(undefined)        // false
+  Number.isNaN({})               // false
+  Number.isNaN('たべないよー！')  // false
+  ```
+  
+  ES6+が動作しないブラウザでは以下の代替 (ポリフィル) を使う。
+  
+  ```js:ES5-
+  Number.isNaN = Number.isNaN || function (obj) {
+    // NaN !== NaN -> true を用いている
+    return typeof obj === 'number' && obj !== obj
+  }
+  ```
+  
+  ## 参考
+  
+  [JavaScriptの型などの判定いろいろ - Qiita](https://qiita.com/amamamaou/items/ef0b797156b324bb4ef3)
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

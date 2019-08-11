@@ -1,5 +1,5 @@
 createdAt: "2019-08-09T14:42:54.181Z"
-updatedAt: "2019-08-09T14:51:09.215Z"
+updatedAt: "2019-08-11T10:57:55.199Z"
 type: "MARKDOWN_NOTE"
 folder: "8eecd56ec7357d6ca8d6"
 title: "プラグインを導入する"
@@ -25,11 +25,9 @@ content: '''
   
   ```js:App.vue
   created () {
-    console.log(this.$moment().format('YYYY/M/D'))
+    console.log(this.$moment().format('YYYY/M/D'))  // 2019/8/9
   }
   ```
-  
-  > 2019/8/9
   
 '''
 linesHighlighted: []

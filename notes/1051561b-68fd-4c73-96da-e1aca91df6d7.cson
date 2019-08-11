@@ -1,5 +1,5 @@
 createdAt: "2019-05-09T13:43:12.563Z"
-updatedAt: "2019-05-24T03:18:30.422Z"
+updatedAt: "2019-08-11T11:19:02.875Z"
 type: "MARKDOWN_NOTE"
 folder: "8eecd56ec7357d6ca8d6"
 title: "コンポーネント内で入力値をリアクティブにする"
@@ -9,18 +9,72 @@ tags: [
 content: '''
   # コンポーネント内で入力値をリアクティブにする
   
-  ```js
-  cumputed: {
-    updatedText: {
-      get() {
-        return this.value;
-      },  // get()
-      set(val) {
-        this.$emit("input", val);
-      }  // set(val)
-    }  // updatedText
-  }
+  ```html
+  <my-great-input-component v-model="text"/>
   ```
+  
+  というように、コンポーネント内の値をリアクティブに親コンポーネントに渡したい場合を考える。
+  
+  ## 方法1
+  
+  単方向のデータフローを2つ定義する。
+  
+  - `props`経由で`value`を受け取る
+  - `@input`イベントが発火したら新しい値とともに`input`イベントを送出する
+  
+  ```js:MyGreatInput.vue
+  <template>
+    <input type="text" :value="value" @input="updateText">
+  </template>
+  
+  <script>
+  export default {
+    props: ['value'],
+    methods: {
+      updateText (event) {
+        this.$emit('input', event.target.value)
+      }
+    }
+  }
+  </script>
+  ```
+  
+  ## 方法2
+  
+  双方向のデータフローを定義する。
+  
+  - `props`経由で`value`を受け取り、`value`プロパティの依存先である`innnerValue`の値が更新される。
+  - `innnerValue`の値が更新されるとセッター関数が呼び出され、新しい値とともに`input`イベントを送出する。
+  
+  算出プロパティはデフォルトではゲッター関数`get()`のみが有効だが、必要であればセッター関数`set()`も設定することができる。
+  
+  ```js:MyGreateInput.vue
+  <template>
+    <input type="text" v-model="innnerValue">
+  </template>
+  
+  <script>
+  export default {
+    props: ['value'],
+    cumputed: {
+      innerValue: {
+        get () {
+          return this.value;
+        },
+        set (val) {
+          this.$emit("input", val);
+        }
+      }
+    }
+  }
+  </script>
+  ```
+  
+  ## 参考
+  
+  [算出プロパティとウォッチャ — Vue.js](https://jp.vuejs.org/v2/guide/computed.html#%E7%AE%97%E5%87%BA-Setter-%E9%96%A2%E6%95%B0)
+  [v-modelを受け付けるカスタムコンポーネントの書き方の好み - mmag](https://joe-noh.hatenablog.com/entry/2017/09/01/235943)
+  
 '''
 linesHighlighted: []
 isStarred: false

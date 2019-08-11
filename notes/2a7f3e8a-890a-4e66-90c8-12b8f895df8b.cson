@@ -1,15 +1,20 @@
 createdAt: "2019-07-31T12:03:52.011Z"
-updatedAt: "2019-07-31T12:04:55.594Z"
+updatedAt: "2019-08-11T11:23:21.488Z"
 type: "MARKDOWN_NOTE"
 folder: "b6dd430e5297036eb2a1"
 title: "dailyreport2"
-tags: []
+tags: [
+  "vue.js"
+]
 content: '''
   # dailyreport2
   
   ```bash
+  $ npm install -g @vue/cli
+  $ npm install vuex
   $ npm install iview@3.3.3
   $ npm install moment@2.23.0
+  $ npm install sass-loader@7.2.0 node-sass@4.12.0
   ```
 '''
 linesHighlighted: []
