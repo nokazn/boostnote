@@ -1,0 +1,31 @@
+createdAt: "2019-08-17T11:40:59.792Z"
+updatedAt: "2019-08-17T14:36:39.374Z"
+type: "MARKDOWN_NOTE"
+folder: "fbf53ad0a1ed9b9ef88a"
+title: "プロセス (process) と スレッド (thread)"
+tags: []
+content: '''
+  # プロセス (process) と スレッド (thread)
+  
+  ## プロセス (process)
+  
+  - OS からメモリ領域などの割り当てを受けて処理を実行しているプログラム
+  - 各アプリケーションとアプリケーションの管理情報をまとめたもの
+  - 同じプログラムを使用していない限りプロセス間でメモリを共有しない
+  
+  ## スレッド (thread)
+  
+  - プロセス内に作られる並列動作が可能な実行単位
+  - Linux においては Linux2.4 以降の概念
+  - シングルスレッドでは プロセス = スレッド
+  - スレッド間ではメモリを共有する
+  
+  ## 参考
+  
+  [イケてるエンジニアになろうシリーズ 〜メモリとプロセスとスレッド編〜 - もろず blog](https://moro-archive.hatenablog.com/entry/2014/09/11/013520)
+  [プロセスとは - IT用語辞典 e-Words](http://e-words.jp/w/%E3%83%97%E3%83%AD%E3%82%BB%E3%82%B9.html)
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

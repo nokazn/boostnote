@@ -1,0 +1,46 @@
+createdAt: "2019-08-17T12:34:51.252Z"
+updatedAt: "2019-08-17T14:33:35.899Z"
+type: "MARKDOWN_NOTE"
+folder: "fbf53ad0a1ed9b9ef88a"
+title: "CPU のビット数"
+tags: []
+content: '''
+  # CPU のビット数
+  
+  コンピュータが認識できるメモリの容量はメモリアドレスに使用できる桁数に依存し、この桁数によって 32 / 64 bit システムと呼ばれている。
+  
+  具体的には CUP 内部の記憶装置であるレジスタが一度 (1クロック) に扱える情報の桁数のことである。
+  
+  メモリアドレスは 1Byte ごとに1つ割り当てられる。
+  
+  - 32bit - $2^{32}$ 個のアドレス空間 → $2^{32}$ Byte ≒ 4GByte
+  - 64bit - $2^{64}$ 個のアドレス空間 → $2^{64}$ Byte = 16EGByte ≒ 172億GByte
+  
+  までのメモリを認識できる。
+  
+  - CPU と OS
+    - 32bit の CPU では 32bit までの OS しか動かせない
+    - 64bit の CPU では 32bit と 64bitの OS を動かせる
+  - OS と アプリケーション
+    - 32bit の OS では 32bit までのアプリケーションしか動かせない
+    - 64bit の OS では 32bit と 64bitのアプリケーションを動かせる
+  
+  ## x86 と x64
+  
+  - x86
+    - インテル社のマイクロプロセッサ製品のシリーズ名、またはこれらを動作させる命令セットアーキテクチャ
+    - 1978年に開発された 16bit の MPU「8086」を始祖とすることからこう呼ばれている
+    - Pentium, Celeron, Xeon などが後継にあたる
+  - x64
+    - 64bit の命令セットアーキテクチャ
+    - インテル社の Intel 64 や AMD 社の AMD64 などの総称
+    - x86 系命令セットとの互換性を維持したまま 64bit コードの実行を可能にしたもの
+  
+  ## 参考
+  
+  [CPUのビット数とは？32ビットCPUと64ビットCPUの違い - パソコンの選び方と買い方](https://pcinformation.info/cpu/bit.html)
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

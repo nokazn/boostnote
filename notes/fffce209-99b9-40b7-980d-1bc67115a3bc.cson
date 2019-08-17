@@ -1,0 +1,56 @@
+createdAt: "2019-08-16T13:02:49.887Z"
+updatedAt: "2019-08-16T13:13:55.140Z"
+type: "MARKDOWN_NOTE"
+folder: "8eecd56ec7357d6ca8d6"
+title: "Vue/CLI プロジェクトで環境変数を扱う"
+tags: []
+content: '''
+  # Vue/CLI プロジェクトで環境変数を扱う
+  
+  ## 設定
+  
+  以下のファイルに環境変数を記述する。
+  
+  - `./config/dev.env.js` - `npm run dev`したときに適用される
+  - `./config/prod.env.js` - `npm run build`したときに適用される
+  
+  開発環境用に環境変数を設定する場合を考える。
+  
+  ```diff:./config/dev.env.js
+  module.exports = merge(prodEnv, {
+    NODE_ENV: '"development"',
+  + MSG: '"Hello!"'
+  })
+  ```
+  
+  設定後サーバーを再起動させると環境変数が適用されている。
+  
+  文字列を指定する場合、シングルクォートで囲った後、ダブルクォートで囲む必要がある。
+  
+  ```js
+  NODE_ENV: '"development"'
+  ```
+  
+  ## 呼び出し
+  
+  ```js:App.vue
+  export default {
+    name: 'App',
+    created () {
+      console.log(process.env.MSG)
+    }
+  }
+  ```
+  
+  ```
+  Hello!
+  ```
+  
+  ## 参考
+  
+  [vue-cliを使ったプロジェクトで環境変数を使う - Qiita](https://qiita.com/daikiojm/items/fb5c55664b6489c3c45f)
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

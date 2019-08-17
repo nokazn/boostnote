@@ -1,0 +1,100 @@
+createdAt: "2019-08-17T10:24:38.468Z"
+updatedAt: "2019-08-17T14:43:58.721Z"
+type: "MARKDOWN_NOTE"
+folder: "f47cc82cbc7c9600eb93"
+title: "JavaScript と同期 / 非同期処理"
+tags: []
+content: '''
+  # JavaScript と同期 / 非同期処理
+  
+  ## 同期処理 (sync)
+  
+  - コードを上から順番に処理していく。
+  - あるタスクが実行している間、他のタスクは中断される。
+  
+  ## 非同期処理 (async)
+  
+  - あるタスクが実行している間、他のタスクが実行できる。
+  
+  
+  ## JavaScript における同期 / 非同期処理
+  
+  大前提として、JavaScript は基本的にブラウザや Node.js の**1つ**のメインスレッド (UI スレッド、**シングル**スレッド) で動作する。
+  
+  キューに登録された関数が並行処理で1つずつ実行されていくが、キューに登録される順番は同期的であったり非同期的であったりする。
+  
+  ```js:sync.js
+  console.log(1)
+  console.log(2)
+  console.log(3)
+  ```
+  
+  ```bash
+  1
+  2
+  3
+  ```
+  
+  これは普通の同期処理である。
+  
+  
+  ```js:async.js
+  console.log(1)       // (1)
+  setTimeout(() => {
+    console.log(2)     // (2)
+  }, 1000)
+  console.log(3)       // (3)
+  ```
+  
+  ```bash
+  1
+  3
+  2
+  ```
+  
+  (1), (2), (3) の順番にキューに登録され、(1) が実行された後、タイマーに (2) が登録され、次に (3) が実行される。 (ここまでが**同期処理**)
+  
+  タイマーに (2) が登録されてから 1000ms 後に再び (2) がキューに登録され、実行される。このキューへの登録は最初の3つの関数とは独立して  (**非同期的に**) 行われる。
+  
+  `setTimeout()`の第二引数を 0ms にしても非同期的に処理が行われる。
+  
+  ```js:async.js
+  console.log(1)       // (1)
+  setTimeout(() => {
+    console.log(2)     // (2)
+  }, 0)
+  console.log(3)       // (3)
+  ```
+  
+  ```bash
+  1
+  3
+  2
+  ```
+  
+  (1), (2), (3) が同期的にキューに登録され、(2) の`setTimeout()`が実行されたとき (2) がキューに再度 (**非同期に**) 登録され、(3) → (2) の順に実行される。
+  
+  `setTimeout()`などの非同期処理は基本的に同期処理と同じメインスレッド内で並行処理として扱われ、処理される。
+  
+  そのため、メインスレッドがある処理で占有されると UI に関する処理が行えず、フリーズした印象を与えるなどの事例が発生してしまう。
+  
+  `setTimeout()`内のコールバック関数から外のスコープのデータにアクセスすることができるのも JavaScript の非同期処理が1つのメインスレッド内で行われているからである。
+  
+  非同期処理実行中に重たい処理があると、非同期処理への切りえが遅れることがある。
+  
+  ### Node.js
+  
+  - サーバーサイドの JavaScript 実行環境
+  - V8 JavaScript Engine で実行される
+  - ネットワークとファイルシステムにアクセスするためのJavaScript APIを提供する
+  - イベント駆動の非同期I/Oモデルを採用
+  
+  ## 参考
+  
+  [非同期処理:コールバック/Promise/Async Function · JavaScript Primer #jsprimer](https://jsprimer.net/basic/async/)
+  [JavaScriptの同期、非同期、コールバック、プロミス辺りを整理してみる - Qiita](https://qiita.com/YoshikiNakamura/items/732ded26c85a7f771a27)
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false
