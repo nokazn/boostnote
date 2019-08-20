@@ -1,0 +1,30 @@
+createdAt: "2019-08-20T11:55:16.082Z"
+updatedAt: "2019-08-20T14:10:40.135Z"
+type: "MARKDOWN_NOTE"
+folder: "c50fd792c06c102068ae"
+title: "オブジェクトリテラルの定義"
+tags: [
+  "途中"
+]
+content: '''
+  # オブジェクトリテラルの定義
+  
+  ```js
+  const d = 42;
+  const obj = {
+    a: 42,
+    "b": 42,
+    0: 42,
+    ["c"] : 42,
+    d,
+    e(){},
+    get f(){},
+    set g(v){},
+    *h(){}
+  }
+  ```
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

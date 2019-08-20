@@ -1,0 +1,76 @@
+createdAt: "2019-08-20T11:36:10.921Z"
+updatedAt: "2019-08-20T11:55:15.275Z"
+type: "MARKDOWN_NOTE"
+folder: "c50fd792c06c102068ae"
+title: "オブジェクト定義時にプロパティ名に変数を用いる"
+tags: [
+  "ES2015"
+  "ES6"
+]
+content: '''
+  # オブジェクト定義時にプロパティ名に変数を用いる
+  
+  ## ES5-
+  
+  ```js
+  var id = '12345'
+  
+  var obj = {}
+  obj[id] = {
+    name: 'John'
+  }
+  console.log(obj[id])  // John
+  ```
+  
+  ## ES6+
+  
+  ES6 以降では computed property name を用いることができる。
+  
+  ```js
+  const id = '12345'
+  
+  const obj = {
+    [id]: { name: 'john'}
+  }
+  console.log(obj[id])  // John
+  ```
+  
+  `[]` 内のデータは計算後、`toString()`メソッドが呼ばれて文字列に変換されてプロパティ名として設定される。
+  
+  以下は全て同じプロパティ名である
+  
+  ```js
+  const obj0 = {
+    10: {}
+  }
+  
+  const obj1 = {
+    [(1 + 4) * 2 ]: {}
+  }
+  
+  const obj2 = {
+    ['1' + '0']: {}
+  }
+  
+  const obj3 = {
+    [(() => 5*2)()]: {}  // 10 を返す関数を即時実行
+  }
+  
+  const objOf10 = { toString: () => 10 }  // 文字列にすると 10 を返すメソッドをもつオブジェクト
+  const obj4 = {
+    [objOf10]: {}  // toString() が2回呼び出されるイメージ
+  }
+  
+  const obj5 = {
+    10: {}
+  }
+  
+  
+  ```
+  
+  
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

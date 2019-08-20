@@ -1,11 +1,16 @@
 createdAt: "2019-05-09T12:37:57.345Z"
-updatedAt: "2019-05-24T03:02:03.659Z"
+updatedAt: "2019-08-19T12:22:48.432Z"
 type: "MARKDOWN_NOTE"
 folder: "d41de58f2f8776076b18"
-title: "submit"
-tags: []
+title: "submitするときはinputよりbuttonを使う"
+tags: [
+  "html"
+  "input"
+  "button"
+  "submit"
+]
 content: '''
-  # `submit`
+  # `submit`するときは`input`より`button`を使う
   
   `<input type="submit">`より`<button type="submit">`を使う
   

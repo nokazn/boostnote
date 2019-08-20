@@ -1,15 +1,21 @@
 createdAt: "2019-08-17T10:09:54.010Z"
-updatedAt: "2019-08-17T14:41:40.317Z"
+updatedAt: "2019-08-20T14:10:47.452Z"
 type: "MARKDOWN_NOTE"
 folder: "8eecd56ec7357d6ca8d6"
 title: "Vuex 概要"
-tags: []
+tags: [
+  "途中"
+]
 content: '''
   # Vuex 概要
   
   大規模プロジェクトにおいて、何層にも重なったコンポーネント間で`props`と`$emit`でバケツリレーのようにデータをやりとりするのは現実的でない。
   
   そこで、各々のコンポーネントから共有している状態を抽出してグローバルなシングルトンでの管理を可能にするのが Vuex である。
+  
+  - Vuex ストアはリアクティブである
+  - ストアの状態を更新するには、ミューテーションをコミットする必要がある
+  
   
   ## インストール
   
@@ -32,6 +38,190 @@ content: '''
     template: '<App/>'
   })
   ```
+  
+  これは、`Vue.use(Vuex)`で Vuex を有効にし、ルートコンポーネントに`store`オプションを指定することで全ての子コンポーネントにストアが適用される。
+  
+  ストアには`this.$store`でアクセスできる。
+  
+  ## state
+  
+  Vuex では単一ステートツリーが用いられており、アプリケーションごとに1つのストアしか持たない。
+  
+  ```js:ストア
+  const store = new Vuex.Store({
+    state: {
+      count: 0
+    }
+  })
+  ```
+  
+  ```js
+  const Counter = {
+    template: `<div>{{ counter }}</div>`,
+    computed: {
+      count () {
+        return this.$store.state.count
+      }
+    }
+  }
+  ```
+  
+  ### mapState ヘルパー
+  
+  ```js:子コンポーネント
+  import { mapState } from 'vuex'
+  
+  export default {
+    computed: mapState({
+      count: state => state.count,    // 同じ名前を割り当てる - (1)
+      countAlias: 'count',            // 違う名前を割り当てる
+      countPlusLocalCount (state) {
+        return state.count + this.localCount
+      }
+    })
+  }
+  ```
+  
+  (1) のように同じ名前を割り当てるときは配列で渡すこともできる。
+  
+  ```js:子コンポーネント
+    computed: mapState([
+      'count'  // 同じ名前を割り当てる ((1)と同義)
+    ])
+  ```
+  
+  `mapState`は複数の算出プロパティを要素として持つオブジェクトであるので、子コンポーネント内のローカル算出プロパティとマージさせるためにはスプレッド演算子を用いる。
+  
+  ```js:子コンポーネント
+  computed: {
+    myNum () {
+      return this.num % 2
+    },
+    ...mapState({
+      // ...
+    })
+  }
+  ```
+  
+  `computed`内で`mapState`内のオブジェクトが展開されるイメージ。
+  
+  ## getters
+  
+  ストアの算出プロパティのようなもので、ゲッターと依存関係にある値が変更されたとき再評価される。
+  
+  第一引数として`state`、第二引数として他のゲッターを受け取る。
+  
+  ```js:ストア
+  const store = new Vuex.Store({
+    state: {
+      tasks: [
+        { id: 1, task: 'task1', done: true },
+        { id: 2, task: 'task2', done: false }
+      ]
+    },
+    getters: {
+      doneTasks (state) {
+        return state.tasks.filter(todo => todo.done)
+      },
+      doneTasksCount (state, getters) {
+        return getters.doneTasks.length
+      }
+    }
+  })
+  ```
+  
+  ```js:子コンポーネント
+  computed: {
+    doneTasksCount () {
+      return this.$store.getters.doneTasksCount
+    }
+  }
+  ```
+  
+  Vue のリアクティブシステムの一部としてキャッシュされる。
+  
+  ### ゲッターに引数を渡す
+  
+  関数リテラルを返り値にすることで、ゲッターに引数を渡すことができる。
+  
+  ```js:ストア
+  getters: {  
+    getTaskById: (state) => (id) => {
+      return state.tasks.find(task => task.id === id)
+    }
+  }
+  ```
+  
+  ```js:子コンポーネント
+  this.$store.getters.getTasksById(2)
+  ```
+  
+  メソッドにより呼ばれるゲッターはその度に実行され、キャッシュされない。
+  
+  ### mapGetters ヘルパー
+  
+  ```js
+  import { mapGetters } from 'vuex'
+  
+  export default {
+    computed: {
+      ...mapGetters([
+        'doneTasks',
+        'doneTasksCount'  // 同じ名前を割り当てる
+      ])
+    }
+  }
+  ```
+  
+  ```js
+  ...mapGetters({
+    doneCount: 'doneTasksCoun'  // 違う名前を割り当てる
+  })
+  ```
+  
+  ## mutations
+  
+  `store.state`を直接変更するのではなくミューテーションをコミットすることで状態を変更する。
+  これにより状態の変更のログを取ったり、スナップショットを取ったり、タイムトラベルデバッグを行うようなツールを実装する余地が生まれ、状態の変更の追跡が容易になる。
+  
+  状態変更時の透明性を確保するため、原則として**ミューテーションハンドラ関数は同期的でなければならない**。
+  
+  ```js:ストア
+  const store = new Vuex.Store({
+    state: {
+      count: 0
+    },
+    mutations: {
+      increment (state) {
+        state.count++
+      },
+      increment2 (state, n) {
+        state.count += n
+      },
+      increment3 (state, payload) {
+        state.count += payload.amount
+      }
+    }
+  })
+  ```
+  
+  第一引数として`state`、第二引数としてペイロードを受け取る。
+  ペイロードはオブジェクトで渡すことで、複数のフィールドを含めることができる。
+  
+  ```js
+  store.commit('increment')                   // 1
+  store.commit('increment2', 10)              // 10
+  store.commit('increment2', { amount: 20 })  // 20
+  store.commi({
+    type: 'increment3',
+    amount: 20
+  })                                          // 20
+  ```
+  
+  
+  
+  
+  
   
 '''
 linesHighlighted: []

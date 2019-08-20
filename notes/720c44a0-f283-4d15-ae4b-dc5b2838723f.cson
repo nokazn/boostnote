@@ -1,0 +1,60 @@
+createdAt: "2019-08-20T13:09:15.891Z"
+updatedAt: "2019-08-20T14:09:47.870Z"
+type: "MARKDOWN_NOTE"
+folder: "c50fd792c06c102068ae"
+title: "等差数列の配列"
+tags: []
+content: '''
+  # 等差数列の配列
+  
+  ```js
+  const list = new Array(10).fill(0).map((_, i) => i + 1)
+  console.log(list)  // [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  ```
+  
+  1 から 100 までの偶数の和を求めるワンライナー
+  
+  ## 配列のメソッドチェーン
+  
+  ```js
+  new Array(100).fill(0).map((_, i) => i + 1).reduce((pre, cur) => cur % 2 ? pre : pre + cur, 0)
+  ```
+  
+  ```js
+  [...Array(100).keys()].reduce((pre, cur) => ++cur % 2 ? pre : pre + cur, 0)
+  ```
+  
+  ## 再起関数
+  
+  ```js
+  const g = (x, y) => {
+    if (y <= 100) {
+      return x%2 ? x : x+y 
+    } else {
+      return x
+    }
+  }
+  const result = g(g(g(g(g(g(g(g(g(g(g(0, 0), 1), 2), 3), 4), 5), 6), 7), 8), 9), 10)
+  
+  // 上記を再起関数にする
+  const f = (x, y) => {
+    if (y <= 100) {
+      return f(y%2 ? x : x+y, ++y)
+    } else {
+      return x
+    }
+  }
+  f(0,0)
+  
+  // 三項演算子を用い、即時実行させる
+  //                     関数リテラルを囲って即時実行 ──┐
+  (f = (x, y) => (y<=100 ? f(y%2 ? x : x+y , ++y) : x))(0, 0)
+  //             │            └── y が奇数なら x に追加、偶数ならなにもしない
+  //             └─── { return val } を val とし、まとまりを明示的にするために () で囲っている
+  
+  ```
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false
