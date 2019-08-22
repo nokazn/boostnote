@@ -1,10 +1,9 @@
 createdAt: "2019-08-20T11:36:10.921Z"
-updatedAt: "2019-08-20T11:55:15.275Z"
+updatedAt: "2019-08-22T13:48:50.324Z"
 type: "MARKDOWN_NOTE"
 folder: "c50fd792c06c102068ae"
 title: "オブジェクト定義時にプロパティ名に変数を用いる"
 tags: [
-  "ES2015"
   "ES6"
 ]
 content: '''

@@ -1,0 +1,181 @@
+createdAt: "2019-08-22T11:46:35.621Z"
+updatedAt: "2019-08-22T12:21:13.888Z"
+type: "MARKDOWN_NOTE"
+folder: "d8b18fc544434022f6d8"
+title: "viewport"
+tags: [
+  "途中"
+]
+content: '''
+  # viewport
+  
+  ブラウザは viewport を基にウィンドウを仮想的に設定してレンダリングし、 viewport 上のウェブページを縮小・拡大して適切に表示させている。
+  
+  1. width=100
+    `$(window).width` -  100 以上
+    `window.innnerWidth`
+  
+  PC のブラウザでは`$(window).width()`は PC の解像度を返すが、スマートフォンのブラウザでは`$(window).width()`はディスプレイの解像度に依らず 320 や 360 などの固有の値を返す。
+  
+  
+  
+  
+  ```html
+  <meta name="viewport" content="width=320"">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1,">
+  ```
+  
+  #### メディアクエリとの関係
+  
+  CSS のメディアクエリを用いると、デバイスの解像度やウィンドウの幅、向きなどの指定条件に合わせて別々のスタイルを適用できる。
+  
+  以前は User Agent から端末情報を取得してスタイルを切り替えていたが、メディアクエリの登場によりウィンドウ幅によってレスポンシブにスタイルを切り替えることが可能になる。
+  
+  レスポンシブデザインを有効にするためには HTML で viewport を設定し、CSS でメディアクエリを指定する必要がある。
+  
+  ```html
+  <meta name="viewport" content="width=devise-width,initial-scale=1"
+  ```
+  
+  ```css
+  @charset "utf-8";
+  @media screen and (min-width : 480px){
+  　　// 最小幅 480px 以上の指定
+  }
+  @media screen and (min-width : 768px){
+  　　// 最小幅 768px 以上の指定
+  }
+  @media screen and (min-width : 1024px){
+  　　// 最小幅 1024px 以上の指定
+  }
+  ```
+  
+  ## 参考
+  
+  [blog.鶯梭庵/links/改訂版・たぶん、ほとんどの人は viewport meta タグの指定をまちがえてる・その１](https://blog.ousaan.com/index.cgi/links/20170430.html)
+  [blog.鶯梭庵/links/改訂版・たぶん、ほとんどの人は viewport meta タグの指定をまちがえてる・その６](https://blog.ousaan.com/index.cgi/links/20170518.html)
+  [レスポンシブ ウェブデザインの基本  \\|  Web  |  Google Developers](https://developers.google.com/web/fundamentals/design-and-ux/responsive/)
+  [.width() \\| jQuery API Documentation](https://api.jquery.com/width/)
+  
+  ```html
+  <!DOCTYPE html>
+  <html xml:lang="ja" lang="ja">
+  <head>
+  	<meta charset="utf-8">
+  	<!-- <meta name="viewport" content="width=devise-width,initial-scale=1"> -->
+  	<meta name="viewport" content="width=400">
+  	<title>Window Width Check</title>
+  </head>
+  <style>
+  @charset "utf-8";
+  body {
+  	font-size: 100%;
+  	line-height: 140%;
+  	font-family: Arial,Helvetica,sans-serif;
+  	color: #000;
+  	text-align: center;
+  }
+  
+  a:link { text-decoration:none; color: #000;}
+  a:visited { text-decoration:none; color: #000;}
+  a:active { text-decoration:none; color: #000;}
+  a:hover { text-decoration:none; color: #000;}
+  
+  h1 {
+  	margin-bottom: 20px;
+  	padding: 10px 0;
+  	background: #000;
+  	color: #fff;
+  	font-size: 12px;
+  	font-weight: bold;
+  	text-align: center;
+  }
+  h2 {
+  	padding: 20px 0 30px 0;
+  	width: 100%;
+  	font-size: 12px;
+  }
+  h3 {
+  	margin: 0;
+  	padding: 10px 0;
+  	font-size: 16px;
+  	font-weight: bold;
+  	text-align: left;
+  }
+  #wrapper {
+  	margin: 0 auto;
+  	width: 600px;
+  	text-align: center;
+  }
+  
+  ul {
+  	margin: 0 auto 20px auto;
+  	width: 600px;
+  	text-align: left;
+  	border-top: #ccc 1px dotted;
+  }
+  
+  ul li {
+  	padding: 10px 0 10px 150px;
+  	font-size: 15px;
+  	border-bottom: #ccc 1px dotted;
+  	box-sizing: border-box;
+  }
+  span {
+  	padding-left: 10px;
+  	display: inline-block;
+  }
+  
+  span.method {
+  	width: 13em;
+  }
+  
+  @media only screen and (max-width: 600px) {
+  	body {
+  		background: #ff7777;
+  	}
+  }
+  
+  @media only screen and (max-height: 600px) {
+  	body {
+  		color: #0000ff;
+  	}
+  }
+  </style>
+  <body>
+  	<h1>Window Width/Height Check</h1>
+  
+  	<div id="wrapper">
+  	<h3>Width</h3>
+  		<ul>
+  			<li><span class="method">$(window).width();</span> ＝ <span id="wd"></span> px</li>
+  			<li><span class="method">window.innerWidth;</span> ＝ <span id="iwd"></span> px</li>
+  			<li><span class="method">window.matchMedia;</span> ＝ <span id="wmmW"></span></li>
+  		</ul>
+  	</div>
+  	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  	<script>
+  	$(function(){
+  		$(window).on('load resize',function(){
+  			$('#wd').text($(window).width());
+  			$('#iwd').text(window.innerWidth);
+  
+  			if(window.matchMedia('(min-width:600px)').matches){
+  				$('#wmmW').text('width：600px 以上【↑】');
+  			} else {
+  				$('#wmmW').text('width：600px 以下【↓】');
+  			}
+  		});
+  	});
+  	</script>
+  </body>
+  </html>
+  
+  ```
+  
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

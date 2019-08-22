@@ -1,0 +1,88 @@
+createdAt: "2019-08-22T12:58:03.365Z"
+updatedAt: "2019-08-22T13:48:37.303Z"
+type: "MARKDOWN_NOTE"
+folder: "c50fd792c06c102068ae"
+title: "スプレッド構文"
+tags: [
+  "ES6"
+]
+content: '''
+  # スプレッド構文
+  
+  関数呼び出し、配列リテラル、オブジェクトリテラル内で文字列や配列などの iterable オブジェクトを展開する。
+  
+  ## 関数呼び出しで使用
+  
+  ```js
+  function f (x, y, z) { /* do something */}
+  const args = [0, 1, 2]
+  
+  f.apply(null, args)  // ES5-
+  f(...args)  // ES6+
+  ```
+  
+  引数の何番目でも使用可能である。
+  
+  ```js
+  function f (v ,w ,x , y, z) { /* do something */}
+  const args = [0, 1]
+  f(-1, ...args, 2, ...[3])  // f(-1, 0, 1, 2, 3) と同義
+  ```
+  
+  new 演算子でコンストラクタを呼ぶときの引数にも指定できる。`Function.prototype.apply`ではコンストラクタを関数として呼び出してしまうため`new`演算子でインスタンスの生成ができない。
+  
+  ```js
+  const date = [2019, 8, 22]
+  const today = new Date(...today)  // Sun Sep 22 2019 00:00:00 GMT+0900 (日本標準時)
+  
+  const today2 = new Date.apply(null, today)  // Uncaught TypeError: Date.apply is not a constructor
+  const today3 = Date.apply(null, today)  // "Thu Aug 22 2019 22:13:57 GMT+0900 (日本標準時)"
+  console.log(typeof today3)  / "string"
+  ```
+  
+  ## 配列リテラルで使用
+  
+  ```js
+  let arr1 = [1, 2, 3]
+  
+  // 連結
+  const arr2 = [0, ...arr1, 4, 5]  // [0, 1, 2, 3, 4, 5]
+  const arr3 = [...arr1.map(x => -x).reverse(), ...arr2]  // [-3, -2, -1, 0, 1, 2, 3, 4, 5]
+  const arr4 = arr1.map(x => -x).reverse().concat(arr2)  // [-3, -2, -1, 0, 1, 2, 3, 4, 5]
+  Array.prototype.unshift.apply(arr1, arr2)  // arr1 を直接変更している
+  console.log(arr1)  // [0, 1, 2, 3, 4, 5, 1, 2, 3]
+  
+  // 複製
+  arr3 = [...arr2]  // [0, 1, 2, 3, 4, 5]
+  ```
+  
+  ## オブジェクトリテラルで使用
+  
+  オブジェクトのコピーやマージに便利。
+  
+  ```js
+  const obj1 = { firstName: 'John' }
+  const obj2 = { lastName: 'Lennon' }
+  
+  const obj3 = { ...obj1 }
+  const obj4 = { ...obj1, ...obj2 }  // {firstName: "John", lastName: "Lennon"}
+  const obj5 = Object.assign(obj1, obj2)  // {firstName: "John", lastName: "Lennon"}
+  ```
+  
+  `Object.assign()`は `setters` をトリガーしますが、スプレッド構文はトリガーできない。
+  
+  iterable なオブジェクトでないと使えないので、キーにはシンボルで指定する必要がある。
+  
+  ```js
+  const obj = { 'key1': 'value1' }
+  const array = [...obj]  // VM472:2 Uncaught TypeError: object is not iterable (cannot read property Symbol(Symbol.iterator))
+  ```
+  
+  ## 参考
+  
+  [Object.assign() - JavaScript \\| MDN](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Object/assign)
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

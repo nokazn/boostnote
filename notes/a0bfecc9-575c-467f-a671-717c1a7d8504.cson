@@ -1,0 +1,40 @@
+createdAt: "2019-08-21T09:50:51.836Z"
+updatedAt: "2019-08-21T10:34:09.625Z"
+type: "MARKDOWN_NOTE"
+folder: "c50fd792c06c102068ae"
+title: "npm のローカルインストールとグローバルインストール"
+tags: [
+  "Node.js"
+  "npm"
+  "package.json"
+]
+content: '''
+  # npm のローカルインストールとグローバルインストール
+  
+  ## グローバルインストール
+  
+  ```bash
+  $ npm install @vue/cli -g
+  ```
+  
+  `npm`のインストール場所にある`node_modules`にパッケージをインストールする。
+  
+  
+  
+  ## ローカルインストール
+  
+  ```bash
+  $ mkdir myproject
+  $ cd myproject
+  $ npm init
+  $ npm install @vue/cli
+  ```
+  
+  `npm init`で`package.json`が作成され、これにはパッケージの依存関係が記載される。
+  
+  作成したプロジェクトディレクトリ内の`node_modules`にパッケージがインストールされる。
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

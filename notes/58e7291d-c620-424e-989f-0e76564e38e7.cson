@@ -1,0 +1,98 @@
+createdAt: "2019-08-21T02:40:32.073Z"
+updatedAt: "2019-08-21T05:52:44.780Z"
+type: "MARKDOWN_NOTE"
+folder: "c50fd792c06c102068ae"
+title: "ホイスティング"
+tags: [
+  "関数"
+  "巻き上げ"
+]
+content: '''
+  # ホイスティング
+  
+  `var` による変数宣言、`function`による関数宣言はスコープ内の先頭にあるものとみなされ、これをホイスティング (巻き上げ) という。
+  
+  ## 変数巻き上げとスコープ
+  
+  `var`で宣言された関数は**関数スコープ**内の先頭で宣言されたものとして扱われる。
+  
+  ```js
+  var a = 1
+  
+  function f () {
+    console.log(a)  // undefined
+    var a = 2
+    console.log(a)  // 2
+  }
+  
+  f() // 
+  ```
+  
+  上記コードは下記と等価である。
+  
+  ```js
+  var a = 1
+  
+  function f () {
+    var a
+    console.log(a)  // undifined
+    a = 2
+    console.lgo(a)  // 2
+  }
+  ```
+  戦闘で宣言されただけで初期化されていないため、`undefined`が出力される。
+  
+  また、`var`で宣言された変数は`for`や`if`内の`{}`でスコープを作らないため以下のようにも動作する。
+  
+  ```js
+  function g () {
+    console.log(msg)                    // undefined 
+    for (var i = 0; i < 10; i++) {
+      var msg = 'hello' + i.toString() 
+      console.log(msg)
+    }
+  }
+  ```
+  
+  `let`や`const`で宣言された変数は宣言された箇所で初めて定義され、`{}`でブロックスコープを作るため、ブロックスコープ内で変数が宣言されるまでは呼び出せない。
+  
+  ```js
+  function g () {
+    console.log(msg)                    // msg is not defined
+    for (let i = 0; i < 10; i++) {
+      let msg = 'hello' + i.toString() 
+      console.log(msg)
+    }
+  }
+  ```
+  
+  ## 関数巻き上げ
+  
+  ```js
+  f()  // f is not a function
+  g()  // Cannot access 'g' before initialization
+  h()  // 'g'
+  
+  var f = function () {
+    console.log('f')
+  }
+  let g = function () {
+    console.log('g')
+  }
+  function h () {
+    console.log('h')
+  }
+  ```
+  
+  - `f` - `var`で宣言された変数に格納されているので宣言はされているが初期化されていない (`undefined`)
+  - `g` - `let`で宣言された変数に格納されているので宣言もされていない
+  - ホイスティングが行われ、スコープ内 (今回はグローバルスコープ) の先頭で宣言されたものとみなされる
+  
+  ## 参考
+  
+  [JavaScript初心者にはfunctionよりも、まずアロー関数を教えるべき - Qiita](https://qiita.com/hogefuga/items/44651573c2ec3ee88055)
+  [JavaScriptにおける変数巻き上げ(ホイスティング) - Nao Minami's Blog](http://south37.hatenablog.com/entry/2014/02/27/JavaScript%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E5%A4%89%E6%95%B0%E5%B7%BB%E3%81%8D%E4%B8%8A%E3%81%92%28%E3%83%9B%E3%82%A4%E3%82%B9%E3%83%86%E3%82%A3%E3%83%B3%E3%82%B0%29)
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

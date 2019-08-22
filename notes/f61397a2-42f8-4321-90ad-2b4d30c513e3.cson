@@ -1,0 +1,103 @@
+createdAt: "2019-08-21T00:49:35.402Z"
+updatedAt: "2019-08-22T14:04:17.884Z"
+type: "MARKDOWN_NOTE"
+folder: "c50fd792c06c102068ae"
+title: "関数宣言とか関数リテラルとか"
+tags: [
+  "関数"
+]
+content: '''
+  # 関数宣言とか関数リテラルとか
+  
+  ## 関数定義
+  
+  - ホイスティング (巻き上げ) され、ソースコードの最初に宣言したものとみなされる
+  - セミコロン`;`は不要
+  
+  ```js
+  function hoge () {
+    console.log('hoge')
+  }
+  
+  hoge()  // 'hoge'
+  ```
+  
+  ## 関数リテラル
+  
+  - 無名関数 (匿名関数) を代入している
+  - 実行中に動的に定義される
+  
+  ```js
+  hoge()  // hoge is not a function
+  
+  const hoge = function () {
+    console.log('hoge')
+  }
+  ```
+  
+  ## アロー関数
+  
+  - `this`を束縛しない (静的スコープである)
+  - `prototype`プロパティが生成されず、コンストラクターとして使用できない
+  
+  コールバックなどにはアロー関数を用いるべきである。
+  
+  ```js
+  const arr = [...new Array(100)].fill(0).map((_, i) => i + 1)
+  console.log(arr)  // [1, 2, 3, ..., 100]
+  ```
+  
+  ## `Function`オブジェクトのコンストラクタから呼び出す
+  
+  - 文字列を渡して関数を生成する
+  - グローバルスコープに定義される
+  
+  ```js
+  var sum = new Function('a', 'b', 'return a + b')
+  console.log(sum(4, 2))  // 6
+  ```
+  
+  
+  ```js
+  var x = 1
+  
+  function createFun1 () {
+    const x = 2
+    return new Function('return x') // 1
+  }
+  
+  function createFun2 () {
+    var x = 2
+    function f () {
+      return x  // 2
+    }
+    return f
+  }
+  
+  console.log(createFun1())  // 1
+  console.log(createFun2())  // 2
+  ```
+  
+  ## メソッド
+  
+  ```js
+  const obj = {
+    method_es5: function () { /* do something */ }
+    method_es6 () { /* do something */ }
+  }
+  ```
+  
+  `method_es5`では function 関数オブジェクトが生成された時点で`obj.method.prototype`にオブジェクトが設定されて、`new obj.method`ができてしてしまう。
+  
+  メソッドとして扱いたい場合は`method_es6`のように書くのが妥当。
+  また、メソッドでは`super`キーワードが使える。
+  
+  ## 参考
+  
+  [Function - JavaScript \\| MDN](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Function)
+  [騙されるな。JavaScript の function は関数じゃない。コンストラクタだ。 - Qiita](https://qiita.com/hogefuga/items/d436fc478cbc9e573fb6#おまけ-メソッドの記法)
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

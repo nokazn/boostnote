@@ -1,0 +1,104 @@
+createdAt: "2019-08-22T12:33:51.091Z"
+updatedAt: "2019-08-22T12:53:30.326Z"
+type: "MARKDOWN_NOTE"
+folder: "d642b49f05a0df4edcfc"
+title: "Powershell のスコープ"
+tags: [
+  "Powershell"
+]
+content: '''
+  # Powershell のスコープ
+  
+  ## スコープを生成するもの
+  
+  - 関数
+  - スクリプトブロック
+  - スクリプトファイル
+  
+  ```powershell
+  function Hoge {
+      {
+          [int] $x = 10
+      }
+      Write-Host $x  # エラー
+  }
+  Hoge
+  Write-Host $x  # エラー
+  ```
+    
+  ## スコープを生成しないもの
+    - `if`や`for`などの制御構文
+    - `try`-`catch`-`finally`
+    - `begin`-`process`-`end`
+    
+  ```powershell
+  Set-StrictMode -Version Latest
+  
+  function Hoge {
+    if ($true){
+      [int]$x = 10
+    }
+    Write-Host $x  # 10
+  }
+  Hoge
+  
+  for ($i = 1; $i -le 3; ++$i) {
+    $x = $i
+  }
+  WriteHost "`$x = $x"  # $x = 3
+  ```
+  
+  ## ダイナミックスコープ
+  
+  ```powershell
+  $scriptBlock = {
+    $x
+  }
+  
+  function hello1 {
+    $x = 10
+    & $scriptBlock
+  }
+  
+  function hello1 {
+    $x = 20
+    & $scriptBlock
+  }
+  
+  hello1  # 10
+  hello2  # 20
+  ```
+  
+  ```powershell
+  $scriptBlock = {
+    Inner
+  }
+  
+  function hello1 {
+    function Inner {
+      Write-Host "Hello1!"
+    }
+    & $scriptBlock
+  }
+  
+  function hello1 {
+    function Inner {
+      Write-Host "Hello2!"
+    }
+    & $scriptBlock
+  }
+  
+  hello1  # Hello1!
+  hello2  # Hello2!
+  ```
+  
+  ローカルスコープにない変数・関数は親のスコープを探しにいく。
+  
+  ## 参考
+  
+  [PowerShell のスコープ完全に理解した - 鷲ノ巣](https://tech.blog.aerie.jp/entry/powershell-advent-calendar-2018-18)
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

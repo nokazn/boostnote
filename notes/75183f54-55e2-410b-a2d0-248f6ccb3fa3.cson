@@ -1,0 +1,43 @@
+createdAt: "2019-08-21T06:01:54.916Z"
+updatedAt: "2019-08-21T09:50:28.976Z"
+type: "MARKDOWN_NOTE"
+folder: "c50fd792c06c102068ae"
+title: "配列の重複を除く"
+tags: []
+content: '''
+  # 配列の重複を除く
+  
+  `Set`オブジェクトはあらゆる型で**一意**の値を格納することができる。
+  
+  ```js:重複を除いた配列
+  const arr = [1, 2, 3, 3, 4, 5, 5, 1, 1, 2, 10, 7, 2, 4]
+  
+  const a1 = arr.filter((x, i, self) => self.indexOf(x) === i)
+  const a2 = arr.reduce((pre, cur) => pre)
+  const a3 = Array.from(new Set(arr))
+  
+  console.log(a1)  // [1, 2, 3, 5]
+  console.log(a2)  // [1, 2, 3, 5]
+  console.log(a3)  // [1, 2, 3, 5]
+  ```
+  
+  ```js:重複したものの配列
+  const arr = [1, 2, 3, 3, 4, 5, 5, 1, 1, 2, 10, 7, 2, 4]
+  
+  // 重複したもの
+  const b1 = arr.filter((x, i, self) => {
+    return self.indexOf(x) !== self.lastIndexOf(x))
+  })
+  
+  // 重複したものを重複しないで配列に
+  const b2 = arr.filter((x, i, self) => {
+    return self.indexOf(x) !== i && self.lastIndexOf(x) === i
+  })
+  
+  console.log(b1)  // [1, 2, 3, 3, 4, 5, 5, 1, 1, 2, 2, 4]
+  console.log(b2)  // [1, 2, 3, 4, 5]
+  ```
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

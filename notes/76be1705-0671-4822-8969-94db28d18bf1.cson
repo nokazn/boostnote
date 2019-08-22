@@ -1,0 +1,56 @@
+createdAt: "2019-08-21T05:55:34.248Z"
+updatedAt: "2019-08-21T05:57:24.780Z"
+type: "MARKDOWN_NOTE"
+folder: "8eecd56ec7357d6ca8d6"
+title: "Vuex - 3. mutations"
+tags: []
+content: '''
+  # Vuex - 3. mutations
+  
+  ## mutations
+  
+  `store.state`を直接変更するのではなくミューテーションをコミットすることで状態を変更する。
+  これにより状態の変更のログを取ったり、スナップショットを取ったり、タイムトラベルデバッグを行うようなツールを実装する余地が生まれ、状態の変更の追跡が容易になる。
+  
+  状態変更時の透明性を確保するため、原則として**ミューテーションハンドラ関数は同期的でなければならない**。
+  
+  ```js:ストア
+  const store = new Vuex.Store({
+    state: {
+      count: 0
+    },
+    mutations: {
+      increment (state) {
+        state.count++
+      },
+      increment2 (state, n) {
+        state.count += n
+      },
+      increment3 (state, payload) {
+        state.count += payload.amount
+      }
+    }
+  })
+  ```
+  
+  第一引数として`state`、第二引数としてペイロードを受け取る。
+  ペイロードはオブジェクトで渡すことで、複数のフィールドを含めることができる。
+  
+  ```js
+  store.commit('increment')                   // 1
+  store.commit('increment2', 10)              // 10
+  store.commit('increment2', { amount: 20 })  // 20
+  store.commi({
+    type: 'increment3',
+    amount: 20
+  })                                          // 20
+  ```
+  
+  ## 参考
+  
+  [Vue.js + Vuexで開発をしてみよう！ - Tech Blog - Recruit Lifestyle Engineer](https://engineer.recruit-lifestyle.co.jp/techblog/2016-09-15-try-vue-flux/)
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

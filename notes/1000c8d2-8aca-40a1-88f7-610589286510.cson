@@ -1,0 +1,104 @@
+createdAt: "2019-08-21T11:09:26.564Z"
+updatedAt: "2019-08-22T12:19:09.695Z"
+type: "MARKDOWN_NOTE"
+folder: "d8b18fc544434022f6d8"
+title: "HTML の meta タグ"
+tags: []
+content: '''
+  # HTML の meta タグ
+  
+  ## 文字コード
+  
+  以前は`http-equiv`属性で指定していたが、HTML5 以降は単独で指定できる。
+  
+  ```html
+  <!-- HTML4- -->
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <!-- HTML5+ -->
+  <meta charset="UTF-8">
+  ```
+  
+  ## `http-equiv`属性で`content`を指定
+  
+  プログラマ指示子となり、ブラウザに対して文書の挙動を支持することができる。
+  以下の4つのキーワードを指定できる。
+  
+  - `content-language` - コンテンツ言語の指定
+  - `content-type` - ファイルタイプや文字エンコーディングの指定
+  - `default-style` - デフォルトのスタイルシートの指定
+  - `refresh` - リダイレクト・再読み込みの指定
+  
+  ```html
+  <meta http-equiv="content-language" content="ja">
+  
+  <meta http-equiv="content-type" content="text/html" charset="UTF-8">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  
+  <meta http-equiv="default-style" content="default.css">
+  
+  <!-- 5秒後にリダイレクト -->
+  <meta http-equiv="refresh" content="5; url=newpage.html">
+  ```
+  
+  ## `name`属性で`content`を指定
+  
+  - `application-name` - 文書がWebアプリケーションを利用している場合に、アプリケーション名を記述するために1つだけ指定。
+  - `author` - 文書の著作者の名前を記述するために指定。
+  - `description` -	文書の概要を記述するために1つだけ指定します。検索エンジンのクローラーに読み取られ、検索結果などにも表示される情報です。
+  - `generator`	- 文書がソフトウェアによって記述・作成されている場合に、ソフトウェア名を記述するために指定される。手動では指定しない。
+  - `keywords`- 文書の内容を表すキーワードを記述するために指定。`content`属性の値にはカンマ`,`区切りで複数のキーワードを入力できる。
+  - `robots` - 検索エンジンのクローラに対して URL をインデックスしないように（noindex）、 文書内のリンクをたどらないように（nofollow）知らせるために指定。
+  - **`viewport`** - 詳しくは後述
+  
+  `content`には以下のようにキーワードを指定することができる
+  
+  ```html
+  
+  <meta name="author" content="Author">
+  <meta name="description" content="HTML・CSS等の早見表的リファレンス">
+  <meta name="keywords" content="HTML,CSS,JavaScript,特殊文字,リファレンス">
+  <meta name="robots" content="noindex,nofollow">
+  ```
+  
+  ## まとめ
+  
+  - **`charset`** 
+    (http-equiv="content-type"とした meta タグ内でも指定できる)
+  - `http-equiv`&`content`
+    - `content-language`
+      - en (英語)
+      - zh (中国語)
+      - ko (韓国語)
+      - de (ドイツ語)
+      - fr (フランス語)
+      - it (イタリア語)
+      - ...
+    - `content-type`
+      - text/html
+      - **charset** (JSの代入のように指定、独立させて指定することもできる)
+    - `default-style`
+    - `refresh`
+      - url (JSの代入のように指定)
+  - `name`&`content`
+    - `application-name`
+    - `author`
+    - `description`
+    - `gegnerator`
+    - `keywords` (複数可)
+    - `robots`
+      - noindex (JSの代入のように指定)
+      - nofollow (JSの代入のように指定)
+    - `viewport`
+      - **initial-scale**
+      - **width**
+      - height
+      - minimum-scale
+      - maximum-scale
+      - user-scalable
+      - target-densitydpi
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false
