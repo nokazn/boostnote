@@ -1,0 +1,96 @@
+createdAt: "2019-08-24T14:09:41.663Z"
+updatedAt: "2019-08-24T14:57:35.246Z"
+type: "MARKDOWN_NOTE"
+folder: "c50fd792c06c102068ae"
+title: "WeakMap によるプライベートメソッドの実現"
+tags: []
+content: '''
+  # WeakMap によるプライベートメソッドの実現
+  
+  ## `WeakMap`
+  
+  - `Map`オブジェクトのキーに弱い参照をもたせたもの
+  - キーにはオブジェクトのみ指定でき、列挙可能でない
+  - キーとなったオブジェクトへの参照が他に存在しない場合、そのオブジェクトはガベージコレクションの対象に含まれ、廃棄される可能性がある
+  
+  ```js
+  const wm = new WeakMap
+  const obj = {}
+  wm.set(obj, 123)
+  wm.get(obj)  // 123
+  obj = null
+  wm.get(obj)  // undefined
+  ```
+  
+  ## プライベートメソッドの実現
+  
+  プライベートにしたいプロパティやメソッドを`WeakMap`の中に閉じ込める。
+  
+  `WeakMap`に外からアクセスできないように、、クラス定義を返すアロー関数を即時実行させるか、モジュール化させるファイルの中で`export`させないようにする。
+  
+  ```js
+  const Store = (() => {
+    const wm = new WeakMap()
+    const _ = self => {
+      return wm.get(self) || wm.set({}, self).get(self)
+    }
+    return class Store {
+      constructor () {
+        // プライベートプロパティ
+        _(this)._x = 'private'
+        // プライベートなゲッター・セッタ
+        Object.defineProperty(_(this), '_x',{
+          get () {
+            return _(this)._x
+          },
+          set (val) {
+            _(this)._x = val
+          }
+        })
+        // プライベートメソッド
+        _(this).increment = () => {
+          _(this)._x++
+        }
+      }
+      // パブリックメソッド
+      decrement () {
+        _(this)._x--
+      }
+      
+    }
+  })()
+  ```
+  
+  クラス内部のどこからでも参照できるようにクラス定義の前に初期化する。
+  
+  ```js
+  const Child = (() => {
+    const wm = new WeakMap()
+    const _ = self => {
+      return wm.get(self) || wm.set({}, self).get(self)
+    }
+    return class Child extends Parent {
+      /* do something */
+    }
+  })
+  ```
+  
+  以上のように継承もできる。
+  
+  ### 問題点
+  
+  - プライベートメソッドの定義はコンストラクター関数などのどこかのメソッド内で行う必要がある
+  - static なメソッド内では使用できず、static なプライベートメソッドも定義できない
+  - 普通のメソッド定義の書き方と大きく異なり、可読性も悪い
+  
+  
+  ## 参考
+  [WeakMap - JavaScript \\| MDN](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/WeakMap)
+  [Map, Set, WeakMap と WeakSet](https://ja.javascript.info/map-set-weakmap-weakset#ref-1176)
+  [JavaScriptのクラスでprivateを実現してみたかった人生だった - 生涯未熟](https://syossan.hateblo.jp/entry/2016/08/09/225016)
+  [JavaScriptでprivate「WeakMap」編 - Qiita](https://qiita.com/schrosis/items/76c4c10461584f4b5285)
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false
