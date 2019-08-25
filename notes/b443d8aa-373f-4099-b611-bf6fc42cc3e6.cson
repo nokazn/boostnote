@@ -1,0 +1,29 @@
+createdAt: "2019-08-25T14:42:58.904Z"
+updatedAt: "2019-08-25T14:45:37.003Z"
+type: "MARKDOWN_NOTE"
+folder: "c50fd792c06c102068ae"
+title: "ゲッターとセッター"
+tags: []
+content: '''
+  # ゲッターとセッター
+  
+  プロパティ名とゲッター・セッターに設定するメソッド名を同じにすると、`RangeError: Maximum call stack size exceeded`になってしまう。
+  
+  以下のように、ゲッター・セッターを設定したいプロパティはプライベートプロパティにする。
+  
+  ```js
+  const obj = {
+     _x: 'no value',
+     get x () {
+        return this._x;
+     },
+     set x (val) {
+        this._value = 'value: ' + val;
+     }
+  }
+  ```
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

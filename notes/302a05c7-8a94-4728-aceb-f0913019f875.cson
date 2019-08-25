@@ -1,0 +1,34 @@
+createdAt: "2019-08-25T12:29:18.268Z"
+updatedAt: "2019-08-25T12:34:37.961Z"
+type: "MARKDOWN_NOTE"
+folder: "c50fd792c06c102068ae"
+title: "Node.js を Windwos10 にインストールする"
+tags: [
+  "Node.js"
+  "Windows"
+]
+content: '''
+  # Node.js を Windwos10 にインストールする
+  
+  [ここ](https://nodejs.org/en/)からインストーラーをダウンロードして手順通りにインストールする。
+  
+  ## パスの設定
+  
+  `C:\\Users\\[username]\\AppData\\Roaming\\npm`が登録されている。
+  
+  ```bash
+  $ npm -v
+  6.9.0
+  ```
+  
+  新たに`NODE_PATH`という名前で`C:\\Users\\balea\\AppData\\Roaming\\npm\\node_modules`という環境変数を設定することで`node`コマンドが有効になる。
+  
+  ```bash
+  $ node -v
+  v10.16.3
+  ```
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false
