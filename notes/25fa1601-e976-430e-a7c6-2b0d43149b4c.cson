@@ -1,12 +1,12 @@
 createdAt: "2019-07-31T11:53:37.036Z"
-updatedAt: "2019-08-04T11:08:25.100Z"
+updatedAt: "2019-08-25T05:53:25.057Z"
 type: "MARKDOWN_NOTE"
 folder: "99c1744cc6189c73e4c0"
 title: "GCE インスタンスにスワップ領域を作成する"
 tags: [
   "スワップ"
-  "ソフトウェア"
   "OS"
+  "Linux"
 ]
 content: '''
   # GCE インスタンスにスワップ領域を作成する

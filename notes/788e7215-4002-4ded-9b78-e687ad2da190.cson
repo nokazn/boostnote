@@ -1,0 +1,86 @@
+createdAt: "2019-08-25T05:49:33.451Z"
+updatedAt: "2019-08-25T05:52:25.213Z"
+type: "MARKDOWN_NOTE"
+folder: "c7e496e9203872f26d2b"
+title: "Nginx をインストールして IP アクセス制御の設定を行う"
+tags: [
+  "Nginx"
+  "Webサーバー"
+]
+content: '''
+  # Nginx をインストールして IP アクセス制御の設定を行う
+  
+  ## リポジトリの作成
+  
+  基本的に`$ sudo su`として、スーパーユーザーで実行する。
+  
+  ```bash
+  $ sudo vi /etc/yum.repos.d/nginx.repo
+  ```
+  
+  ```diff:/etc/yum.repos.d/nginx.repo
+  + [nginx]
+  + name=nginx repo
+  + baseurl=http://nginx.org/packages/mainline/centos/7/$basearch/
+  + gcgcheck=0
+  + enabled=1
+  ```
+  
+  ## インストールして Nginx を起動
+  
+  ```bash
+  $ sudo yum install nginx
+  
+  $ nginx -v
+  nginx version: nginx/1.17.2
+  
+  # 起動
+  $ sudo systemctl start nginx
+  
+  # 自動起動設定
+  $ sudo systemctl enable nginx
+  ```
+  
+  HTTP/HTTPS 通信用のポート番号である 80/443 ポートは開けておく。
+  
+  サーバーやローカルマシンの外部 IP アドレスにブラウザでアクセスすると「Welcome to nginx!」と表示される。
+  
+  ## 外部 IP アドレスを制御する
+  
+  ### サーバー単位でのアクセス制御
+  
+  ```diff:/etc/nginx/conf.d/default.conf
+  server{
+  +  allow: ***.***.***.***;
+  +  allow: ***.***.***.***;
+  +  deny: all;
+  }
+  ```
+  
+  ### ディレクトリ単位でのアクセス制御
+  
+  ```diff:/etc/nginx/conf.d/default.conf
+  location /[制限先ディレクトリ]/ {
+  +  allow ***.***.***.***;
+  +  allow ***.***.***.***;
+  +  deny all;
+  }
+  ```
+  
+  上に書かれたものが優先的に評価されるため、`deny all;`は後ろに書く必要がある。
+  
+  設定変更後、Nginx を再起動する。
+  
+  ```bash
+  $ sudo systemctl restart nginx
+  ```
+  
+  ## 参考
+  
+  [CentOS7 に Nginx をインストールする](https://qiita.com/tomy0610/items/0884c77f1ac52957fa96)
+  [Vue.jsをCentOS7.4＋nginx上で動かしてみる](https://qiita.com/tosite0345/items/e6ca7c2ca661190d7f31)
+  [nginxでIPアドレス制限](http://shim0mura.hatenadiary.jp/entry/20130610/1370837544)
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

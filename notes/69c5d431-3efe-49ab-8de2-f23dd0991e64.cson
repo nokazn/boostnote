@@ -1,0 +1,443 @@
+createdAt: "2019-08-25T05:15:52.274Z"
+updatedAt: "2019-08-25T05:45:30.611Z"
+type: "MARKDOWN_NOTE"
+folder: "770da9bb44957224bcc5"
+title: "VBA"
+tags: [
+  "VBA"
+  "Excel"
+]
+content: '''
+  # VBA
+  
+  ## はじめに
+  
+  Excel ver.16
+  
+  - オブジェクト
+    - ワークブック
+    - ワークシート
+  	  - セル
+  - プロパティ
+  - メソッド
+  
+  
+  - VBA - 言語 (Visual Basic for Application)
+  - マクロ - 実際させる動作
+  
+  ## 環境
+  
+  ### Office アプリケーションで [開発] タブを表示する
+  1. [ファイル] タブをクリック
+  2. [オプション] をクリック
+  3. [リボンのユーザー設定] をクリック
+  4. [リボンのユーザー設定] および [メイン タブ] の下の [開発] チェック ボックスをオンにする
+  
+  ### Visual Basic (開発環境)　`alt`+`f11`
+  - オブジェクト - 左やや上にある操作する対象
+  - プロパティ - 左下にあり、オブジェクトであるシートに対する1つの要素
+  
+  #### ツールバー出す
+  
+  表示 → ツールバー → 標準
+  
+  ### 実際にプログラム書く
+  
+  - VB AProject (Book x) 右クリック → 挿入 → 標準モジュール
+  - 一番上の上のツールバーの挿入　→ 標準モジュール
+  - その下のツールバーの左端2番目　→ 標準モジュール
+  
+  → エディター出てくる
+  → 再生ボタン的なやつ or `F5`で実行
+  
+  ## 実行
+  
+  - モジュール - コードを書くことの出来る場のようなもの
+  - プロシージャー - 複数の処理の内容をまとめたやつ、戻り値のない関数のようなもの
+  
+  ```vbscript
+  Sub HelloWorld1()
+      ' コメント
+      MsgBox _
+      ("hello world1")
+  End Sub
+  
+  Sub HelloWorld2()
+      ' コメント
+      MsgBox _
+      ("hello world2")
+      MsgBox ("hello world3")
+  End Sub
+  ```
+  
+  - 基本は改行で一区切り
+  - 複数行で1つの操作書くときは、`_`で続けると1行と認識してくれる
+  - コメントはシングルクォーテーション`'`
+  
+  
+  ## Value Property を変更
+  
+  ```vbscript
+  Sub CellChange()
+      Worksheets("Sheet1").Range("A1").Value = "Hello1"
+  
+      ' 現在アクティブなワークシートに対してなら Worksheets は省略可
+      Range("A2").Value = "Hello2"
+  
+      ' セルの位置を座標みたいに (何行目, 何列目) で指定して代入
+      ' (縦の行, 横の列) なので座標の逆的な、Cells(2, 3) = Range("C2")
+      Cells(3, 1) = "Hello3"
+  
+      ' ある位置のセルから相対的に指定
+      Cells(3, 1).Offset(1, 0).Value = "Hello4"
+  
+  End Sub
+  ```
+  
+  ## 複数セルに値を表示する
+  
+  - オブジェクトはすべて`""`で囲んで指定
+  - `,`で区切られたら2つ、`:`で区切られてるのは1つ
+  
+  ```vbscript
+  Range("A1", "B3"), Range("A5:A7")
+  ```
+  
+  ```vbscript
+  Sub CellsChange()
+      range("c1", "d4").value = ",でrange"
+      ' 改行または実行するとエディタの補完で自動的に大文字になる
+      Range("F2:G3").Value = ":でRange"
+      Range("6:6").Value = "横に無限に"
+      Range("I:I").Value = "縦に無限に"
+  
+      ' 全部クリア
+      Cells.Clear
+  End Sub
+  ```
+  
+  ## `With`で命令をまとめる
+  
+  ```vbscript
+  Sub WithTest()
+      Range("A1").Value = "yellow"
+      Range("A1").Font.Bold = "true"
+      Range("a1").Font.Color = vbBlue
+      Range("a1").Font.Size = "20"
+      Range("a1").Interior.Color = vbRed
+  End Sub
+  ```
+  
+  `With [オブジェクト] ~ End With`で囲ったところは操作を加える対象が同じで、毎回`[オブジェクト]`を書かなくてよい
+  
+  ```vbscript
+  Sub WithTest2()
+      With Range("A2")
+          .Value = "yellow"
+          With .Font
+              .Bold = "true"
+              .Size = "20"
+          End With
+          .Font.Color = vbBlue
+          .Interior.Color = vbRed
+      End With
+  End Sub
+  ```
+  
+  色はオブジェクトじゃない (?) ので`""`で囲わない。
+  
+  ## セルの値を取得
+  
+  ```vbscript
+  Sub WithTest2()
+      With Range("A2")
+          .Value = "yellow"
+          With .Font
+              .Bold = "true"
+              .Size = "20"
+          End With
+          .Font.Color = vbBlue
+          .Interior.Color = vbRed
+      End With
+  End Sub
+  ```
+  
+  ## メソッド
+  
+  ```vbscript
+  Sub MethodTest()
+      ' Range("C3").Clear
+      ' Range("C6").Delete Shift:=xlShiftUp
+      Worksheets.Add after:=Worksheets("Sheet3"), Count:=4
+  End Sub
+  ```
+  
+  ## Integer 型の変数
+  
+  ```vbscript
+  Sub VariableTest()
+      ’Dimentionの略
+      Dim x As Integer
+      x = 10
+      Range("A1").Value = x
+      ' イミディエイトウィンドウに表示される
+      ' 表示 → イミディエイトウィンドウ (ctrl +G)
+      Dubug.Print x
+  End Sub
+  ```
+  
+  ```vbscript
+  Sub VariableTest()
+      Dim x As Integer
+      x = Range("A1").Value
+      x = x + 23
+      Range("A1").Value = x
+      Debug.Print x
+  End Sub
+  ```
+  
+  ## 他のデータ型の変数
+  
+  ```vbscript
+   Sub VariableTest2()
+      Dim y As Double   ' 実数
+      Dim s As String   ' 文字列
+      Dim d As Date     ' 日付
+      Dim z As Variant  ' 最初に型を決めない
+      Dim f As Boolean  ' true or false
+      Dim r As Range    ' 範囲
+  
+      y = "10.5"
+      s = "Hello"
+      d = "2018/11/01"
+      z = "なんでもいい"
+      f = "true"
+      Set r = Range("a1")
+  
+      Debug.Print y / 7
+      Debug.Print s & " World!"  ' 連結する
+      Debug.Print d
+      Debug.Print f
+      r.Value = d + 7
+  End Sub
+  ```
+  
+  # 配列
+  
+  ```vbscript
+  Sub ArrayTest()
+      Dim sales(2) As Integer
+      sales(0) = 200
+      sales(1) = 150
+      sales(2) = 300
+      Debug.Print sales(2)
+  End Sub
+  
+  Sub ArrayTest2()
+      Dim sales(2) As Variant
+      sales2 = Array(200, 150, 300)
+      Debug.Print sales2(1)
+  End Sub
+  ```
+  
+  ## `if`で条件分岐
+  
+  ```vbscript
+  Sub IfTest()
+      Cells.Clear
+      Range("a1").Value = Round(Rnd * 100, 0)
+  
+      If Range("A1").Value > 80 Then
+          Range("a2").Value = "OK!"
+      ElseIf Range("a1").Value > 60 Then
+          Range("a2").Value = "soso..."
+      Else
+          Range("a2").Value = "NG!"
+      End If
+  End Sub
+  ```
+  
+  ## `Select`で条件分岐
+  
+  ```vbscript
+  Sub SelectTest()
+      Dim x As Integer
+      x = WorksheetFunction.RoundUp(Rnd * 3, 0)
+      Debug.Print x
+  
+      Dim color As String
+      color = Array("red", "green", "yello")
+  
+      Dim signal As String
+      Range("a1").Value = color(x)
+  
+      Dim result As Range
+      Set result = Range("a2")
+      signal = Range("a1").Value
+  
+      Select Case signal
+      Case "red"
+          result.Value = "STOP"
+      Case "green"
+          result.Value = "GO!"
+      Case "yellow"
+          result.Value = "CAUTION"
+      Case Else
+          result.Value = "n.a"
+      End Select
+  End Sub
+  ```
+  
+  → `color(x)`はうまくいかないっぽい
+  
+  ```vbscript
+  Sub SelectTest()
+      Dim x As Integer
+      x = WorksheetFunction.RoundDown(Rnd * 3, 0)
+      Debug.Print x
+  
+      Dim color As String
+      signal = Array("red", "green", "yellow")
+      Debug.Print signal(x)
+      Range("a1").Value = signal(x)
+  
+      Dim result As Range
+      Set result = Range("a2")
+  
+      Select Case signal(x)
+      Case "red"
+          result.Value = "STOP"
+      Case "green"
+          result.Value = "GO!"
+      Case "yellow"
+          result.Value = "CAUTION"
+      Case Else
+          result.Value = "n.a"
+      End Select
+  
+  End Sub
+  ```
+  
+  → 成功
+  
+  ## `While`や`For`でループ処理
+  
+  ```vbscript
+  Sub WhileTest()
+      Cells.Clear
+      Dim i As Integer
+      i = 1
+  
+      Do While i < 10
+          Cells(i, 1).Value = i
+          i = i + 1
+      Loop
+  End Sub
+  
+  Sub ForTest()
+      Dim i As Integer
+  
+      For i = 1 To 9 Step 2
+          Cells(i, 2).Value = i
+      Next i
+  End Sub
+  ```
+  
+  ## `Each`で配列のループ処理
+  
+  ```vbscript
+  Sub EachTest()
+  
+      For Each Fruit In fruits
+          Debug.Print Fruit
+      Next Fruit
+  End Sub
+  ```
+  
+  ## `Call`でプロシージャを呼び出す
+  
+  複雑にならないようプロシージャを分けて、呼び出す。
+  
+  ```vbscript
+  Sub CallTest()
+      Dim names As Variant
+      fruits = Array("apple", "orange", "banana")
+  
+      For Each fruit In fruits
+          Call Eat(fruit)
+      Next fruit
+  End Sub
+  ```
+  
+  ```vbscript
+  Sub Eat(ByVal fruit As String)
+      Debug.Print "I eat " & fruit
+  End Sub
+  ```
+  
+  ## `Function`プロシージャを呼び出す
+  
+  - `Sub`プロシージャ - 戻り値がない
+  - `Function`プロシージャ - 戻り値がある
+  
+  ```vbscript
+  Sub CallTest()
+      Dim names As Variant
+      fruits = Array("apple", "orange", "banana")
+  
+      For Each fruit In fruits
+          Debug.Print Eat(fruit)
+      Next fruit
+  End Sub
+  
+  Function Eat(ByVal fruit As String)
+      Eat = "I eat " & fruit
+  End Function
+  ```
+  
+  ## 成績表の処理
+  
+  ```vbscript
+  Sub FindFiles()
+      Dim i As Long
+      Dim n As Long
+      i = 2
+      n = 0
+  
+      ' 指定したセルが空じゃない限り
+      Do While Cells(i, 1).Value <> ""
+          If Cells(i, 2).Value < 60 Then
+              Cells(i, 2).Interior.color = vbRed
+  
+              n = n + 1
+          End If
+          i = i + 1
+      Loop
+      MsgBox (n & "件該当しました。")
+  End Sub
+  ```
+  
+  ```vbscript
+  Sub AmountsOfFiles()
+  
+      Dim i As Long
+      Dim n As Long
+      Dim x As Integer
+      i = 4
+      n = 0
+  
+      ' 指定したセルが空じゃない限り
+      Do While Cells(i, 2).Value <> ""
+          Cells(i, 5).Interior.Color = vbRed
+          x = Cells(i, 5).Value / 10000
+          Cells(i, 5).Interior.TintAndShade = 1 - x
+          i = i + 1
+      Loop
+      MsgBox (n & "件該当しました。")
+  End Sub
+  ```
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

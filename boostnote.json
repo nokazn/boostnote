@@ -76,19 +76,24 @@
       "name": "環境構築"
     },
     {
-      "key": "fbf53ad0a1ed9b9ef88a",
+      "key": "6e4eb91b21271c4787f1",
       "color": "#4a90e2",
+      "name": "Git"
+    },
+    {
+      "key": "fbf53ad0a1ed9b9ef88a",
+      "color": "#417505",
       "name": "ハードウェア"
     },
     {
-      "key": "99c1744cc6189c73e4c0",
-      "color": "#bd10e0",
-      "name": "GCP"
+      "key": "c7e496e9203872f26d2b",
+      "color": "#417505",
+      "name": "ミドルウェア"
     },
     {
-      "key": "6e4eb91b21271c4787f1",
-      "color": "#bd10e0",
-      "name": "Git"
+      "key": "99c1744cc6189c73e4c0",
+      "color": "#417505",
+      "name": "GCP"
     },
     {
       "key": "72d8e856c36c64a9b2b9",
