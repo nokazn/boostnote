@@ -1,0 +1,60 @@
+createdAt: "2019-08-28T10:56:54.822Z"
+updatedAt: "2019-08-28T13:58:43.280Z"
+type: "MARKDOWN_NOTE"
+folder: "c50fd792c06c102068ae"
+title: "長い数値をカンマ入りの文字列にする"
+tags: []
+content: '''
+  # 長い数値をカンマ入りの文字列にする
+  
+  ## 文字列の長さから必要なカンマの数を求めて挿入
+  
+  ```js
+  function addCommas (num) {
+    num = num.toString()
+    const commaCounts = Math.floor((num.length - 1) / 3)
+    const nums = num.split('').reverse()
+    if (commaCounts > 0) {
+      for (let i = 0; i < commaCounts; ++i) {
+        nums.splice((i + 1) * 3 + i, 0, ',')
+      }
+    }
+    return nums.reverse().join('')
+  }
+  ```
+  
+  ```js
+  function addCommas (num) {
+    num = num.toString()
+    const commaCounts = Math.floor((num.length - 1) / 3)
+    const nums = num.split('')
+    if (commaCounts > 0) {
+      for (let i = 0; i < commaCounts; ++i) {
+        nums.splice(num.length - (i + 1) * 3, 0, ',')
+      }
+    }
+    return nums.join('')
+  }
+  ```
+  
+  ## 正規表現で置換
+  
+  `.`または`,`以前の数字の下3桁のところにカンマ`,`を挿入する無名関数`replace`を再帰関数として実行させている。
+  
+  ```js
+  function addCommas (num) {
+    const replace = num => {
+      return num.replace(/(^(?:\\d)+)(\\d{3})($|(?:\\.|,\\d))/, (match, ...p) => {
+        const answer = [[...p][0], ',', ...[...p].slice(1, 3)].join('')
+        return match ? replace(answer) : answer
+      })
+    }
+    return replace(num)
+  }
+  
+  ```
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false
