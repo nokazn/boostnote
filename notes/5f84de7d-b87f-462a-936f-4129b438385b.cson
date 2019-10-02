@@ -1,0 +1,43 @@
+createdAt: "2019-09-03T09:36:42.448Z"
+updatedAt: "2019-09-17T15:31:02.588Z"
+type: "MARKDOWN_NOTE"
+folder: "c50fd792c06c102068ae"
+title: "Webpack4 を理解する"
+tags: [
+  "途中"
+]
+content: '''
+  # Webpack4 を理解する
+  
+  - 複数の JavaScript ファイルを1つのファイルにバンドル化するモジュールバンドラーの1つ
+    - Browserify
+    - RequireJS
+    - SystemJS
+  - ビルド - バンドルを出力するまでの一連の処理
+  
+  ## インストール
+  
+  ```bash
+  $ npm install webpack webpack-cli
+  ```
+  
+  ## 設定項目
+  
+  - `mode`
+  - `entry`
+  - `output`
+  - `loader`
+  - `plugins`
+  
+  ```js
+  const path = require('path')
+  ```
+  
+  ## 参考
+  
+  [Webpack の考え方について - mizchi's blog](https://mizchi.hatenablog.com/entry/2018/11/26/164523)
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

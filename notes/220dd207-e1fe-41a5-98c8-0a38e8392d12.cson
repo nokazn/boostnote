@@ -1,0 +1,54 @@
+createdAt: "2019-09-15T16:21:08.856Z"
+updatedAt: "2019-09-16T16:29:46.471Z"
+type: "MARKDOWN_NOTE"
+folder: "846fb24c5f8aad917395"
+title: "記事"
+tags: [
+  "途中"
+  "あとで読む"
+]
+content: '''
+  # 記事
+  
+  ## MVVM
+  
+  
+  - [ ] [MVVMを勉強するときに参考になったリンク集 &amp; 概要まとめ - Qiita](https://qiita.com/homyu/items/046c9a43b15b9e376198)
+  - [ ] [AddyOsmani.com - Understanding MVVM - A Guide For JavaScript Developers](https://addyosmani.com/blog/understanding-mvvm-a-guide-for-javascript-developers/)
+  - [ ] [JavaScriptのアーキテクチャ](http://azu.github.io/slide/2016/make-arch/js-css-architecture.html)
+  - [ ] [MVVMをベースに複雑な振る舞いをしっかり把握できるアプリ開発 - Qiita](https://qiita.com/susieyy/items/2af5321b287b8d2f49f6)
+  - [ ] [Webアプリケーション開発者から見た、MVCとMVP、そしてMVVMの違い - Qiita](https://qiita.com/shinkuFencer/items/f2651073fb71416b6cd7#mvvmmodelviewviewmodel)
+  - [ ] [MVVMのModelにまつわる誤解 - the sea of fertility](http://ugaya40.hateblo.jp/entry/model-mistake)
+  - [ ] [10分で振り返るソフトウェアアーキテクチャの歴史2017 - Speaker Deck](https://speakerdeck.com/takasek/10fen-tezhen-rifan-rusohutoueaakitekutiyafalseli-shi-2017)
+  - [ ] [MVVMとはなんぞやを公理から求めてみる - 滅入るんるん](https://blog.meilcli.net/2018/10/21/165056)
+  
+  ## Flux
+  
+  - [ ] [10分で実装するFlux](https://azu.github.io/slide/react-meetup/flux.html)
+  - [ ] [Translation Note 📝 - samyamashita - Medium](https://medium.com/samyamashita/漫画で説明する-flux-1a219e50232b#.kkglld8lb)
+  
+  ## React
+  
+  - [ ] [宣言的UIはReact Hooksで完成に至り、現代的設計論が必須の時代になる - Qiita](https://qiita.com/erukiti/items/fb7bcbd9d79696579d06)
+  - [ ] [React+Redux入門 - Qiita](https://qiita.com/erukiti/items/e16aa13ad81d5938374e#_reference-8e00497ba33f7bb4d70c)
+  
+  ## Vue.js
+  
+  - [ ] [Vue.js設計地図 〜設計概念の依存関係からフロントエンド設計を見つめ直す〜](https://tech.plaid.co.jp/architecture_frontend_modeling/)
+  - [ ] [Vue.jsではじめるMVVM入門 \\| DeNA DESIGN BLOG](https://design.dena.com/engineering/vue-jsではじめるmvvm入門/)
+  - [ ] [Vue.js のmountedでaddEventListenerやsetIntervalするとき、後始末を忘れない - GAミント至上主義](https://uyamazak.hatenablog.com/entry/2018/05/21/135729)
+  - [ ] [Vue.js+TypeScriptを試した際の雑感 - mizdra's blog](https://www.mizdra.net/entry/2018/03/07/010712)
+  - [ ] [Vue使いなら知っておきたいVueのパターン・小技集 - Qiita](https://qiita.com/HayatoKamono/items/5958d8648007adf6881b#v-modelのカスタマイズ)
+  - [ ] [Vue+VuexでMVVMなWebApplicationを設計するときに考えたいこと](https://aloerina01.github.io/blog/2017-08-29-1)
+  - [ ] [React、Angularになじめなかった僕に手を差し伸べてくれたVue.js - Qiita](https://qiita.com/samuraikun/items/bb2939296bbead341293)
+  
+  
+  ## その他
+  
+  - [ ] [NodeSchool](https://nodeschool.io/ja/)
+  - [ ] [ロシアの天才ハッカーによる【新人エンジニアサバイバルガイド】 - Qiita](https://qiita.com/jacksuzuki/items/b2fa6b44962e73a53d08)
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

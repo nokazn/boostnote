@@ -1,5 +1,5 @@
 createdAt: "2019-05-30T14:40:24.723Z"
-updatedAt: "2019-05-30T14:47:58.242Z"
+updatedAt: "2019-09-21T07:13:37.513Z"
 type: "MARKDOWN_NOTE"
 folder: "c50fd792c06c102068ae"
 title: "繰り返し"
@@ -26,6 +26,7 @@ content: '''
       - `Map.prototype.forEach`にて key / value を定義順に列挙できる
       - key には`NaN`を含むすべての型を指定できる
       - `Map.prototype.entries`, `Map.prototype.keys`, `Map.prototype.values`でイテレータを出力できる
+  
 '''
 linesHighlighted: []
 isStarred: false

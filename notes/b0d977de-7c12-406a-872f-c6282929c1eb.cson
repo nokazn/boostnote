@@ -1,0 +1,80 @@
+createdAt: "2019-09-27T09:19:30.290Z"
+updatedAt: "2019-09-27T09:36:14.085Z"
+type: "MARKDOWN_NOTE"
+folder: "cfb8bb7394508a89ba1d"
+title: "監視できるファイルの上限数を超過したとき"
+tags: [
+  "CentOS"
+  "Linux"
+  "Vue.js"
+]
+content: '''
+  # 監視できるファイルの上限数を超過したとき
+  
+  ## 環境
+  
+  - CentOS 7.0
+  
+  
+  ## 現象
+  
+  @vue/cli を用いたプロジェクトで開発用サーバーを立ち上げようとしたときに以下の現象が発生した。
+  
+  ```bash
+  $ npm run serve
+  > dailyreport2-dev@0.1.0 serve /home/nn_ono272727/dailyreport2-dev
+  > vue-cli-service serve
+  
+   INFO  Starting development server...
+  10% building 2/2 modules 0 activeℹ ｢wds｣: Project is running at http://localhost:8080/
+  ℹ ｢wds｣: webpack output is served from /
+  ℹ ｢wds｣: Content not from webpack is served from /home/nn_ono272727/dailyreport2-dev/public
+  ℹ ｢wds｣: 404s will fallback to /index.html
+  events.js:174
+        throw er; // Unhandled 'error' event
+        ^
+  
+  Error: ENOSPC: System limit for number of file watchers reached, watch '/home/nn_ono272727/dailyreport2-dev/public'
+      at FSWatcher.start (internal/fs/watchers.js:165:26)
+      at Object.watch (fs.js:1258:11)
+      at createFsWatchInstance (/home/nn_ono272727/dailyreport2-dev/node_modules/chokidar/lib/nodefs-handler.js:38:15)
+      at setFsWatchListener (/home/nn_ono272727/dailyreport2-dev/node_modules/chokidar/lib/nodefs-handler.js:81:15)
+      at FSWatcher.NodeFsHandler._watchWithNodeFs (/home/nn_ono272727/dailyreport2-dev/node_modules/chokidar/lib/nodefs-handler.js:233:14)
+      at FSWatcher.NodeFsHandler._handleDir (/home/nn_ono272727/dailyreport2-dev/node_modules/chokidar/lib/nodefs-handler.js:429:19)
+      at FSWatcher.<anonymous> (/home/nn_ono272727/dailyreport2-dev/node_modules/chokidar/lib/nodefs-handler.js:477:19)
+      at FSWatcher.<anonymous> (/home/nn_ono272727/dailyreport2-dev/node_modules/chokidar/lib/nodefs-handler.js:482:16)
+      at FSReqWrap.oncomplete (fs.js:154:5)
+  Emitted 'error' event at:
+      at FSWatcher._handleError (/home/nn_ono272727/dailyreport2-dev/node_modules/chokidar/index.js:260:10)
+      at createFsWatchInstance (/home/nn_ono272727/dailyreport2-dev/node_modules/chokidar/lib/nodefs-handler.js:40:5)
+      at setFsWatchListener (/home/nn_ono272727/dailyreport2-dev/node_modules/chokidar/lib/nodefs-handler.js:81:15)
+      [... lines matching original stack trace ...]
+      at FSReqWrap.oncomplete (fs.js:154:5)
+  ```
+  
+  といった具合に、`System limit for number of file watchers reached`と言われた。
+  
+  ## 解決
+  
+  ```bash
+  $ cat /proc/sys/fs/inotify/max_user_watches
+  8192
+  $ echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
+  fs.inotify.max_user_watches=524288
+  fs.inotify.max_user_watches = 524288
+  $ cat /proc/sys/fs/inotify/max_user_watches
+  524288
+  ```
+  
+  - `tee` - 標準出力とファイル出力を同時に行う
+  - `sysctl` - 実行時にカーネルパラメータを修正する
+    - `-f` - 指定されたファイルから読み込んだ内容を sysctl 設定にロードする (ファイル指定がなければ /etc/sysctl.conf から)
+  
+  ## 参考
+  
+  [watchman - React Native Error: ENOSPC: System limit for number of file watchers reached - Stack Overflow](https://stackoverflow.com/questions/55763428/react-native-error-enospc-system-limit-for-number-of-file-watchers-reached)
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

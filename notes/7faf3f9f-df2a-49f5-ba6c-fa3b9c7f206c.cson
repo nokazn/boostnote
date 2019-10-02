@@ -1,9 +1,12 @@
 createdAt: "2019-05-06T14:02:13.690Z"
-updatedAt: "2019-05-30T15:54:04.718Z"
+updatedAt: "2019-09-22T16:44:02.587Z"
 type: "MARKDOWN_NOTE"
 folder: "b6dd430e5297036eb2a1"
 title: "Rails + Vue.js"
-tags: []
+tags: [
+  "todolist"
+  "todo"
+]
 content: '''
   # Rails + Vue.js
   

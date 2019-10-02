@@ -1,0 +1,176 @@
+createdAt: "2019-08-29T12:08:57.421Z"
+updatedAt: "2019-09-04T12:16:51.881Z"
+type: "MARKDOWN_NOTE"
+folder: "d8b18fc544434022f6d8"
+title: "Flexbox"
+tags: [
+  "レスポンシブ"
+  "flexbox"
+]
+content: '''
+  # Flexbox
+  
+  ## Flexbox とは
+  
+  Flex Box Layout Module のことで、CSS での複雑なレイアウトを実現するためのレイアウトモジュールである。2019年現在ではほぼすべてのモダンブラウザで実装されている。
+  
+  ## 概要
+  
+  - flex コンテナ - flex アイテムを包括する親要素
+  - flex アイテム - flex コンテナ内に配置された子要素
+  
+  ```html:index.html
+  <ul class="flexbox">
+    <li class="flexbox__item">リストアイテム1</li>
+    <li class="flexbox__item">リストアイテム2</li>
+    <li class="flexbox__item">リストアイテム3</li>
+    <li class="flexbox__item">リストアイテム4</li>
+  </ul>
+  ```
+  
+  というテンプレートに対して、
+  
+  ```css:style.css
+  .flexbox {
+    display: flex;
+  }
+  ```
+  
+  または、
+  
+  ```css:style.css
+  .flexbox {
+    display: inline-flex
+  }
+  ```
+  
+  とすると横並びのリストを表現できる。
+  
+  ## flex コンテナの各プロパティ
+  
+  ### `flex-direction`
+  
+  アイテムの並び順。
+  
+  - `row` - 左から右 (デフォルト)
+  - `row-reverse` - 右から左
+  - `column` - 上から下
+  - 'column-reverse' - 下から上
+  
+  ```css
+  .flexbox {
+    display: flex;
+    flex-direction: row-reverse;
+  }
+  ```
+  
+  ### `flex-wrap`
+  
+  アイテムの折り返し。
+  
+  - `nowrap` - 折り返さず、自動で幅を調整 (デフォルト)
+  - `wrap` - 幅を固定し、flex アイテムが flex コンテナの幅を超えるとき折り返す
+  - `wrap-reverse` - `wrap` 同様に折り返しが行われる場合、下から上に並ぶ
+  
+  ### `flex-flow`
+  
+  以下のように`flex-direction`と`flex-wrap`を同時に指定できる。
+  
+  ```css
+  .flexbox {
+    flex-flow: row nowrap;  /* デフォルト */
+  }
+  ```
+  
+  ### `justify-content`
+  
+  アイテムの水平方向の位置関係。
+  
+  - `flex-start` - 左詰め (デフォルト)
+  - `flex-end` - 右詰め
+  - `center` - 中央揃え
+  - `space-between` - アイテム間が間隔が均等になる
+  - `space-around` - 左右両端とアイテム間の間隔が均等になる
+  
+  ### `align-items`
+  
+  アイテムの垂直方向の位置。
+  
+  - `stretch` - アイテムの高さはコンテナの高さいっぱい (デフォルト)
+  - `flex-start` - 上詰めで、アイテムの高さは**伸びない**
+  - `flex-end` - 下詰めで、アイテムの高さは**伸びない**
+  - `baseline` - baseline に沿って配置され、アイテムの高さは**伸びない**
+  
+  ### `align-content`
+  
+  アイテムが複数行ある場合のアイテムの垂直方向の位置関係。
+  
+  - `stretch` - アイテムの高さはコンテナの高さいっぱい (デフォルト)
+  - `flex-start` - 上詰めで、アイテムの高さは**一番高い要素に揃えられる**
+  - `flex-end` - 下詰めで、アイテムの高さは**一番高い要素に揃えられる**
+  - `center` - 中央揃えで、
+  - `space-between` - アイテム間が間隔が均等になり、**一番高い要素に揃えられる**
+  - `space-around` - 上下両端とアイテム間の間隔が均等になり、**一番高い要素に揃えられる**
+  
+  ## flex アイテムの各プロパティ
+  
+  ### `order`
+  
+  アイテムの順番を指定でき、デフォルトは 0。以下のようにすると 1, 2, 3, 4 順番で表示される。
+  
+  ```css
+  .flexbox__item1 { order 4; }
+  .flexbox__item2 { order 3; }
+  .flexbox__item3 { order 2; }
+  .flexbox__item4 { order 1; }
+  ```
+  
+  ### `flex-grow`
+  
+  コンテナ内に余白がある場合のアイテムの伸び率を整数で相対的に表したもの。
+  
+  ### `flex-shrink`
+  
+  アイテムの合計幅の合計がコンテナの幅を超える場合のアイテムの縮む割合を整数で相対的に表したもの。
+  
+  ### `flex-basis`
+  
+  アイテムのベースとなる幅を`px`値や`%`かauto`で指定できる。アイテムの合計幅がコンテナの幅を超える場合はコンテナ内に収まるように自動で調整される。
+  
+  ### `flex`
+  
+  `flex-grow`、`flex-shrink`、`flex-basis`をまとめて指定できる。
+  
+  ```css
+  .main__1 {
+    flex: 0 1 100px;  /* grow, shrink, basis */
+  }
+  ```
+  
+  ### `align-self`
+  
+  個々に`align-items`を設定できる。
+  
+  - `stretch` - アイテムの高さはコンテナの高さいっぱい (デフォルト)
+  - `flex-start` - 上詰めで、アイテムの高さは**伸びない**
+  - `flex-end` - 下詰めで、アイテムの高さは**伸びない**
+  - `center` - 中央揃えで、アイテムの高さは**伸びない**
+  - `baseline` - baseline に沿って配置され、アイテムの高さは**伸びない**
+  
+  ```css
+  .flexbox__item1 {
+    align-self: auto;
+  }
+  ```
+  
+  ## 参考
+  
+  [CSS flexible box の利用 - CSS: カスケーディングスタイルシート \\| MDN](https://developer.mozilla.org/ja/docs/Web/CSS/CSS_Flexible_Box_Layout/Using_CSS_flexible_boxes)
+  [【CSS】まだfloat使ってる？CSSのFlexboxを徹底解説！ – WEBDESIGNDAY](https://webdesignday.jp/inspiration/pickup/4175/)
+  [CSS Flexible Box Layout Module Level 1](https://www.w3.org/TR/css-flexbox/#flex-baselines)
+  
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

@@ -1,22 +1,43 @@
 createdAt: "2019-07-31T12:03:52.011Z"
-updatedAt: "2019-08-12T11:10:10.184Z"
+updatedAt: "2019-09-27T02:35:25.388Z"
 type: "MARKDOWN_NOTE"
 folder: "b6dd430e5297036eb2a1"
 title: "dailyreport2"
 tags: [
   "vue.js"
+  "日報"
+  "途中"
 ]
 content: '''
   # dailyreport2
   
-  ```bash
+  - `init` - @vue/cli 以外の外部のテンプレートからプロジェクトを作成
+  - `create` - @vue/cli のテンプレートを使用してプロジェクトを作成 (v3.0~)
+  
+  ```bash:dailyrepor1
   $ npm install -g @vue/cli
+  $ vue init webpack dailyreport2
   $ npm install vuex
   $ npm install iview@3.3.3
   $ npm install moment@2.23.0
   $ npm install sass-loader@7.2.0 node-sass@4.12.0
   $ npm install firebase
+  $ npm install firebase-tools firebaseui
   ```
+  
+  ```bash:dailyrepor2
+  $ node -v
+  v10.16.0
+  $ vue --version
+  3.11.0
+  $ npm -v
+  6.11.3
+  
+  $ npm install -g @vue/cli
+  $ vue create dairyreport2
+  $ npm i --save firebase firebaseui-ja vue-moment iview
+  ```
+  
 '''
 linesHighlighted: []
 isStarred: false

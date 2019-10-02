@@ -1,0 +1,29 @@
+createdAt: "2019-09-19T11:44:31.723Z"
+updatedAt: "2019-09-19T11:52:38.275Z"
+type: "MARKDOWN_NOTE"
+folder: "3ffb8e78a5059309e819"
+title: "長さ n のタプル型を定義する"
+tags: []
+content: '''
+  # 長さ n のタプル型を定義する
+  
+  スプレッド演算子`...`とオブジェクトリテラル`{ length: n }`を交差させて定義すると固定長`n`のタプル型を定義することができる。
+  
+  ```ts
+  type Tuple<T, S extends number> = [T, ...T[]] & { length: S };
+  
+  // 長さ 7 で文字列を要素に持つタプル
+  type Tuple7 = Tuple<string, 7>;
+  // 長さ 9 の2次元タプル
+  type Tuple9x9<T> = Tuple<Tuple<T, 9>, 9>;
+  ```
+  
+  ## 参考
+  
+  [What's new in TypeScript · microsoft/TypeScript Wiki · GitHub](https://github.com/Microsoft/TypeScript/wiki/What%27s-new-in-TypeScript#rest-elements-in-tuple-types)
+  [TypeScriptの型入門 - Qiita](https://qiita.com/uhyo/items/e2fdef2d3236b9bfe74a#%E3%82%BF%E3%83%97%E3%83%AB%E5%9E%8B%E3%81%A8%E5%8F%AF%E5%A4%89%E9%95%B7%E5%BC%95%E6%95%B0)
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

@@ -1,5 +1,5 @@
 createdAt: "2019-07-30T10:10:24.142Z"
-updatedAt: "2019-08-05T11:58:59.497Z"
+updatedAt: "2019-09-16T16:02:48.997Z"
 type: "MARKDOWN_NOTE"
 folder: "99c1744cc6189c73e4c0"
 title: "GCE + Cloud9"
@@ -26,16 +26,64 @@ content: '''
       - 30GB
     - OSイメージ - Linux のディストリビューション、Windows Server など
   
-  ## Node.js をインストール (GCE側)
+  ## SSH 接続をするポート番号を変更する (GCE側)
   
-  - SSH接続してポート開けるファイアウォールを設定。
-  - 設定したファイアウォールに`allow[ポート番号]-server`というタグを設定し、インスタンス側にも同様のタグをつけて設定を紐づける。
+  1. '/etc/ssh/sshd_config'の中の`Port`の項目を任意のポート番号に変更してコメントアウトを解除する。
   
-  VM インスタンスのページからサーバーに指定したポート番号でSSH接続をする。
+  ```diff:/etc/ssh/sshd_config
+  - #Port 22
+  + Port 12345
+  ```
+  
+  3. sshd を再起動する。
+  
+  ```bash
+  $ sudo systemctl restart sshd
+  ```
+  
+  4. VPCネットワーク > ファイアウォールルール から、SSH 接続してポート開けるルールを設定。
+  5. 設定したファイアウォールに`allow[ポート番号]-server`というタグを追加し、インスタンス側にも同様のタグをつけて設定を紐づける。
+  6. Computer Engines > VM インスタンス から、指定したポート番号で SSH 接続をする。
+  
+  ## スワップ領域の作成
+  
+  ```bash
+  # /swapfile という1024MBのファイルをすべて null 文字で作成する
+  $ dd if=/dev/zero of=/swapfile bs=1M count=1024
+  
+  # 権限を設定
+  $ chmod 600 /swapfile
+  
+  # スワップ領域の作成
+  $ mkswap /swapfile
+  
+  # スワップ領域の有効化
+  $ swapon /swapfile
+  ```
+  
+  `dd` - 指定したサイズのファイルを作成
+    - `if` - インプットファイルを指定
+      - `/dev/zero` - すべて null 文字のファイル
+    - `of` - `if` で指定されたファイルを`/swapfile`を書き込む
+    - `bs` - 一度に書き込みするブロック数
+    - `count` - 書き込みの個数
+  
+  以下のようにスワップ領域が確保される。
+  
+  ```bash
+  $ free -m
+                total        used        free      shared  buff/cache   available
+  Mem:            587         307          40           4         239         126
+  Swap:          1023           0        1023
+  ```
+  
+  ## Node.js の LTS をインストール (GCE側)
   
   ```GCE側:bash
   $ sudo yum update
   $ sudo yum install nodejs
+  $ sudo npm install -g n
+  $ sudo n stable
   ```
   
   ## Cloud9 から GCE インスタンスに接続する (Cloud9側)
@@ -63,7 +111,7 @@ content: '''
   104.196.247.162
   ```
   
-  以下は内部IPを出力する。
+  ちなみに以下は内部IPを出力する。
   
   ```bash
   $ ip a
@@ -90,13 +138,7 @@ content: '''
   
   ### Cloud9 で生成された公開鍵を GCE インスタンスに登録する
   
-  ~~`~/.ssh/authorized_keys`に公開鍵を追加する~~
-  
   ```bash
-  $ touch vi ~/.ssh/authorized_keys
-  $ sudo vi ~/.ssh/authorized_keys
-  # => コピーした公開鍵を張り付ける
-  
   # authorized_keys を管理者のみ読み書きできる権限に変更
   $ chmod 600 ~/.ssh/authorized_keys
   
@@ -107,32 +149,36 @@ content: '''
   -rw-------. 1 nn_ono272727 nn_ono272727 752 Jul 20 06:56 /home/nn_ono272727/.ssh/authorized_keys
   ```
   
-  → `~/.ssh/authorized_keys`に公開鍵を直接追加しても、インスタンス再起動時などに書き換えられてしまう。
+  Cloud9側で「Copy key to clipboard」としてコピーした SSH 認証鍵を VM インスタンスの管理画面から追加する。
   
-  「Copy key to clipboard」としてコピーした SSH 認証鍵を VM インスタンスの管理画面から追加する。
+  このとき、SSH 認証鍵を以下のように変更しないと認証エラーになる。
   
-  **このとき、`... [ユーザー名]+[アカウントID]@cloud9.amazon.com`を`... [ユーザー名]@cloud9.amazon.com`としないと認証エラーになるので注意する。**
+  ```diff:ssh-key
+  - ... user+[アカウントID]@cloud9.amazon.com
+  + ... user@cloud9.amazon.com
+  ```
   
   その後、インスタンスを再起動すると登録した SSH 認証鍵が`~/.ssh/authorized_keys`に追加されている。
   
+  ## Cloud9 IDE をインストール
+  
   ```bash
-  $ sudo passwd root
-  $ sudo passwd nn_ono272727
   $ sudo yum groupinstall -y development
   $ sudo yum install glibc-static
   ```
   
-  ### 自分をsudoユーザーに追加
+  ### パーミッションエラーが発生する場合
   
   ```bash
+  $ sudo passwd root
+  $ sudo passwd nn_ono272727
   $ sudo ls
   [sudo] password for nn_ono272727:
   nn_ono272727 is not in the sudoers file.
   $
   ```
   
-  `/etc/sudoers`に自身を追加する必要がある。
-  
+  sudo ユーザーとして`/etc/sudoers`に自身を追加する必要がある。
   `/etc/sudoers`は root 権限を持っていても書き込み権限がないため、専用のコマンド`visudo`で書き込む必要がある。
   
   ```bash

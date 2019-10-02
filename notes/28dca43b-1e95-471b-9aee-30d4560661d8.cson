@@ -1,0 +1,106 @@
+createdAt: "2019-09-02T15:32:44.595Z"
+updatedAt: "2019-09-11T04:23:42.980Z"
+type: "MARKDOWN_NOTE"
+folder: "c50fd792c06c102068ae"
+title: "Yahoo!テレビから番組を取得して LINE に通知する"
+tags: [
+  "途中"
+]
+content: '''
+  # Yahoo!テレビから番組を取得して LINE に通知する
+  
+  ## トリガー
+  
+  ```
+  cron(0 6 * * ? *)
+  ```
+  
+  ### AWS Lambda にデプロイする
+  
+  ```bash
+  > lambda@1.0.0 build /home/vagrant/lambda
+  > webpack && npm run build:zip
+  
+  Hash: d8d20fef0df618198365
+  Version: webpack 4.39.3
+  Time: 13362ms
+  Built at: 2019-09-03 09:49:29
+          Asset      Size  Chunks             Chunk Names
+  line-tvbot.js  6.54 MiB    main  [emitted]  main
+  Entrypoint main = line-tvbot.js
+  [./node_modules/moment/locale sync recursive ^\\.\\/.*$] ./node_modules/moment/locale sync ^\\.\\/.*$ 3 KiB {main} [optional] [built]
+  [./node_modules/webpack/buildin/module.js] (webpack)/buildin/module.js 497 bytes {main} [built]
+  [./src/getPrograms.js] 1.52 KiB {main} [built]
+  [./src/main.js] 2.19 KiB {main} [built]
+  [./src/push.js] 503 bytes {main} [built]
+  [./src/searchPrograms.js] 687 bytes {main} [built]
+  [crypto] external "crypto" 42 bytes {main} [built]
+  [events] external "events" 42 bytes {main} [built]
+  [fs] external "fs" 42 bytes {main} [built]
+  [path] external "path" 42 bytes {main} [built]
+  [punycode] external "punycode" 42 bytes {main} [built]
+  [stream] external "stream" 42 bytes {main} [built]
+  [url] external "url" 42 bytes {main} [built]
+  [util] external "util" 42 bytes {main} [built]
+  [vm] external "vm" 42 bytes {main} [built]
+      + 984 hidden modules
+  
+  WARNING in ./node_modules/ws/lib/buffer-util.js
+  Module not found: Error: Can't resolve 'bufferutil' in '/home/vagrant/lambda/node_modules/ws/lib'
+   @ ./node_modules/ws/lib/buffer-util.js
+   @ ./node_modules/ws/lib/websocket.js
+   @ ./node_modules/ws/index.js
+   @ ./node_modules/jsdom/lib/jsdom/living/websockets/WebSocket-impl.js
+   @ ./node_modules/jsdom/lib/jsdom/browser/Window.js
+   @ ./node_modules/jsdom/lib/api.js
+   @ ./src/getPrograms.js
+   @ ./src/searchPrograms.js
+   @ ./src/main.js
+  
+  WARNING in ./node_modules/ws/lib/validation.js
+  Module not found: Error: Can't resolve 'utf-8-validate' in '/home/vagrant/lambda/node_modules/ws/lib'
+   @ ./node_modules/ws/lib/validation.js
+   @ ./node_modules/ws/lib/receiver.js
+   @ ./node_modules/ws/index.js
+   @ ./node_modules/jsdom/lib/jsdom/living/websockets/WebSocket-impl.js
+   @ ./node_modules/jsdom/lib/jsdom/browser/Window.js
+   @ ./node_modules/jsdom/lib/api.js
+   @ ./src/getPrograms.js
+   @ ./src/searchPrograms.js
+   @ ./src/main.js
+  
+  ERROR in ./node_modules/jsdom/lib/jsdom/utils.js
+  Module not found: Error: Can't resolve 'canvas' in '/home/vagrant/lambda/node_modules/jsdom/lib/jsdom'
+   @ ./node_modules/jsdom/lib/jsdom/utils.js 166:2-27 172:17-34
+   @ ./node_modules/jsdom/lib/jsdom/browser/Window.js
+   @ ./node_modules/jsdom/lib/api.js
+   @ ./src/getPrograms.js
+   @ ./src/searchPrograms.js
+   @ ./src/main.js
+  ```
+  
+  ```js
+  let canvasInstalled = false;
+  try {
+    require.resolve("canvas");
+    canvasInstalled = true;
+  } catch (e) {
+    // canvas is not installed
+  }
+  ```
+  
+  `canvas`をインストールして再度
+  
+  
+  ## 参考
+  
+  [Webpackをシンプルに理解しよう - Qiita](https://qiita.com/yusuke_ten/items/a40ec089c55599ce1b3e)[webpack 4 入門 - Qiita](https://qiita.com/soarflat/items/28bf799f7e0335b68186)
+  [AWS lambdaでasync/awaitを使うための最小構成 - Qiita](https://qiita.com/NeGI1009/items/7463a82fe32eb56c58a5#webpack)
+  [LINEのMessaging API WebhookをAPI Gatewayで受ける - Sanwa Systems Tech Blog](https://tech.sanwasystem.com/entry/2016/11/02/152137)
+  [ゼロから作りながら覚えるAPI Gateway環境構築 ｜ DevelopersIO](https://dev.classmethod.jp/cloud/aws/getting-start-api-gateway/)
+  [LambdaではじめてのLINE Botを作る ｜ DevelopersIO](https://dev.classmethod.jp/etc/lambda-line-bot-tutorial/)
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

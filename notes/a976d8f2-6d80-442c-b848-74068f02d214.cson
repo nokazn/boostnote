@@ -1,0 +1,82 @@
+createdAt: "2019-09-03T10:48:28.009Z"
+updatedAt: "2019-09-03T11:55:31.615Z"
+type: "MARKDOWN_NOTE"
+folder: "c50fd792c06c102068ae"
+title: "数値かどうか判定する"
+tags: []
+content: '''
+  # 数値かどうか判定する
+  
+  ## 非数`NaN`
+  
+  `NaN`は Not a Number の略で、算術演算の結果未定義か表現不可能な値になったときに返却される。
+  
+  `NaN`には`signaling NaN`と`quiet NaN`の2種類があり、JavaScript においては`quiet NaN`が採用されている。浮動小数点の計算における標準規格として最も広く採用されている IEEE-754 によると、
+  
+  > NaNとの大小比較では、自分自身と比較した場合でも「大小不明な結果」を返す。
+  [NaN - Wikipedia](https://ja.wikipedia.org/wiki/NaN)
+  
+  となっており、数学的に数値でない値を便宜的に表し、例外を投げない値として定義されている。
+  
+  `NaN`かどうか判定する関数はグローバルに定義された`isNaN()`と`Number`オブジェクト下に定義された`Number.isNaN()`がある。
+  
+  ## `isNaN()`の厄介な挙動
+  
+  `isNaN(arg)`の引数`arg`が数値でない場合は**暗黙の型変換がなされた後**に`NaN`かどうかの判定が行われる
+  
+  ```js
+  // true を返す
+  isNaN(NaN);
+  isNaN(undefined);
+  isNaN({});
+  isNaN('12,3');
+  isNaN([1, 2, 3]);
+  
+  // falseを返す
+  isNaN([]);
+  isNaN([1])
+  isNaN('12.3');
+  isNaN('');
+  isNaN(' ');
+  isNaN(new Date());
+  ```
+  
+  厳密に`NaN`かどうか判定するには以下のように`Number`オブジェクトのメソッドである`Number.isNaN()`を用いる。
+  
+  ## `Number.isNaN()`
+  
+  ES6 で導入された関数で、グローバル関数の`isNaN()`よりも堅牢なバージョンである。`isNaN(arg)`の引数`arg`が`Number`型で、`NaN`であるかの真偽地を返す。
+  
+  ```js
+  Number.isNaN(NaN);        // true
+  Number.isNaN(Number.NaN); // true
+  Number.isNaN(0 / 0);      // true
+  ```
+  
+  以上の引数以外はすべて`false`を返す。
+  
+  `isNaN(x)`、`isNaN(x - 0)`、`isNaN(Number(x))`、`Number.isNaN(x - 0)`、そして `Number.isNaN(Number(x))`は常に同じ値を返す。
+  
+  ### ポリフィル
+  
+  `NaN`が自身と同値でないという性質を利用する。
+  
+  ```js
+  Number.isNaN = Number.isNaN || function (val) {
+    return typeof val === 'number' && val !== val;
+  }
+  ```
+  
+  ちなみに、`Object.is()`メソッドを用いると`NaN`同士の比較も`true`になる。
+  
+  ## 参考
+  
+  [IEEE 754 - Wikipedia](https://ja.wikipedia.org/wiki/IEEE_754)
+  [NaN === NaN が false な理由とutil.isDeepStrictEqual - from scratch](https://yosuke-furukawa.hatenablog.com/entry/2018/01/30/174425)
+  [isNaN() - JavaScript \\| MDN](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/isNaN)
+  [Number.isNaN() - JavaScript \\| MDN](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Number/isNaN)
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

@@ -1,0 +1,19 @@
+createdAt: "2019-08-29T15:10:30.987Z"
+updatedAt: "2019-08-29T15:12:25.023Z"
+type: "MARKDOWN_NOTE"
+folder: "d8b18fc544434022f6d8"
+title: "X-UA-Compatibleを指定"
+tags: []
+content: '''
+  # `X-UA-Compatible`を指定
+  
+  ```html
+  <meta http-equiv="X-UA-Compatible" content=IE=edge">
+  ```
+  
+  Internet Explorerを使用している場合、利用できる中で最新の互換性のモードを設定する。
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

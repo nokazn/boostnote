@@ -1,7 +1,7 @@
 createdAt: "2019-08-21T10:34:10.619Z"
-updatedAt: "2019-08-21T11:07:45.453Z"
+updatedAt: "2019-09-21T07:14:42.036Z"
 type: "MARKDOWN_NOTE"
-folder: "c50fd792c06c102068ae"
+folder: "42ac335d9c90abfc06ef"
 title: "package.jsonとpackage-lock.json"
 tags: [
   "npm"
@@ -60,6 +60,7 @@ content: '''
   ## 参考
   
   [package.json のチルダ(~) とキャレット(^) - Qiita](https://qiita.com/sotarok/items/4ebd4cfedab186355867)
+  
 '''
 linesHighlighted: []
 isStarred: false

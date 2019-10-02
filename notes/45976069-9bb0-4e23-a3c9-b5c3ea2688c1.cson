@@ -1,0 +1,27 @@
+createdAt: "2019-09-16T16:05:04.224Z"
+updatedAt: "2019-09-21T07:13:22.226Z"
+type: "MARKDOWN_NOTE"
+folder: "42ac335d9c90abfc06ef"
+title: "プロジェクト配下のnode_modulesのパスを通す"
+tags: [
+  "Node.js"
+]
+content: '''
+  ## プロジェクト配下の`node_modules`のパスを通す
+  
+  ```diff:~/.bash_profile
+  + export PATH=$PATH:node_modules/.bin
+  ```
+  
+  ```bash
+  $ source ~/.bash_profile 
+  ```
+  
+  ## 参考
+  
+  [node_modules 以下のライブラリにPATH を通す - Qiita](https://qiita.com/euxn23/items/5cdd17536e7ff2f2e459)
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

@@ -1,5 +1,5 @@
 createdAt: "2019-05-07T12:06:13.206Z"
-updatedAt: "2019-07-15T13:05:40.429Z"
+updatedAt: "2019-09-17T15:31:45.529Z"
 type: "MARKDOWN_NOTE"
 folder: "846fb24c5f8aad917395"
 title: "ロードマップ"
@@ -7,6 +7,7 @@ tags: [
   "やること"
   "TODO"
   "Roadmap"
+  "途中"
 ]
 content: '''
   # ロードマップ
@@ -15,80 +16,82 @@ content: '''
   
   ## アプリ
   
-  - ToDoリスト
-    - Ruby on Rails
-    - Vue.js
-      - Vue CLI
-      - Vue Router
-    - Docker ?
-  - チャット
-  - 日報
-  - レビューサイト
+  - [ ] ToDoリスト
+    - [ ] Ruby on Rails
+    - [ ] Vue.js
+      - [ ] Vue CLI
+      - [ ] Vue Router
+    - [ ] Docker ?
+  - [ ] チャット
+  - [ ] 日報
+  - [ ] てれびぼっと
+  - [ ] レビューサイト
   
   ## フロントエンド
   
   - HTML
-    - SEO
-    - アクセシビリティ
+    - [ ] SEO
+    - [ ] アクセシビリティ
+    - [ ] canvas
   
   - CSS
     - レイアウト
-      - Floats
-      - Display
-      - Box
-      - CSS Grid
-      - Flex Box
-    - Media Queries
-    - SASS (SCSS)
+      - [ ] Floats
+      - [ ] Display
+      - [ ] Box
+      - [ ] CSS Grid
+      - [ ] Flexbox
+    - [ ] Media Queries
+    - [ ] SASS (SCSS)
     - CSS フレームワーク
-      - Bootstrap
-      - Bulma
-      - Materialize CSS
+      - [ ] Bootstrap
+      - [ ] Bulma
+      - [ ] Materialize CSS
   
   - JavaScript
-    - ES6+ の書き方
-    - DOM 操作
-    - Ajax
-    - API
+    - [ ] ES6+ の書き方
+    - [ ] DOM 操作
+    - [ ] Ajax
+    - [ ] API
   
   - パッケージマネージャ
-    - npm
-    - yarn
+    - [ ] npm
+    - [ ] yarn
   
-  - Node.js
+  - [ ] Node.js
   
   - ビルドツール
     - モジュールバンドラー
-      - webpack
+      - [ ] webpack
     - タスクランナー
-      - npm scripts
-      - gulp?
+      - [ ] npm scripts
+      - [ ] gulp
     - コードフォーマッター
-      - prettier
-      - ESLint?
+      - [ ] prettier
+      - [ ] ESLint?
   
-  - Jquery(ちょっとだけ)
+  - [ ] Jquery(ちょっとだけ)
   
   - Vue.js
-    - Vuex
-    - Vue Router
+    - [ ] Vuex
+    - [ ] Vue Router
     - SSR
-      - Nuxt.js ?
+      - [ ] Nuxt.js ?
   
   - CSS in JS ?
-    - Styled Components(React)
-    - CSS Modules
-    - [Vue.js+TypeScriptでもscopedなcssを書きたい](https://takeda-san.hatenablog.com/entry/2018/11/10/154032)
+    - [ ] Styled Components (React)
+    - [ ] CSS Modules
+    - [ ] [Vue.js+TypeScriptでもscopedなcssを書きたい](https://takeda-san.hatenablog.com/entry/2018/11/10/154032)
   
   - テスト
-    - Jest
-    - Enzyme(React)
-    - Cypress
+    - [ ] Jest
+    - [ ] Enzyme(React)
+    - [ ] Cypress
   
   - PWA
-    - Storage
-    - Web Sockets
-    - Service Workers
+    - [ ] Storage
+    - [ ] Web Sockets
+    - [ ] Service Workers
   
   - TypeScript
   
@@ -105,11 +108,12 @@ content: '''
   
   - データベース
     - RDBMS
-      - MySQL
+      - [ ] MySQL
     - NoSQL
-      - MongoDB
+      - [ ] MongoDB
     - Firebase
-      - Realtime Database
+      - ~~Realtime Database~~
+      - [ ] Firestore
   
   - Restful APIs
   - GraphQL

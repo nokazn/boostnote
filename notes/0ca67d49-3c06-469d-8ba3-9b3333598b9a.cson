@@ -1,5 +1,5 @@
 createdAt: "2019-08-06T11:46:48.720Z"
-updatedAt: "2019-08-06T11:59:21.335Z"
+updatedAt: "2019-09-21T07:26:56.269Z"
 type: "MARKDOWN_NOTE"
 folder: "99c1744cc6189c73e4c0"
 title: "GCE インスタンスにローカルマシンから SSH 接続する"
@@ -46,7 +46,7 @@ content: '''
   
   公開鍵をコピーしてインスタンスの管理画面から登録する。
   
-  公開鍵がインスタンス側の`~/.ssh/authorized_keys`に反映されるまでは少し時間がかかる。
+  公開鍵がインスタンス側の`~/.ssh/authorized_keys`に反映されるまでは少し時間がかかるかも。
   
   ## `~/.ssh/config`に接続情報を追加
   
@@ -68,6 +68,7 @@ content: '''
   [nn_ono272727@instance-1 ~]$
   ```
   
+  これで VSCode などのエディタでリモートサーバー上のファイルを編集できるようになる。
   
 '''
 linesHighlighted: []

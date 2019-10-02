@@ -1,0 +1,33 @@
+createdAt: "2019-09-03T10:37:21.919Z"
+updatedAt: "2019-09-03T10:48:22.990Z"
+type: "MARKDOWN_NOTE"
+folder: "c50fd792c06c102068ae"
+title: "Date 型のデータを比較する"
+tags: []
+content: '''
+  # Date 型のデータを比較する
+  
+  ```js
+  const date1 = new Date('Tue, 03 Sep 2019 00:00:00 +0900');
+  const date1 = new Date([2019, 9, 3]);
+  ```
+  
+  Date 型のままでは比較できないので、`getTime()`で数値にするか文字列にして比較する。
+  
+  ```js
+  console.log(date1 === date2);  // false
+  console.log(date1.getTime() === date2.getTime());  // true
+  ```
+  
+  ```js
+  import moment from 'moment'
+  
+  const yyyymd1 = Moment(date1).format('YYYYMD');
+  const yyyymd2 = Moment(date2).format('YYYYMD');
+  console.log(yyyymd1 === yyyymd2);  // true
+  ```
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

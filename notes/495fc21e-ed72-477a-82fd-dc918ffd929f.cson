@@ -1,5 +1,5 @@
 createdAt: "2019-07-01T10:08:24.178Z"
-updatedAt: "2019-07-30T10:09:55.473Z"
+updatedAt: "2019-09-16T15:55:53.582Z"
 type: "MARKDOWN_NOTE"
 folder: "8eecd56ec7357d6ca8d6"
 title: "AWS Cloud9 で Vue CLI 環境を作る"
@@ -11,17 +11,44 @@ content: '''
   
   `yum`経由でインストールするとバージョンが古かったり、`node`ではなく`nodejs`コマンドで登録されてたりいろいろ面倒。
   
-  [n package](https://github.com/tj/n)を使ってインストールする。
+  [n package](https://github.com/tj/n)を使って任意のバージョンの Node.js をインストールする。
+  
+  npm をグローバルでインストールする場合は`su`ユーザーで入らないとパーミッションエラーになる。
   
   ```bash
-  $ sudo yum install -y nodejs npm
+  $ sudo yum install -y nodejs
+  $ sudo su
   $ sudo npm install n -g
+  # su ユーザーから抜ける
+  $ exit
   $ sudo n stable
+  installing : node-v10.16.3
+         mkdir : /usr/local/n/versions/node/10.16.3
+         fetch : https://nodejs.org/dist/v10.16.3/node-v10.16.3-linux-x64.tar.gz
+     installed : v10.16.3 to /usr/local/bin/node
+        active : v6.17.1 at /bin/node
+  $ node -v
+  v6.17.1
+  ```
+  
+  - 安定板 - 'n stable'
+  - LTS - `n ts`
+  - 最新版 - 'n latest'
+  
+  yum でインストールした Node.js のパスが優先されているので、 n でインストールした Node.js を優先的に読み込むようにパスを設定する。
+  
+  ```diff:~/.bash_profile
+  - PATH=$PATH:$HOME/.local/bin:$HOME/bin
+  + PATH=$PATH:/usr/local/bin/:$HOME/.local/bin:$HOME/bin
+  ```
+  
+  ```bash
+  $ source ~/.bash_profile
+  $ node -v
+  v10.16.3
   $ sudo yum remove nodejs
   $ exec $SHELL -l
   ```
-  
-  n を使えば簡単に Node.js のバージョンを切り替えることができる。
   
   ## Vue CLI のインストール
   
@@ -35,15 +62,11 @@ content: '''
   
   > This instance ran out of memory. To free up memory, kill processes by choosing "Tools > Process List" in the menu bar.
   
-  と出て、インストールが止まる。
-  
-  [npm installしようとすると"fetchMetadata"で止まるのをなんとかする](https://argrath.ub32.org/annex/2017/04/06-04.html)
-  
-  yarn でインストールする。
+  ~~と出て、インストールが止まるので、yarn でインストールする。~~
+  → GCE ではデフォルトでスワップ領域が作成されていなかったため。
   
   ```bash
   $ sudo npm install -g yarn
-  # sudo yum install yarn ?
   $ sudo yarn global add @vue/cli
   $ sudo yarn global add @vue/cli-init
   ```
@@ -85,6 +108,7 @@ content: '''
   ```
   
   として、Preview → Preview Running Application とすると「**Welcom to Your Vue.js App**」と表示される。
+  
 '''
 linesHighlighted: []
 isStarred: false

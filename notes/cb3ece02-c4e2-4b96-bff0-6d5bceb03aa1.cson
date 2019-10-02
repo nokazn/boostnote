@@ -1,5 +1,5 @@
 createdAt: "2019-05-22T10:46:02.170Z"
-updatedAt: "2019-05-30T15:33:51.553Z"
+updatedAt: "2019-09-16T14:57:03.798Z"
 type: "MARKDOWN_NOTE"
 folder: "99c1744cc6189c73e4c0"
 title: "GAS プロジェクトと Stackdriver の連携"
@@ -40,12 +40,16 @@ content: '''
    1. GCP のプロジェクト選択の画面から、新規プロジェクトを作成。
    2. `左上のハンバーガーメニュー > APIとサービス > 認証情報`を選択し、 OAuth 同意画面の設定。
    3. Apps Script のエディターの`リソース > Cloud Platform プロジェクト`を選択。
-   4. プロジェクトIDを入力して紐づける。
+   4. プロジェクト番号を入力して紐づける。
   
   > Warning: If your script was using its default GCP project and you switch your script to use a standard GCP project, the script's default GCP project is deleted, which has the following irrevocable effects:
   >
   > You lose any data tied to advanced services that you enabled for that script (because advanced services rely on the GCP project).
   > All users who have previously authorized the script must re-authorize. In most cases, all users who have previously authorized apps associated with the new GCP project must also re-authorize.
+  
+  ## 参考
+  
+  [Google Apps Scriptでファイル所有権を変更する 🌴 officeの杜](https://officeforest.org/wp/2018/12/31/google-apps-scriptでファイル所有権を変更する/)
   
 '''
 linesHighlighted: []
