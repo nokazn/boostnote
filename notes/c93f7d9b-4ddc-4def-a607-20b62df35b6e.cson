@@ -1,5 +1,5 @@
 createdAt: "2019-07-30T10:10:24.142Z"
-updatedAt: "2019-09-16T16:02:48.997Z"
+updatedAt: "2019-10-06T15:24:27.090Z"
 type: "MARKDOWN_NOTE"
 folder: "99c1744cc6189c73e4c0"
 title: "GCE + Cloud9"
@@ -81,7 +81,7 @@ content: '''
   
   ```GCE側:bash
   $ sudo yum update
-  $ sudo yum install nodejs
+  $ sudo yum install npm -y
   $ sudo npm install -g n
   $ sudo n stable
   ```

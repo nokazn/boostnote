@@ -102,8 +102,13 @@
     },
     {
       "key": "99c1744cc6189c73e4c0",
-      "color": "#417505",
+      "color": "#bd10e0",
       "name": "GCP"
+    },
+    {
+      "key": "e1997b23dee401a92058",
+      "color": "#B013A4",
+      "name": "AWS"
     },
     {
       "key": "72d8e856c36c64a9b2b9",

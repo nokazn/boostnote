@@ -1,5 +1,5 @@
 createdAt: "2019-07-01T10:08:24.178Z"
-updatedAt: "2019-09-16T15:55:53.582Z"
+updatedAt: "2019-10-06T15:23:34.446Z"
 type: "MARKDOWN_NOTE"
 folder: "8eecd56ec7357d6ca8d6"
 title: "AWS Cloud9 で Vue CLI 環境を作る"
@@ -16,11 +16,8 @@ content: '''
   npm をグローバルでインストールする場合は`su`ユーザーで入らないとパーミッションエラーになる。
   
   ```bash
-  $ sudo yum install -y nodejs
-  $ sudo su
+  $ sudo yum install -y npm
   $ sudo npm install n -g
-  # su ユーザーから抜ける
-  $ exit
   $ sudo n stable
   installing : node-v10.16.3
          mkdir : /usr/local/n/versions/node/10.16.3

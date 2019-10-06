@@ -1,5 +1,5 @@
 createdAt: "2019-09-22T09:02:57.401Z"
-updatedAt: "2019-09-22T09:06:22.647Z"
+updatedAt: "2019-10-05T11:13:53.403Z"
 type: "MARKDOWN_NOTE"
 folder: "846fb24c5f8aad917395"
 title: "やること"
@@ -13,7 +13,48 @@ content: '''
     - F1 bot
     - Todolsit (Vue.js + RoR)
     - 日報 (Vue.js + Firestore)
-    (- nn-mail)
+    - (nn-mail)
+    
+    
+  ## バイト中にやるやつ  
+  
+  - サイパトメール
+    - TSLint
+    - Cloud Firestore
+  - 日報 (dailyreport2)
+    - Cloud Firestore
+    - Cloud Messaging
+  
+  ## アプリ
+  
+  - 電卓 (calc-vue)
+  - 電卓 (calc-js)
+  - Todolist
+  
+  - Line-TVbot
+    - [ ] Serverless で CLI からデプロイ
+    - [ ] AWS DynamoDB に Store を保存する
+    - [ ] AWS API Gateway 返信
+      - キーワードを与えたら検索して送信する関数
+      - DynamoDB から取得してキーワード投げる関数
+      - API Gateway から Webhook でキーワード投げる関数
+  
+  ## テキスト
+  
+  - JSPrimer
+  - JavaScript 入門
+  - You Don't know JS
+  
+  
+  ## ノート
+  
+  - [ ] VueRouter
+  - [ ] Vuex
+  - [ ] Clasp で使えない関数
+  
+  
+  
+    
 '''
 linesHighlighted: []
 isStarred: false

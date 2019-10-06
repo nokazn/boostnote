@@ -1,0 +1,83 @@
+createdAt: "2019-10-06T12:05:34.272Z"
+updatedAt: "2019-10-06T12:28:41.518Z"
+type: "MARKDOWN_NOTE"
+folder: "e1997b23dee401a92058"
+title: "Lambda で DynamoDB 上の値を取得できない"
+tags: [
+  "エラー"
+  "Lambda"
+  "DynamoDB"
+  "async"
+  "Node.js"
+  "非同期処理"
+]
+content: '''
+  ## Lambda で DynamoDB 上の値を取得できない
+  
+  Lambda から DynamoDB 上のデータを取得する際にハマった点があったので備忘録として。
+  
+  ```js:index.js
+  const AWS = require('aws-sdk');
+  const dynamodb = new AWS.DynamoDB.DocumentClient({ region: 'us-east-1' });
+  
+  exports.handler = async (event, context) => {
+    const params = {
+      TableName: 'test'
+    };
+    dynamodb.scan(params, (err, data) => {
+      if (err) {
+        console.error(err);
+        context.fail(err);
+      } else {
+        console.log(data);
+        context.succeed(data);
+      }
+    });
+  } 
+  ```
+  
+  として、test テーブル上のすべてのデータを取得しようとしても`null`が返ってくる。
+  
+  ```json:実行結果
+  null
+  ```
+  
+  ```diff:index.js
+  - exports.handler = async(event, context) => {
+  + exports.handler = (event, context) => {
+  ```
+  
+  とすることで値を取得できるようになる。
+  
+  ```json:実行結果
+  {
+    "Items": [
+      {
+        "id": "1",
+        "message": "HELLO!"
+      }
+    ],
+    "Count": 1,
+    "ScannedCount": 1
+  }
+  ```
+  
+  ## `async function`
+  
+  - `async function`内では、値が解決されるまで`Promise`オブジェクトを返し、値が解決した時点でその値を返却する
+  - `return`すると返される値が`Promise.resolve`される
+  - `throw`すると返される値が`Promise.reject`される
+  - 何も返さないと`undefined`が`Promise.resolve`される
+  
+  今回の、`dynamodb.scan(params, callback)`では、コールバック関数により非同期処理を実現しているため、`async`を付与する必要はない。
+  
+  ## 参考
+  
+  [初めての、LambdaとDynamoDBを使ったAPI開発 - Qiita](https://qiita.com/miutex/items/d80c9ff0290966eb0cf8)
+  [JavaScript 今更の async / await - かもメモ](https://chaika.hatenablog.com/entry/2019/01/24/090000)
+  
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

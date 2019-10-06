@@ -1,0 +1,74 @@
+createdAt: "2019-10-06T02:43:11.541Z"
+updatedAt: "2019-10-06T02:52:33.432Z"
+type: "MARKDOWN_NOTE"
+folder: "42ac335d9c90abfc06ef"
+title: "TSLint を npm run script で実行する"
+tags: [
+  "tslint"
+  "npm_run_-s"
+]
+content: '''
+  # TSLint を npm run script で実行する
+  
+  ```bash
+  $ tslint --init
+  ```
+  
+  とすると`tslint.json`が作成される。適宜ルールを設定する。
+  
+  ```json:tslint.json
+  {
+      "defaultSeverity": "error",
+      "extends": [
+          "tslint:recommended"
+      ],
+      "jsRules": {},
+      "rules": {
+          "arrow-parens": false,
+          "interface-name": false,
+          "max-classes-per-file": [true, 3],
+          "no-console": [
+              true,
+              "log"
+          ],
+          "no-namespace": false,
+          "prefer-function-over-method": false,
+          "quotemark": [
+              true,
+              "single",
+              "avoid-escape",
+              "avoid-template"
+          ],
+          "space-before-function-paren": true,
+          "trailing-comma": false,
+          "variable-name": {
+              "options": [
+                  "allow-leading-underscore"
+              ]
+          }
+      },
+      "rulesDirectory": []
+  }
+  ```
+  
+  ```diff:package.json
+  "scripts": {
+  -  "test": "echo \\"Error: no test specified\\" && exit 1"
+  +  "test": "echo \\"Error: no test specified\\" && exit 1",
+  +  "lint": "tslint src/*.ts -c tslint.json"
+  },
+  ```
+  
+  エラーメッセージをサイレントにするオプション`--silent`, `-s`を指定すると npm のエラーは表示されない。
+  
+  ```bash
+  npm run lint -s
+  ```
+  
+  ## 参考
+  
+  [TSLint core rules](https://palantir.github.io/tslint/rules/)
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

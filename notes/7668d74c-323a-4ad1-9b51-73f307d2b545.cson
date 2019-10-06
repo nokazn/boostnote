@@ -1,0 +1,82 @@
+createdAt: "2019-10-06T15:24:50.324Z"
+updatedAt: "2019-10-06T15:43:05.441Z"
+type: "MARKDOWN_NOTE"
+folder: "42ac335d9c90abfc06ef"
+title: "n で Node.js のバージョンを管理する"
+tags: [
+  "yum"
+  "centos"
+  "Node.js"
+  "npm"
+  "n"
+]
+content: '''
+  # n で Node.js のバージョンを管理する
+  
+  ## npm をインストール
+  
+  npm をインストールすると、Node.js も一緒にインストールされる。
+  
+  ```bash
+  $ sudo yum install npm -y
+  $ which node
+  /usr/bin/node
+  $ which npm
+  /usr/bin/npm
+  ```
+  
+  ## n をインストール
+  
+  npm パッケージである n をインストールする。
+  
+  ```bash
+  $ sudo npm i n -g
+  $ which n
+  /usr/bin/n
+  ```
+  
+  ## n で Node.js の安定板をインストールする
+  
+  `n [バージョン]`コマンドで Node.js の安定板、最新版などバージョンを指定してインストールできる。
+  
+  Node.js のパスが`/usr/bin/node`から`/usr/local/bin/node`に変更されている。
+  
+  ```bash
+  $ sudo n stable
+    installing : node-v10.16.3
+         mkdir : /usr/local/n/versions/node/10.16.3
+         fetch : https://nodejs.org/dist/v10.16.3/node-v10.16.3-linux-x64.tar.gz
+     installed : v10.16.3
+  $ which node
+  /usr/local/bin/node
+  $which npm
+  /usr/local/bin/npm
+  ```
+  
+  ## n の各種コマンド
+  
+  ```bash
+  # 最新版
+  $ sudo n latest
+  # バージョン切り替え
+  $ sudo n
+  # 特定のバージョンをインストール
+  $ sudo n 8.10.0
+  # 削除
+  $ sudo n rm latest
+  ```
+  
+  ## yum でインストールした Node.js
+  
+  ```bash
+  $ sudo yum remove npm
+  ```
+  
+  ## 参考
+  
+  [Node.js, npm, nの整理とアンインストール - Qiita](https://qiita.com/kouki_tsuji/items/bf4951a76d221e874fdd)
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

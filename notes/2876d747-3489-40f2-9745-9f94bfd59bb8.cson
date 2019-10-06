@@ -1,0 +1,54 @@
+createdAt: "2019-10-03T11:55:23.780Z"
+updatedAt: "2019-10-04T10:06:07.068Z"
+type: "MARKDOWN_NOTE"
+folder: "e1997b23dee401a92058"
+title: "AWS Lambda で node-canvas を動かす"
+tags: [
+  "途中"
+]
+content: '''
+  # AWS Lambda で node-canvas を動かす
+  
+  ## Node.js のモジュール
+  
+  Node.js のモジュールには JavaScript だけで書かれたモジュールとC/C++ で書かれたネイティブモジュール（アドオン）があり、後者はインストールした環境下でしか動かない。
+  
+  node-canvas は cairo という C で書かれたライブラリを使用して、サーバーサイドで HTML5 の Canvas API を実現させているため、cairo をプロジェクトのあるディレクトリに配置すればよい。
+  
+  ## 環境
+  
+  ```bash
+  $ cat /etc/redhat-release
+  CentOS Linux release 7.6.1810 (Core) 
+  ```
+  
+  ## 解決策
+  
+  プロジェクトのあるディレクトリの`./lib`に該当ライブラリをコピーして、読み込ませるようにすることで解決する。
+  
+  ```bash
+  $ sudo yum install cairo-devel libjpeg-turbo-devel giflib-devel pango-devel -y
+  
+  # @next はプレリリース版を指定するサフィックス
+  $ npm install canvas@next
+  
+  $ mkdir lib
+  $ cp /usr/lib64/{libpng12.so.0,libjpeg.so.62,libpixman-1.so.0,libfreetype.so.6,\\
+  libcairo.so.2,libpango-1.0.so.0,libpangocairo-1.0.so.0,libpangoft2-1.0.so.0} lib/
+  cp: '/usr/lib64/libpng12.so.0' を stat できません: そのようなファイルやディレクトリはありません
+  
+  # libpng12 がインストールされていなかったので個別にインストール
+  $ sudo yum search libpng12 -y
+  $ cp /usr/lib64/libpng12.so.0 lib/
+  ```
+  
+  ## 参考
+  
+  [Installation: AWS Lambda · Automattic/node-canvas Wiki · GitHub](https://github.com/Automattic/node-canvas/wiki/Installation:-AWS-Lambda)
+  [AWS Lambda上でnode-canvasを使ってグラフを描画する - Studyplus Engineering Blog](https://tech.studyplus.co.jp/entry/2019/02/25/095548)
+  [AWS Lambda上でcanvasを使いたい【前編】 \\| PRESSMAN*Tech](https://www.pressmantech.com/tech/programming/2669)
+  [libpng12-1.2.50-10.el7.x86_64.rpm CentOS 7 Download](https://centos.pkgs.org/7/centos-x86_64/libpng12-1.2.50-10.el7.x86_64.rpm.html)
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false
