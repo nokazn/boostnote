@@ -1,0 +1,115 @@
+createdAt: "2019-10-07T10:36:45.285Z"
+updatedAt: "2019-10-07T11:27:58.947Z"
+type: "MARKDOWN_NOTE"
+folder: "42ac335d9c90abfc06ef"
+title: "npx"
+tags: [
+  "npm"
+  "npx"
+]
+content: '''
+  # npx
+  
+  `npm@5.2.0`以降で利用できる npm のローカルパッケージ実行を手軽にしてくれる。Node.js@8.2以降ならデフォルトでインストールされている。
+  
+  ## 今まで
+  
+  ```bash
+  $ npm i typescript --save
+  ```
+  
+  従来は、以下のいずれかの方法でローカルパッケージを実行する必要があった。
+  
+  ### パスを指定して実行
+  
+  ```bash
+  $ ./node_modules/.bin/tsc -v
+  Version 3.6.3
+  ```
+  
+  ### `~/.bash_profile`にパスを追加
+  
+  `node_modules/.bin/`をパスに追加する。
+  `~/.bash_profile`はログイン時にのみ実行されるので、環境変数の追加などの処理はここに書く。
+  
+  ```diff:~/.bash_profile
+  - export PATH=$PATH:$HOME/.local/bin:$HOME/bin
+  + export PATH=$PATH:$HOME/.local/bin:$HOME/bin:node_modules/.bin
+  ```
+  
+  ```bash
+  $ tsc -v
+  Version 3.6.3
+  ```
+  
+  ### npm run script で実行する
+  
+  `package.json`の`script`ではローカルモジュールを直接呼び出すことができる。
+  
+  ```diff:package.json
+  "scripts": {
+  -  "test": "echo \\"Error: no test specified\\" && exit 1"
+  +  "test": "echo \\"Error: no test specified\\" && exit 1",
+  +  "tsc": "tsc -v",
+  ```
+  
+  ```bash
+  $ npm run tsc
+  Version 3.6.3
+  ```
+  
+  処理ごとにスクリプトを定義するのは少し冗長な感じがする。
+  
+  ## npx
+  
+  パッケージをグローバル環境下にインストールしていると`pakage.json`には記載されないため、チームで開発する場合や、本番環境にデプロイする際に面倒な場合がある。
+  そのため、パッケージはできる限りローカルのプロジェクトフォルダにインストールするのが望ましい。
+  
+  `npx`を使えばローカルパッケージの扱いを楽にすることができる。
+  
+  ```bash
+  % npx tsc -v
+  Version 3.6.3
+  ```
+  
+  npx は以下の優先順位でパッケージを検索する。
+  
+  1. `./node_modules/.bin`
+  2. `$PATH`
+  3. **リモートの npm リポジトリ**
+  
+  ### `$PATH`配下で定義されているコマンドの実行
+  
+  ```bash
+  $ npx ruby -v
+  ruby 2.5.3p105 (2018-10-18 revision 65156) [x86_64-linux]
+  ```
+  
+  ### 一度だけの実行
+  
+  `./node_modules/.bin`, `$PATH$`配下でコマンドが見つからない場合、npm のリモートリポジトリからパッケージを探し出して実行させることができる。
+  
+  プロジェクトの雛形を作成するユーティリティコマンドを実行する際、グローバルインストールせずに一度だけ実行することができる。
+  
+  パッケージ名とコマンドが異なる場合は、`-p`オプションで指定する。
+  
+  ```bash
+  $ npx create-react-app example-react
+  $ npx -p @vue/cli vue create example-vue
+  ```
+  
+  Node.js の別バージョンを試す際、`n`や`nvm`でバージョンを切り替えるのではなく、`npx`コマンドで実行させるという使い方も可能。
+  
+  ```bash
+  $ npx node@12 -v
+  v12.11.1
+  ```
+  
+  ## 参考
+  
+  [GitHub - npm/npx: npm package executor](https://github.com/npm/npx)
+  [知らないのは損！npmに同梱されているnpxがすごい便利なコマンドだった ｜ DevelopersIO](https://dev.classmethod.jp/node-js/node-npm-npx-getting-started/)
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

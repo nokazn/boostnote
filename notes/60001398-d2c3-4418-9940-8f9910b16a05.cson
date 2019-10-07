@@ -1,5 +1,5 @@
 createdAt: "2019-07-17T12:32:32.485Z"
-updatedAt: "2019-07-17T12:47:19.183Z"
+updatedAt: "2019-10-07T11:37:33.001Z"
 type: "MARKDOWN_NOTE"
 folder: "b6b5a46a79484e873ebb"
 title: "reboot / poweroff"
@@ -10,7 +10,7 @@ content: '''
   - `reboot` - 再起動する
   - `poweroff` - 電源をオフにする
   
-  同様のコマンドに`shutdown`があるが、スーパーユーザーにのみ許可されている。
+  同様のコマンドに`shutdown`があるが、これはスーパーユーザーにのみ許可されている。
   
   ## オプション
   

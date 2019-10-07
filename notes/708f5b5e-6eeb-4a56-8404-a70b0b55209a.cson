@@ -1,0 +1,28 @@
+createdAt: "2019-10-07T14:57:37.452Z"
+updatedAt: "2019-10-07T14:59:28.892Z"
+type: "MARKDOWN_NOTE"
+folder: "cfb8bb7394508a89ba1d"
+title: "文字コード"
+tags: [
+  "途中"
+  "unicode"
+  "shift_JIS"
+  "UTF-8"
+  "ECU-JP"
+  "Windows"
+]
+content: '''
+  # 文字コード
+  
+  ## 文字集合
+  
+  ## 符号化方式
+  
+  ## 参考
+  
+  [【初心者でも知っておきたい】Linuxでの文字コードの確認と変更方法](https://eng-entrance.com/linux-localization-uni)
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

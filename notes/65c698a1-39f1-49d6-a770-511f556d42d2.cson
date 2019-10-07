@@ -1,0 +1,57 @@
+createdAt: "2019-10-07T15:18:09.858Z"
+updatedAt: "2019-10-07T15:28:03.215Z"
+type: "MARKDOWN_NOTE"
+folder: "8eecd56ec7357d6ca8d6"
+title: "Firebase"
+tags: [
+  "firebase"
+  "イベントリスナ"
+  "Vue.js"
+  "VueRouter"
+]
+content: '''
+  ## Firebase
+  
+  イベントリスナは重複しないよう、すでにインスタンスが存在した場合で処理を分ける必要がある。
+  
+  ```js:router.js
+  import Vue from 'vue'
+  import Router from 'vue-router'
+  import store from './store.js'
+  import firebase from 'firebase/app'
+  
+  Vue.use(Router)
+  
+  const router = new Router({
+    mode: 'history',
+    base: process.env.BASE_URL,
+    routes: [
+      /* router setting */
+    ]
+  });
+  
+  let unsubscribe
+  router.beforeEach(async (to, from, next) => {
+    if (typeof unsubscribe === 'function') unsubscribe()
+    unsubscribe = firebase.auth().onAuthStateChanged(user => {
+      if (to.matched.some(record => !record.meta.isPublic) && !user) {
+        next({
+          path: '/login',
+          query: { redirect: to.path}
+        })
+      } else if (to.matched.some(record => record.name === 'login') && !!user) {
+        next({ path: router.currentRoute.query.redirect || '/' })
+      } else {
+        next()
+      }
+      store.commit('setUser', user)
+    })
+  })
+  
+  export router
+  ```
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

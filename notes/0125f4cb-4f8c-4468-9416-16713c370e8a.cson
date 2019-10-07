@@ -1,0 +1,87 @@
+createdAt: "2019-10-07T11:28:17.471Z"
+updatedAt: "2019-10-07T14:46:55.198Z"
+type: "MARKDOWN_NOTE"
+folder: "b6b5a46a79484e873ebb"
+title: "sed"
+tags: [
+  "sed"
+  "置換"
+  "コマンド"
+]
+content: '''
+  ## sed
+  
+  Stream EDitor の略で、ファイルや標準出力を処理し、標準出力へ出力するコマンドである。
+  
+  ## オプション
+  
+  - `-r`, '--regexp-extended' - スクリプトで拡張正規表現を使用する
+  - `-e[スクリプト]`, `--expression=[スクリプト]` - スクリプト（コマンド）を追加する
+  - `-f[スクリプトファイル]`, `--file=[スクリプトファイル]` 実行するコマンドとしてスクリプトファイルの内容を追加する
+  - `-i`, `--in-place` - ファイルを直接編集する
+  - `-i[拡張子]`, `--in-place=[拡張子]` - ファイルを直接編集し、指定した拡張子でバックアップする（`-i`と[拡張子]の間には空白を**入れない**）
+  - `--follow-symlinks` - `-i`で処理する際にシンボリックリンクをたどる
+  - `-n`, `--quiet`, `--silent` - 出力コマンド以外の出力を行わない（デフォルトでは処理しなかった行はそのまま出力される）
+  - `-l [文字数]` `--line-length=文字数` - lコマンドの出力行を折り返す長さを指定する（`-l`と[文字数]の間には空白を**入れる**）
+  - `-s`, `--separate` - 複数の入力ファイルを一続きのストリームとして扱わずに個別のファイルとして扱う
+  - `-u`, `--unbuffered` - 入力ファイルからデータをごく少量ずつ取り込み、頻繁に出力バッファを掃き出す
+  - `-z`, `--null-data` - NUL文字で行を分割する（通常は改行で分割）
+  - `--posix` - 全てのGNU拡張を無効にする
+  
+  
+  ## 文字列の置換
+  
+  `:`を`\\n`に置換して、改行させることで見やすくしている。
+  `\\`を使用するときは`""`, `''`で囲う必要がある。
+  
+  ```bash:パスの出力
+  $echo $PATH
+  /home/vagrant/.rbenv/shims:/home/vagrant/.rbenv/bin:/home/vagrant/bin:/usr/local/bin:/home/vagrant/.vscode-server/bin/b37e54c98e1a74ba89e03073e5a3761284e3ffb0/bin:/home/vagrant/.rbenv/shims:/home/vagrant/.rbenv/bin:/home/vagrant/bin:/usr/local/bin:/home/vagrant/.vscode-server/bin/b37e54c98e1a74ba89e03073e5a3761284e3ffb0/bin:/usr/local/bin:/usr/bin:/home/vagrant/bin:/usr/local/sbin:/usr/sbin
+  
+  $ echo $PATH | sed s/:/'\\n'/g
+  /home/vagrant/.rbenv/shims
+  /home/vagrant/.rbenv/bin
+  /home/vagrant/bin
+  /usr/local/bin
+  /home/vagrant/.vscode-server/bin/b37e54c98e1a74ba89e03073e5a3761284e3ffb0/bin
+  /home/vagrant/.rbenv/shims
+  /home/vagrant/.rbenv/bin
+  /home/vagrant/bin
+  /usr/local/bin
+  /home/vagrant/.vscode-server/bin/b37e54c98e1a74ba89e03073e5a3761284e3ffb0/bin
+  /usr/local/bin
+  /usr/bin
+  /home/vagrant/bin
+  /usr/local/sbin
+  /usr/sbin
+  ```
+  
+  ## ファイルごと置換
+  
+  `-i`オプションでをつけることでファイルを直接編集できる。
+  Windows (改行コード`CRLF`) - Linux (改行コード`LF`) 間で改行コードを変更するときなどにも使える。
+  `test.txt`の`CR`を除去する。
+  
+  ```bash
+  $ od -c test.txt
+  0000000    t   e   s   t  \\r  \\n   t   e   s   t  \\r  \\n   t   e   s   t
+  0000020   \\r  \\n   t   e   s   t  \\r  \\n                                
+  0000030
+  # '\\r' を '' (空文字) に置換
+  $ sed -i 's/\\r//' test.txt
+  $ od -c test.txt
+  0000000    t   e   s   t  \\n   t   e   s   t  \\n   t   e   s   t  \\n   t
+  0000020    e   s   t  \\n                                                
+  0000024
+  ```
+  
+  複数のスクリプトがある場合は`-e`オプションを使う。
+  
+  
+  ## 参考
+  
+  [【 sed 】コマンド（基礎編）――テキストファイルを編集する：Linux基本コマンドTips（53） - ＠IT](https://www.atmarkit.co.jp/ait/articles/1610/06/news021.html)
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false
