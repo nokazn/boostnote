@@ -1,13 +1,11 @@
 createdAt: "2019-07-18T10:58:01.342Z"
-updatedAt: "2019-07-18T11:04:27.348Z"
+updatedAt: "2019-10-10T08:16:50.840Z"
 type: "MARKDOWN_NOTE"
 folder: "660920097553891f8089"
 title: "Docker 運用の流れのイメージ"
 tags: []
 content: '''
   # Docker 運用の流れのイメージ
-  
-  [Docker初めての人向け説明メモ - Qiita](https://qiita.com/miyasakura_/items/87ccb6d4a52d4a00a999)
   
   ベースとなるイメージA @レジストリ (Dockerhub など)
     ↓ pull
@@ -20,6 +18,10 @@ content: '''
   イメージC ＠サーバー
     ↓ run
   コンテナC @サーバー
+  
+  ## 参考
+  
+  [Docker初めての人向け説明メモ - Qiita](https://qiita.com/miyasakura_/items/87ccb6d4a52d4a00a999)
   
 '''
 linesHighlighted: []

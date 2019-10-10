@@ -1,7 +1,7 @@
 createdAt: "2019-06-27T11:11:04.955Z"
-updatedAt: "2019-07-22T09:55:40.461Z"
+updatedAt: "2019-10-10T08:19:06.360Z"
 type: "MARKDOWN_NOTE"
-folder: "d642b49f05a0df4edcfc"
+folder: "0082d6548f02649ecbaf"
 title: "VSCode Remote"
 tags: [
   "プロキシ"
@@ -18,7 +18,7 @@ content: '''
   
   ## `.ssh/config`の設定とSSH接続
   
-  `ctrl + shift + P`で`Remote-SSH: Open configuration File`として ssh 接続する際の設定ファイルを開いて編集する。
+  `ctrl + shift + P`でコマンドパレットを開いて、`Remote-SSH: Open configuration File`として ssh 接続する際の設定ファイルを開いて編集する。
   
   ```ini:.ssh/config
   Host default
@@ -28,14 +28,14 @@ content: '''
     UserKnownHostsFile /dev/null
     StrictHostKeyChecking no
     PasswordAuthentication no
-    IdentityFile C:/Users/balea/MyDev/MyRails/.vagrant/machines/default/virtualbox/private_key
+    IdentityFile C:/Users/balea/MyDev/MyApps/.vagrant/machines/default/virtualbox/private_key
     IdentitiesOnly yes
     LogLevel FATAL
   
   Host myrails
     HostName 192.168.56.10
     User vagrant
-    IdentityFile C:/Users/balea/MyDev/MyRails/.vagrant/machines/default/virtualbox/private_key
+    IdentityFile C:/Users/balea/MyDev/MyApps/.vagrant/machines/default/virtualbox/private_key
     IdentitiesOnly yes
     PasswordAuthentication no
     ForwardAgent yes
@@ -58,8 +58,7 @@ content: '''
   ## リモートサーバー上で拡張機能を利用する
   
   言語の拡張機能等を`install on SSH`すると、リモート上でのみ拡張機能が動作する。`Ctrl + Space`で補完がかかる。
-  
-  インストールされたリモート上の拡張機能は、`~/.vscode-remote/extensions/`にある。
+  インストールされたリモート上の拡張機能は、`~/.vscode-remote/extensions/`に格納されている。
   
 '''
 linesHighlighted: []

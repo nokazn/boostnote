@@ -1,5 +1,5 @@
 createdAt: "2019-08-21T06:01:54.916Z"
-updatedAt: "2019-08-21T09:50:28.976Z"
+updatedAt: "2019-10-10T07:55:07.050Z"
 type: "MARKDOWN_NOTE"
 folder: "c50fd792c06c102068ae"
 title: "配列の重複を除く"
@@ -35,8 +35,9 @@ content: '''
   })
   
   console.log(b1)  // [1, 2, 3, 3, 4, 5, 5, 1, 1, 2, 2, 4]
-  console.log(b2)  // [1, 2, 3, 4, 5]
+  console.log(b2)  // [1, 2, 3, 4, 5]
   ```
+  
 '''
 linesHighlighted: []
 isStarred: false

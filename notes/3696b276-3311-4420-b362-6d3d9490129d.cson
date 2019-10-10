@@ -1,7 +1,7 @@
 createdAt: "2019-10-06T12:05:34.272Z"
-updatedAt: "2019-10-06T12:28:41.518Z"
+updatedAt: "2019-10-10T07:38:09.882Z"
 type: "MARKDOWN_NOTE"
-folder: "e1997b23dee401a92058"
+folder: "42ac335d9c90abfc06ef"
 title: "Lambda で DynamoDB 上の値を取得できない"
 tags: [
   "エラー"
@@ -10,11 +10,12 @@ tags: [
   "async"
   "Node.js"
   "非同期処理"
+  "AWS"
 ]
 content: '''
   ## Lambda で DynamoDB 上の値を取得できない
   
-  Lambda から DynamoDB 上のデータを取得する際にハマった点があったので備忘録として。
+  AWS Lambda から DynamoDB 上のデータを取得する際にハマった点があったので備忘録として。
   
   ```js:index.js
   const AWS = require('aws-sdk');

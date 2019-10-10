@@ -1,12 +1,15 @@
 createdAt: "2019-05-09T12:38:06.452Z"
-updatedAt: "2019-05-24T03:07:24.889Z"
+updatedAt: "2019-10-10T08:02:26.491Z"
 type: "MARKDOWN_NOTE"
-folder: "d41de58f2f8776076b18"
+folder: "d8b18fc544434022f6d8"
 title: "data-toggle=\"#idname\""
-tags: []
+tags: [
+  "途中"
+]
 content: '''
   # `data-toggle="#idname"`
-  `id="idname"`のやつを参照する。
+  
+  HTML 内で`id="idname"`のものを参照する。
   
 '''
 linesHighlighted: []

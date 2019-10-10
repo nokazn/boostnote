@@ -1,5 +1,5 @@
 createdAt: "2019-10-03T11:55:23.780Z"
-updatedAt: "2019-10-04T10:06:07.068Z"
+updatedAt: "2019-10-10T07:39:19.339Z"
 type: "MARKDOWN_NOTE"
 folder: "e1997b23dee401a92058"
 title: "AWS Lambda で node-canvas を動かす"
@@ -41,6 +41,8 @@ content: '''
   $ sudo yum search libpng12 -y
   $ cp /usr/lib64/libpng12.so.0 lib/
   ```
+  
+  Webpack 等でバンドルしたファイルを Lambda で動かす場合はネイティブモジュールは使用できないので注意。
   
   ## 参考
   

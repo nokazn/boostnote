@@ -1,5 +1,5 @@
 createdAt: "2019-08-09T13:17:14.875Z"
-updatedAt: "2019-08-09T13:47:27.293Z"
+updatedAt: "2019-10-10T07:50:44.147Z"
 type: "MARKDOWN_NOTE"
 folder: "cfb8bb7394508a89ba1d"
 title: "パスを通す"
@@ -26,6 +26,10 @@ content: '''
   ## 起動時に自動的にパスを追加するよう設定
   
   `~/.bash_profile`か`~/.bashrc`にパスを環境変数に追加する文を追加する。
+  
+  **追記**
+  ログイン時には`~/.bash_profile`が適用されるのでパスの設定は`~/.bash_profile`に書くのが一般的。 
+  
   左に記載されてるパスの方が優先順位は高い。
   
   ```diff:~/.bash_profile

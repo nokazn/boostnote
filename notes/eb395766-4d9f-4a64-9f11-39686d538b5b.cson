@@ -1,5 +1,5 @@
 createdAt: "2019-07-15T10:18:18.647Z"
-updatedAt: "2019-07-15T12:29:33.615Z"
+updatedAt: "2019-10-10T08:14:16.618Z"
 type: "MARKDOWN_NOTE"
 folder: "660920097553891f8089"
 title: "Docker でnoneなイメージを一掃する"
@@ -14,6 +14,7 @@ content: '''
   ```bash
   $ sudo docker image prune
   ```
+  
 '''
 linesHighlighted: []
 isStarred: false

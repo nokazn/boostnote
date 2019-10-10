@@ -1,0 +1,71 @@
+createdAt: "2019-10-10T06:34:12.325Z"
+updatedAt: "2019-10-10T07:32:24.184Z"
+type: "MARKDOWN_NOTE"
+folder: "0082d6548f02649ecbaf"
+title: "VS Code でリモート上で立てた Web サーバーを localhost で開く"
+tags: [
+  "ポートフォワーディング"
+  "ポートフォワード"
+  "SSH"
+  "VS_Code"
+]
+content: '''
+  # VS Code でリモート上で立てた Web サーバーを localhost で開く
+  
+  ## ポートフォワードとは
+  
+  ある特定のポート番号に送信されたパケットを別のホストの特定のポート番号に転送すること。
+  
+  ## Remtoe-SSH でポートフォワーディングを設定
+  
+  1. `F1`か`ctrl + shift + P`でコマンドパレットを開く
+  2. `Remote-SSH: Forward Port from Active Host...`
+  3. ポートフォワードするポート番号を入力
+  4. ポートフォワーディングの名称を入力
+  
+  この方法だと SSH 接続が切断されたときなどに再度設定し直す必要が出てくる。
+  
+  ## `~/.ssh/config`でポートフォワーディングを設定
+  
+  ポート転送による SSHトンネル にはその方向によって
+  
+  - RemoteForward - リモート > ローカル
+  - LocalForward - ローカル > リモート
+  - DynamicForward - 動的なポート転送
+  
+  の3種類がある。
+  今回はローカルマシンの`localhost:8080`をリモートマシンの`localhost:8080`に転送させたいので以下のように`~/.ssh/config`を設定することで実現できる。
+  
+  ```:~/.ssh/config
+  Host hogehoge
+    HostName 123.123.123.123
+    Port 12345
+    User nokazn
+    IdentityFile ~/.ssh/config
+    IdentitiesOnly yes
+    PasswordAuthentication no
+    LocalForward localhost:8080 localhost:8080
+  ```
+  
+  ```:LocalForward の設定
+  LocalForward [ローカルのアドレス]:[ローカルのポート] [ホスト名]:[ホストのポート]
+  ```
+  
+  これは、
+  
+  ```bash
+  $ ssh -L 8080:localhost:8080 123.123.123.123:12345
+  ```
+  
+  として SSH 接続をすることと同義である。
+  
+  ### 参考
+  
+  [SSH_CONFIG (5)](https://euske.github.io/openssh-jman/ssh_config.html)
+  [SSHポートフォワード（SSHトンネル）【ローカル・リモート・ダイナミック総集編】 \\| ITログ](https://www2.filewo.net/wordpress/2014/08/05/sshポートフォワード（sshトンネル）【ローカル・リ/)
+  [sshポートフォワーディング - Qiita](https://qiita.com/mechamogera/items/b1bb9130273deb9426f5)
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

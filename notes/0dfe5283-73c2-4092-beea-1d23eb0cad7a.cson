@@ -1,5 +1,5 @@
 createdAt: "2019-08-28T10:56:54.822Z"
-updatedAt: "2019-08-28T14:05:50.736Z"
+updatedAt: "2019-10-10T07:59:25.705Z"
 type: "MARKDOWN_NOTE"
 folder: "c50fd792c06c102068ae"
 title: "長い数値をカンマ入りの文字列にする"
@@ -51,7 +51,6 @@ content: '''
     }
     return replace(num)
   }
-  
   ```
   
 '''

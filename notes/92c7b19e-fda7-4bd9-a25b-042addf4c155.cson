@@ -1,5 +1,5 @@
 createdAt: "2019-05-05T10:44:28.591Z"
-updatedAt: "2019-05-05T10:46:40.080Z"
+updatedAt: "2019-10-10T07:46:44.292Z"
 type: "SNIPPET_NOTE"
 folder: "cfb8bb7394508a89ba1d"
 title: ".zshrc"
@@ -154,4 +154,4 @@ snippets: [
   }
 ]
 isStarred: false
-isTrashed: false
+isTrashed: true

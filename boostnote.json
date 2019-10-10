@@ -1,19 +1,14 @@
 {
   "folders": [
     {
-      "key": "d41de58f2f8776076b18",
-      "color": "#E10051",
-      "name": "Rails"
+      "key": "150509bb124fc4730801",
+      "color": "#d0021b",
+      "name": "アプリ"
     },
     {
       "key": "4ed3f698e3ae34acf919",
       "color": "#d0021b",
       "name": "Rails tips"
-    },
-    {
-      "key": "589f561157ecd7d53b56",
-      "color": "#E10051",
-      "name": "Ruby"
     },
     {
       "key": "d94765d2e6ae5e7fa34d",
@@ -32,7 +27,7 @@
     },
     {
       "key": "3ffb8e78a5059309e819",
-      "color": "#E8D252",
+      "color": "#f8e71c",
       "name": "TypeScript tips"
     },
     {
@@ -74,6 +69,11 @@
       "key": "660920097553891f8089",
       "color": "#4a90e2",
       "name": "Docker"
+    },
+    {
+      "key": "0082d6548f02649ecbaf",
+      "color": "#4a90e2",
+      "name": "Visual Studio Code"
     },
     {
       "key": "d642b49f05a0df4edcfc",

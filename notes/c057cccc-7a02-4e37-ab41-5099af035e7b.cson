@@ -1,5 +1,5 @@
 createdAt: "2019-07-09T13:25:40.108Z"
-updatedAt: "2019-07-16T09:32:22.039Z"
+updatedAt: "2019-10-10T07:34:27.422Z"
 type: "MARKDOWN_NOTE"
 folder: "d642b49f05a0df4edcfc"
 title: "Hyper-V と VirtualBox が競合してる"
@@ -26,6 +26,7 @@ content: '''
   ```
   
   再起動して設定を有効化すると VirtualBox が使えるようになってる。
+  
 '''
 linesHighlighted: []
 isStarred: false

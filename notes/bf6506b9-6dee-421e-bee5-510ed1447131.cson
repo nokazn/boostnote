@@ -1,5 +1,5 @@
 createdAt: "2019-08-31T15:06:06.029Z"
-updatedAt: "2019-09-16T16:27:38.166Z"
+updatedAt: "2019-10-10T08:10:10.236Z"
 type: "MARKDOWN_NOTE"
 folder: "99c1744cc6189c73e4c0"
 title: "Firebase-tools でログイン後のリダイレクトがされない"
@@ -9,7 +9,10 @@ tags: [
 content: '''
   # Firebase-tools でログイン後のリダイレクトがされない
   
+  リモートマシン上で開発していて、ローカルフォワードを設定していない場合などではローカルマシン上の`localhost`を指定してしまうのでうまくリダイレクトされない。
+  
   ```bash
+  $ npm i firebase-tools --save-dev
   $ fireabase login --no-localhost
   ```
   

@@ -1,5 +1,5 @@
 createdAt: "2019-07-18T11:26:53.288Z"
-updatedAt: "2019-07-22T10:11:50.317Z"
+updatedAt: "2019-10-10T08:15:33.090Z"
 type: "MARKDOWN_NOTE"
 folder: "660920097553891f8089"
 title: "Docker 主要コマンド"
@@ -46,8 +46,8 @@ content: '''
   - `cp` - コンテナとホストマシン間でファイルやディレクトリをコピー
   - `diff` - イメージが生成されてからの差分を表示
   - `commit` - 変更があったコンテナからイメージを作成
-  - `export` - メタ情報は無視し、ファイルシステムのみを含んだ**コンテナ**を tar ファイルに保存
-    - cf. `save` - メタ情報を含めた**イメージ**を tar ファイルに保存
+  - `export` - メタ情報は無視し、ファイルシステムのみを含んだ**コンテナ**を`tar`ファイルに保存
+    - cf. `save` - メタ情報を含めた**イメージ**を`tar`ファイルに保存
   
   ## その他
   
@@ -56,6 +56,10 @@ content: '''
   - `search` - イメージの検索
   - `login` - Docker Hub へのログイン
   - `logout` - Docker Hub からのログアウト
+  
+  ## 参考
+  
+  [Docker コマンド — Docker-docs-ja 17.06.Beta ドキュメント](http://docs.docker.jp/engine/reference/commandline/)
   
 '''
 linesHighlighted: []

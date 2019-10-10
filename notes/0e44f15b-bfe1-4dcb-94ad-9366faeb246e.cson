@@ -1,11 +1,13 @@
 createdAt: "2019-08-08T21:18:13.096Z"
-updatedAt: "2019-08-08T21:20:29.709Z"
+updatedAt: "2019-10-10T08:13:54.410Z"
 type: "MARKDOWN_NOTE"
-folder: "660920097553891f8089"
+folder: "42ac335d9c90abfc06ef"
 title: "iView の言語設定"
 tags: []
 content: '''
   # iView の言語設定
+  
+  npm で iView をインストールし、言語設定する際にハマった点。
   
   ```js
   // OK

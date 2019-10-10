@@ -1,7 +1,7 @@
 createdAt: "2019-05-06T12:37:38.604Z"
-updatedAt: "2019-05-30T15:32:50.335Z"
+updatedAt: "2019-10-10T07:33:47.187Z"
 type: "MARKDOWN_NOTE"
-folder: "d642b49f05a0df4edcfc"
+folder: "0082d6548f02649ecbaf"
 title: "Visual Studio Code"
 tags: []
 content: '''
@@ -40,8 +40,7 @@ content: '''
   
   ## 1行ごとに空白行があるのを消したいとき
   
-  `ctrl + shift + p`
-  => Sort Lines Ascending
+  `ctrl + shift + p`でコマンドパレットを開き、`Sort Lines Ascending`を選択。
   
   ## タブが上書きされるのを防ぐ
   
@@ -49,11 +48,13 @@ content: '''
   + "workbench.editor.enablePreview": false,
   ```
   
+  ### 参考
+  
   [VSCodeでファイルを開いた時にタブが上書きされる問題を回避する](https://qiita.com/kgoto/items/265e3eb8a82778e33cfe)
   
   ## `remote-ssh`したときにデフォルトシェルを`zsh`にする
   
-  拡張機能から Remote Development をインストール
+  拡張機能から Remote Development をインストールする。
   
   ```bash
   $ which zsh

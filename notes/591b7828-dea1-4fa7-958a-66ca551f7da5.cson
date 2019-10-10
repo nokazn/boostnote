@@ -1,14 +1,14 @@
 createdAt: "2019-05-08T11:35:17.201Z"
-updatedAt: "2019-05-08T11:36:07.054Z"
+updatedAt: "2019-10-10T08:04:24.525Z"
 type: "SNIPPET_NOTE"
-folder: "d41de58f2f8776076b18"
-title: "MySql の database.yml"
+folder: "4ed3f698e3ae34acf919"
+title: "MySQL の database.yml"
 tags: [
   "MySQL"
   "database.yml"
   "YAML"
 ]
-description: "MySql の database.yml"
+description: "MySQL の database.yml"
 snippets: [
   {
     linesHighlighted: []

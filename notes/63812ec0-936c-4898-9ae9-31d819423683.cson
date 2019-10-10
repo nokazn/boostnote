@@ -1,5 +1,5 @@
 createdAt: "2019-05-30T14:48:31.886Z"
-updatedAt: "2019-05-30T14:50:17.513Z"
+updatedAt: "2019-10-10T07:53:08.287Z"
 type: "MARKDOWN_NOTE"
 folder: "c50fd792c06c102068ae"
 title: "nullまたはundefinedをチェック (存在チェック)"
@@ -13,6 +13,7 @@ content: '''
     console.log("a は存在するよ");
   }
   ```
+  
 '''
 linesHighlighted: []
 isStarred: false

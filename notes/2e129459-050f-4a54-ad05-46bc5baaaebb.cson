@@ -1,5 +1,5 @@
 createdAt: "2019-05-09T13:47:27.158Z"
-updatedAt: "2019-05-30T14:56:39.653Z"
+updatedAt: "2019-10-10T07:52:41.446Z"
 type: "MARKDOWN_NOTE"
 folder: "c50fd792c06c102068ae"
 title: "for (var i in list)内のi"
@@ -16,9 +16,10 @@ content: '''
   }
   ```
   
-  `Number(i)`として`number`に変換する必要がある。
+  `Number(i)`として`number`型に変換する必要がある。
   
   #### 追記
+  
   プロトタイプのプロパティを取得する挙動が問題になることが多いため、プロトタイプ上のプロパティを参照したいとき以外は避けるのが無難。
   
   ```js
@@ -46,6 +47,7 @@ content: '''
     console.log(`${key}: ${value}`);
   }
   ```
+  
 '''
 linesHighlighted: []
 isStarred: false
