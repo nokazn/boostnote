@@ -1,0 +1,65 @@
+createdAt: "2019-10-10T08:25:22.060Z"
+updatedAt: "2019-10-10T09:05:10.151Z"
+type: "MARKDOWN_NOTE"
+folder: "c50fd792c06c102068ae"
+title: "Symbol とイテレーター"
+tags: [
+  "Symbol"
+  "ジェネレーター"
+  "イテレーター"
+]
+content: '''
+  # Symbol とイテレーター
+  
+  `Symbol()`関数は常に動的に無名な一意の symbol 値を返し、オブジェクトのプロパティの内部的な識別子として使用される。
+  
+  プリミティブなデータ型の1つだが、コンストラクタは持たず、`new Symbol()`とすることはできない。
+  
+  ```js
+  const a = Symbol();
+  const b = Symbol(123);
+  
+  console.log(typeof a);  // 'symbol'
+  console.log(b.toString());  // 'Symbol(123)'
+  console.log(Symbol() === Symbol());  // false
+  ```
+  
+  ## Well-known symbol
+  
+  `Symbol`クラスには予め定義されている定数がある。
+  これらのシンボル値をオブジェクとにプロパティキーとして定義することで、オブジェクトの扱い方を定めることができる。
+  
+  ### `Symbol.iterator`
+  
+  メソッドの名前に`Symbol.iterator`が与えられたオブジェクトは`for...of`によって反復させることができる。
+  
+  `String`、`Array`、`TypedArray`、`Map`、`Set` はすべてビルトイン反復可能オブジェクトである。
+  これらのオブジェクトはすべて、そのプロトタイプオブジェクトに`Symbol.iterator`メソッドを備えているためである。
+  
+  ```js
+  const iterator = {
+    // ジェネレータ関数を定義するので冒頭に * を付与する
+    // function 式の場合は function* () {} とする
+    *[Symbol.iterator] () {
+      yield 1;
+      yield 2;
+      yield 3;
+    }
+  }
+  
+  console.log([...iterator]);  // 1, 2, 3
+  
+  for (const val of iterator) {
+    console.log(val);  // 1 2 3
+  }
+  ```
+  
+  ## 参考
+  
+  [Symbol - JavaScript | MDN](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Symbol)
+  [Symbol - MDN Web Docs 用語集: ウェブ関連用語の定義 | MDN](https://developer.mozilla.org/ja/docs/Glossary/Symbol)
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

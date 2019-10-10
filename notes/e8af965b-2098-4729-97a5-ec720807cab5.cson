@@ -1,5 +1,5 @@
 createdAt: "2019-09-22T09:02:57.401Z"
-updatedAt: "2019-10-05T11:13:53.403Z"
+updatedAt: "2019-10-10T12:27:24.521Z"
 type: "MARKDOWN_NOTE"
 folder: "846fb24c5f8aad917395"
 title: "やること"
@@ -13,17 +13,24 @@ content: '''
     - F1 bot
     - Todolsit (Vue.js + RoR)
     - 日報 (Vue.js + Firestore)
-    - (nn-mail)
-    
+    - nn-mail  
     
   ## バイト中にやるやつ  
   
   - サイパトメール
-    - TSLint
+    - [x] TSLint
+    - [ ] Cloud Firestore
+  - 日報
+    - [ ] TypeScript 化  
+  - 日報2
     - Cloud Firestore
-  - 日報 (dailyreport2)
-    - Cloud Firestore
+      - [ ] スキーマ定義
+      - [ ] 提出
+      - [ ] 管理画面で表示
+      - [ ] 今日の日報だけ抽出
+      - [ ] ビジュアライズ
     - Cloud Messaging
+      - [ ] 通知
   
   ## アプリ
   
@@ -46,15 +53,6 @@ content: '''
   - You Don't know JS
   
   
-  ## ノート
-  
-  - [ ] VueRouter
-  - [ ] Vuex
-  - [ ] Clasp で使えない関数
-  
-  
-  
-    
 '''
 linesHighlighted: []
 isStarred: false

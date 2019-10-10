@@ -1,0 +1,125 @@
+createdAt: "2019-10-10T08:26:50.701Z"
+updatedAt: "2019-10-10T10:05:19.169Z"
+type: "MARKDOWN_NOTE"
+folder: "c50fd792c06c102068ae"
+title: "非同期の反復オブジェクトの繰り返し処理"
+tags: [
+  "AsyncIterator"
+  "for_await...of"
+  "ジェネレーター"
+  "イテレーター"
+]
+content: '''
+  # 非同期の反復オブジェクトの繰り返し処理
+  
+  `Symbol.asyncIterator`がプロパティ名に設定されたメソッドをもち、非同期反復可能処理を明示的に実装しているオブジェクトを反復処理する。
+  
+  `for await...of`構文を用いることで非同期イテレーターを繰り返し処理することができる。
+  
+  ## イテレーターによる実装
+  
+  イテレーターは以下の2つのプロパティを持つオブジェクトを返す`next()`メソッドをもっている。
+  
+  - `value` - シーケンスの次の値を表すプロパティ
+  - `done` - 最後の値まで消費したら`true`となる`boolean`型のプロパティ
+  
+  ```js:イテレーターによる実装
+  const sleep = time => new Promise(f => setTimeout(f, time));
+  const asyncIterator = {
+    [Symbol.asyncIterator] () {
+      return {
+        i: 0,
+        async next () {
+          await sleep(1000);
+          return Promise.resolve(
+            this.i < 3 ?
+            { value: this.i++, done: false }:
+            { done: true }
+          );
+        }
+      };
+    }
+  };
+  
+  (async () =>  {
+    for await (const num of asyncIterator) {
+      console.log(num);
+    }
+  })();
+  // (1000 ms 待機)
+  // 0
+  // (1000 ms 待機)
+  // 1
+  // (1000 ms 待機)
+  // 2
+  ```
+  
+  ## ジェネレーター関数による実装
+  
+  `Symobl.asyncIterator`メソッドをジェネレーター関数として定義することで非同期の繰り返し処理を実現している。
+  
+  ジェネレーター関数を宣言するにはメソッド名の先頭に`*`をつける必要がある。
+  `function`式の場合は、`function* () {}`のようにする。
+  
+  ```js:ジェネレーター関数による実装
+  const sleep = time => new Promise(f => setTimeout(f, time));
+  const asyncIterator = {
+    async *[Symbol.asyncIterator] () {
+      for (let i = 0; i < 3; i++) {
+        await sleep(1000);
+        yield i;
+      }
+    }
+  };
+  
+  (async () => {
+    for await (const num of asyncIterator) {
+      console.log(num);
+    }
+  })();
+  // (1000 ms 待機)
+  // 0
+  // (1000 ms 待機)
+  // 1
+  // (1000 ms 待機)
+  // 2
+  ```
+  
+  ### `for`と`for await...of`の比較
+  
+  ```js
+  const sleep = time => new Promise(f => setTimeout(f, time));
+  const asyncFunc = async () => {
+    for (let i = 0; i < 3; i++) {
+      await sleep(1000);
+      yield i;
+    }
+  };
+  
+  // for
+  (async () => {
+    let f = asyncFunc();
+    for (let num = await f.next(); !num.done; num = await f.next()) {
+      console.log(num.value);
+    }
+  });
+  
+  
+  // for await...of
+  (async () => {
+    for await (const num of asyncFunc()) {
+      console.log(num);
+    }
+  });
+  ```
+  
+  ## 参考
+  
+  [イテレーターとジェネレーター - JavaScript \\| MDN](https://developer.mozilla.org/ja/docs/Web/JavaScript/Guide/Iterators_and_Generators)
+  [for await...of - JavaScript \\| MDN](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/for-await...of)
+  [非同期に繰り返すならfor-await-of構文が使える、けど使わない方が良いかも。（配列とかおれおれAdvent Calendar2018 – 16日目） \\| Ginpen.com](https://ginpen.com/2018/12/16/for-await-of-statement/)
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

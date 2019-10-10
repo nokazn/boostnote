@@ -1,0 +1,78 @@
+createdAt: "2019-10-10T10:05:59.405Z"
+updatedAt: "2019-10-10T11:25:12.359Z"
+type: "MARKDOWN_NOTE"
+folder: "c50fd792c06c102068ae"
+title: "Class.prototype.methodとthis.prototype.method"
+tags: [
+  "prototype"
+  "constructor"
+]
+content: '''
+  # `Class.prototype.method`と`this.prototype.method`
+  
+  ## `Class.prototype`
+  
+  ES5 以前のクラス定義では、クラスの宣言をした後、`Class.prototype.method`としてメソッドを定義するのが一般的である。
+  
+  ```js:Class.prototype.method
+  function Class2 () {}
+  Class.prototype.method = function () {
+    console.log('common method definition');
+  }
+  console.log(Class.prototype.hasOwnProperty('method'));  // true
+  ```
+  
+  ## `this.prototype`
+  
+  `this.prototype`は関数定義時にはまだ存在しないので、`TypeError`になる。
+  
+  ```js:this.prototype
+  function Class () {
+    this.prototype.method = function () {
+      console.log('is this definition OK?')
+    };  // TypeError: Cannot set property 'method2' of undefined
+  }
+  ```
+  
+  ## `this.constructor.prototype`
+  
+  `this.constructor.prototypr`下にはメソッドを定義することができるが、インスタンス生成時に毎回`this.constructor`が呼ばれることで、以下の問題が発生する。
+  
+  - はじめてインスタンスが生成されるまで`method`メソッドは存在しない
+  - 別のインスタンスが生成されると、新たに`method`メソッドも定義しなおされる
+  
+  ```js:this.constructor.prototype
+  function Class () {
+    this.constructor.prototype.method = function () {
+      console.log('is this definition OK?');
+    };
+  }
+  console.log(Class.prototype.hasOwnProperty('method'));  // false
+  
+  const c1 = new Class();
+  const method = c1.method;
+  console.log(Class.prototype.hasOwnProperty('method'));  // true
+  
+  const c2 = new Class();
+  console.log(c1.method === c2.method);  // true
+  console.log(method === c2.method);  // false
+  ```
+  
+  `Class`クラスの定義内で、`Object.getPrototypeOf(this)`としても同様の問題が発生する。
+  
+  ```js:Object.getPrototypeOf(this)
+  function Class () {
+    Object.getPrototypeOf(this).method = function () {
+      console.log('is this OK?');
+    }
+  }
+  ```
+  
+  ## 参考
+  
+  [javascript - Class.prototype.method vs this.prototype.method - Stack Overflow](https://stackoverflow.com/questions/22123965/class-prototype-method-vs-this-prototype-method)
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

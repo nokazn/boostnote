@@ -1,0 +1,78 @@
+createdAt: "2019-10-10T11:38:29.660Z"
+updatedAt: "2019-10-10T12:16:58.405Z"
+type: "MARKDOWN_NOTE"
+folder: "8eecd56ec7357d6ca8d6"
+title: "Vue CLI 3.x 以降の環境変数"
+tags: [
+  "環境変数"
+]
+content: '''
+  # Vue CLI 3.x 以降の環境変数
+  
+  Vue CLIが2.xのときは`config`ディレクトリ以下にそれぞれ
+  
+  - `dev.env.js` - 開発環境用
+  - `prod.env.js` - 本番環境用
+  - `test.env.js` - テスト環境用
+  
+  というように環境ごとに設定ファイルが用意されていた。
+  
+  Vue CLI @3.x 以降では自分で環境変数用のファイルをプロジェクトフォルダに作成して実行時に環境変数を切り替える。
+  
+  ## 設定ファイル
+  
+  Vue CLI プロジェクトには3つのモードがある。
+  
+  - `development` - `vue-cli-service serve`
+  - `test` - `vue-cli-service test:unit`
+  - `production` - `vue-cli-service build`, `vue-cli-service test:e2e`
+  
+  これらは`NODE_ENV`が指定されていればその値、なければプロジェクト立ち上げ時に上記のコマンドによって指定されたモードが`NODE_ENV`に設定される。
+  
+  また、各コマンドで`--mode`フラグに上記の3つののモード内で別のモードを指定することでモードを上書きすることができる。
+  
+  モードごとに以下のファイルで環境変数を設定することができる。
+  
+  | ファイル名 | モード |
+  | -- | -- |
+  | `.env`| 全モード |
+  | `.env.local`| 全モード (ローカル) |
+  | `.env.development` | 開発環境 |
+  | `.env.development.local` | 開発環境 (ローカル) |
+  | `.env.production` | 本番環境 |
+  | `.env.production.local` | 本番環境 (ローカル) |
+  | `.env.test` | テスト環境 |
+  | `.env.test.local` | テスト環境 (ローカル) |
+  
+  `.local`を付与するとローカル環境のみで適用され、プロジェクト立ち上げ時に自動的に`.gitignore`に追加されるため、Github に上がることもない。
+  
+  ## 環境変数の設定と呼び出し
+  
+  接頭語として`VUE_APP_`を付与する必要がある。
+  
+  ```:.env.development
+  VUE_APP_HOST=localhost
+  ```
+  
+  ```bash
+  $ vue-cli-service serve
+  ```
+  
+  として開発環境を立ち上げ、プロジェクト内で
+  
+  ```js:呼び出し
+  console.log(process.env.VUE_APP_HOST);  // localhost
+  ```
+  
+  とすることで環境変数を呼び出すことができる。
+  
+  ## 参考
+  
+  [Modes and Environment Variables \\| Vue CLI](https://cli.vuejs.org/guide/mode-and-env.html#modes)
+  [vue-cliで実行時の環境変数を切り替える方法 - conta's diary](https://conta.hatenablog.com/entry/2019/02/25/154310)
+  [Vue CLI 3.xからの環境変数やモードの扱い - Qiita](https://qiita.com/asapon_rb/items/ed7f0f3d81a367e5c109)
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false
