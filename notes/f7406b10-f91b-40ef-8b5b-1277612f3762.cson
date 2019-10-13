@@ -1,0 +1,56 @@
+createdAt: "2019-10-13T03:03:43.198Z"
+updatedAt: "2019-10-13T04:15:15.945Z"
+type: "MARKDOWN_NOTE"
+folder: "c50fd792c06c102068ae"
+title: "async 関数におけるawait/then/catchパターン"
+tags: [
+  "非同期"
+  "async"
+  "await"
+]
+content: '''
+  # async 関数における`await`/`then`/`catch`パターン
+  
+  ## `try`/`catch`
+  
+  クロージャーの前に`let`で変数宣言をする必要があり、冗長に感じられる。
+  
+  ```js
+  let res;
+  try {
+    res = await axios('https://yahoo.co.jp');
+  } catch (e) {
+    console.error(e);
+  }
+  let today;
+  let weatherList;
+  if (res) {
+    today = res.data.window.document.getElementById('Today');
+    weatherList = [...today.querySelectorAll('span img')].map(img => img.alt);
+  }
+  ```
+  
+  ## `then`/`catch`
+  
+  `const`での変数宣言を使用でき、直感的に読むことができる。
+  
+  `async`で宣言された関数は`Promise`を返すので、`then`/`catch`で同期的な処理を書くことができる。
+  
+  ```js
+  const weatherList = await axios('https://yahoo.co.jp')
+    .then(res => {
+      const today = res.data.window.document.getElementById('Today');
+      return [...today.querySelectorAll('span img')].map(img => img.alt)
+    }).catch(e => {
+      console.error(e);
+    });
+  ```
+  
+  ## 参考
+  
+  [async関数においてtry/catchではなくawait/catchパターンを活用する - Qiita](https://qiita.com/akameco/items/cc73afcdb5ac5d0774bc)
+  
+'''
+linesHighlighted: []
+isStarred: false
+isTrashed: false

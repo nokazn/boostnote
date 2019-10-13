@@ -1,5 +1,5 @@
 createdAt: "2019-07-15T09:58:34.677Z"
-updatedAt: "2019-10-10T12:21:28.427Z"
+updatedAt: "2019-10-10T15:48:44.085Z"
 type: "MARKDOWN_NOTE"
 folder: "770da9bb44957224bcc5"
 title: "名前修飾 / 名前マイリング"
@@ -8,6 +8,7 @@ content: '''
   # 名前修飾 / 名前マイリング
   
   ソース上で書いた関数名をそのままシンボル名にするのではなく、「引数の型」「返り値の型」など、その関数に関連する情報も追加したものを「シンボル名」にすること。
+  
 '''
 linesHighlighted: []
 isStarred: false

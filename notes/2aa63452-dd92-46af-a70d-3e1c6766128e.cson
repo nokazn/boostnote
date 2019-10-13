@@ -1,11 +1,11 @@
 createdAt: "2019-08-20T11:36:10.921Z"
-updatedAt: "2019-08-26T09:58:17.102Z"
+updatedAt: "2019-10-10T14:12:01.200Z"
 type: "MARKDOWN_NOTE"
 folder: "c50fd792c06c102068ae"
 title: "オブジェクト定義時にプロパティ名に変数を用いる"
 tags: [
   "ES6"
-  "途中"
+  "computed_property_name"
 ]
 content: '''
   # オブジェクト定義時にプロパティ名に変数を用いる
@@ -42,31 +42,29 @@ content: '''
   ```js
   const obj0 = {
     10: {}
-  }
+  };
   
   const obj1 = {
     [(1 + 4) * 2 ]: {}
-  }
+  };
   
   const obj2 = {
     ['1' + '0']: {}
-  }
+  };
   
   const obj3 = {
     [(() => 5*2)()]: {}  // 10 を返す関数を即時実行
-  }
+  };
   
-  const objOf10 = { toString: () => 10 }  // 文字列にすると 10 を返すメソッドをもつオブジェクト
+  const objOf10 = { toString: () => 10 };  // 文字列にすると 10 を返すメソッドをもつオブジェクト
   const obj4 = {
     [objOf10]: {}  // toString() が2回呼び出されるイメージ
-  }
-  
-  const obj5 = {
-    10: {}
-  }
+  };
   ```
   
+  ## 参考
   
+  [動的にプロパティ名を設定できるようになりました。（現代的JavaScriptおれおれアドベントカレンダー2017 – 07日目） \\| Ginpen.com](https://ginpen.com/2017/12/07/computed-property-name/)
   
 '''
 linesHighlighted: []

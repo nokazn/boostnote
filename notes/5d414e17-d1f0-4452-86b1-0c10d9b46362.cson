@@ -1,13 +1,91 @@
 createdAt: "2019-05-09T12:38:06.452Z"
-updatedAt: "2019-10-10T08:02:26.491Z"
+updatedAt: "2019-10-10T15:47:38.235Z"
 type: "MARKDOWN_NOTE"
 folder: "d8b18fc544434022f6d8"
-title: "data-toggle=\"#idname\""
+title: "カスタムデータ属性"
 tags: [
-  "途中"
+  "カスタムデータ属性"
+  "dataset"
+  "疑似要素"
 ]
 content: '''
-  # `data-toggle="#idname"`
+  # カスタムデータ属性
+  
+  HTML5 では任意の要素に`data-`で始まるカスタムデータ属性を定めることができる。
+  
+  データ属性は文字列で、文字、数字、`-`、`.`、`_`が使用でき、1つの要素に様々なカスタムデータ属性をもつことができる。
+  
+  ```html
+  <article
+    id="f1"
+    data-columns="3"
+    data-index="12345"
+    data-parent="motorsports"
+    data-author-name="John">
+    ...
+  </article>
+  ```
+  
+  ## JavaScript からのアクセス
+  
+  ### `getAttribute()`による取得
+  
+  `getAttribute()`メソッドは文字列または`null`を返す。
+  
+  ```js
+  const ele = document.getElementById('f1');
+  const columns = ele.getAttribute('data-columns');  // '3'
+  const index = ele.getAttribute('data-index');  // '12345'
+  const category = ele.getAttribute('data-parent');  // 'motorsports'
+  ```
+  
+  カスタムデータ属性を設定する。
+  
+  ```js
+  ele.setAttribute('data-recomended', '')
+  ```
+  
+  ### `dataset`による取得
+  
+  以下の手順を踏むことで、`dataset`プロパティ経由でカスタムデータ属性にアクセスできる。
+  
+  - 属性名から`data-`接頭辞を取り除く
+  - `-`のあとに小文字が続く場合、名前から`-`を取り除き、`-`に続く1文字を大文字に変換する
+  - ほかの文字はそのままにする。つまり、あとに小文字が続かない場合、ハイフンもそのままにする
+  
+  ```js
+  const ele = document.getElementById('f1');
+  const autherName = ele.dataset.autherName;
+  ele.dataset.autherName = 'Michael';  // カスタムデータ属性を設定
+  ```
+  
+  `dataset`プロパティは`DOMStringMap`オブジェクトを返す。
+  
+  ## CSS からのアクセス
+  
+  `attr`関数を使用して CSS 内でアクセスできる。
+  
+  ```css
+  article::before {
+    content: attr(data-parent);
+  }
+  ```
+  
+  属性セレクターを使用してデータ属性ごとにスタイルを変更することもできる。
+  
+  ```css
+  article[data-columns='3'] {
+    width: 400px;
+  }
+  article[data-columns='4'] {
+    width: 600px;
+  }
+  ```
+  
+  ## 参考
+  
+  [データ属性の使用 - Web 開発を学ぶ \\| MDN](https://developer.mozilla.org/ja/docs/Learn/HTML/Howto/Use_data_attributes)
+  [いまさら聞けない、HTML5カスタムデータ属性の基本と使いどころ - WPJ](https://www.webprofessional.jp/how-why-use-html5-custom-data-attributes/)
   
   HTML 内で`id="idname"`のものを参照する。
   
